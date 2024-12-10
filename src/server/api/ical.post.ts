@@ -1,7 +1,7 @@
 import type { H3Event } from 'h3'
 import { z } from 'zod'
 
-import { SITE_URL } from '~/utils/constants'
+import { SITE_URL } from '~/shared/utils/constants'
 import { getIcalString } from '~/server/utils/ical'
 import { getBodySafe } from '../utils/validation'
 

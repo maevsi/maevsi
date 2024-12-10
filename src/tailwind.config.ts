@@ -3,7 +3,7 @@ import defaultTheme from 'tailwindcss/defaultTheme'
 import colors from 'tailwindcss/colors'
 import type { PluginAPI } from 'tailwindcss/types/config'
 
-import { STYLE_DEFAULT_GRAY } from './utils/constants'
+import { STYLE_DEFAULT_GRAY } from './shared/utils/constants'
 
 const gray = colors[STYLE_DEFAULT_GRAY] // or gray, neutral, slate, stone
 const truncateOverflow = {

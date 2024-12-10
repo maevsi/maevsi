@@ -8,7 +8,7 @@ import withNuxt from './.nuxt/eslint.config.mjs'
 
 const jiti = createJiti(import.meta.url)
 
-const constants = /** @type {import('./utils/constants')} */ (
+const constants = /** @type {import('./shared/utils/constants')} */ (
   await jiti.import('../utils/constants.ts')
 )
 const POLYFILLS = constants.POLYFILLS

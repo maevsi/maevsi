@@ -1,7 +1,7 @@
 import type { NuxtI18nOptions } from '@nuxtjs/i18n'
 import type { DefineNuxtConfig } from 'nuxt/config'
 
-import { LOCALES } from '../../utils/constants'
+import { LOCALES } from '../../shared/utils/constants'
 
 export const MODULE_CONFIG = {
   defaultLocale: 'en', // Must be set for the default prefix_except_default prefix strategy.

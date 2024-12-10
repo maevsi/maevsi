@@ -1,11 +1,5 @@
-import seedrandom from 'seedrandom'
 import Swal, { type SweetAlertIcon } from 'sweetalert2'
 import colors from 'tailwindcss/colors'
-
-export const getHeroImageName = (seed: string) => {
-  const images = ['conference', 'crowd', 'party', 'workshop']
-  return images[Math.floor(seedrandom(seed)() * images.length)]
-}
 
 export const showToast = ({
   confirmButtonText,

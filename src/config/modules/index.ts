@@ -2,7 +2,7 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import type { DefineNuxtConfig } from 'nuxt/config'
 
-import { SITE_NAME, SITE_URL } from '../../utils/constants'
+import { SITE_NAME, SITE_URL } from '../../shared/utils/constants'
 import { cookieControlConfig } from './cookieControl'
 import { i18nConfig } from './i18n'
 import { pwaConfig } from './pwa'

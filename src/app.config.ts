@@ -1,6 +1,6 @@
 import type { useServerSeoMeta } from '@unhead/vue'
 
-import { STYLE_DEFAULT_GRAY } from './utils/constants'
+import { STYLE_DEFAULT_GRAY } from './shared/utils/constants'
 
 export default defineAppConfig({
   ui: {

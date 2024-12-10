@@ -16,7 +16,7 @@ import {
   IS_NITRO_OPENAPI_ENABLED,
   SITE_NAME,
   SITE_URL,
-} from '../utils/constants'
+} from '../shared/utils/constants'
 import { GET_CSP } from '../server/utils/constants'
 
 const execPromise = promisify(exec)
@@ -38,6 +38,35 @@ export default defineNuxtConfig({
     },
   },
   compatibilityDate: '2024-04-03',
+
+  future: {
+    compatibilityVersion: 4,
+  },
+  srcDir: '.',
+  dir: {
+    app: 'app'
+  },
+  experimental: {
+    scanPageMeta: 'after-resolve',
+    sharedPrerenderData: false,
+    compileTemplate: true,
+    resetAsyncDataToUndefined: true,
+    templateUtils: true,
+    relativeWatchPaths: true,
+    normalizeComponentNames: false,
+    // spaLoadingTemplateLocation: 'within',
+    defaults: {
+      useAsyncData: {
+        deep: true
+      }
+    }
+  },
+  unhead: {
+    renderSSRHeadOptions: {
+      omitLineBreaks: false
+    }
+  },
+
   hooks: {
     'vite:extendConfig': async (config, { isClient }) => {
       config.plugins ||= []
@@ -212,6 +241,7 @@ export default defineNuxtConfig({
         'pretty-bytes',
         'prntr',
         'qrcode.vue',
+        'seedrandom',
         'slugify',
         'v-calendar',
         'vue-advanced-cropper',

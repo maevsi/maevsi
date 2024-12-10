@@ -1,26 +1,44 @@
+import type { CombinedError } from '@urql/core'
+import { consola } from 'consola'
+
+import type { ArrayElement, UnionToIntersection } from '~/types/types'
 import type { BackendError } from '~/types/api'
 
-export const getCombinedErrorMessages = (
-  errors: BackendError[],
-  pgIds?: Record<string, string>,
+export const getApiData = <
+  S,
+  T extends {
+    data: Ref<S>
+    error: Ref<CombinedError | undefined>
+    fetching: Ref<boolean>
+  },
+>(
+  queries?: Array<T | undefined>,
 ) => {
-  const errorMessages: string[] = []
+  const apiData = computed(() => ({
+    data: (queries || []).reduce(
+      (p, c) => ({ ...p, ...c?.data.value }),
+      {} as NonNullable<
+        UnionToIntersection<NonNullable<ArrayElement<T[]>['data']['value']>>
+      >,
+    ),
+    errors: (queries || []).reduce(
+      (p, c) => (c?.error.value ? [...p, c.error.value as BackendError] : p),
+      [] as BackendError[],
+    ),
+    isFetching: (queries || []).reduce(
+      (p, c) => p || c?.fetching.value || false,
+      false,
+    ),
+  }))
 
-  for (const combinedError of errors) {
-    if (combinedError.networkError) {
-      errorMessages.push(combinedError.message)
-    }
+  watch(
+    () => apiData.value.errors,
+    (current, previous) => {
+      current
+        .filter((error) => !previous.includes(error))
+        .forEach((error) => consola.error(error))
+    },
+  )
 
-    for (const graphqlError of combinedError.graphQLErrors) {
-      const translation = pgIds && pgIds[`postgres${graphqlError.errcode}`]
-
-      if (translation) {
-        errorMessages.push(translation)
-      } else {
-        errorMessages.push(graphqlError.message)
-      }
-    }
-  }
-
-  return errorMessages
+  return apiData
 }

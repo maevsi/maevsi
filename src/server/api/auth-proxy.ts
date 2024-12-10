@@ -2,7 +2,7 @@ import { consola } from 'consola'
 import type { H3Event } from 'h3'
 import { z } from 'zod'
 
-import { TURNSTILE_HEADER_KEY } from '~/utils/constants'
+import { TURNSTILE_HEADER_KEY } from '~/shared/utils/constants'
 import { getBodySafe } from '../utils/validation'
 
 const authProxyBodySchema = z.object({

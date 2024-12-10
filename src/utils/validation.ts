@@ -18,7 +18,7 @@ import {
   REGEX_UPPERCASE_NONE,
   REGEX_URL_HTTPS,
   REGEX_UUID,
-} from './constants'
+} from '../shared/utils/constants'
 
 import type { TypedRouteFromName } from '@typed-router/__router'
 import { eventIsExistingQuery } from '~/gql/documents/queries/event/eventIsExisting'
