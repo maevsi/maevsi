@@ -53,7 +53,7 @@ const emit = defineEmits<{
 const classes = computed(() => {
   return [
     'rounded',
-    ...(props.isColored ? ['text-link-dark dark:text-link-bright'] : []),
+    ...(props.isColored ? ['text-accent-strong dark:text-link-bright'] : []),
     ...(props.isDisabled ? ['disabled'] : []),
     ...(props.isUnderlined ? ['underline'] : []),
   ].join(' ')
