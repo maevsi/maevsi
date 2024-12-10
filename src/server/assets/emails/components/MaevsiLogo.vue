@@ -3,7 +3,7 @@ import { Column, Img, Row, Section } from '@vue-email/components'
 
 import type { Locale } from '../../../utils/i18n'
 import MaevsiText from './base/MaevsiText.vue'
-import { LOGO_CID } from '~/server/utils/assets'
+import { LOGO_CID } from '#imports'
 
 export interface Props {
   logoSource?: string

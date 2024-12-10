@@ -1,9 +1,6 @@
 import type { H3Event } from 'h3'
 import { jwtVerify, importSPKI } from 'jose'
 
-import { useJwtPublicKey } from '../utils/auth'
-import { JWT_NAME, JWT_ALGORITHM } from '~/shared/utils/constants'
-
 export default defineEventHandler(async (event: H3Event) => {
   const runtimeConfig = useRuntimeConfig()
 

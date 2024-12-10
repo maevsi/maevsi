@@ -1,5 +1,3 @@
-import type { BackendError } from '~/types/api'
-
 export const getCombinedErrorMessages = (
   errors: BackendError[],
   pgIds?: Record<string, string>,

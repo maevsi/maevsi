@@ -1,7 +1,5 @@
 import type { H3Event } from 'h3'
 
-import { TIMEZONE_COOKIE_NAME } from '~/shared/utils/constants'
-
 // TODO: rename to `getTimezone` (https://github.com/nuxt/cli/issues/266)
 export const getTimezoneServer = async (event: H3Event) => {
   const timezoneBySsr = event.context.$timezone

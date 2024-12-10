@@ -1,9 +1,6 @@
 import type { CombinedError } from '@urql/core'
 import { consola } from 'consola'
 
-import type { ArrayElement, UnionToIntersection } from '~/types/types'
-import type { BackendError } from '~/types/api'
-
 export const getApiData = <
   S,
   T extends {

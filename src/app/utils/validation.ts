@@ -13,13 +13,6 @@ import { consola } from 'consola'
 import type { Ref } from 'vue'
 import type { LocationQueryValue } from 'vue-router'
 
-import {
-  REGEX_SLUG,
-  REGEX_UPPERCASE_NONE,
-  REGEX_URL_HTTPS,
-  REGEX_UUID,
-} from '../shared/utils/constants'
-
 import type { TypedRouteFromName } from '@typed-router/__router'
 import { eventIsExistingQuery } from '~/gql/documents/queries/event/eventIsExisting'
 import { accountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'

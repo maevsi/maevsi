@@ -1,6 +1,6 @@
 import { useQuery } from '@urql/vue'
-import { graphql } from '~/gql/generated'
-import type { AllInvitationsQueryVariables } from '~/gql/generated/graphql'
+import { graphql } from '~~/gql/generated'
+import type { AllInvitationsQueryVariables } from '~~/gql/generated/graphql'
 
 export const useAllInvitationsQuery = (
   variables: AllInvitationsQueryVariables,

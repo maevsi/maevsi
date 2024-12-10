@@ -2,8 +2,6 @@ import { type H3Event, MIMES } from 'h3'
 import { consola } from 'consola'
 import { z } from 'zod'
 
-import { getBodySafe } from '../utils/validation'
-
 const tusdPostBodySchema = z.object({
   Type: z.string(),
   Event: z.object({

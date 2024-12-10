@@ -9,7 +9,7 @@ import withNuxt from './.nuxt/eslint.config.mjs'
 const jiti = createJiti(import.meta.url)
 
 const constants = /** @type {import('./shared/utils/constants')} */ (
-  await jiti.import('../utils/constants.ts')
+  await jiti.import('./shared/utils/constants.ts')
 )
 const POLYFILLS = constants.POLYFILLS
 
@@ -31,7 +31,7 @@ export default withNuxt(
     },
   },
   {
-    ignores: ['gql/generated/**/*'],
+    ignores: ['app/gql/generated/**/*'],
   },
   {
     files: ['i18n/locales/**/*'],

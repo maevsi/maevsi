@@ -18,8 +18,7 @@
 
 <script setup lang="ts">
 import downloadJs from 'downloadjs'
-
-import type { RoutesNamesList } from '@typed-router'
+import type { RouteNamedMap } from 'vue-router/auto-routes'
 
 import type {
   ContactItemFragment,
@@ -37,7 +36,7 @@ const props = withDefaults(defineProps<Props>(), {
   invitation: undefined,
 })
 
-const ROUTE_NAME: RoutesNamesList = 'event-view-username-event_name___en'
+const ROUTE_NAME: keyof RouteNamedMap = 'event-view-username-event_name___en'
 
 const { t } = useI18n()
 const dateTime = useDateTime()

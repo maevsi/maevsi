@@ -3,7 +3,7 @@ import { decodeJwt, type JWTPayload } from 'jose'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
-import type { Modal } from '~/types/modal'
+import type { Modal } from '~~/types/modal'
 
 export const useMaevsiStore = defineStore('maevsi', () => {
   const localePath = useLocalePath()
