@@ -1,15 +1,5 @@
 <template>
   <div class="flex flex-col items-center gap-4">
-    <ButtonColored
-      :is-primary="false"
-      :aria-label="t('register')"
-      :to="localePath('/session/create')"
-    >
-      {{ t('signIn') }}
-      <template #prefix>
-        <IHeroiconsArrowLeft />
-      </template>
-    </ButtonColored>
     <Form
       :errors="api.errors"
       :errors-pg-ids="{
@@ -47,6 +37,14 @@
         </FormInputStateInfo>
       </template>
     </Form>
+
+    <AppLink
+      :to="localePath('/session/create')"
+      :is-underlined="true"
+      :is-colored="true"
+    >
+      {{ t('alreadyHaveAnAccount') }}
+    </AppLink>
   </div>
 </template>
 
@@ -115,13 +113,13 @@ de:
   register: Registrieren
   registrationSuccessBody: Verifiziere deinen Account über den Link in der E-Mail, die du in Kürze erhalten wirst.
   registrationSuccessTitle: Verifizierungs-E-Mail gesendet.
-  signIn: Stattdessen anmelden
+  alreadyHaveAnAccount: 'Du hast bereits ein Konto? Anmelden'
 en:
   accountDeletionNotice: "You'll be able to delete your account at any time."
   postgres22023: Your password is too short! Think of a longer one.
   postgres23505: This username or email address is already in use! Think of a new name or try signing in instead.
-  register: Register
+  register: Sign Up
   registrationSuccessBody: Verify your account using the verification link sent to you by email.
   registrationSuccessTitle: Verification email sent.
-  signIn: Sign in instead
+  alreadyHaveAnAccount: Already have an account? Log in
 </i18n>
