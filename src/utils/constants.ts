@@ -25,14 +25,14 @@ export const LOCALES = [
   {
     code: 'de',
     file: 'de.json',
+    language: 'de',
     name: 'Deutsch',
-    iso: 'de',
   },
   {
     code: 'en',
     file: 'en.json',
+    language: 'en', // Will be used as catchall locale by default.
     name: 'English',
-    iso: 'en', // Will be used as catchall locale by default.
   },
 ]
 export const POLYFILLS = ['Promise', 'requestAnimationFrame']

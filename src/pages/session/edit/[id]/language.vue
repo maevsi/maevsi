@@ -10,6 +10,7 @@
 </template>
 
 <script setup lang="ts">
+import type { I18N_LOCALE_CODE } from '@dargmuesli/nuxt-vio/types/i18n'
 import { MODULE_CONFIG } from '~/config/modules/i18n'
 
 const { availableLocales, locale, t } = useI18n()
@@ -28,7 +29,7 @@ const title = t('title')
 // methods
 const onI18nChange = async (value: string) =>
   await router.push({
-    path: switchLocalePath(value),
+    path: switchLocalePath(value as I18N_LOCALE_CODE),
   })
 </script>
 

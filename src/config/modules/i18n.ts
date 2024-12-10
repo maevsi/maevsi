@@ -6,7 +6,6 @@ import { LOCALES } from '../../utils/constants'
 export const MODULE_CONFIG = {
   defaultLocale: 'en', // Must be set for the default prefix_except_default prefix strategy.
   detectBrowserLanguage: false,
-  langDir: 'locales',
   lazy: true,
   locales: LOCALES,
 }
