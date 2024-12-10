@@ -3,15 +3,9 @@
     :aria-label="ariaLabel"
     class="justify-center rounded-md px-4 py-2 font-medium"
     :class="
-      [
-        ...(isPrimary
-          ? [
-              'bg-gradient-to-tr from-blue-500 to-blue-600 text-text-bright dark:from-blue-300 dark:to-blue-400 dark:text-text-dark',
-            ]
-          : [
-              'bg-accent-weak text-accent-strong hover:bg-accent-mid dark:border dark:border-gray-600 dark:bg-inherit dark:text-text-bright dark:hover:bg-black/30',
-            ]),
-      ].join(' ')
+      variant === 'primary'
+        ? 'bg-accent-fancy from-blue-500 to-blue-600 text-text-bright hover:bg-accent-strong dark:from-blue-300 dark:to-blue-400 dark:text-text-dark'
+        : 'bg-accent-weak text-accent-strong hover:bg-accent-mid dark:border dark:border-gray-600 dark:bg-inherit dark:text-text-bright dark:hover:bg-black/30'
     "
     :disabled="disabled"
     :to="props.to"
@@ -47,14 +41,15 @@ export interface Props<
   ariaLabel: string
   disabled?: boolean
   isExternal?: E
-  isPrimary?: boolean
+  variant?: 'primary' | 'accent'
   to?: NuxtRoute<T, P, E>
   type?: 'button' | 'reset' | 'submit'
 }
+
 const props = withDefaults(defineProps<Props<T, P, E>>(), {
   disabled: false,
   isExternal: undefined,
-  isPrimary: true,
+  variant: 'primary', // default variant
   to: undefined,
   type: 'button',
 })
