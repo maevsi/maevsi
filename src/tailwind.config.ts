@@ -77,6 +77,7 @@ export default <Partial<Config>>{
       },
       colors: {
         accent: {
+          fancy: '#4743B1',
           mid: '#CECCEB',
           strong: '#2D2B70',
           weak: '#E2E1F4',
