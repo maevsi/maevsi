@@ -12,9 +12,10 @@
     <div class="flex flex-col">
       <div class="flex min-h-0 flex-col gap-6">
         <slot />
-        <div class="flex flex-col items-center justify-between">
+        <div class="flex flex-col justify-between">
           <ButtonColored
             :aria-label="submitName || t('submit')"
+            :is-primary="false"
             :class="{
               'animate-shake': $error,
             }"

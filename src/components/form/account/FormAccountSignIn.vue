@@ -46,14 +46,22 @@
         </ButtonColored>
       </template>
     </Form>
-    <ButtonColored
-      :is-primary="false"
-      :aria-label="t('register')"
-      :to="localePath('/account/create')"
+    <div class="flex w-full flex-col justify-between">
+      <ButtonColored
+        variant="accent"
+        :aria-label="t('register')"
+        :to="localePath('/account/create')"
+        class="w-full"
+      >
+        {{ t('register') }}
+      </ButtonColored>
+    </div>
+
+    <AppLink
+      :to="localePath('/account/password/reset/request')"
+      :is-underlined="true"
+      :is-colored="true"
     >
-      {{ t('register') }}
-    </ButtonColored>
-    <AppLink :to="localePath('/account/password/reset/request')">
       {{ t('passwordReset') }}
     </AppLink>
   </div>
@@ -142,7 +150,7 @@ de:
 en:
   contactSupport: Contact support
   jwtStoreFail: Failed to store the authentication data!
-  passwordReset: Reset password
+  passwordReset: I forgot my password
   postgres55000: Your email address has not been verified yet! Check your email inbox, including the spam folder if necessary, or contact support.
   postgresP0002: Login failed! Have you registered yet? Check your input for spelling mistakes or contact support.
   register: Create an account
