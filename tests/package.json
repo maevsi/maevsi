@@ -22,7 +22,7 @@
   "devDependencies": {
     "@axe-core/playwright": "4.10.1",
     "@eslint/js": "9.16.0",
-    "@playwright/test": "1.49.0",
+    "@playwright/test": "1.49.1",
     "@types/node": "22.10.1",
     "cross-env": "7.0.3",
     "eslint": "9.16.0",
@@ -34,7 +34,7 @@
     "vitest": "2.1.8"
   },
   "peerDependencies": {
-    "playwright-core": "1.49.0"
+    "playwright-core": "1.49.1"
   },
   "type": "module",
   "engines": {
