@@ -1,9 +1,8 @@
 import { test, expect } from '@playwright/test'
 
 import { testPageLoad } from '#tests/e2e/utils/tests'
-import type { TypedLocalePathParameter } from '#src/.nuxt/typed-router/__paths'
 
-const PAGE_PATH = '/robots.txt' as TypedLocalePathParameter<never> // TODO: have server routes included (https://github.com/victorgarciaesgi/nuxt-typed-router/issues/110)
+const PAGE_PATH = '/robots.txt'
 
 testPageLoad(PAGE_PATH)
 

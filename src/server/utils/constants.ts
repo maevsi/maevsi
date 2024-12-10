@@ -4,8 +4,8 @@ import type { RuntimeConfig } from 'nuxt/schema'
 import {
   IS_NITRO_OPENAPI_ENABLED,
   STAGING_HOST as PRODUCTION_HOST,
-} from '../../utils/constants'
-import { getDomainTldPort as getSiteAndPort } from '../../utils/networking'
+} from '../../shared/utils/constants'
+import { getDomainTldPort as getSiteAndPort } from '../../shared/utils/networking'
 
 export const IS_IN_PRODUCTION = process.env.NODE_ENV === 'production'
 export const IS_IN_STACK = !!process.env.NUXT_PUBLIC_SITE_URL

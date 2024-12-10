@@ -1,7 +1,5 @@
 import { consola } from 'consola'
 
-export { getSharedSentryConfig } from '~/composables/sentry'
-
 export const throwError = <DataT = unknown>({
   code,
   data,

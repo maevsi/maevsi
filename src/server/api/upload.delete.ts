@@ -2,9 +2,6 @@ import type { H3Event } from 'h3'
 import { consola } from 'consola'
 import { z } from 'zod'
 
-import { verifyAuth } from '../utils/auth'
-import { getQuerySafe } from '../utils/validation'
-
 const uploadDeleteQuerySchema = z.object({
   uploadId: z.string(),
 })

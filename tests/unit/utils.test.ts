@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest'
 
-import { getDomainTldPort } from '#src/utils/networking'
+import { getDomainTldPort } from '#src/shared/utils/networking'
 
 test('gets domain, top level domain and port', () => {
   expect(getDomainTldPort('localhost')).toBe('localhost')
