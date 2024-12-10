@@ -3,10 +3,6 @@
   "extends": ["github>dargmuesli/renovate-config"],
   "packageRules": [
     {
-      "matchPackageNames": ["@nuxtjs/i18n"],
-      "allowedVersions": "8.3.0"
-    },
-    {
       "matchPackageNames": ["@pinia/nuxt"],
       "allowedVersions": "0.5.5"
     },

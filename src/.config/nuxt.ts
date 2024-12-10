@@ -134,9 +134,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       i18n: {
-        ...(process.env.NODE_ENV === 'development'
-          ? {}
-          : { baseUrl: SITE_URL }),
+        baseUrl: SITE_URL,
       },
       sentry: {
         host: 'o4507213726154752.ingest.de.sentry.io',
