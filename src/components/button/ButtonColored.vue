@@ -9,7 +9,7 @@
               'bg-gradient-to-tr from-blue-500 to-blue-600 text-text-bright dark:from-blue-300 dark:to-blue-400 dark:text-text-dark',
             ]
           : [
-              'border border-gray-300 text-text-dark hover:bg-black/5 dark:border-gray-600 dark:text-text-bright dark:hover:bg-black/30',
+              'bg-accent-weak text-accent-strong hover:bg-accent-mid dark:border dark:border-gray-600 dark:bg-inherit dark:text-text-bright dark:hover:bg-black/30',
             ]),
       ].join(' ')
     "
