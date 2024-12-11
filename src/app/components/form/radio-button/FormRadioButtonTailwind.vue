@@ -7,7 +7,7 @@
       class="relative -space-y-px rounded-md bg-background-brighten dark:bg-background-darken"
     >
       <RadioGroupOption
-        v-for="(option, optionId) in options"
+        v-for="(option, index) in options"
         v-slot="{ checked, active }"
         :key="option.id"
         as="template"
@@ -15,10 +15,8 @@
       >
         <div
           :class="[
-            optionId === 0 ? 'rounded-tl-md rounded-tr-md' : '',
-            optionId === options.length - 1
-              ? 'rounded-bl-md rounded-br-md'
-              : '',
+            index === 0 ? 'rounded-tl-md rounded-tr-md' : '',
+            index === options.length - 1 ? 'rounded-bl-md rounded-br-md' : '',
             checked
               ? 'z-10 border-indigo-200 bg-indigo-50 dark:border-blue-900 dark:bg-zinc-600'
               : 'border-gray-200 dark:border-gray-800',

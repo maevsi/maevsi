@@ -1,15 +1,12 @@
 <template>
   <div>
     <FormRadioButton
-      v-for="titlesValue in titlesValues"
-      :key="Array.isArray(titlesValue) ? titlesValue[0] : titlesValue"
-      :checked="
-        (Array.isArray(titlesValue) ? titlesValue[1] : titlesValue) ===
-        modelValue
-      "
+      v-for="option in options"
+      :key="option.value"
+      :checked="option.value === modelValue"
       :group-name="name"
-      :title="Array.isArray(titlesValue) ? titlesValue[0] : titlesValue"
-      :value="Array.isArray(titlesValue) ? titlesValue[1] : titlesValue"
+      :title="option.title"
+      :value="option.value"
       @change="emit('update:modelValue', $event)"
     />
   </div>
@@ -18,7 +15,10 @@
 <script setup lang="ts">
 export interface Props {
   name?: string
-  titlesValues: string[] | string[][]
+  options: {
+    title: string
+    value: string
+  }[]
   modelValue?: string
 }
 withDefaults(defineProps<Props>(), {

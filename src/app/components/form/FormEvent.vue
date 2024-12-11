@@ -100,9 +100,9 @@
           }-input-visibility`"
           v-model="v$.visibility.$model"
           name="visibility"
-          :titles-values="[
-            [t('visibilityPublic'), EventVisibility.Public],
-            [t('visibilityPrivate'), EventVisibility.Private],
+          :options="[
+            { title: t('visibilityPublic'), value: EventVisibility.Public },
+            { title: t('visibilityPrivate'), value: EventVisibility.Private },
           ]"
         />
         <template #stateError>

@@ -211,6 +211,7 @@ const onClick = async () => {
   await writeTag(invitationId.value)
 }
 const onDetect = async (detectedBarcodes: DetectedBarcode[]) => {
+  if (!detectedBarcodes.length || !detectedBarcodes[0]) return
   invitationId.value = detectedBarcodes[0].rawValue
   await fireAlert({ level: 'success' })
   store.modalRemove('ModalAttendanceScanQrCode')

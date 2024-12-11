@@ -279,6 +279,8 @@ const loadProfilePicture = (event: Event) => {
 
   const file = files[0]
 
+  if (!file) return
+
   if (fileSelectedUrl.value) {
     URL.revokeObjectURL(fileSelectedUrl.value)
   }
@@ -336,15 +338,14 @@ const getUploadBlobPromise = () =>
             maevsiUploadUuid: result.data.uploadCreate?.upload?.id, // TODO: rename
           },
           onBeforeUpload: (files) =>
-            Object.keys(files).reduce(
-              (p, c) => ({
-                ...p,
-                [c]: {
-                  ...files[c],
-                  name: '/profile-pictures/' + files[c].name,
+            Object.fromEntries(
+              Object.entries(files).map(([key, value]) => [
+                key,
+                {
+                  ...value,
+                  name: `/profile-pictures/${value.name}`,
                 },
-              }),
-              {},
+              ]),
             ),
         })
 

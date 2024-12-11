@@ -164,19 +164,23 @@ const updateChart = () => {
 
 // computations
 const dataComputed = computed(() => {
-  const datasetData = [0, 0, 0]
+  const datasetData = {
+    accepted: 0,
+    canceled: 0,
+    none: 0,
+  }
 
   if (invitations.value) {
     for (const invitation of invitations.value) {
       switch (invitation.feedback) {
         case 'ACCEPTED':
-          datasetData[0] += 1
+          datasetData.accepted += 1
           break
         case 'CANCELED':
-          datasetData[1] = datasetData[1] + 1
+          datasetData.canceled += 1
           break
         case null:
-          datasetData[2] = datasetData[2] + 1
+          datasetData.none += 1
           break
         default:
           consola.error('Unexpected invitation type.')
@@ -188,7 +192,7 @@ const dataComputed = computed(() => {
     labels: [t('accepted'), t('canceled'), t('noFeedback')],
     datasets: [
       {
-        data: datasetData,
+        data: Object.values(datasetData),
         backgroundColor: ['#00FF00', '#FF0000', '#888888'],
       },
     ],
