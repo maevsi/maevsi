@@ -1,3 +1,10 @@
+## [5.1.2](https://github.com/maevsi/maevsi/compare/5.1.1...5.1.2) (2024-12-11)
+
+### Bug Fixes
+
+* **server:** correct import path ([2a82004](https://github.com/maevsi/maevsi/commit/2a82004a9f748a631e8e6cb870be53c27d19464d))
+* **types:** resolve errors ([6e7b401](https://github.com/maevsi/maevsi/commit/6e7b4015f9c816db02bb97c9c2ff384f1eee7773))
+
 ## [5.1.1](https://github.com/maevsi/maevsi/compare/5.1.0...5.1.1) (2024-11-30)
 
 ### Bug Fixes
