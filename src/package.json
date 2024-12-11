@@ -132,7 +132,7 @@
     "vue-router": "4.5.0",
     "vue-tsc": "2.1.10",
     "workbox-precaching": "7.3.0",
-    "zod": "3.24.0"
+    "zod": "3.24.1"
   },
   "engines": {
     "node": "22"
