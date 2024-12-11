@@ -14,7 +14,7 @@ const ROBOTS_DISALLOW = [
   '/account/verify',
   '/session/edit',
   '/session/view',
-] as LocaleRoutePathSchema[]
+]
 const currentDir = dirname(fileURLToPath(import.meta.url))
 
 export const modulesConfig: ReturnType<DefineNuxtConfig> = {
