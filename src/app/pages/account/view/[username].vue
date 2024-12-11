@@ -27,13 +27,10 @@
       <CardButton
         :title="t('eventsTheir', { name: routeParamUsername })"
         :to="
-          localePath(
-            {
-              name: 'event-view-username',
-              params: { username: routeParamUsername },
-            },
-            //`/event/view/${routeParamUsername}`
-          )
+          localePath({
+            name: 'event-view-username',
+            params: { username: routeParamUsername },
+          })
         "
       >
         <IHeroiconsCalendar />

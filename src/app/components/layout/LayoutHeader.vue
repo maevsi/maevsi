@@ -54,13 +54,10 @@
         <ButtonIcon
           :aria-label="t('settings')"
           :to="
-            localePath(
-              {
-                name: 'session-edit-id',
-                params: { id: store.jwtDecoded?.id || 'anonymous' },
-              },
-              //`/session/edit/${store.jwtDecoded?.id || 'anonymous'}`
-            )
+            localePath({
+              name: 'session-edit-id',
+              params: { id: store.jwtDecoded?.id || 'anonymous' },
+            })
           "
         >
           <IHeroiconsBars3 height="2em" width="2em" />

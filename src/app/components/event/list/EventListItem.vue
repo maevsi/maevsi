@@ -11,16 +11,13 @@
       :aria-label="event.name"
       is-block
       :to="
-        localePath(
-          {
-            name: 'event-view-username-event_name',
-            params: {
-              username: event.accountByAuthorAccountId.username,
-              event_name: event.slug,
-            },
+        localePath({
+          name: 'event-view-username-event_name',
+          params: {
+            username: event.accountByAuthorAccountId.username,
+            event_name: event.slug,
           },
-          //`/event/view/${event.accountByAuthorAccountId.username}/${event.slug}`,
-        )
+        })
       "
     >
       <div class="relative">

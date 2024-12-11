@@ -33,15 +33,12 @@
         <AppLink
           v-if="isUsernameLinked"
           :to="
-            localePath(
-              {
-                name: 'account-view-username',
-                params: {
-                  username: contact.accountByAccountId.username,
-                },
+            localePath({
+              name: 'account-view-username',
+              params: {
+                username: contact.accountByAccountId.username,
               },
-              //`/account/view/${contact.accountByAccountId.username}`
-            )
+            })
           "
         >
           {{ `@${contact.accountByAccountId.username}` }}

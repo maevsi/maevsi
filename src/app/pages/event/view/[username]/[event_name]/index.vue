@@ -72,16 +72,13 @@
         <ButtonColored
           :aria-label="t('attendances')"
           :to="
-            localePath(
-              {
-                name: 'event-view-username-event_name-attendance',
-                params: {
-                  event_name: route.params.event_name,
-                  username: route.params.username,
-                },
+            localePath({
+              name: 'event-view-username-event_name-attendance',
+              params: {
+                event_name: route.params.event_name,
+                username: route.params.username,
               },
-              // `/event/view/${route.params.username}/${route.params.event_name}/attendance`,
-            )
+            })
           "
         >
           {{ t('attendances') }}
@@ -92,16 +89,13 @@
         <ButtonColored
           :aria-label="t('settings')"
           :to="
-            localePath(
-              {
-                name: 'event-edit-username-event_name',
-                params: {
-                  event_name: route.params.event_name,
-                  username: route.params.username,
-                },
+            localePath({
+              name: 'event-edit-username-event_name',
+              params: {
+                event_name: route.params.event_name,
+                username: route.params.username,
               },
-              //`/event/edit/${route.params.username}/${route.params.event_name}`,
-            )
+            })
           "
         >
           {{ t('settings') }}

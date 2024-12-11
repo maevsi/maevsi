@@ -124,19 +124,15 @@ definePageMeta({
 
       if ('quick' in to.query) {
         return await navigateTo(
-          localePath(
-            {
-              name: 'event-view-username-event_name',
-              params: {
-                username:
-                  result.data.eventUnlock.eventUnlockResponse
-                    .authorAccountUsername,
-                event_name:
-                  result.data.eventUnlock.eventUnlockResponse.eventSlug,
-              },
+          localePath({
+            name: 'event-view-username-event_name',
+            params: {
+              username:
+                result.data.eventUnlock.eventUnlockResponse
+                  .authorAccountUsername,
+              event_name: result.data.eventUnlock.eventUnlockResponse.eventSlug,
             },
-            //`/event/view/${result.data.eventUnlock.eventUnlockResponse.authorAccountUsername}/${result.data.eventUnlock.eventUnlockResponse.eventSlug}`,
-          ),
+          }),
         )
       } else {
         return await navigateTo(
@@ -144,19 +140,16 @@ definePageMeta({
             path: `/invitation/unlock`,
             query: {
               ...to.query,
-              redirect: localePath(
-                {
-                  name: 'event-view-username-event_name',
-                  params: {
-                    username:
-                      result.data.eventUnlock.eventUnlockResponse
-                        .authorAccountUsername,
-                    event_name:
-                      result.data.eventUnlock.eventUnlockResponse.eventSlug,
-                  },
+              redirect: localePath({
+                name: 'event-view-username-event_name',
+                params: {
+                  username:
+                    result.data.eventUnlock.eventUnlockResponse
+                      .authorAccountUsername,
+                  event_name:
+                    result.data.eventUnlock.eventUnlockResponse.eventSlug,
                 },
-                // `/event/view/${result.data.eventUnlock.eventUnlockResponse.authorAccountUsername}/${result.data.eventUnlock.eventUnlockResponse.eventSlug}`,
-              ).toString(),
+              }).toString(),
             },
           }),
         )
@@ -207,18 +200,14 @@ const submit = async () => {
   }
 
   navigateTo(
-    localePath(
-      {
-        name: 'event-view-username-event_name',
-        params: {
-          username:
-            result.data?.eventUnlock?.eventUnlockResponse
-              ?.authorAccountUsername,
-          event_name: result.data?.eventUnlock?.eventUnlockResponse?.eventSlug,
-        },
+    localePath({
+      name: 'event-view-username-event_name',
+      params: {
+        username:
+          result.data?.eventUnlock?.eventUnlockResponse?.authorAccountUsername,
+        event_name: result.data?.eventUnlock?.eventUnlockResponse?.eventSlug,
       },
-      // `/event/view/${result.data?.eventUnlock?.eventUnlockResponse?.authorAccountUsername}/${result.data?.eventUnlock?.eventUnlockResponse?.eventSlug}`,
-    ),
+    }),
   )
 }
 

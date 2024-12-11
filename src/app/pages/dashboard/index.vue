@@ -11,13 +11,10 @@
           :description="t('eventsDescription')"
           :title="t('events')"
           :to="
-            localePath(
-              {
-                name: 'event-view-username',
-                params: { username: store.signedInUsername },
-              },
-              //`/event/view/${store.signedInUsername}`
-            )
+            localePath({
+              name: 'event-view-username',
+              params: { username: store.signedInUsername },
+            })
           "
         >
           <IHeroiconsCalendar />
@@ -49,15 +46,12 @@
           :description="t('accountDescription')"
           :title="t('account')"
           :to="
-            localePath(
-              {
-                name: 'account-view-username',
-                params: {
-                  username: store.signedInUsername,
-                },
+            localePath({
+              name: 'account-view-username',
+              params: {
+                username: store.signedInUsername,
               },
-              //`/account/view/${store.signedInUsername}`
-            )
+            })
           "
         >
           <IHeroiconsIdentification />

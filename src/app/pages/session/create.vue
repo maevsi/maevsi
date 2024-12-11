@@ -32,13 +32,10 @@ const onSignIn = async () => {
   // TODO: generalize, potentially whitelist valid redirection targets
   if (to.value === 'account-deletion') {
     return await navigateTo(
-      localePath(
-        {
-          name: 'account-edit-username',
-          params: { username: store.jwtDecoded?.account_username },
-        },
-        //`/account/edit/${store.jwtDecoded?.account_username}`
-      ),
+      localePath({
+        name: 'account-edit-username',
+        params: { username: store.jwtDecoded?.account_username },
+      }),
     )
   }
 

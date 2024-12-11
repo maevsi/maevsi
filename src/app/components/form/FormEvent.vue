@@ -400,16 +400,13 @@ const submit = async () => {
       )
 
     await navigateTo(
-      localePath(
-        {
-          name: 'event-view-username-event_name',
-          params: {
-            username: store.signedInUsername,
-            event_name: form.slug,
-          },
+      localePath({
+        name: 'event-view-username-event_name',
+        params: {
+          username: store.signedInUsername,
+          event_name: form.slug,
         },
-        //`/event/view/${store.signedInUsername}/${form.slug}`
-      ),
+      }),
     )
   }
 }

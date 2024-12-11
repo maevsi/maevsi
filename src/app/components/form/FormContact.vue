@@ -38,13 +38,10 @@
               <AppLink
                 :aria-label="t('stateInfoUsernameDisabledLink')"
                 :to="
-                  localePath(
-                    {
-                      name: 'account-edit-username',
-                      params: { username: store.signedInUsername },
-                    },
-                    //`/account/edit/${store.signedInUsername}`
-                  )
+                  localePath({
+                    name: 'account-edit-username',
+                    params: { username: store.signedInUsername },
+                  })
                 "
               >
                 {{ t('stateInfoUsernameDisabledLink') }}

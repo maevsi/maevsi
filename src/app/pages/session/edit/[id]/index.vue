@@ -10,15 +10,12 @@
             :description="t('personalDataDescription')"
             :title="t('personalData')"
             :to="
-              localePath(
-                {
-                  name: 'account-edit-username',
-                  params: {
-                    username: store.signedInUsername,
-                  },
+              localePath({
+                name: 'account-edit-username',
+                params: {
+                  username: store.signedInUsername,
                 },
-                //`/account/edit/${store.signedInUsername}`
-              )
+              })
             "
           >
             <IHeroiconsIdentification />
@@ -36,15 +33,12 @@
             :description="t('colorSchemeDescription')"
             :title="t('colorScheme')"
             :to="
-              localePath(
-                {
-                  name: 'session-edit-id-color-scheme',
-                  params: {
-                    id: route.params.id,
-                  },
+              localePath({
+                name: 'session-edit-id-color-scheme',
+                params: {
+                  id: route.params.id,
                 },
-                //`/session/edit/${route.params.id}/color-scheme`
-              )
+              })
             "
           >
             <IHeroiconsSun />
@@ -53,15 +47,12 @@
             :description="t('languageDescription')"
             :title="t('language')"
             :to="
-              localePath(
-                {
-                  name: 'session-edit-id-language',
-                  params: {
-                    id: route.params.id,
-                  },
+              localePath({
+                name: 'session-edit-id-language',
+                params: {
+                  id: route.params.id,
                 },
-                //`/session/edit/${route.params.id}/language`
-              )
+              })
             "
           >
             <IHeroiconsLanguage />

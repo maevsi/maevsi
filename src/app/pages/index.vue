@@ -179,15 +179,12 @@ onMounted(async () => {
 
     if (alertResult.isConfirmed) {
       await navigateTo(
-        localePath(
-          {
-            name: 'account-view-username',
-            params: {
-              username: store.jwtDecoded.account_username,
-            },
+        localePath({
+          name: 'account-view-username',
+          params: {
+            username: store.jwtDecoded.account_username,
           },
-          //`/account/view/${store.jwtDecoded.account_username}`
-        ),
+        }),
       )
     }
   }

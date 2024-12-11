@@ -6,13 +6,10 @@
         <template #name>
           <AppLink
             :to="
-              localePath(
-                {
-                  name: 'account-view-username',
-                  params: { username: routeParamUsername },
-                },
-                //`/account/view/${routeParamUsername}`
-              )
+              localePath({
+                name: 'account-view-username',
+                params: { username: routeParamUsername },
+              })
             "
           >
             {{ routeParamUsername }}
