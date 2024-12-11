@@ -2,13 +2,11 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import type { DefineNuxtConfig } from 'nuxt/config'
 
-import { SITE_NAME, SITE_URL } from '../../utils/constants'
+import { SITE_NAME, SITE_URL } from '../../shared/utils/constants'
 import { cookieControlConfig } from './cookieControl'
 import { i18nConfig } from './i18n'
 import { pwaConfig } from './pwa'
 import { securityConfig } from './security'
-
-import type { LocaleRoutePathSchema } from '@typed-router/__paths'
 
 const ROBOTS_DISALLOW = [
   '/%F0%9F%AB%96',
@@ -16,7 +14,7 @@ const ROBOTS_DISALLOW = [
   '/account/verify',
   '/session/edit',
   '/session/view',
-] as LocaleRoutePathSchema[]
+]
 const currentDir = dirname(fileURLToPath(import.meta.url))
 
 export const modulesConfig: ReturnType<DefineNuxtConfig> = {
@@ -76,6 +74,6 @@ export const modulesConfig: ReturnType<DefineNuxtConfig> = {
     exclude: ROBOTS_DISALLOW,
   },
   tailwindcss: {
-    cssPath: join(currentDir, '../../assets/css/tailwind.css'),
+    cssPath: join(currentDir, '../../app/assets/css/tailwind.css'),
   },
 }

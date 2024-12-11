@@ -1,6 +1,3 @@
-import { IS_IN_STACK } from '../utils/constants'
-import { processNotification } from '../utils/notification'
-
 const TOPIC_NOTIFICATION = 'maevsi.maevsi_private.notification'
 
 export default defineNitroPlugin(async (nitroApp) => {

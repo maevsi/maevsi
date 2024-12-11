@@ -4,7 +4,7 @@ import {
   JWT_NAME,
   TIMEZONE_COOKIE_NAME,
   GTAG_COOKIE_ID,
-} from '../../utils/constants'
+} from '../../shared/utils/constants'
 
 export const cookieControlConfig: ReturnType<DefineNuxtConfig> = {
   cookieControl: {
