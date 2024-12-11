@@ -108,7 +108,7 @@
     "prosemirror-schema-list": "1.5.0",
     "prosemirror-state": "1.4.3",
     "prosemirror-transform": "1.10.2",
-    "prosemirror-view": "1.37.0",
+    "prosemirror-view": "1.37.1",
     "qrcode.vue": "3.6.0",
     "seedrandom": "3.0.5",
     "slugify": "1.6.6",
