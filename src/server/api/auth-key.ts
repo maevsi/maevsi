@@ -1,7 +1,5 @@
 import type { H3Event } from 'h3'
 
-import { useJwtPublicKey } from '../utils/auth'
-
 export default defineEventHandler(async (event: H3Event) => {
   const { res } = event.node
   const jwtPublicKey = await useJwtPublicKey()

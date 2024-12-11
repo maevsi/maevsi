@@ -1,0 +1,56 @@
+<template>
+  <NuxtLink
+    :aria-label="ariaLabel"
+    :class="classes"
+    :disabled="isDisabled"
+    :target="targetComputed"
+    :to="props.to"
+    @click="emit('click')"
+  >
+    <slot />
+  </NuxtLink>
+</template>
+
+<script setup lang="ts">
+import type { NuxtLinkProps } from '#app'
+import type { RouteLocationRaw } from 'vue-router'
+
+export interface Props {
+  ariaLabel?: string
+  isDisabled?: boolean
+  isColored?: boolean
+  isExternal?: boolean
+  isUnderlined?: boolean
+  target?: NuxtLinkProps['target']
+  to: RouteLocationRaw
+}
+const props = withDefaults(defineProps<Props>(), {
+  ariaLabel: undefined,
+  isDisabled: undefined,
+  isColored: true,
+  isExternal: undefined,
+  isUnderlined: false,
+  target: undefined,
+})
+
+const emit = defineEmits<{
+  click: []
+}>()
+
+// computations
+const classes = computed(() => {
+  return [
+    'rounded',
+    ...(props.isColored ? ['text-link-dark dark:text-link-bright'] : []),
+    ...(props.isDisabled ? ['disabled'] : []),
+    ...(props.isUnderlined ? ['underline'] : []),
+  ].join(' ')
+})
+const targetComputed = computed(
+  () =>
+    props.target ||
+    (props.to.toString().match(/^((ftp|http(s)?):\/\/|(mailto):)/)
+      ? '_blank'
+      : undefined),
+)
+</script>

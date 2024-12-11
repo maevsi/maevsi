@@ -1,4 +1,4 @@
-import { type FragmentType, graphql, useFragment } from '~/gql/generated'
+import { type FragmentType, graphql, useFragment } from '~~/gql/generated'
 
 export const EventItem = graphql(`
   fragment EventItem on Event {

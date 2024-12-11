@@ -1,4 +1,4 @@
-import { type FragmentType, graphql, useFragment } from '~/gql/generated'
+import { type FragmentType, graphql, useFragment } from '~~/gql/generated'
 
 export const ProfilePictureItem = graphql(`
   fragment ProfilePictureItem on ProfilePicture {

@@ -16,7 +16,7 @@ import {
   IS_NITRO_OPENAPI_ENABLED,
   SITE_NAME,
   SITE_URL,
-} from '../utils/constants'
+} from '../shared/utils/constants'
 import { GET_CSP } from '../server/utils/constants'
 
 const execPromise = promisify(exec)
@@ -38,6 +38,12 @@ export default defineNuxtConfig({
     },
   },
   compatibilityDate: '2024-04-03',
+  experimental: {
+    typedPages: true,
+  },
+  future: {
+    compatibilityVersion: 4,
+  },
   hooks: {
     'vite:extendConfig': async (config, { isClient }) => {
       config.plugins ||= []
@@ -107,7 +113,6 @@ export default defineNuxtConfig({
       }
     },
     'nuxt-security',
-    'nuxt-typed-router',
   ],
   nitro: {
     compressPublicAssets: true,
@@ -212,6 +217,7 @@ export default defineNuxtConfig({
         'pretty-bytes',
         'prntr',
         'qrcode.vue',
+        'seedrandom',
         'slugify',
         'v-calendar',
         'vue-advanced-cropper',
