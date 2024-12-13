@@ -1,14 +1,15 @@
 <template>
   <footer class="mt-auto py-8">
     <div class="mx-auto flex flex-row justify-center gap-x-20">
-      <AppLink :to="localePath('/legal-notice')" :is-colored="true">
+      <AppLink :to="localePath('legal-notice')" :is-colored="true">
         {{ t('terms') }}
       </AppLink>
 
-      <AppLink :to="localePath('/')" :is-colored="true">
+      <AppLink :to="localePath('index')" :is-colored="true">
         {{ t('imprint') }}
       </AppLink>
-      <AppLink :to="localePath('/privacy-policy')" :is-colored="true">
+
+      <AppLink :to="localePath('privacy-policy')" :is-colored="true">
         {{ t('policy') }}
       </AppLink>
     </div>
