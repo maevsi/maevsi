@@ -175,8 +175,8 @@ RUN pnpm --dir tests run test:e2e:server:node
 
 FROM base-image AS collect
 
-COPY --from=build-node /srv/app/src/.output ./.output
-COPY --from=build-node /srv/app/src/package.json ./package.json
+COPY --from=build-node --chown=node /srv/app/src/.output ./.output
+COPY --from=build-node --chown=node /srv/app/src/package.json ./package.json
 # COPY --from=build-static /srv/app/package.json /tmp/package.json
 COPY --from=lint /srv/app/package.json /tmp/package.json
 COPY --from=test-unit /srv/app/package.json /tmp/package.json
