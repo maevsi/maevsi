@@ -237,7 +237,7 @@ de:
   hintInviteSelf: 'Tipp: du kannst dich auch zuerst selbst einladen'
   invitationAdd: Gäste hinzufügen
   invitationNone: Es wurde noch kein Gast hinzugefügt 😕
-  invitationsUsed: 'Einladungen benutzt: {amountCurrent} / {amountMaximum}'
+  invitationsUsed: 'Gästekontingent genutzt: {amountCurrent} / {amountMaximum}'
   noFeedback: keine Rückmeldung
 en:
   accepted: accepted
@@ -248,6 +248,6 @@ en:
   hintInviteSelf: 'Hint: you can also invite yourself first'
   invitationAdd: Add guests
   invitationNone: No guest has been added yet 😕
-  invitationsUsed: 'Invitations used: {amountCurrent} / {amountMaximum}'
+  invitationsUsed: 'Guest quota used: {amountCurrent} / {amountMaximum}'
   noFeedback: no response
 </i18n>
