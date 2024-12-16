@@ -3,6 +3,8 @@ const TOPIC_NOTIFICATION = 'maevsi.maevsi_private.notification'
 export default defineNitroPlugin(async (nitroApp) => {
   if (!IS_IN_STACK) return
 
+  const runtimeConfig = useRuntimeConfig()
+
   const { Kafka } = await import('kafkajs')
   const kafka = new Kafka({
     clientId: 'maevsi',
@@ -41,7 +43,8 @@ export default defineNitroPlugin(async (nitroApp) => {
                 payload: JSON.parse(value.payload.after.payload),
               },
               id: key.payload.id,
-              is_acknowledged: value.payload.after.is_acknowledged,
+              isAcknowledged: value.payload.after.is_acknowledged,
+              runtimeConfig,
             })
           } catch (error) {
             console.error(`Failed to process notification: ${error}`)
