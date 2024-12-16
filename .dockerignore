@@ -8,4 +8,5 @@ src/.eslintcache
 src/.stylelintcache
 tests/e2e/report/
 tests/e2e/results/
-.eslintcache
+tests/node_modules/
+tests/.eslintcache
