@@ -1,3 +1,9 @@
+## [5.2.1](https://github.com/maevsi/maevsi/compare/5.2.0...5.2.1) (2024-12-16)
+
+### Bug Fixes
+
+* **docker:** run as user `node` in production ([#1697](https://github.com/maevsi/maevsi/issues/1697)) ([2449684](https://github.com/maevsi/maevsi/commit/2449684021cdf8e4ba3f214afbede2db0ba176f7))
+
 ## [5.2.0](https://github.com/maevsi/maevsi/compare/5.1.2...5.2.0) (2024-12-16)
 
 ### Features
