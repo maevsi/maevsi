@@ -88,6 +88,9 @@ export default <Partial<Config>>{
           dark: gray['800'],
           darken: gray['700'],
         },
+        faint: {
+          weak: '#F1F0F0',
+        },
         link: {
           bright: colors.blue['400'],
           dark: colors.blue['600'],
