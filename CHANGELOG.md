@@ -1,3 +1,9 @@
+## [5.2.2](https://github.com/maevsi/maevsi/compare/5.2.1...5.2.2) (2024-12-16)
+
+### Bug Fixes
+
+* **docker:** correct file owner ([8a88179](https://github.com/maevsi/maevsi/commit/8a8817912c11c552861106bcb6a51f2722fda945))
+
 ## [5.2.1](https://github.com/maevsi/maevsi/compare/5.2.0...5.2.1) (2024-12-16)
 
 ### Bug Fixes
