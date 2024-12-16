@@ -99,7 +99,7 @@ export const sendEmail = async <T extends EmailName>({
         value: `mailto:contact+unsubscribe@maev.si?subject=Unsubscribe%20${mailOptions.to}`,
       },
     },
-    // // TODO: wait for long line fix (https://github.com/nodemailer/nodemailer/issues/1654)
+    // // TODO: wait for long line fix (https://github.com/nodemailer/nodemailer/issues/1694)
     // list: {
     //   // TODO: add https link (https://github.com/maevsi/maevsi/issues/326)
     //   unsubscribe: `mailto:contact+unsubscribe@maev.si?subject=Unsubscribe%20${mailOptions.to}`,
