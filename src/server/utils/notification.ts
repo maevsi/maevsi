@@ -124,15 +124,15 @@ const locales = {
 export const processNotification = async ({
   channelEvent,
   id,
-  is_acknowledged,
+  isAcknowledged,
   runtimeConfig,
 }: {
   channelEvent: ChannelEvent
   id: string
-  is_acknowledged?: boolean
+  isAcknowledged?: boolean
   runtimeConfig: ReturnType<typeof useRuntimeConfig>
 }) => {
-  if (is_acknowledged) return
+  if (isAcknowledged) return
 
   const limit24h = isNaN(+runtimeConfig.public.maevsi.email.limit24h)
     ? undefined

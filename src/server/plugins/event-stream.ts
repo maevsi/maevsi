@@ -43,7 +43,7 @@ export default defineNitroPlugin(async (nitroApp) => {
                 payload: JSON.parse(value.payload.after.payload),
               },
               id: key.payload.id,
-              is_acknowledged: value.payload.after.is_acknowledged,
+              isAcknowledged: value.payload.after.is_acknowledged,
               runtimeConfig,
             })
           } catch (error) {
