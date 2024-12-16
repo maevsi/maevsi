@@ -1,3 +1,9 @@
+## [5.2.0](https://github.com/maevsi/maevsi/compare/5.1.2...5.2.0) (2024-12-16)
+
+### Features
+
+* **email:** allow change to 24h limit through environment variable ([#1693](https://github.com/maevsi/maevsi/issues/1693)) ([e10714a](https://github.com/maevsi/maevsi/commit/e10714a80fc800774137fe1b3d1f423b0d082a60))
+
 ## [5.1.2](https://github.com/maevsi/maevsi/compare/5.1.1...5.1.2) (2024-12-11)
 
 ### Bug Fixes

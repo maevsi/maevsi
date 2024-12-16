@@ -159,5 +159,5 @@
     "supportedBrowsers": "echo \"export default $(browserslist-useragent-regexp --allowHigherVersions);\" > supportedBrowsers.js"
   },
   "type": "module",
-  "version": "5.1.2"
+  "version": "5.2.0"
 }
