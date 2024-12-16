@@ -1,7 +1,7 @@
 <template>
   <UModal
     :model-value="modelValue"
-    @update:model-value="$emit('update:modelValue', $event)"
+    @update:model-value="$emit('update:model-value', $event)"
   >
     <div class="flex h-full flex-col">
       <header class="flex items-center border-b border-gray-200 px-6 py-4">
@@ -263,17 +263,14 @@ defineProps<{
   modelValue: boolean
 }>()
 
-const emit = defineEmits<{
-  'update:modelValue': [boolean]
-  'open:generalTerms': []
-}>()
+const emit = defineEmits(['update:model-value', 'open-general-terms'])
 
 const accepted = ref(false)
 
 const handleAccept = () => {
   if (accepted.value) {
-    emit('update:modelValue', false)
-    emit('open:generalTerms')
+    emit('update:model-value', false)
+    emit('open-general-terms')
   }
 }
 </script>
