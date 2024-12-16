@@ -49,12 +49,12 @@
     <!-- Modals -->
     <ModalPrivacyPolicy
       v-model="privacyModalOpen"
-      @open:generalTerms="openGeneralTerms"
+      @open-general-terms="openGeneralTerms"
     />
 
     <ModalGeneralTerms
       v-model="generalTermsModalOpen"
-      :handleAccept="handleGeneralTermsAccept"
+      :handle-accept="handleGeneralTermsAccept"
     />
   </div>
 </template>

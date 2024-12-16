@@ -1,7 +1,7 @@
 <template>
   <UModal
     :model-value="modelValue"
-    @update:model-value="$emit('update:modelValue', $event)"
+    @update:model-value="emit('update:modelValue', $event)"
   >
     <div class="flex h-full flex-col">
       <header class="flex items-center border-b border-gray-200 p-4">
@@ -154,6 +154,7 @@ defineProps<{
 }>()
 
 const accepted = ref(false)
+const emit = defineEmits(['update:modelValue'])
 </script>
 
 <i18n lang="yaml">
