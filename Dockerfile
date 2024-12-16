@@ -212,6 +212,8 @@ ENV NODE_ENV=production
 RUN apk update \
     && apk upgrade --no-cache
 
+USER node
+
 ENTRYPOINT ["pnpm"]
 CMD ["run", "start:node"]
 HEALTHCHECK --interval=10s CMD wget -O /dev/null http://localhost:3000/api/healthcheck || exit 1
