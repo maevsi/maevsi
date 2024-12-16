@@ -10,7 +10,7 @@
       form-class="w-full"
       :is-form-sent="isFormSent"
       :submit-name="t('register')"
-      @submit.prevent="submit"
+      @submit.prevent="handleSubmit"
     >
       <FormInputUsername
         :form-input="v$.username"
@@ -45,6 +45,17 @@
     >
       {{ t('alreadyHaveAnAccount') }}
     </AppLink>
+
+    <!-- Modals -->
+    <ModalPrivacyPolicy
+      v-model="privacyModalOpen"
+      @open:generalTerms="openGeneralTerms"
+    />
+
+    <ModalGeneralTerms
+      v-model="generalTermsModalOpen"
+      :handleAccept="handleGeneralTermsAccept"
+    />
   </div>
 </template>
 
@@ -57,23 +68,23 @@ const localePath = useLocalePath()
 const fireAlert = useFireAlert()
 const store = useMaevsiStore()
 
-// api data
+const privacyModalOpen = ref(false)
+const generalTermsModalOpen = ref(false)
+
 const accountRegistrationMutation = useAccountRegistrationMutation()
 const api = getApiData([accountRegistrationMutation])
 
-// data
 const form = reactive({
   captcha: ref<string>(),
   emailAddress: ref<string>(),
   password: ref<string>(),
   username: ref<string>(),
 })
+
 const isFormSent = ref(false)
 
-// methods
+// Methods
 const submit = async () => {
-  if (!(await isFormValid({ v$, isFormSent }))) return
-
   store.turnstileToken = form.captcha
 
   const result = await accountRegistrationMutation.executeMutation({
@@ -83,6 +94,8 @@ const submit = async () => {
     username: form.username || '',
   })
 
+  //TODO - ADD POLICY ACCEPTANCE MUTATION
+
   if (result.error || !result.data) return
 
   await fireAlert({
@@ -90,6 +103,21 @@ const submit = async () => {
     title: t('registrationSuccessTitle'),
     text: t('registrationSuccessBody'),
   })
+}
+
+const handleSubmit = async () => {
+  if (!(await isFormValid({ v$, isFormSent }))) return
+
+  privacyModalOpen.value = true
+}
+
+const openGeneralTerms = () => {
+  generalTermsModalOpen.value = true
+}
+
+const handleGeneralTermsAccept = () => {
+  generalTermsModalOpen.value = false
+  submit()
 }
 
 // vuelidate
@@ -102,6 +130,7 @@ const rules = {
   password: VALIDATION_PASSWORD(),
   emailAddress: VALIDATION_EMAIL_ADDRESS({ isRequired: true }),
 }
+
 const v$ = useVuelidate(rules, form)
 </script>
 
