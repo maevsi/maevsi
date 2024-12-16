@@ -10,6 +10,7 @@
     "build:static": "nuxt --dir src run generate",
     "dev": "pnpm --dir src run start:dev",
     "generate": "pnpm --dir src run build:static",
+    "lint": "pnpm -r lint",
     "prepare": "husky",
     "start:dev": "pnpm --dir src exec nuxt dev",
     "start:node": "node src/.output/server/index.mjs",
