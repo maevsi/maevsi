@@ -141,6 +141,11 @@ export default defineNuxtConfig({
       i18n: {
         baseUrl: SITE_URL,
       },
+      maevsi: {
+        email: {
+          limit24h: '150',
+        },
+      },
       sentry: {
         host: 'o4507213726154752.ingest.de.sentry.io',
         profiles: {

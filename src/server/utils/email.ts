@@ -57,10 +57,12 @@ export const getEmail = async <T extends EmailName>({
   })
 
 export const sendEmail = async <T extends EmailName>({
+  limit24h,
   mailOptions,
   name,
   props,
 }: {
+  limit24h: number
   mailOptions: {
     fromName?: string
     icalEvent?: Record<string, unknown> // https://nodemailer.com/message/calendar-events/
@@ -135,11 +137,10 @@ export const sendEmail = async <T extends EmailName>({
 
   // TODO: implement proper rate limiting
   const sentLast24Hours = await getMailsSentLast24Hours()
-  const LIMIT = 150
-  if (sentLast24Hours && sentLast24Hours > LIMIT) {
+  if (sentLast24Hours && sentLast24Hours > limit24h) {
     // TODO: notify admin
     throw new Error(
-      `More than ${LIMIT} mails sent in the last 24 hours, not sending any more for now to prevent spamming.`,
+      `More than ${limit24h} mails sent in the last 24 hours, not sending any more for now to prevent spamming.`,
     )
   }
 
