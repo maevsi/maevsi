@@ -34,8 +34,8 @@ export const usePageBreadcrumb = () => {
 
   return {
     label: {
-      de: 'Einladungen',
-      en: 'Invitations',
+      de: 'Gäste',
+      en: 'Guests',
     },
     to: `/event/view/${route.params.username}/${route.params.event_name}/invitation`,
   } as BreadcrumbLinkLocalized
@@ -44,6 +44,7 @@ export const usePageBreadcrumb = () => {
 
 <script setup lang="ts">
 definePageMeta({
+  alias: '/event/view/:username/:event_name/guest',
   async validate(route) {
     return await validateEventExistence(
       route as RouteLocationNormalized<typeof ROUTE_NAME>,
@@ -105,7 +106,7 @@ useHeadDefault({ title })
 
 <i18n lang="yaml">
 de:
-  title: Einladungen
+  title: Gäste
 en:
-  title: Invitations
+  title: Guests
 </i18n>
