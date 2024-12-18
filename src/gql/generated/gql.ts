@@ -36,13 +36,15 @@ const documents = {
     types.AccountEmailAddressVerificationDocument,
   '\n  mutation jwtRefresh($id: UUID!) {\n    jwtRefresh(input: { jwtId: $id }) {\n      clientMutationId\n      jwt\n    }\n  }\n':
     types.JwtRefreshDocument,
+  '\n      mutation CreateLegalTermAcceptance(\n        $input: CreateLegalTermAcceptanceInput!\n      ) {\n        createLegalTermAcceptance(input: $input) {\n          legalTermAcceptance {\n            id\n            accountId\n            createdAt\n            legalTermId\n          }\n        }\n      }\n    ':
+    types.CreateLegalTermAcceptanceDocument,
   '\n      mutation accountPasswordChange(\n        $passwordCurrent: String!\n        $passwordNew: String!\n      ) {\n        accountPasswordChange(\n          input: {\n            passwordCurrent: $passwordCurrent\n            passwordNew: $passwordNew\n          }\n        ) {\n          clientMutationId\n        }\n      }\n    ':
     types.AccountPasswordChangeDocument,
   '\n      mutation accountPasswordReset($code: UUID!, $password: String!) {\n        accountPasswordReset(input: { code: $code, password: $password }) {\n          clientMutationId\n        }\n      }\n    ':
     types.AccountPasswordResetDocument,
   '\n      mutation accountPasswordResetRequest(\n        $emailAddress: String!\n        $language: String!\n      ) {\n        accountPasswordResetRequest(\n          input: { emailAddress: $emailAddress, language: $language }\n        ) {\n          clientMutationId\n        }\n      }\n    ':
     types.AccountPasswordResetRequestDocument,
-  '\n      mutation accountRegistration(\n        $emailAddress: String!\n        $password: String!\n        $username: String!\n        $language: String!\n      ) {\n        accountRegistration(\n          input: {\n            emailAddress: $emailAddress\n            password: $password\n            username: $username\n            language: $language\n          }\n        ) {\n          clientMutationId\n        }\n      }\n    ':
+  '\n      mutation accountRegistration(\n        $emailAddress: String!\n        $password: String!\n        $username: String!\n        $language: String!\n      ) {\n        accountRegistration(\n          input: {\n            emailAddress: $emailAddress\n            password: $password\n            username: $username\n            language: $language\n          }\n        ) {\n          clientMutationId\n          uuid\n        }\n      }\n    ':
     types.AccountRegistrationDocument,
   '\n      mutation accountRegistrationRefresh(\n        $accountId: UUID!\n        $language: String!\n      ) {\n        accountRegistrationRefresh(\n          input: { language: $language, accountId: $accountId }\n        ) {\n          clientMutationId\n        }\n      }\n    ':
     types.AccountRegistrationRefreshDocument,
@@ -182,6 +184,12 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
+  source: '\n      mutation CreateLegalTermAcceptance(\n        $input: CreateLegalTermAcceptanceInput!\n      ) {\n        createLegalTermAcceptance(input: $input) {\n          legalTermAcceptance {\n            id\n            accountId\n            createdAt\n            legalTermId\n          }\n        }\n      }\n    ',
+): (typeof documents)['\n      mutation CreateLegalTermAcceptance(\n        $input: CreateLegalTermAcceptanceInput!\n      ) {\n        createLegalTermAcceptance(input: $input) {\n          legalTermAcceptance {\n            id\n            accountId\n            createdAt\n            legalTermId\n          }\n        }\n      }\n    ']
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
   source: '\n      mutation accountPasswordChange(\n        $passwordCurrent: String!\n        $passwordNew: String!\n      ) {\n        accountPasswordChange(\n          input: {\n            passwordCurrent: $passwordCurrent\n            passwordNew: $passwordNew\n          }\n        ) {\n          clientMutationId\n        }\n      }\n    ',
 ): (typeof documents)['\n      mutation accountPasswordChange(\n        $passwordCurrent: String!\n        $passwordNew: String!\n      ) {\n        accountPasswordChange(\n          input: {\n            passwordCurrent: $passwordCurrent\n            passwordNew: $passwordNew\n          }\n        ) {\n          clientMutationId\n        }\n      }\n    ']
 /**
@@ -200,8 +208,8 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: '\n      mutation accountRegistration(\n        $emailAddress: String!\n        $password: String!\n        $username: String!\n        $language: String!\n      ) {\n        accountRegistration(\n          input: {\n            emailAddress: $emailAddress\n            password: $password\n            username: $username\n            language: $language\n          }\n        ) {\n          clientMutationId\n        }\n      }\n    ',
-): (typeof documents)['\n      mutation accountRegistration(\n        $emailAddress: String!\n        $password: String!\n        $username: String!\n        $language: String!\n      ) {\n        accountRegistration(\n          input: {\n            emailAddress: $emailAddress\n            password: $password\n            username: $username\n            language: $language\n          }\n        ) {\n          clientMutationId\n        }\n      }\n    ']
+  source: '\n      mutation accountRegistration(\n        $emailAddress: String!\n        $password: String!\n        $username: String!\n        $language: String!\n      ) {\n        accountRegistration(\n          input: {\n            emailAddress: $emailAddress\n            password: $password\n            username: $username\n            language: $language\n          }\n        ) {\n          clientMutationId\n          uuid\n        }\n      }\n    ',
+): (typeof documents)['\n      mutation accountRegistration(\n        $emailAddress: String!\n        $password: String!\n        $username: String!\n        $language: String!\n      ) {\n        accountRegistration(\n          input: {\n            emailAddress: $emailAddress\n            password: $password\n            username: $username\n            language: $language\n          }\n        ) {\n          clientMutationId\n          uuid\n        }\n      }\n    ']
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
