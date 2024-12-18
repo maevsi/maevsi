@@ -61,6 +61,7 @@
 
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
+import { useCreateLegalTermAcceptanceMutation } from '~~/gql/documents/mutations/account/accountLegalTermAcceptance'
 import { useAccountRegistrationMutation } from '~~/gql/documents/mutations/account/accountRegistration'
 
 const { locale, t } = useI18n()
@@ -87,23 +88,34 @@ const isFormSent = ref(false)
 const submit = async () => {
   store.turnstileToken = form.captcha
 
-  const result = await accountRegistrationMutation.executeMutation({
+  const accountResult = await accountRegistrationMutation.executeMutation({
     emailAddress: form.emailAddress || '',
     language: locale.value,
     password: form.password || '',
     username: form.username || '',
   })
 
-  //TODO - ADD POLICY ACCEPTANCE MUTATION
+  if (accountResult.error || !accountResult.data?.accountRegistration?.uuid)
+    return
 
-  if (result.error || !result.data) return
-
-  await fireAlert({
-    level: 'success',
-    title: t('registrationSuccessTitle'),
-    text: t('registrationSuccessBody'),
+  const legalTermAcceptanceMutation = useCreateLegalTermAcceptanceMutation()
+  const acceptanceResult = await legalTermAcceptanceMutation.executeMutation({
+    input: {
+      legalTermAcceptance: {
+        accountId: accountResult.data.accountRegistration.uuid,
+        legalTermId: '', //ADD LEGAL TERM ID
+      },
+    },
   })
+
+  if (acceptanceResult.error) return
 }
+
+await fireAlert({
+  level: 'success',
+  title: t('registrationSuccessTitle'),
+  text: t('registrationSuccessBody'),
+})
 
 const handleSubmit = async () => {
   if (!(await isFormValid({ v$, isFormSent }))) return
