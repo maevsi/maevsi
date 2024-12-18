@@ -124,21 +124,33 @@ const locales = {
 export const processNotification = async ({
   channelEvent,
   id,
-  is_acknowledged,
+  isAcknowledged,
+  runtimeConfig,
 }: {
   channelEvent: ChannelEvent
   id: string
-  is_acknowledged?: boolean
+  isAcknowledged?: boolean
+  runtimeConfig: ReturnType<typeof useRuntimeConfig>
 }) => {
-  if (is_acknowledged) return
+  if (isAcknowledged) return
+
+  const limit24h = isNaN(+runtimeConfig.public.maevsi.email.limit24h)
+    ? undefined
+    : +runtimeConfig.public.maevsi.email.limit24h
+
+  if (!limit24h) {
+    console.warn(
+      `24h email limit is not a number, using default: ${MAEVSI_EMAIL_LIMIT_24H}`,
+    )
+  }
 
   const { channel, payload } = channelEvent
-
   const locale = payload.template.language as unknown as Locale
 
   switch (channel) {
     case CHANNEL_NAME_ACCOUNT_PASSWORD_RESET:
       await sendEmail({
+        limit24h: limit24h || MAEVSI_EMAIL_LIMIT_24H,
         mailOptions: {
           subject: locales[channel][locale].subject,
           to: payload.account.email_address,
@@ -167,6 +179,7 @@ export const processNotification = async ({
       break
     case CHANNEL_NAME_ACCOUNT_REGISTRATION:
       await sendEmail({
+        limit24h: limit24h || MAEVSI_EMAIL_LIMIT_24H,
         mailOptions: {
           subject: locales[channel][locale].subject,
           to: payload.account.email_address,
@@ -192,7 +205,10 @@ export const processNotification = async ({
       })
       break
     case CHANNEL_NAME_EVENT_INVITATION:
-      sendEventInvitationMail(channelEvent)
+      sendEventInvitationMail({
+        limit24h: limit24h || MAEVSI_EMAIL_LIMIT_24H,
+        channelEvent,
+      })
       break
     default:
       throw new Error(`Unexpected channel: ${channel}`)
@@ -218,9 +234,13 @@ const ack = async ({ id }: { id: string }) => {
     console.error(`Could not ack due to error: "${response.statusText}"`)
 }
 
-export const sendEventInvitationMail = async (
-  channelEvent: EventInvitationEvent,
-) => {
+export const sendEventInvitationMail = async ({
+  channelEvent,
+  limit24h,
+}: {
+  channelEvent: EventInvitationEvent
+  limit24h: number
+}) => {
   const { channel, payload } = channelEvent
   const payloadCamelCased = camelcaseKeys(payload, { deep: true })
 
@@ -311,6 +331,7 @@ export const sendEventInvitationMail = async (
   }
 
   await sendEmail({
+    limit24h,
     mailOptions: {
       fromName: eventAuthorUsername,
       icalEvent: {

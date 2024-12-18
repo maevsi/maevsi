@@ -1,3 +1,6 @@
+# syntax=docker/dockerfile:1
+# check=skip=SecretsUsedInArgOrEnv
+
 #############
 # Create base image.
 
@@ -172,14 +175,14 @@ RUN pnpm --dir tests run test:e2e:server:node
 
 FROM base-image AS collect
 
-COPY --from=build-node /srv/app/src/.output ./.output
-COPY --from=build-node /srv/app/src/package.json ./package.json
-# COPY --from=build-static /srv/app/package.json /tmp/package.json
-COPY --from=lint /srv/app/package.json /tmp/package.json
-COPY --from=test-unit /srv/app/package.json /tmp/package.json
-# COPY --from=test-e2e-dev /srv/app/package.json /tmp/package.json
-COPY --from=test-e2e-node /srv/app/package.json /tmp/package.json
-# COPY --from=test-e2e-static /srv/app/package.json /tmp/package.json
+COPY --from=build-node --chown=node /srv/app/src/.output ./.output
+COPY --from=build-node --chown=node /srv/app/src/package.json ./package.json
+# COPY --from=build-static /srv/app/package.json /dev/null
+COPY --from=lint /srv/app/package.json /dev/null
+COPY --from=test-unit /srv/app/package.json /dev/null
+# COPY --from=test-e2e-dev /srv/app/package.json /dev/null
+COPY --from=test-e2e-node /srv/app/package.json /dev/null
+# COPY --from=test-e2e-static /srv/app/package.json /dev/null
 
 
 # #######################
@@ -208,6 +211,8 @@ ENV NODE_ENV=production
 # Update dependencies.
 RUN apk update \
     && apk upgrade --no-cache
+
+USER node
 
 ENTRYPOINT ["pnpm"]
 CMD ["run", "start:node"]

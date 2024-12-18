@@ -1,3 +1,28 @@
+## [5.2.2](https://github.com/maevsi/maevsi/compare/5.2.1...5.2.2) (2024-12-16)
+
+### Bug Fixes
+
+* **docker:** correct file owner ([8a88179](https://github.com/maevsi/maevsi/commit/8a8817912c11c552861106bcb6a51f2722fda945))
+
+## [5.2.1](https://github.com/maevsi/maevsi/compare/5.2.0...5.2.1) (2024-12-16)
+
+### Bug Fixes
+
+* **docker:** run as user `node` in production ([#1697](https://github.com/maevsi/maevsi/issues/1697)) ([2449684](https://github.com/maevsi/maevsi/commit/2449684021cdf8e4ba3f214afbede2db0ba176f7))
+
+## [5.2.0](https://github.com/maevsi/maevsi/compare/5.1.2...5.2.0) (2024-12-16)
+
+### Features
+
+* **email:** allow change to 24h limit through environment variable ([#1693](https://github.com/maevsi/maevsi/issues/1693)) ([e10714a](https://github.com/maevsi/maevsi/commit/e10714a80fc800774137fe1b3d1f423b0d082a60))
+
+## [5.1.2](https://github.com/maevsi/maevsi/compare/5.1.1...5.1.2) (2024-12-11)
+
+### Bug Fixes
+
+* **server:** correct import path ([2a82004](https://github.com/maevsi/maevsi/commit/2a82004a9f748a631e8e6cb870be53c27d19464d))
+* **types:** resolve errors ([6e7b401](https://github.com/maevsi/maevsi/commit/6e7b4015f9c816db02bb97c9c2ff384f1eee7773))
+
 ## [5.1.1](https://github.com/maevsi/maevsi/compare/5.1.0...5.1.1) (2024-11-30)
 
 ### Bug Fixes

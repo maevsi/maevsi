@@ -12,7 +12,7 @@
   Put an `x` in all the boxes that apply.
   If you're unsure about any of these, don't hesitate to ask. We're here to help!
 
-  Examples for Conventional Commmits:
+  Examples for Conventional Commits:
   - fix(types): correct array typing
   - feat(component): add button
   - docs(readme): explain setup
@@ -20,5 +20,4 @@
   https://conventionalcommits.org
 -->
 
-- [ ] All commits follow the Conventional Commit format
 - [ ] The PR's title follows the Conventional Commit format
