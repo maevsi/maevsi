@@ -1,5 +1,2 @@
-export const useServerSiteUrl = () => {
-  const runtimeConfig = useRuntimeConfig()
-
-  return new URL(runtimeConfig.public.site.url)
-}
+export const useSiteUrl = () => useRuntimeConfig().public.site.url
+export const useSiteUrlTyped = () => new URL(useSiteUrl())
