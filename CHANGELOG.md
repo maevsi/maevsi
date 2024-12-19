@@ -1,3 +1,9 @@
+## [5.2.3](https://github.com/maevsi/maevsi/compare/5.2.2...5.2.3) (2024-12-19)
+
+### Bug Fixes
+
+* **email:** correct link domain ([#1702](https://github.com/maevsi/maevsi/issues/1702)) ([3fb87cf](https://github.com/maevsi/maevsi/commit/3fb87cfc0042e24562bde2944e6cf8ab767c9491))
+
 ## [5.2.2](https://github.com/maevsi/maevsi/compare/5.2.1...5.2.2) (2024-12-16)
 
 ### Bug Fixes
