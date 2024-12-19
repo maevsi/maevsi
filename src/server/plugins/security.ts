@@ -29,7 +29,7 @@ export const cleanupCsp = (
 export default defineNitroPlugin((nitroApp) => {
   nitroApp.hooks.hook('nuxt-security:routeRules', async (routeRules) => {
     const runtimeConfig = useRuntimeConfig()
-    const siteUrl = useServerSiteUrl()
+    const siteUrl = useSiteUrlTyped()
 
     routeRules['/**'] = cleanupCsp(
       defu(

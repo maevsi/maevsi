@@ -53,3 +53,10 @@ export const deleteUpload = async (event: H3Event, uploadId: unknown) => {
   event.node.res.statusCode = 204
   await send(event)
 }
+
+export const useTusdFilesUrl = () => {
+  const runtimeConfig = useRuntimeConfig()
+  const host = useHost()
+
+  return getTusdFilesUrl({ host, runtimeConfig })
+}

@@ -5,7 +5,6 @@ import { sentryVitePlugin } from '@sentry/vite-plugin'
 import vue from '@vitejs/plugin-vue'
 import { defu } from 'defu'
 import type { Nuxt, ModuleOptions } from 'nuxt/schema'
-// import { defu } from 'defu'
 import IconsResolver from 'unplugin-icons/resolver'
 import Icons from 'unplugin-icons/vite'
 import Components from 'unplugin-vue-components/vite'
@@ -117,6 +116,7 @@ export default defineNuxtConfig({
   nitro: {
     compressPublicAssets: true,
     experimental: {
+      asyncContext: true,
       openAPI: IS_NITRO_OPENAPI_ENABLED,
     },
     rollupConfig: {
