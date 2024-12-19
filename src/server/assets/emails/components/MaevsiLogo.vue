@@ -13,7 +13,7 @@ const props = withDefaults(defineProps<Props>(), {
   logoSource: undefined,
 })
 
-const siteUrl = useSiteUrl()
+const { siteUrl } = useSiteUrl()
 
 // data
 const locales = {

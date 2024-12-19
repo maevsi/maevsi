@@ -1,6 +1,5 @@
 export const useTusdFilesUrl = () => {
-  const runtimeConfig = useRuntimeConfig()
-  const host = useHost()
+  const { siteUrlTyped: siteUrl } = useSiteUrl()
 
-  return getTusdFilesUrl({ host, runtimeConfig })
+  return getTusdFilesUrl({ siteUrl })
 }
