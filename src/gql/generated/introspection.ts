@@ -16,12 +16,12 @@ export default {
         name: 'Account',
         fields: [
           {
-            name: 'accountInterestsByAccountId',
+            name: 'accountBlocksByAuthorAccountId',
             type: {
               kind: 'NON_NULL',
               ofType: {
                 kind: 'OBJECT',
-                name: 'AccountInterestsConnection',
+                name: 'AccountBlocksConnection',
                 ofType: null,
               },
             },
@@ -84,80 +84,12 @@ export default {
             ],
           },
           {
-            name: 'accountPreferenceEventSizesByAccountId',
+            name: 'accountBlocksByBlockedAccountId',
             type: {
               kind: 'NON_NULL',
               ofType: {
                 kind: 'OBJECT',
-                name: 'AccountPreferenceEventSizesConnection',
-                ofType: null,
-              },
-            },
-            args: [
-              {
-                name: 'after',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'before',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'condition',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'first',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'last',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'offset',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'orderBy',
-                type: {
-                  kind: 'LIST',
-                  ofType: {
-                    kind: 'NON_NULL',
-                    ofType: {
-                      kind: 'SCALAR',
-                      name: 'Any',
-                    },
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'accountSocialNetworksByAccountId',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'OBJECT',
-                name: 'AccountSocialNetworksConnection',
+                name: 'AccountBlocksConnection',
                 ofType: null,
               },
             },
@@ -492,74 +424,6 @@ export default {
             ],
           },
           {
-            name: 'eventRecommendationsByAccountId',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'OBJECT',
-                name: 'EventRecommendationsConnection',
-                ofType: null,
-              },
-            },
-            args: [
-              {
-                name: 'after',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'before',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'condition',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'first',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'last',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'offset',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'orderBy',
-                type: {
-                  kind: 'LIST',
-                  ofType: {
-                    kind: 'NON_NULL',
-                    ofType: {
-                      kind: 'SCALAR',
-                      name: 'Any',
-                    },
-                  },
-                },
-              },
-            ],
-          },
-          {
             name: 'eventsByAuthorAccountId',
             type: {
               kind: 'NON_NULL',
@@ -637,74 +501,6 @@ export default {
               },
             },
             args: [],
-          },
-          {
-            name: 'invitationsByUpdatedBy',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'OBJECT',
-                name: 'InvitationsConnection',
-                ofType: null,
-              },
-            },
-            args: [
-              {
-                name: 'after',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'before',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'condition',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'first',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'last',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'offset',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'orderBy',
-                type: {
-                  kind: 'LIST',
-                  ofType: {
-                    kind: 'NON_NULL',
-                    ofType: {
-                      kind: 'SCALAR',
-                      name: 'Any',
-                    },
-                  },
-                },
-              },
-            ],
           },
           {
             name: 'legalTermAcceptancesByAccountId',
@@ -1087,6 +883,184 @@ export default {
       },
       {
         kind: 'OBJECT',
+        name: 'AccountBlock',
+        fields: [
+          {
+            name: 'accountByAuthorAccountId',
+            type: {
+              kind: 'OBJECT',
+              name: 'Account',
+              ofType: null,
+            },
+            args: [],
+          },
+          {
+            name: 'accountByBlockedAccountId',
+            type: {
+              kind: 'OBJECT',
+              name: 'Account',
+              ofType: null,
+            },
+            args: [],
+          },
+          {
+            name: 'authorAccountId',
+            type: {
+              kind: 'NON_NULL',
+              ofType: {
+                kind: 'SCALAR',
+                name: 'Any',
+              },
+            },
+            args: [],
+          },
+          {
+            name: 'blockedAccountId',
+            type: {
+              kind: 'NON_NULL',
+              ofType: {
+                kind: 'SCALAR',
+                name: 'Any',
+              },
+            },
+            args: [],
+          },
+          {
+            name: 'createdAt',
+            type: {
+              kind: 'NON_NULL',
+              ofType: {
+                kind: 'SCALAR',
+                name: 'Any',
+              },
+            },
+            args: [],
+          },
+          {
+            name: 'id',
+            type: {
+              kind: 'NON_NULL',
+              ofType: {
+                kind: 'SCALAR',
+                name: 'Any',
+              },
+            },
+            args: [],
+          },
+          {
+            name: 'nodeId',
+            type: {
+              kind: 'NON_NULL',
+              ofType: {
+                kind: 'SCALAR',
+                name: 'Any',
+              },
+            },
+            args: [],
+          },
+        ],
+        interfaces: [
+          {
+            kind: 'INTERFACE',
+            name: 'Node',
+          },
+        ],
+      },
+      {
+        kind: 'OBJECT',
+        name: 'AccountBlocksConnection',
+        fields: [
+          {
+            name: 'edges',
+            type: {
+              kind: 'NON_NULL',
+              ofType: {
+                kind: 'LIST',
+                ofType: {
+                  kind: 'NON_NULL',
+                  ofType: {
+                    kind: 'OBJECT',
+                    name: 'AccountBlocksEdge',
+                    ofType: null,
+                  },
+                },
+              },
+            },
+            args: [],
+          },
+          {
+            name: 'nodes',
+            type: {
+              kind: 'NON_NULL',
+              ofType: {
+                kind: 'LIST',
+                ofType: {
+                  kind: 'NON_NULL',
+                  ofType: {
+                    kind: 'OBJECT',
+                    name: 'AccountBlock',
+                    ofType: null,
+                  },
+                },
+              },
+            },
+            args: [],
+          },
+          {
+            name: 'pageInfo',
+            type: {
+              kind: 'NON_NULL',
+              ofType: {
+                kind: 'OBJECT',
+                name: 'PageInfo',
+                ofType: null,
+              },
+            },
+            args: [],
+          },
+          {
+            name: 'totalCount',
+            type: {
+              kind: 'NON_NULL',
+              ofType: {
+                kind: 'SCALAR',
+                name: 'Any',
+              },
+            },
+            args: [],
+          },
+        ],
+        interfaces: [],
+      },
+      {
+        kind: 'OBJECT',
+        name: 'AccountBlocksEdge',
+        fields: [
+          {
+            name: 'cursor',
+            type: {
+              kind: 'SCALAR',
+              name: 'Any',
+            },
+            args: [],
+          },
+          {
+            name: 'node',
+            type: {
+              kind: 'NON_NULL',
+              ofType: {
+                kind: 'OBJECT',
+                name: 'AccountBlock',
+                ofType: null,
+              },
+            },
+            args: [],
+          },
+        ],
+        interfaces: [],
+      },
+      {
+        kind: 'OBJECT',
         name: 'AccountDeletePayload',
         fields: [
           {
@@ -1127,162 +1101,6 @@ export default {
               kind: 'OBJECT',
               name: 'Query',
               ofType: null,
-            },
-            args: [],
-          },
-        ],
-        interfaces: [],
-      },
-      {
-        kind: 'OBJECT',
-        name: 'AccountInterest',
-        fields: [
-          {
-            name: 'accountByAccountId',
-            type: {
-              kind: 'OBJECT',
-              name: 'Account',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'accountId',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'category',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'eventCategoryByCategory',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventCategory',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'nodeId',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
-            },
-            args: [],
-          },
-        ],
-        interfaces: [
-          {
-            kind: 'INTERFACE',
-            name: 'Node',
-          },
-        ],
-      },
-      {
-        kind: 'OBJECT',
-        name: 'AccountInterestsConnection',
-        fields: [
-          {
-            name: 'edges',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'LIST',
-                ofType: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'OBJECT',
-                    name: 'AccountInterestsEdge',
-                    ofType: null,
-                  },
-                },
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'nodes',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'LIST',
-                ofType: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'OBJECT',
-                    name: 'AccountInterest',
-                    ofType: null,
-                  },
-                },
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'pageInfo',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'OBJECT',
-                name: 'PageInfo',
-                ofType: null,
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'totalCount',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
-            },
-            args: [],
-          },
-        ],
-        interfaces: [],
-      },
-      {
-        kind: 'OBJECT',
-        name: 'AccountInterestsEdge',
-        fields: [
-          {
-            name: 'cursor',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'node',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'OBJECT',
-                name: 'AccountInterest',
-                ofType: null,
-              },
             },
             args: [],
           },
@@ -1363,164 +1181,6 @@ export default {
       },
       {
         kind: 'OBJECT',
-        name: 'AccountPreferenceEventSize',
-        fields: [
-          {
-            name: 'accountByAccountId',
-            type: {
-              kind: 'OBJECT',
-              name: 'Account',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'accountId',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'createdAt',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'eventSize',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'nodeId',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
-            },
-            args: [],
-          },
-        ],
-        interfaces: [
-          {
-            kind: 'INTERFACE',
-            name: 'Node',
-          },
-        ],
-      },
-      {
-        kind: 'OBJECT',
-        name: 'AccountPreferenceEventSizesConnection',
-        fields: [
-          {
-            name: 'edges',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'LIST',
-                ofType: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'OBJECT',
-                    name: 'AccountPreferenceEventSizesEdge',
-                    ofType: null,
-                  },
-                },
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'nodes',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'LIST',
-                ofType: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'OBJECT',
-                    name: 'AccountPreferenceEventSize',
-                    ofType: null,
-                  },
-                },
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'pageInfo',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'OBJECT',
-                name: 'PageInfo',
-                ofType: null,
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'totalCount',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
-            },
-            args: [],
-          },
-        ],
-        interfaces: [],
-      },
-      {
-        kind: 'OBJECT',
-        name: 'AccountPreferenceEventSizesEdge',
-        fields: [
-          {
-            name: 'cursor',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'node',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'OBJECT',
-                name: 'AccountPreferenceEventSize',
-                ofType: null,
-              },
-            },
-            args: [],
-          },
-        ],
-        interfaces: [],
-      },
-      {
-        kind: 'OBJECT',
         name: 'AccountRegistrationPayload',
         fields: [
           {
@@ -1569,164 +1229,6 @@ export default {
               kind: 'OBJECT',
               name: 'Query',
               ofType: null,
-            },
-            args: [],
-          },
-        ],
-        interfaces: [],
-      },
-      {
-        kind: 'OBJECT',
-        name: 'AccountSocialNetwork',
-        fields: [
-          {
-            name: 'accountByAccountId',
-            type: {
-              kind: 'OBJECT',
-              name: 'Account',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'accountId',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'nodeId',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'socialNetwork',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'socialNetworkUsername',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
-            },
-            args: [],
-          },
-        ],
-        interfaces: [
-          {
-            kind: 'INTERFACE',
-            name: 'Node',
-          },
-        ],
-      },
-      {
-        kind: 'OBJECT',
-        name: 'AccountSocialNetworksConnection',
-        fields: [
-          {
-            name: 'edges',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'LIST',
-                ofType: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'OBJECT',
-                    name: 'AccountSocialNetworksEdge',
-                    ofType: null,
-                  },
-                },
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'nodes',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'LIST',
-                ofType: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'OBJECT',
-                    name: 'AccountSocialNetwork',
-                    ofType: null,
-                  },
-                },
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'pageInfo',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'OBJECT',
-                name: 'PageInfo',
-                ofType: null,
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'totalCount',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
-            },
-            args: [],
-          },
-        ],
-        interfaces: [],
-      },
-      {
-        kind: 'OBJECT',
-        name: 'AccountSocialNetworksEdge',
-        fields: [
-          {
-            name: 'cursor',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'node',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'OBJECT',
-                name: 'AccountSocialNetwork',
-                ofType: null,
-              },
             },
             args: [],
           },
@@ -2109,17 +1611,6 @@ export default {
             args: [],
           },
           {
-            name: 'createdAt',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
-            },
-            args: [],
-          },
-          {
             name: 'emailAddress',
             type: {
               kind: 'SCALAR',
@@ -2223,23 +1714,7 @@ export default {
             ],
           },
           {
-            name: 'language',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
             name: 'lastName',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'nickname',
             type: {
               kind: 'SCALAR',
               name: 'Any',
@@ -2259,14 +1734,6 @@ export default {
           },
           {
             name: 'phoneNumber',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'timezone',
             type: {
               kind: 'SCALAR',
               name: 'Any',
@@ -2384,31 +1851,22 @@ export default {
       },
       {
         kind: 'OBJECT',
-        name: 'CreateAccountInterestPayload',
+        name: 'CreateAccountBlockPayload',
         fields: [
           {
-            name: 'accountByAccountId',
+            name: 'accountBlock',
             type: {
               kind: 'OBJECT',
-              name: 'Account',
+              name: 'AccountBlock',
               ofType: null,
             },
             args: [],
           },
           {
-            name: 'accountInterest',
+            name: 'accountBlockEdge',
             type: {
               kind: 'OBJECT',
-              name: 'AccountInterest',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'accountInterestEdge',
-            type: {
-              kind: 'OBJECT',
-              name: 'AccountInterestsEdge',
+              name: 'AccountBlocksEdge',
               ofType: null,
             },
             args: [
@@ -2428,19 +1886,28 @@ export default {
             ],
           },
           {
-            name: 'clientMutationId',
+            name: 'accountByAuthorAccountId',
             type: {
-              kind: 'SCALAR',
-              name: 'Any',
+              kind: 'OBJECT',
+              name: 'Account',
+              ofType: null,
             },
             args: [],
           },
           {
-            name: 'eventCategoryByCategory',
+            name: 'accountByBlockedAccountId',
             type: {
               kind: 'OBJECT',
-              name: 'EventCategory',
+              name: 'Account',
               ofType: null,
+            },
+            args: [],
+          },
+          {
+            name: 'clientMutationId',
+            type: {
+              kind: 'SCALAR',
+              name: 'Any',
             },
             args: [],
           },
@@ -2474,136 +1941,6 @@ export default {
             type: {
               kind: 'OBJECT',
               name: 'AccountsEdge',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'orderBy',
-                type: {
-                  kind: 'LIST',
-                  ofType: {
-                    kind: 'NON_NULL',
-                    ofType: {
-                      kind: 'SCALAR',
-                      name: 'Any',
-                    },
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'clientMutationId',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'query',
-            type: {
-              kind: 'OBJECT',
-              name: 'Query',
-              ofType: null,
-            },
-            args: [],
-          },
-        ],
-        interfaces: [],
-      },
-      {
-        kind: 'OBJECT',
-        name: 'CreateAccountPreferenceEventSizePayload',
-        fields: [
-          {
-            name: 'accountByAccountId',
-            type: {
-              kind: 'OBJECT',
-              name: 'Account',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'accountPreferenceEventSize',
-            type: {
-              kind: 'OBJECT',
-              name: 'AccountPreferenceEventSize',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'accountPreferenceEventSizeEdge',
-            type: {
-              kind: 'OBJECT',
-              name: 'AccountPreferenceEventSizesEdge',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'orderBy',
-                type: {
-                  kind: 'LIST',
-                  ofType: {
-                    kind: 'NON_NULL',
-                    ofType: {
-                      kind: 'SCALAR',
-                      name: 'Any',
-                    },
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'clientMutationId',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'query',
-            type: {
-              kind: 'OBJECT',
-              name: 'Query',
-              ofType: null,
-            },
-            args: [],
-          },
-        ],
-        interfaces: [],
-      },
-      {
-        kind: 'OBJECT',
-        name: 'CreateAccountSocialNetworkPayload',
-        fields: [
-          {
-            name: 'accountByAccountId',
-            type: {
-              kind: 'OBJECT',
-              name: 'Account',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'accountSocialNetwork',
-            type: {
-              kind: 'OBJECT',
-              name: 'AccountSocialNetwork',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'accountSocialNetworkEdge',
-            type: {
-              kind: 'OBJECT',
-              name: 'AccountSocialNetworksEdge',
               ofType: null,
             },
             args: [
@@ -2751,136 +2088,6 @@ export default {
             type: {
               kind: 'OBJECT',
               name: 'ContactsEdge',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'orderBy',
-                type: {
-                  kind: 'LIST',
-                  ofType: {
-                    kind: 'NON_NULL',
-                    ofType: {
-                      kind: 'SCALAR',
-                      name: 'Any',
-                    },
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'query',
-            type: {
-              kind: 'OBJECT',
-              name: 'Query',
-              ofType: null,
-            },
-            args: [],
-          },
-        ],
-        interfaces: [],
-      },
-      {
-        kind: 'OBJECT',
-        name: 'CreateEventCategoryMappingPayload',
-        fields: [
-          {
-            name: 'clientMutationId',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'eventByEventId',
-            type: {
-              kind: 'OBJECT',
-              name: 'Event',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'eventCategoryByCategory',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventCategory',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'eventCategoryMapping',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventCategoryMapping',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'eventCategoryMappingEdge',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventCategoryMappingsEdge',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'orderBy',
-                type: {
-                  kind: 'LIST',
-                  ofType: {
-                    kind: 'NON_NULL',
-                    ofType: {
-                      kind: 'SCALAR',
-                      name: 'Any',
-                    },
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'query',
-            type: {
-              kind: 'OBJECT',
-              name: 'Query',
-              ofType: null,
-            },
-            args: [],
-          },
-        ],
-        interfaces: [],
-      },
-      {
-        kind: 'OBJECT',
-        name: 'CreateEventCategoryPayload',
-        fields: [
-          {
-            name: 'clientMutationId',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'eventCategory',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventCategory',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'eventCategoryEdge',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventCategoriesEdge',
               ofType: null,
             },
             args: [
@@ -3117,165 +2324,8 @@ export default {
       },
       {
         kind: 'OBJECT',
-        name: 'CreateEventRecommendationPayload',
-        fields: [
-          {
-            name: 'accountByAccountId',
-            type: {
-              kind: 'OBJECT',
-              name: 'Account',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'clientMutationId',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'eventByEventId',
-            type: {
-              kind: 'OBJECT',
-              name: 'Event',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'eventRecommendation',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventRecommendation',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'eventRecommendationEdge',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventRecommendationsEdge',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'orderBy',
-                type: {
-                  kind: 'LIST',
-                  ofType: {
-                    kind: 'NON_NULL',
-                    ofType: {
-                      kind: 'SCALAR',
-                      name: 'Any',
-                    },
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'query',
-            type: {
-              kind: 'OBJECT',
-              name: 'Query',
-              ofType: null,
-            },
-            args: [],
-          },
-        ],
-        interfaces: [],
-      },
-      {
-        kind: 'OBJECT',
-        name: 'CreateEventUploadPayload',
-        fields: [
-          {
-            name: 'clientMutationId',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'eventByEventId',
-            type: {
-              kind: 'OBJECT',
-              name: 'Event',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'eventUpload',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventUpload',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'eventUploadEdge',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventUploadsEdge',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'orderBy',
-                type: {
-                  kind: 'LIST',
-                  ofType: {
-                    kind: 'NON_NULL',
-                    ofType: {
-                      kind: 'SCALAR',
-                      name: 'Any',
-                    },
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'query',
-            type: {
-              kind: 'OBJECT',
-              name: 'Query',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'uploadByUploadId',
-            type: {
-              kind: 'OBJECT',
-              name: 'Upload',
-              ofType: null,
-            },
-            args: [],
-          },
-        ],
-        interfaces: [],
-      },
-      {
-        kind: 'OBJECT',
         name: 'CreateInvitationPayload',
         fields: [
-          {
-            name: 'accountByUpdatedBy',
-            type: {
-              kind: 'OBJECT',
-              name: 'Account',
-              ofType: null,
-            },
-            args: [],
-          },
           {
             name: 'clientMutationId',
             type: {
@@ -3653,88 +2703,6 @@ export default {
       },
       {
         kind: 'OBJECT',
-        name: 'DeleteAccountInterestPayload',
-        fields: [
-          {
-            name: 'accountByAccountId',
-            type: {
-              kind: 'OBJECT',
-              name: 'Account',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'accountInterest',
-            type: {
-              kind: 'OBJECT',
-              name: 'AccountInterest',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'accountInterestEdge',
-            type: {
-              kind: 'OBJECT',
-              name: 'AccountInterestsEdge',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'orderBy',
-                type: {
-                  kind: 'LIST',
-                  ofType: {
-                    kind: 'NON_NULL',
-                    ofType: {
-                      kind: 'SCALAR',
-                      name: 'Any',
-                    },
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'clientMutationId',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'deletedAccountInterestId',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'eventCategoryByCategory',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventCategory',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'query',
-            type: {
-              kind: 'OBJECT',
-              name: 'Query',
-              ofType: null,
-            },
-            args: [],
-          },
-        ],
-        interfaces: [],
-      },
-      {
-        kind: 'OBJECT',
         name: 'DeleteAccountPayload',
         fields: [
           {
@@ -3779,152 +2747,6 @@ export default {
           },
           {
             name: 'deletedAccountId',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'query',
-            type: {
-              kind: 'OBJECT',
-              name: 'Query',
-              ofType: null,
-            },
-            args: [],
-          },
-        ],
-        interfaces: [],
-      },
-      {
-        kind: 'OBJECT',
-        name: 'DeleteAccountPreferenceEventSizePayload',
-        fields: [
-          {
-            name: 'accountByAccountId',
-            type: {
-              kind: 'OBJECT',
-              name: 'Account',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'accountPreferenceEventSize',
-            type: {
-              kind: 'OBJECT',
-              name: 'AccountPreferenceEventSize',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'accountPreferenceEventSizeEdge',
-            type: {
-              kind: 'OBJECT',
-              name: 'AccountPreferenceEventSizesEdge',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'orderBy',
-                type: {
-                  kind: 'LIST',
-                  ofType: {
-                    kind: 'NON_NULL',
-                    ofType: {
-                      kind: 'SCALAR',
-                      name: 'Any',
-                    },
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'clientMutationId',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'deletedAccountPreferenceEventSizeId',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'query',
-            type: {
-              kind: 'OBJECT',
-              name: 'Query',
-              ofType: null,
-            },
-            args: [],
-          },
-        ],
-        interfaces: [],
-      },
-      {
-        kind: 'OBJECT',
-        name: 'DeleteAccountSocialNetworkPayload',
-        fields: [
-          {
-            name: 'accountByAccountId',
-            type: {
-              kind: 'OBJECT',
-              name: 'Account',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'accountSocialNetwork',
-            type: {
-              kind: 'OBJECT',
-              name: 'AccountSocialNetwork',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'accountSocialNetworkEdge',
-            type: {
-              kind: 'OBJECT',
-              name: 'AccountSocialNetworksEdge',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'orderBy',
-                type: {
-                  kind: 'LIST',
-                  ofType: {
-                    kind: 'NON_NULL',
-                    ofType: {
-                      kind: 'SCALAR',
-                      name: 'Any',
-                    },
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'clientMutationId',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'deletedAccountSocialNetworkId',
             type: {
               kind: 'SCALAR',
               name: 'Any',
@@ -4085,152 +2907,6 @@ export default {
               name: 'Any',
             },
             args: [],
-          },
-          {
-            name: 'query',
-            type: {
-              kind: 'OBJECT',
-              name: 'Query',
-              ofType: null,
-            },
-            args: [],
-          },
-        ],
-        interfaces: [],
-      },
-      {
-        kind: 'OBJECT',
-        name: 'DeleteEventCategoryMappingPayload',
-        fields: [
-          {
-            name: 'clientMutationId',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'deletedEventCategoryMappingId',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'eventByEventId',
-            type: {
-              kind: 'OBJECT',
-              name: 'Event',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'eventCategoryByCategory',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventCategory',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'eventCategoryMapping',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventCategoryMapping',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'eventCategoryMappingEdge',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventCategoryMappingsEdge',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'orderBy',
-                type: {
-                  kind: 'LIST',
-                  ofType: {
-                    kind: 'NON_NULL',
-                    ofType: {
-                      kind: 'SCALAR',
-                      name: 'Any',
-                    },
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'query',
-            type: {
-              kind: 'OBJECT',
-              name: 'Query',
-              ofType: null,
-            },
-            args: [],
-          },
-        ],
-        interfaces: [],
-      },
-      {
-        kind: 'OBJECT',
-        name: 'DeleteEventCategoryPayload',
-        fields: [
-          {
-            name: 'clientMutationId',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'deletedEventCategoryId',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'eventCategory',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventCategory',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'eventCategoryEdge',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventCategoriesEdge',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'orderBy',
-                type: {
-                  kind: 'LIST',
-                  ofType: {
-                    kind: 'NON_NULL',
-                    ofType: {
-                      kind: 'SCALAR',
-                      name: 'Any',
-                    },
-                  },
-                },
-              },
-            ],
           },
           {
             name: 'query',
@@ -4474,181 +3150,8 @@ export default {
       },
       {
         kind: 'OBJECT',
-        name: 'DeleteEventRecommendationPayload',
-        fields: [
-          {
-            name: 'accountByAccountId',
-            type: {
-              kind: 'OBJECT',
-              name: 'Account',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'clientMutationId',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'deletedEventRecommendationId',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'eventByEventId',
-            type: {
-              kind: 'OBJECT',
-              name: 'Event',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'eventRecommendation',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventRecommendation',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'eventRecommendationEdge',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventRecommendationsEdge',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'orderBy',
-                type: {
-                  kind: 'LIST',
-                  ofType: {
-                    kind: 'NON_NULL',
-                    ofType: {
-                      kind: 'SCALAR',
-                      name: 'Any',
-                    },
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'query',
-            type: {
-              kind: 'OBJECT',
-              name: 'Query',
-              ofType: null,
-            },
-            args: [],
-          },
-        ],
-        interfaces: [],
-      },
-      {
-        kind: 'OBJECT',
-        name: 'DeleteEventUploadPayload',
-        fields: [
-          {
-            name: 'clientMutationId',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'deletedEventUploadId',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'eventByEventId',
-            type: {
-              kind: 'OBJECT',
-              name: 'Event',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'eventUpload',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventUpload',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'eventUploadEdge',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventUploadsEdge',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'orderBy',
-                type: {
-                  kind: 'LIST',
-                  ofType: {
-                    kind: 'NON_NULL',
-                    ofType: {
-                      kind: 'SCALAR',
-                      name: 'Any',
-                    },
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'query',
-            type: {
-              kind: 'OBJECT',
-              name: 'Query',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'uploadByUploadId',
-            type: {
-              kind: 'OBJECT',
-              name: 'Upload',
-              ofType: null,
-            },
-            args: [],
-          },
-        ],
-        interfaces: [],
-      },
-      {
-        kind: 'OBJECT',
         name: 'DeleteInvitationPayload',
         fields: [
-          {
-            name: 'accountByUpdatedBy',
-            type: {
-              kind: 'OBJECT',
-              name: 'Account',
-              ofType: null,
-            },
-            args: [],
-          },
           {
             name: 'clientMutationId',
             type: {
@@ -4989,17 +3492,6 @@ export default {
             args: [],
           },
           {
-            name: 'createdAt',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
-            },
-            args: [],
-          },
-          {
             name: 'description',
             type: {
               kind: 'SCALAR',
@@ -5016,216 +3508,12 @@ export default {
             args: [],
           },
           {
-            name: 'eventCategoryMappingsByEventId',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'OBJECT',
-                name: 'EventCategoryMappingsConnection',
-                ofType: null,
-              },
-            },
-            args: [
-              {
-                name: 'after',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'before',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'condition',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'first',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'last',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'offset',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'orderBy',
-                type: {
-                  kind: 'LIST',
-                  ofType: {
-                    kind: 'NON_NULL',
-                    ofType: {
-                      kind: 'SCALAR',
-                      name: 'Any',
-                    },
-                  },
-                },
-              },
-            ],
-          },
-          {
             name: 'eventGroupingsByEventId',
             type: {
               kind: 'NON_NULL',
               ofType: {
                 kind: 'OBJECT',
                 name: 'EventGroupingsConnection',
-                ofType: null,
-              },
-            },
-            args: [
-              {
-                name: 'after',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'before',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'condition',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'first',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'last',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'offset',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'orderBy',
-                type: {
-                  kind: 'LIST',
-                  ofType: {
-                    kind: 'NON_NULL',
-                    ofType: {
-                      kind: 'SCALAR',
-                      name: 'Any',
-                    },
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'eventRecommendationsByEventId',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'OBJECT',
-                name: 'EventRecommendationsConnection',
-                ofType: null,
-              },
-            },
-            args: [
-              {
-                name: 'after',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'before',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'condition',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'first',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'last',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'offset',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'orderBy',
-                type: {
-                  kind: 'LIST',
-                  ofType: {
-                    kind: 'NON_NULL',
-                    ofType: {
-                      kind: 'SCALAR',
-                      name: 'Any',
-                    },
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'eventUploadsByEventId',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'OBJECT',
-                name: 'EventUploadsConnection',
                 ofType: null,
               },
             },
@@ -5550,425 +3838,6 @@ export default {
       },
       {
         kind: 'OBJECT',
-        name: 'EventCategoriesConnection',
-        fields: [
-          {
-            name: 'edges',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'LIST',
-                ofType: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'OBJECT',
-                    name: 'EventCategoriesEdge',
-                    ofType: null,
-                  },
-                },
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'nodes',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'LIST',
-                ofType: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'OBJECT',
-                    name: 'EventCategory',
-                    ofType: null,
-                  },
-                },
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'pageInfo',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'OBJECT',
-                name: 'PageInfo',
-                ofType: null,
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'totalCount',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
-            },
-            args: [],
-          },
-        ],
-        interfaces: [],
-      },
-      {
-        kind: 'OBJECT',
-        name: 'EventCategoriesEdge',
-        fields: [
-          {
-            name: 'cursor',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'node',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'OBJECT',
-                name: 'EventCategory',
-                ofType: null,
-              },
-            },
-            args: [],
-          },
-        ],
-        interfaces: [],
-      },
-      {
-        kind: 'OBJECT',
-        name: 'EventCategory',
-        fields: [
-          {
-            name: 'accountInterestsByCategory',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'OBJECT',
-                name: 'AccountInterestsConnection',
-                ofType: null,
-              },
-            },
-            args: [
-              {
-                name: 'after',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'before',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'condition',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'first',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'last',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'offset',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'orderBy',
-                type: {
-                  kind: 'LIST',
-                  ofType: {
-                    kind: 'NON_NULL',
-                    ofType: {
-                      kind: 'SCALAR',
-                      name: 'Any',
-                    },
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'category',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'eventCategoryMappingsByCategory',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'OBJECT',
-                name: 'EventCategoryMappingsConnection',
-                ofType: null,
-              },
-            },
-            args: [
-              {
-                name: 'after',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'before',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'condition',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'first',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'last',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'offset',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'orderBy',
-                type: {
-                  kind: 'LIST',
-                  ofType: {
-                    kind: 'NON_NULL',
-                    ofType: {
-                      kind: 'SCALAR',
-                      name: 'Any',
-                    },
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'nodeId',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
-            },
-            args: [],
-          },
-        ],
-        interfaces: [
-          {
-            kind: 'INTERFACE',
-            name: 'Node',
-          },
-        ],
-      },
-      {
-        kind: 'OBJECT',
-        name: 'EventCategoryMapping',
-        fields: [
-          {
-            name: 'category',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'eventByEventId',
-            type: {
-              kind: 'OBJECT',
-              name: 'Event',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'eventCategoryByCategory',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventCategory',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'eventId',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'nodeId',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
-            },
-            args: [],
-          },
-        ],
-        interfaces: [
-          {
-            kind: 'INTERFACE',
-            name: 'Node',
-          },
-        ],
-      },
-      {
-        kind: 'OBJECT',
-        name: 'EventCategoryMappingsConnection',
-        fields: [
-          {
-            name: 'edges',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'LIST',
-                ofType: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'OBJECT',
-                    name: 'EventCategoryMappingsEdge',
-                    ofType: null,
-                  },
-                },
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'nodes',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'LIST',
-                ofType: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'OBJECT',
-                    name: 'EventCategoryMapping',
-                    ofType: null,
-                  },
-                },
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'pageInfo',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'OBJECT',
-                name: 'PageInfo',
-                ofType: null,
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'totalCount',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
-            },
-            args: [],
-          },
-        ],
-        interfaces: [],
-      },
-      {
-        kind: 'OBJECT',
-        name: 'EventCategoryMappingsEdge',
-        fields: [
-          {
-            name: 'cursor',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'node',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'OBJECT',
-                name: 'EventCategoryMapping',
-                ofType: null,
-              },
-            },
-            args: [],
-          },
-        ],
-        interfaces: [],
-      },
-      {
-        kind: 'OBJECT',
         name: 'EventDeletePayload',
         fields: [
           {
@@ -6047,17 +3916,6 @@ export default {
           },
           {
             name: 'authorAccountId',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'createdAt',
             type: {
               kind: 'NON_NULL',
               ofType: {
@@ -6468,178 +4326,6 @@ export default {
       },
       {
         kind: 'OBJECT',
-        name: 'EventRecommendation',
-        fields: [
-          {
-            name: 'accountByAccountId',
-            type: {
-              kind: 'OBJECT',
-              name: 'Account',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'accountId',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'eventByEventId',
-            type: {
-              kind: 'OBJECT',
-              name: 'Event',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'eventId',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'nodeId',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'predictedScore',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'score',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-        ],
-        interfaces: [
-          {
-            kind: 'INTERFACE',
-            name: 'Node',
-          },
-        ],
-      },
-      {
-        kind: 'OBJECT',
-        name: 'EventRecommendationsConnection',
-        fields: [
-          {
-            name: 'edges',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'LIST',
-                ofType: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'OBJECT',
-                    name: 'EventRecommendationsEdge',
-                    ofType: null,
-                  },
-                },
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'nodes',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'LIST',
-                ofType: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'OBJECT',
-                    name: 'EventRecommendation',
-                    ofType: null,
-                  },
-                },
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'pageInfo',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'OBJECT',
-                name: 'PageInfo',
-                ofType: null,
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'totalCount',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
-            },
-            args: [],
-          },
-        ],
-        interfaces: [],
-      },
-      {
-        kind: 'OBJECT',
-        name: 'EventRecommendationsEdge',
-        fields: [
-          {
-            name: 'cursor',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'node',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'OBJECT',
-                name: 'EventRecommendation',
-                ofType: null,
-              },
-            },
-            args: [],
-          },
-        ],
-        interfaces: [],
-      },
-      {
-        kind: 'OBJECT',
         name: 'EventUnlockPayload',
         fields: [
           {
@@ -6696,173 +4382,6 @@ export default {
             type: {
               kind: 'SCALAR',
               name: 'Any',
-            },
-            args: [],
-          },
-        ],
-        interfaces: [],
-      },
-      {
-        kind: 'OBJECT',
-        name: 'EventUpload',
-        fields: [
-          {
-            name: 'eventByEventId',
-            type: {
-              kind: 'OBJECT',
-              name: 'Event',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'eventId',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'id',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'nodeId',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'uploadByUploadId',
-            type: {
-              kind: 'OBJECT',
-              name: 'Upload',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'uploadId',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
-            },
-            args: [],
-          },
-        ],
-        interfaces: [
-          {
-            kind: 'INTERFACE',
-            name: 'Node',
-          },
-        ],
-      },
-      {
-        kind: 'OBJECT',
-        name: 'EventUploadsConnection',
-        fields: [
-          {
-            name: 'edges',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'LIST',
-                ofType: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'OBJECT',
-                    name: 'EventUploadsEdge',
-                    ofType: null,
-                  },
-                },
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'nodes',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'LIST',
-                ofType: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'OBJECT',
-                    name: 'EventUpload',
-                    ofType: null,
-                  },
-                },
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'pageInfo',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'OBJECT',
-                name: 'PageInfo',
-                ofType: null,
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'totalCount',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
-            },
-            args: [],
-          },
-        ],
-        interfaces: [],
-      },
-      {
-        kind: 'OBJECT',
-        name: 'EventUploadsEdge',
-        fields: [
-          {
-            name: 'cursor',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'node',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'OBJECT',
-                name: 'EventUpload',
-                ofType: null,
-              },
             },
             args: [],
           },
@@ -7040,15 +4559,6 @@ export default {
         name: 'Invitation',
         fields: [
           {
-            name: 'accountByUpdatedBy',
-            type: {
-              kind: 'OBJECT',
-              name: 'Account',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
             name: 'contactByContactId',
             type: {
               kind: 'OBJECT',
@@ -7059,17 +4569,6 @@ export default {
           },
           {
             name: 'contactId',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'createdAt',
             type: {
               kind: 'NON_NULL',
               ofType: {
@@ -7134,22 +4633,6 @@ export default {
                 kind: 'SCALAR',
                 name: 'Any',
               },
-            },
-            args: [],
-          },
-          {
-            name: 'updatedAt',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'updatedBy',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
             },
             args: [],
           },
@@ -7227,338 +4710,6 @@ export default {
               ofType: {
                 kind: 'SCALAR',
                 name: 'Any',
-              },
-            },
-            args: [],
-          },
-        ],
-        interfaces: [],
-      },
-      {
-        kind: 'OBJECT',
-        name: 'InvitationFlat',
-        fields: [
-          {
-            name: 'contactAccountId',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'contactAddress',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'contactAuthorAccountId',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'contactEmailAddress',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'contactEmailAddressHash',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'contactFirstName',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'contactId',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'contactLastName',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'contactPhoneNumber',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'contactUrl',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'eventAuthorAccountId',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'eventDescription',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'eventEnd',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'eventId',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'eventInviteeCountMaximum',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'eventIsArchived',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'eventIsInPerson',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'eventIsRemote',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'eventLocation',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'eventName',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'eventSlug',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'eventStart',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'eventUrl',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'eventVisibility',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'invitationContactId',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'invitationEventId',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'invitationFeedback',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'invitationFeedbackPaper',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'invitationId',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-        ],
-        interfaces: [],
-      },
-      {
-        kind: 'OBJECT',
-        name: 'InvitationFlatsConnection',
-        fields: [
-          {
-            name: 'edges',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'LIST',
-                ofType: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'OBJECT',
-                    name: 'InvitationFlatsEdge',
-                    ofType: null,
-                  },
-                },
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'nodes',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'LIST',
-                ofType: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'OBJECT',
-                    name: 'InvitationFlat',
-                    ofType: null,
-                  },
-                },
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'pageInfo',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'OBJECT',
-                name: 'PageInfo',
-                ofType: null,
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'totalCount',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
-            },
-            args: [],
-          },
-        ],
-        interfaces: [],
-      },
-      {
-        kind: 'OBJECT',
-        name: 'InvitationFlatsEdge',
-        fields: [
-          {
-            name: 'cursor',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'node',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'OBJECT',
-                name: 'InvitationFlat',
-                ofType: null,
               },
             },
             args: [],
@@ -8337,50 +5488,10 @@ export default {
             ],
           },
           {
-            name: 'createAccountInterest',
+            name: 'createAccountBlock',
             type: {
               kind: 'OBJECT',
-              name: 'CreateAccountInterestPayload',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'input',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'createAccountPreferenceEventSize',
-            type: {
-              kind: 'OBJECT',
-              name: 'CreateAccountPreferenceEventSizePayload',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'input',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'createAccountSocialNetwork',
-            type: {
-              kind: 'OBJECT',
-              name: 'CreateAccountSocialNetworkPayload',
+              name: 'CreateAccountBlockPayload',
               ofType: null,
             },
             args: [
@@ -8457,46 +5568,6 @@ export default {
             ],
           },
           {
-            name: 'createEventCategory',
-            type: {
-              kind: 'OBJECT',
-              name: 'CreateEventCategoryPayload',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'input',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'createEventCategoryMapping',
-            type: {
-              kind: 'OBJECT',
-              name: 'CreateEventCategoryMappingPayload',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'input',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
             name: 'createEventGroup',
             type: {
               kind: 'OBJECT',
@@ -8521,46 +5592,6 @@ export default {
             type: {
               kind: 'OBJECT',
               name: 'CreateEventGroupingPayload',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'input',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'createEventRecommendation',
-            type: {
-              kind: 'OBJECT',
-              name: 'CreateEventRecommendationPayload',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'input',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'createEventUpload',
-            type: {
-              kind: 'OBJECT',
-              name: 'CreateEventUploadPayload',
               ofType: null,
             },
             args: [
@@ -8721,126 +5752,6 @@ export default {
             type: {
               kind: 'OBJECT',
               name: 'DeleteAccountPayload',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'input',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'deleteAccountInterest',
-            type: {
-              kind: 'OBJECT',
-              name: 'DeleteAccountInterestPayload',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'input',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'deleteAccountInterestByAccountIdAndCategory',
-            type: {
-              kind: 'OBJECT',
-              name: 'DeleteAccountInterestPayload',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'input',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'deleteAccountPreferenceEventSize',
-            type: {
-              kind: 'OBJECT',
-              name: 'DeleteAccountPreferenceEventSizePayload',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'input',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'deleteAccountPreferenceEventSizeByAccountIdAndEventSize',
-            type: {
-              kind: 'OBJECT',
-              name: 'DeleteAccountPreferenceEventSizePayload',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'input',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'deleteAccountSocialNetwork',
-            type: {
-              kind: 'OBJECT',
-              name: 'DeleteAccountSocialNetworkPayload',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'input',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'deleteAccountSocialNetworkByAccountIdAndSocialNetwork',
-            type: {
-              kind: 'OBJECT',
-              name: 'DeleteAccountSocialNetworkPayload',
               ofType: null,
             },
             args: [
@@ -9037,86 +5948,6 @@ export default {
             ],
           },
           {
-            name: 'deleteEventCategory',
-            type: {
-              kind: 'OBJECT',
-              name: 'DeleteEventCategoryPayload',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'input',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'deleteEventCategoryByCategory',
-            type: {
-              kind: 'OBJECT',
-              name: 'DeleteEventCategoryPayload',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'input',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'deleteEventCategoryMapping',
-            type: {
-              kind: 'OBJECT',
-              name: 'DeleteEventCategoryMappingPayload',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'input',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'deleteEventCategoryMappingByEventIdAndCategory',
-            type: {
-              kind: 'OBJECT',
-              name: 'DeleteEventCategoryMappingPayload',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'input',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
             name: 'deleteEventGroup',
             type: {
               kind: 'OBJECT',
@@ -9221,106 +6052,6 @@ export default {
             type: {
               kind: 'OBJECT',
               name: 'DeleteEventGroupingPayload',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'input',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'deleteEventRecommendation',
-            type: {
-              kind: 'OBJECT',
-              name: 'DeleteEventRecommendationPayload',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'input',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'deleteEventRecommendationByAccountIdAndEventId',
-            type: {
-              kind: 'OBJECT',
-              name: 'DeleteEventRecommendationPayload',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'input',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'deleteEventUpload',
-            type: {
-              kind: 'OBJECT',
-              name: 'DeleteEventUploadPayload',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'input',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'deleteEventUploadByEventIdAndUploadId',
-            type: {
-              kind: 'OBJECT',
-              name: 'DeleteEventUploadPayload',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'input',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'deleteEventUploadById',
-            type: {
-              kind: 'OBJECT',
-              name: 'DeleteEventUploadPayload',
               ofType: null,
             },
             args: [
@@ -9737,126 +6468,6 @@ export default {
             ],
           },
           {
-            name: 'updateAccountInterest',
-            type: {
-              kind: 'OBJECT',
-              name: 'UpdateAccountInterestPayload',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'input',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'updateAccountInterestByAccountIdAndCategory',
-            type: {
-              kind: 'OBJECT',
-              name: 'UpdateAccountInterestPayload',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'input',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'updateAccountPreferenceEventSize',
-            type: {
-              kind: 'OBJECT',
-              name: 'UpdateAccountPreferenceEventSizePayload',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'input',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'updateAccountPreferenceEventSizeByAccountIdAndEventSize',
-            type: {
-              kind: 'OBJECT',
-              name: 'UpdateAccountPreferenceEventSizePayload',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'input',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'updateAccountSocialNetwork',
-            type: {
-              kind: 'OBJECT',
-              name: 'UpdateAccountSocialNetworkPayload',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'input',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'updateAccountSocialNetworkByAccountIdAndSocialNetwork',
-            type: {
-              kind: 'OBJECT',
-              name: 'UpdateAccountSocialNetworkPayload',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'input',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
             name: 'updateAchievement',
             type: {
               kind: 'OBJECT',
@@ -10037,86 +6648,6 @@ export default {
             ],
           },
           {
-            name: 'updateEventCategory',
-            type: {
-              kind: 'OBJECT',
-              name: 'UpdateEventCategoryPayload',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'input',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'updateEventCategoryByCategory',
-            type: {
-              kind: 'OBJECT',
-              name: 'UpdateEventCategoryPayload',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'input',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'updateEventCategoryMapping',
-            type: {
-              kind: 'OBJECT',
-              name: 'UpdateEventCategoryMappingPayload',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'input',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'updateEventCategoryMappingByEventIdAndCategory',
-            type: {
-              kind: 'OBJECT',
-              name: 'UpdateEventCategoryMappingPayload',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'input',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
             name: 'updateEventGroup',
             type: {
               kind: 'OBJECT',
@@ -10237,46 +6768,6 @@ export default {
             ],
           },
           {
-            name: 'updateEventRecommendation',
-            type: {
-              kind: 'OBJECT',
-              name: 'UpdateEventRecommendationPayload',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'input',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'updateEventRecommendationByAccountIdAndEventId',
-            type: {
-              kind: 'OBJECT',
-              name: 'UpdateEventRecommendationPayload',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'input',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
             name: 'updateInvitation',
             type: {
               kind: 'OBJECT',
@@ -10321,6 +6812,46 @@ export default {
             type: {
               kind: 'OBJECT',
               name: 'UpdateInvitationPayload',
+              ofType: null,
+            },
+            args: [
+              {
+                name: 'input',
+                type: {
+                  kind: 'NON_NULL',
+                  ofType: {
+                    kind: 'SCALAR',
+                    name: 'Any',
+                  },
+                },
+              },
+            ],
+          },
+          {
+            name: 'updateLegalTermAcceptance',
+            type: {
+              kind: 'OBJECT',
+              name: 'UpdateLegalTermAcceptancePayload',
+              ofType: null,
+            },
+            args: [
+              {
+                name: 'input',
+                type: {
+                  kind: 'NON_NULL',
+                  ofType: {
+                    kind: 'SCALAR',
+                    name: 'Any',
+                  },
+                },
+              },
+            ],
+          },
+          {
+            name: 'updateLegalTermAcceptanceById',
+            type: {
+              kind: 'OBJECT',
+              name: 'UpdateLegalTermAcceptancePayload',
               ofType: null,
             },
             args: [
@@ -10503,15 +7034,7 @@ export default {
           },
           {
             kind: 'OBJECT',
-            name: 'AccountInterest',
-          },
-          {
-            kind: 'OBJECT',
-            name: 'AccountPreferenceEventSize',
-          },
-          {
-            kind: 'OBJECT',
-            name: 'AccountSocialNetwork',
+            name: 'AccountBlock',
           },
           {
             kind: 'OBJECT',
@@ -10527,27 +7050,11 @@ export default {
           },
           {
             kind: 'OBJECT',
-            name: 'EventCategory',
-          },
-          {
-            kind: 'OBJECT',
-            name: 'EventCategoryMapping',
-          },
-          {
-            kind: 'OBJECT',
             name: 'EventGroup',
           },
           {
             kind: 'OBJECT',
             name: 'EventGrouping',
-          },
-          {
-            kind: 'OBJECT',
-            name: 'EventRecommendation',
-          },
-          {
-            kind: 'OBJECT',
-            name: 'EventUpload',
           },
           {
             kind: 'OBJECT',
@@ -10864,6 +7371,76 @@ export default {
             ],
           },
           {
+            name: 'accountBlock',
+            type: {
+              kind: 'OBJECT',
+              name: 'AccountBlock',
+              ofType: null,
+            },
+            args: [
+              {
+                name: 'nodeId',
+                type: {
+                  kind: 'NON_NULL',
+                  ofType: {
+                    kind: 'SCALAR',
+                    name: 'Any',
+                  },
+                },
+              },
+            ],
+          },
+          {
+            name: 'accountBlockByAuthorAccountIdAndBlockedAccountId',
+            type: {
+              kind: 'OBJECT',
+              name: 'AccountBlock',
+              ofType: null,
+            },
+            args: [
+              {
+                name: 'authorAccountId',
+                type: {
+                  kind: 'NON_NULL',
+                  ofType: {
+                    kind: 'SCALAR',
+                    name: 'Any',
+                  },
+                },
+              },
+              {
+                name: 'blockedAccountId',
+                type: {
+                  kind: 'NON_NULL',
+                  ofType: {
+                    kind: 'SCALAR',
+                    name: 'Any',
+                  },
+                },
+              },
+            ],
+          },
+          {
+            name: 'accountBlockById',
+            type: {
+              kind: 'OBJECT',
+              name: 'AccountBlock',
+              ofType: null,
+            },
+            args: [
+              {
+                name: 'id',
+                type: {
+                  kind: 'NON_NULL',
+                  ofType: {
+                    kind: 'SCALAR',
+                    name: 'Any',
+                  },
+                },
+              },
+            ],
+          },
+          {
             name: 'accountById',
             type: {
               kind: 'OBJECT',
@@ -10893,156 +7470,6 @@ export default {
             args: [
               {
                 name: 'username',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'accountInterest',
-            type: {
-              kind: 'OBJECT',
-              name: 'AccountInterest',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'nodeId',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'accountInterestByAccountIdAndCategory',
-            type: {
-              kind: 'OBJECT',
-              name: 'AccountInterest',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'accountId',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-              {
-                name: 'category',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'accountPreferenceEventSize',
-            type: {
-              kind: 'OBJECT',
-              name: 'AccountPreferenceEventSize',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'nodeId',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'accountPreferenceEventSizeByAccountIdAndEventSize',
-            type: {
-              kind: 'OBJECT',
-              name: 'AccountPreferenceEventSize',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'accountId',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-              {
-                name: 'eventSize',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'accountSocialNetwork',
-            type: {
-              kind: 'OBJECT',
-              name: 'AccountSocialNetwork',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'nodeId',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'accountSocialNetworkByAccountIdAndSocialNetwork',
-            type: {
-              kind: 'OBJECT',
-              name: 'AccountSocialNetwork',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'accountId',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-              {
-                name: 'socialNetwork',
                 type: {
                   kind: 'NON_NULL',
                   ofType: {
@@ -11132,140 +7559,10 @@ export default {
             ],
           },
           {
-            name: 'allAccountInterests',
+            name: 'allAccountBlocks',
             type: {
               kind: 'OBJECT',
-              name: 'AccountInterestsConnection',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'after',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'before',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'condition',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'first',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'last',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'offset',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'orderBy',
-                type: {
-                  kind: 'LIST',
-                  ofType: {
-                    kind: 'NON_NULL',
-                    ofType: {
-                      kind: 'SCALAR',
-                      name: 'Any',
-                    },
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'allAccountPreferenceEventSizes',
-            type: {
-              kind: 'OBJECT',
-              name: 'AccountPreferenceEventSizesConnection',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'after',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'before',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'condition',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'first',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'last',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'offset',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'orderBy',
-                type: {
-                  kind: 'LIST',
-                  ofType: {
-                    kind: 'NON_NULL',
-                    ofType: {
-                      kind: 'SCALAR',
-                      name: 'Any',
-                    },
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'allAccountSocialNetworks',
-            type: {
-              kind: 'OBJECT',
-              name: 'AccountSocialNetworksConnection',
+              name: 'AccountBlocksConnection',
               ofType: null,
             },
             args: [
@@ -11522,136 +7819,6 @@ export default {
             ],
           },
           {
-            name: 'allEventCategories',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventCategoriesConnection',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'after',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'before',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'condition',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'first',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'last',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'offset',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'orderBy',
-                type: {
-                  kind: 'LIST',
-                  ofType: {
-                    kind: 'NON_NULL',
-                    ofType: {
-                      kind: 'SCALAR',
-                      name: 'Any',
-                    },
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'allEventCategoryMappings',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventCategoryMappingsConnection',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'after',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'before',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'condition',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'first',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'last',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'offset',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'orderBy',
-                type: {
-                  kind: 'LIST',
-                  ofType: {
-                    kind: 'NON_NULL',
-                    ofType: {
-                      kind: 'SCALAR',
-                      name: 'Any',
-                    },
-                  },
-                },
-              },
-            ],
-          },
-          {
             name: 'allEventGroupings',
             type: {
               kind: 'OBJECT',
@@ -11782,205 +7949,10 @@ export default {
             ],
           },
           {
-            name: 'allEventRecommendations',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventRecommendationsConnection',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'after',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'before',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'condition',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'first',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'last',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'offset',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'orderBy',
-                type: {
-                  kind: 'LIST',
-                  ofType: {
-                    kind: 'NON_NULL',
-                    ofType: {
-                      kind: 'SCALAR',
-                      name: 'Any',
-                    },
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'allEventUploads',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventUploadsConnection',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'after',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'before',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'condition',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'first',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'last',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'offset',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'orderBy',
-                type: {
-                  kind: 'LIST',
-                  ofType: {
-                    kind: 'NON_NULL',
-                    ofType: {
-                      kind: 'SCALAR',
-                      name: 'Any',
-                    },
-                  },
-                },
-              },
-            ],
-          },
-          {
             name: 'allEvents',
             type: {
               kind: 'OBJECT',
               name: 'EventsConnection',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'after',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'before',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'condition',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'first',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'last',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'offset',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'orderBy',
-                type: {
-                  kind: 'LIST',
-                  ofType: {
-                    kind: 'NON_NULL',
-                    ofType: {
-                      kind: 'SCALAR',
-                      name: 'Any',
-                    },
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'allInvitationFlats',
-            type: {
-              kind: 'OBJECT',
-              name: 'InvitationFlatsConnection',
               ofType: null,
             },
             args: [
@@ -12572,96 +8544,6 @@ export default {
             ],
           },
           {
-            name: 'eventCategory',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventCategory',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'nodeId',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'eventCategoryByCategory',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventCategory',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'category',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'eventCategoryMapping',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventCategoryMapping',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'nodeId',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'eventCategoryMappingByEventIdAndCategory',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventCategoryMapping',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'category',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-              {
-                name: 'eventId',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
             name: 'eventGroup',
             type: {
               kind: 'OBJECT',
@@ -12839,126 +8721,6 @@ export default {
               },
               {
                 name: 'slug',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'eventRecommendation',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventRecommendation',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'nodeId',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'eventRecommendationByAccountIdAndEventId',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventRecommendation',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'accountId',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-              {
-                name: 'eventId',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'eventUpload',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventUpload',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'nodeId',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'eventUploadByEventIdAndUploadId',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventUpload',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'eventId',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-              {
-                name: 'uploadId',
-                type: {
-                  kind: 'NON_NULL',
-                  ofType: {
-                    kind: 'SCALAR',
-                    name: 'Any',
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'eventUploadById',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventUpload',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'id',
                 type: {
                   kind: 'NON_NULL',
                   ofType: {
@@ -13158,14 +8920,6 @@ export default {
                 },
               },
             ],
-          },
-          {
-            name: 'invokerAccountId',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
           },
           {
             name: 'legalTerm',
@@ -13760,80 +9514,6 @@ export default {
       },
       {
         kind: 'OBJECT',
-        name: 'UpdateAccountInterestPayload',
-        fields: [
-          {
-            name: 'accountByAccountId',
-            type: {
-              kind: 'OBJECT',
-              name: 'Account',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'accountInterest',
-            type: {
-              kind: 'OBJECT',
-              name: 'AccountInterest',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'accountInterestEdge',
-            type: {
-              kind: 'OBJECT',
-              name: 'AccountInterestsEdge',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'orderBy',
-                type: {
-                  kind: 'LIST',
-                  ofType: {
-                    kind: 'NON_NULL',
-                    ofType: {
-                      kind: 'SCALAR',
-                      name: 'Any',
-                    },
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'clientMutationId',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'eventCategoryByCategory',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventCategory',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'query',
-            type: {
-              kind: 'OBJECT',
-              name: 'Query',
-              ofType: null,
-            },
-            args: [],
-          },
-        ],
-        interfaces: [],
-      },
-      {
-        kind: 'OBJECT',
         name: 'UpdateAccountPayload',
         fields: [
           {
@@ -13850,136 +9530,6 @@ export default {
             type: {
               kind: 'OBJECT',
               name: 'AccountsEdge',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'orderBy',
-                type: {
-                  kind: 'LIST',
-                  ofType: {
-                    kind: 'NON_NULL',
-                    ofType: {
-                      kind: 'SCALAR',
-                      name: 'Any',
-                    },
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'clientMutationId',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'query',
-            type: {
-              kind: 'OBJECT',
-              name: 'Query',
-              ofType: null,
-            },
-            args: [],
-          },
-        ],
-        interfaces: [],
-      },
-      {
-        kind: 'OBJECT',
-        name: 'UpdateAccountPreferenceEventSizePayload',
-        fields: [
-          {
-            name: 'accountByAccountId',
-            type: {
-              kind: 'OBJECT',
-              name: 'Account',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'accountPreferenceEventSize',
-            type: {
-              kind: 'OBJECT',
-              name: 'AccountPreferenceEventSize',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'accountPreferenceEventSizeEdge',
-            type: {
-              kind: 'OBJECT',
-              name: 'AccountPreferenceEventSizesEdge',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'orderBy',
-                type: {
-                  kind: 'LIST',
-                  ofType: {
-                    kind: 'NON_NULL',
-                    ofType: {
-                      kind: 'SCALAR',
-                      name: 'Any',
-                    },
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'clientMutationId',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'query',
-            type: {
-              kind: 'OBJECT',
-              name: 'Query',
-              ofType: null,
-            },
-            args: [],
-          },
-        ],
-        interfaces: [],
-      },
-      {
-        kind: 'OBJECT',
-        name: 'UpdateAccountSocialNetworkPayload',
-        fields: [
-          {
-            name: 'accountByAccountId',
-            type: {
-              kind: 'OBJECT',
-              name: 'Account',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'accountSocialNetwork',
-            type: {
-              kind: 'OBJECT',
-              name: 'AccountSocialNetwork',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'accountSocialNetworkEdge',
-            type: {
-              kind: 'OBJECT',
-              name: 'AccountSocialNetworksEdge',
               ofType: null,
             },
             args: [
@@ -14127,136 +9677,6 @@ export default {
             type: {
               kind: 'OBJECT',
               name: 'ContactsEdge',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'orderBy',
-                type: {
-                  kind: 'LIST',
-                  ofType: {
-                    kind: 'NON_NULL',
-                    ofType: {
-                      kind: 'SCALAR',
-                      name: 'Any',
-                    },
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'query',
-            type: {
-              kind: 'OBJECT',
-              name: 'Query',
-              ofType: null,
-            },
-            args: [],
-          },
-        ],
-        interfaces: [],
-      },
-      {
-        kind: 'OBJECT',
-        name: 'UpdateEventCategoryMappingPayload',
-        fields: [
-          {
-            name: 'clientMutationId',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'eventByEventId',
-            type: {
-              kind: 'OBJECT',
-              name: 'Event',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'eventCategoryByCategory',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventCategory',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'eventCategoryMapping',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventCategoryMapping',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'eventCategoryMappingEdge',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventCategoryMappingsEdge',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'orderBy',
-                type: {
-                  kind: 'LIST',
-                  ofType: {
-                    kind: 'NON_NULL',
-                    ofType: {
-                      kind: 'SCALAR',
-                      name: 'Any',
-                    },
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'query',
-            type: {
-              kind: 'OBJECT',
-              name: 'Query',
-              ofType: null,
-            },
-            args: [],
-          },
-        ],
-        interfaces: [],
-      },
-      {
-        kind: 'OBJECT',
-        name: 'UpdateEventCategoryPayload',
-        fields: [
-          {
-            name: 'clientMutationId',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'eventCategory',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventCategory',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'eventCategoryEdge',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventCategoriesEdge',
               ofType: null,
             },
             args: [
@@ -14493,91 +9913,8 @@ export default {
       },
       {
         kind: 'OBJECT',
-        name: 'UpdateEventRecommendationPayload',
-        fields: [
-          {
-            name: 'accountByAccountId',
-            type: {
-              kind: 'OBJECT',
-              name: 'Account',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'clientMutationId',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'eventByEventId',
-            type: {
-              kind: 'OBJECT',
-              name: 'Event',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'eventRecommendation',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventRecommendation',
-              ofType: null,
-            },
-            args: [],
-          },
-          {
-            name: 'eventRecommendationEdge',
-            type: {
-              kind: 'OBJECT',
-              name: 'EventRecommendationsEdge',
-              ofType: null,
-            },
-            args: [
-              {
-                name: 'orderBy',
-                type: {
-                  kind: 'LIST',
-                  ofType: {
-                    kind: 'NON_NULL',
-                    ofType: {
-                      kind: 'SCALAR',
-                      name: 'Any',
-                    },
-                  },
-                },
-              },
-            ],
-          },
-          {
-            name: 'query',
-            type: {
-              kind: 'OBJECT',
-              name: 'Query',
-              ofType: null,
-            },
-            args: [],
-          },
-        ],
-        interfaces: [],
-      },
-      {
-        kind: 'OBJECT',
         name: 'UpdateInvitationPayload',
         fields: [
-          {
-            name: 'accountByUpdatedBy',
-            type: {
-              kind: 'OBJECT',
-              name: 'Account',
-              ofType: null,
-            },
-            args: [],
-          },
           {
             name: 'clientMutationId',
             type: {
@@ -14635,6 +9972,80 @@ export default {
                 },
               },
             ],
+          },
+          {
+            name: 'query',
+            type: {
+              kind: 'OBJECT',
+              name: 'Query',
+              ofType: null,
+            },
+            args: [],
+          },
+        ],
+        interfaces: [],
+      },
+      {
+        kind: 'OBJECT',
+        name: 'UpdateLegalTermAcceptancePayload',
+        fields: [
+          {
+            name: 'accountByAccountId',
+            type: {
+              kind: 'OBJECT',
+              name: 'Account',
+              ofType: null,
+            },
+            args: [],
+          },
+          {
+            name: 'clientMutationId',
+            type: {
+              kind: 'SCALAR',
+              name: 'Any',
+            },
+            args: [],
+          },
+          {
+            name: 'legalTermAcceptance',
+            type: {
+              kind: 'OBJECT',
+              name: 'LegalTermAcceptance',
+              ofType: null,
+            },
+            args: [],
+          },
+          {
+            name: 'legalTermAcceptanceEdge',
+            type: {
+              kind: 'OBJECT',
+              name: 'LegalTermAcceptancesEdge',
+              ofType: null,
+            },
+            args: [
+              {
+                name: 'orderBy',
+                type: {
+                  kind: 'LIST',
+                  ofType: {
+                    kind: 'NON_NULL',
+                    ofType: {
+                      kind: 'SCALAR',
+                      name: 'Any',
+                    },
+                  },
+                },
+              },
+            ],
+          },
+          {
+            name: 'legalTermByLegalTermId',
+            type: {
+              kind: 'OBJECT',
+              name: 'LegalTerm',
+              ofType: null,
+            },
+            args: [],
           },
           {
             name: 'query',
@@ -14812,85 +10223,6 @@ export default {
             args: [],
           },
           {
-            name: 'createdAt',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
-            },
-            args: [],
-          },
-          {
-            name: 'eventUploadsByUploadId',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'OBJECT',
-                name: 'EventUploadsConnection',
-                ofType: null,
-              },
-            },
-            args: [
-              {
-                name: 'after',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'before',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'condition',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'first',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'last',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'offset',
-                type: {
-                  kind: 'SCALAR',
-                  name: 'Any',
-                },
-              },
-              {
-                name: 'orderBy',
-                type: {
-                  kind: 'LIST',
-                  ofType: {
-                    kind: 'NON_NULL',
-                    ofType: {
-                      kind: 'SCALAR',
-                      name: 'Any',
-                    },
-                  },
-                },
-              },
-            ],
-          },
-          {
             name: 'id',
             type: {
               kind: 'NON_NULL',
@@ -14898,14 +10230,6 @@ export default {
                 kind: 'SCALAR',
                 name: 'Any',
               },
-            },
-            args: [],
-          },
-          {
-            name: 'name',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
             },
             args: [],
           },
@@ -15072,17 +10396,6 @@ export default {
             type: {
               kind: 'SCALAR',
               name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'type',
-            type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
             },
             args: [],
           },
