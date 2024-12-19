@@ -1,3 +1,9 @@
+## [5.2.5](https://github.com/maevsi/maevsi/compare/5.2.4...5.2.5) (2024-12-19)
+
+### Bug Fixes
+
+* **composables:** add missing site url getter ([b241e19](https://github.com/maevsi/maevsi/commit/b241e19619e2b24838cda35bb6ccfe563b4805a0))
+
 ## [5.2.4](https://github.com/maevsi/maevsi/compare/5.2.3...5.2.4) (2024-12-19)
 
 ### Bug Fixes
