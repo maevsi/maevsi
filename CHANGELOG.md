@@ -1,3 +1,9 @@
+## [5.2.4](https://github.com/maevsi/maevsi/compare/5.2.3...5.2.4) (2024-12-19)
+
+### Bug Fixes
+
+* **networking:** get host from site url instead of request ([#1705](https://github.com/maevsi/maevsi/issues/1705)) ([772008a](https://github.com/maevsi/maevsi/commit/772008aba2efde334103fd027a698c7e72bb96b5))
+
 ## [5.2.3](https://github.com/maevsi/maevsi/compare/5.2.2...5.2.3) (2024-12-19)
 
 ### Bug Fixes
