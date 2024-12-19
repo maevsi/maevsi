@@ -55,8 +55,7 @@ export const deleteUpload = async (event: H3Event, uploadId: unknown) => {
 }
 
 export const useTusdFilesUrl = () => {
-  const runtimeConfig = useRuntimeConfig()
-  const host = useHost()
+  const { siteUrlTyped: siteUrl } = useSiteUrl()
 
-  return getTusdFilesUrl({ host, runtimeConfig })
+  return getTusdFilesUrl({ siteUrl })
 }

@@ -4,7 +4,7 @@ export default defineNitroPlugin(async (nitroApp) => {
   if (!IS_IN_STACK) return
 
   const runtimeConfig = useRuntimeConfig()
-  const siteUrl = useSiteUrl()
+  const { siteUrl } = useSiteUrl()
   const tusdFilesUrl = useTusdFilesUrl()
 
   const { Kafka } = await import('kafkajs')
