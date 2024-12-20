@@ -1,3 +1,9 @@
+## [5.3.0](https://github.com/maevsi/maevsi/compare/5.2.6...5.3.0) (2024-12-20)
+
+### Features
+
+* **event:** rename invitation page to guest page ([#1694](https://github.com/maevsi/maevsi/issues/1694)) ([475fb2a](https://github.com/maevsi/maevsi/commit/475fb2aa0589b137d960625776feb35aa8c6e7e3))
+
 ## [5.2.6](https://github.com/maevsi/maevsi/compare/5.2.5...5.2.6) (2024-12-20)
 
 ### Bug Fixes
