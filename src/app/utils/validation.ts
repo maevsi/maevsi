@@ -152,7 +152,7 @@ export const validateAccountExistence = async ({
     | 'event-view-username___en'
     | 'event-view-username-event_name___en'
     | 'event-view-username-event_name-attendance___en'
-    | 'event-view-username-event_name-invitation___en'
+    | 'event-view-username-event_name-guest___en'
   >
 }) => {
   const { $urql } = useNuxtApp()
@@ -240,7 +240,7 @@ export const validateEventExistence = async (
     | 'event-edit-username-event_name___en'
     | 'event-view-username-event_name___en'
     | 'event-view-username-event_name-attendance___en'
-    | 'event-view-username-event_name-invitation___en'
+    | 'event-view-username-event_name-guest___en'
   >,
 ) => {
   const { $urql } = useNuxtApp()
