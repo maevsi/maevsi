@@ -56,7 +56,7 @@
           :aria-label="t('guests')"
           :to="
             localePath({
-              name: 'event-view-username-event_name-invitation',
+              name: 'event-view-username-event_name-guest',
               params: {
                 event_name: route.params.event_name,
                 username: route.params.username,
@@ -399,7 +399,7 @@ export const pageBreadcrumb = async ({
     | 'event-edit-username-event_name___en'
     | 'event-view-username-event_name___en'
     | 'event-view-username-event_name-attendance___en'
-    | 'event-view-username-event_name-invitation___en'
+    | 'event-view-username-event_name-guest___en'
   >
 }) => {
   const account = await getAccountByUsername({

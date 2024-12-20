@@ -27,7 +27,7 @@ import { getEventItem } from '~~/gql/documents/fragments/eventItem'
 import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
 
 const ROUTE_NAME: keyof RouteNamedMap =
-  'event-view-username-event_name-invitation___en'
+  'event-view-username-event_name-guest___en'
 
 export const usePageBreadcrumb = () => {
   const route = useRoute(ROUTE_NAME)
@@ -44,7 +44,7 @@ export const usePageBreadcrumb = () => {
 
 <script setup lang="ts">
 definePageMeta({
-  alias: '/event/view/:username/:event_name/guest',
+  alias: '/event/view/:username/:event_name/invitation',
   async validate(route) {
     return await validateEventExistence(
       route as RouteLocationNormalized<typeof ROUTE_NAME>,
