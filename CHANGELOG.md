@@ -1,3 +1,9 @@
+## [5.2.6](https://github.com/maevsi/maevsi/compare/5.2.5...5.2.6) (2024-12-20)
+
+### Bug Fixes
+
+* **timezone:** use as composable on client side ([#1706](https://github.com/maevsi/maevsi/issues/1706)) ([3175de9](https://github.com/maevsi/maevsi/commit/3175de93ba90eba7319d3d6c32b0ef862dee42c0))
+
 ## [5.2.5](https://github.com/maevsi/maevsi/compare/5.2.4...5.2.5) (2024-12-19)
 
 ### Bug Fixes
