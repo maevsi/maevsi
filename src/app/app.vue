@@ -42,6 +42,7 @@ const runtimeConfig = useRuntimeConfig()
 const siteConfig = useSiteConfig()
 const locale = i18n.locale as WritableComputedRef<Locale>
 const { t } = i18n
+const timezone = useTimezone()
 
 // data
 const isBrowserSupported = ref(true)
@@ -58,7 +59,7 @@ const saveTimezoneAsCookie = () =>
     httpOnly: false,
     sameSite: 'strict',
     secure: runtimeConfig.public.vio.isInProduction,
-  }).value = getTimezone())
+  }).value = timezone)
 
 // lifecycle
 onBeforeMount(() => {

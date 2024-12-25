@@ -10,8 +10,6 @@ import {
 } from './dependencies/moments'
 
 const EVENT_DESCRIPTION_TRIM_LENGTH = 250
-const TUSD_FILES_URL =
-  'https://tusd.' + (process.env.STACK_DOMAIN || 'maevsi.test') + '/files/'
 
 export const CHANNEL_NAME_ACCOUNT_PASSWORD_RESET =
   'account_password_reset_request'
@@ -126,11 +124,15 @@ export const processNotification = async ({
   id,
   isAcknowledged,
   runtimeConfig,
+  siteUrl,
+  tusdFilesUrl,
 }: {
   channelEvent: ChannelEvent
   id: string
   isAcknowledged?: boolean
   runtimeConfig: ReturnType<typeof useRuntimeConfig>
+  siteUrl: string
+  tusdFilesUrl: string
 }) => {
   if (isAcknowledged) return
 
@@ -159,9 +161,7 @@ export const processNotification = async ({
         props: {
           emailAddress: payload.account.email_address,
           locale,
-          passwordResetVerificationLink: `https://${
-            process.env.STACK_DOMAIN || 'maevsi.test'
-          }${
+          passwordResetVerificationLink: `${siteUrl}${
             payload.template.language !== LOCALE_DEFAULT
               ? '/' + payload.template.language
               : ''
@@ -187,9 +187,7 @@ export const processNotification = async ({
         name: channel,
         props: {
           emailAddress: payload.account.email_address,
-          emailAddressVerificationLink: `https://${
-            process.env.STACK_DOMAIN || 'maevsi.test'
-          }${
+          emailAddressVerificationLink: `${siteUrl}${
             payload.template.language !== LOCALE_DEFAULT
               ? '/' + payload.template.language
               : ''
@@ -208,6 +206,8 @@ export const processNotification = async ({
       sendEventInvitationMail({
         limit24h: limit24h || MAEVSI_EMAIL_LIMIT_24H,
         channelEvent,
+        siteUrl,
+        tusdFilesUrl,
       })
       break
     default:
@@ -237,9 +237,13 @@ const ack = async ({ id }: { id: string }) => {
 export const sendEventInvitationMail = async ({
   channelEvent,
   limit24h,
+  siteUrl,
+  tusdFilesUrl,
 }: {
   channelEvent: EventInvitationEvent
   limit24h: number
+  siteUrl: string
+  tusdFilesUrl: string
 }) => {
   const { channel, payload } = channelEvent
   const payloadCamelCased = camelcaseKeys(payload, { deep: true })
@@ -346,11 +350,9 @@ export const sendEventInvitationMail = async ({
     props: {
       emailAddress,
       eventAttendanceType,
-      eventAuthorProfileHref: `https://${
-        process.env.STACK_DOMAIN || 'maevsi.test'
-      }/accounts/${eventAuthorUsername}`,
+      eventAuthorProfileHref: `${siteUrl}/accounts/${eventAuthorUsername}`,
       eventAuthorProfilePictureSrc: eventAuthorProfilePictureUploadStorageKey
-        ? TUSD_FILES_URL + eventAuthorProfilePictureUploadStorageKey
+        ? tusdFilesUrl + eventAuthorProfilePictureUploadStorageKey
         : 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCFET0NUWVBFIHN2ZyAgUFVCTElDICctLy9XM0MvL0RURCBTVkcgMS4xLy9FTicgICdodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQnPgo8c3ZnIHdpZHRoPSI0MDFweCIgaGVpZ2h0PSI0MDFweCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAzMTIuODA5IDAgNDAxIDQwMSIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIzMTIuODA5IDAgNDAxIDQwMSIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgdHJhbnNmb3JtPSJtYXRyaXgoMS4yMjMgMCAwIDEuMjIzIC00NjcuNSAtODQzLjQ0KSI+Cgk8cmVjdCB4PSI2MDEuNDUiIHk9IjY1My4wNyIgd2lkdGg9IjQwMSIgaGVpZ2h0PSI0MDEiIGZpbGw9IiNFNEU2RTciLz4KCTxwYXRoIGQ9Im04MDIuMzggOTA4LjA4Yy04NC41MTUgMC0xNTMuNTIgNDguMTg1LTE1Ny4zOCAxMDguNjJoMzE0Ljc5Yy0zLjg3LTYwLjQ0LTcyLjktMTA4LjYyLTE1Ny40MS0xMDguNjJ6IiBmaWxsPSIjQUVCNEI3Ii8+Cgk8cGF0aCBkPSJtODgxLjM3IDgxOC44NmMwIDQ2Ljc0Ni0zNS4xMDYgODQuNjQxLTc4LjQxIDg0LjY0MXMtNzguNDEtMzcuODk1LTc4LjQxLTg0LjY0MSAzNS4xMDYtODQuNjQxIDc4LjQxLTg0LjY0MWM0My4zMSAwIDc4LjQxIDM3LjkgNzguNDEgODQuNjR6IiBmaWxsPSIjQUVCNEI3Ii8+CjwvZz4KPC9zdmc+Cg==',
       eventAuthorUsername: eventAuthorUsername,
       eventDescription,
@@ -363,7 +365,7 @@ export const sendEventInvitationMail = async ({
           })
         : undefined,
       // TODO: add event group (https://github.com/maevsi/maevsi/issues/92)
-      eventLink: `https://${process.env.STACK_DOMAIN || 'maevsi.test'}${
+      eventLink: `${siteUrl}${
         payloadCamelCased.template.language !== LOCALE_DEFAULT
           ? '/' + payloadCamelCased.template.language
           : ''

@@ -1,8 +1,5 @@
 export const useTusdFilesUrl = () => {
-  const runtimeConfig = useRuntimeConfig()
-  const host = useHost()
+  const { siteUrlTyped: siteUrl } = useSiteUrl()
 
-  return `https://tusd.${getDomainTldPort(
-    runtimeConfig.public.vio.stagingHost || host,
-  )}/files/`
+  return getTusdFilesUrl({ siteUrl })
 }

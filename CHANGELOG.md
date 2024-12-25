@@ -1,3 +1,33 @@
+## [5.3.0](https://github.com/maevsi/maevsi/compare/5.2.6...5.3.0) (2024-12-20)
+
+### Features
+
+* **event:** rename invitation page to guest page ([#1694](https://github.com/maevsi/maevsi/issues/1694)) ([475fb2a](https://github.com/maevsi/maevsi/commit/475fb2aa0589b137d960625776feb35aa8c6e7e3))
+
+## [5.2.6](https://github.com/maevsi/maevsi/compare/5.2.5...5.2.6) (2024-12-20)
+
+### Bug Fixes
+
+* **timezone:** use as composable on client side ([#1706](https://github.com/maevsi/maevsi/issues/1706)) ([3175de9](https://github.com/maevsi/maevsi/commit/3175de93ba90eba7319d3d6c32b0ef862dee42c0))
+
+## [5.2.5](https://github.com/maevsi/maevsi/compare/5.2.4...5.2.5) (2024-12-19)
+
+### Bug Fixes
+
+* **composables:** add missing site url getter ([b241e19](https://github.com/maevsi/maevsi/commit/b241e19619e2b24838cda35bb6ccfe563b4805a0))
+
+## [5.2.4](https://github.com/maevsi/maevsi/compare/5.2.3...5.2.4) (2024-12-19)
+
+### Bug Fixes
+
+* **networking:** get host from site url instead of request ([#1705](https://github.com/maevsi/maevsi/issues/1705)) ([772008a](https://github.com/maevsi/maevsi/commit/772008aba2efde334103fd027a698c7e72bb96b5))
+
+## [5.2.3](https://github.com/maevsi/maevsi/compare/5.2.2...5.2.3) (2024-12-19)
+
+### Bug Fixes
+
+* **email:** correct link domain ([#1702](https://github.com/maevsi/maevsi/issues/1702)) ([3fb87cf](https://github.com/maevsi/maevsi/commit/3fb87cfc0042e24562bde2944e6cf8ab767c9491))
+
 ## [5.2.2](https://github.com/maevsi/maevsi/compare/5.2.1...5.2.2) (2024-12-16)
 
 ### Bug Fixes

@@ -53,10 +53,10 @@
         class="justify-center"
       >
         <ButtonColored
-          :aria-label="t('invitations')"
+          :aria-label="t('guests')"
           :to="
             localePath({
-              name: 'event-view-username-event_name-invitation',
+              name: 'event-view-username-event_name-guest',
               params: {
                 event_name: route.params.event_name,
                 username: route.params.username,
@@ -64,9 +64,9 @@
             })
           "
         >
-          {{ t('invitations') }}
+          {{ t('guests') }}
           <template #prefix>
-            <IHeroiconsEnvelope />
+            <IHeroiconsUsers />
           </template>
         </ButtonColored>
         <ButtonColored
@@ -399,7 +399,7 @@ export const pageBreadcrumb = async ({
     | 'event-edit-username-event_name___en'
     | 'event-view-username-event_name___en'
     | 'event-view-username-event_name-attendance___en'
-    | 'event-view-username-event_name-invitation___en'
+    | 'event-view-username-event_name-guest___en'
   >
 }) => {
   const account = await getAccountByUsername({
@@ -603,6 +603,7 @@ de:
   # feedbackRequest: 'Bitte gib eine Rückmeldung, ob du teilnehmen wirst:'
   greeting: Hey{usernameString}!
   greetingDescription: Du wurdest zu folgender Veranstaltung eingeladen.
+  guests: Gäste
   hintQrCode: Dieses Bild ist deine Zugangsberechtigung für die Veranstaltung
   invitationAccept: Einladung annehmen
   invitationAcceptAdmin: Einladung im Namen von {name} annehmen
@@ -619,7 +620,6 @@ de:
   invitationIdMultipleWarning: Es wurden mehrere Einladungscodes für dieselbe Veranstaltung eingelöst! Diese Seite zeigt die Daten des zuerst gefundenen an.
   invitationSelectionClear: Zurück zur Einladungsübersicht
   invitationViewFor: Du schaust dir die Einladung für {name} an. Nur du und {name} können diese Seite sehen.
-  invitations: Einladungen
   ogImageAlt: Das Vorschaubild für die Veranstaltung.
   print: Drucken
   qrCodeShow: Check-in-Code anzeigen
@@ -634,6 +634,7 @@ en:
   # feedbackRequest: 'Please confirm if you will attend:'
   greeting: Hey{usernameString}!
   greetingDescription: "You've been invited to the following event."
+  guests: Guests
   hintQrCode: This picture is your access authorization for the event
   invitationAccept: Accept invitation
   invitationAcceptAdmin: Accept invitation on behalf of {name}
@@ -650,7 +651,6 @@ en:
   invitationIdMultipleWarning: Multiple invitation codes have already been redeemed for the same event! This page shows data for the first code found.
   invitationSelectionClear: Back to the invitation overview
   invitationViewFor: You're viewing the invitation for {name}. Only you and {name} can see this page.
-  invitations: Invitations
   ogImageAlt: The event's preview image.
   print: Print
   qrCodeShow: Show check in code

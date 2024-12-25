@@ -13,7 +13,7 @@ const props = withDefaults(defineProps<Props>(), {
   logoSource: undefined,
 })
 
-const STACK_DOMAIN = process.env.STACK_DOMAIN || 'maevsi.test'
+const { siteUrl } = useSiteUrl()
 
 // data
 const locales = {
@@ -36,7 +36,7 @@ const t = locales[props.locale]
         <Img
           :alt="t.logo"
           height="100"
-          :href="`https://${STACK_DOMAIN}/`"
+          :href="siteUrl"
           :src="logoSource || `cid:${LOGO_CID}`"
           style="margin: auto"
           width="300"
