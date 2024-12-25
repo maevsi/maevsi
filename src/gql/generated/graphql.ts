@@ -5442,6 +5442,19 @@ export type AllInvitationsQuery = {
   } | null
 }
 
+export type AllLegalTermsQueryVariables = Exact<{ [key: string]: never }>
+
+export type AllLegalTermsQuery = {
+  __typename?: 'Query'
+  allLegalTerms?: {
+    __typename?: 'LegalTermsConnection'
+    edges: Array<{
+      __typename?: 'LegalTermsEdge'
+      node: { __typename?: 'LegalTerm'; id: any; term: string }
+    }>
+  } | null
+}
+
 export type ProfilePictureByAccountIdQueryVariables = Exact<{
   accountId: Scalars['UUID']['input']
 }>
@@ -9209,6 +9222,56 @@ export const AllInvitationsDocument = {
     },
   ],
 } as unknown as DocumentNode<AllInvitationsQuery, AllInvitationsQueryVariables>
+export const AllLegalTermsDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'allLegalTerms' },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'allLegalTerms' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'edges' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'node' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'id' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'term' },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<AllLegalTermsQuery, AllLegalTermsQueryVariables>
 export const ProfilePictureByAccountIdDocument = {
   kind: 'Document',
   definitions: [

@@ -94,6 +94,8 @@ const documents = {
     types.AllEventsDocument,
   '\n  query allInvitations($after: Cursor, $eventId: UUID!, $first: Int!) {\n    allInvitations(\n      after: $after\n      condition: { eventId: $eventId }\n      first: $first\n    ) {\n      nodes {\n        ...InvitationItem\n      }\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      totalCount\n    }\n  }\n':
     types.AllInvitationsDocument,
+  '\n  query allLegalTerms {\n    allLegalTerms {\n      edges {\n        node {\n          id\n          term\n        }\n      }\n    }\n  }\n':
+    types.AllLegalTermsDocument,
   '\n      query profilePictureByAccountId($accountId: UUID!) {\n        profilePictureByAccountId(accountId: $accountId) {\n          ...ProfilePictureItem\n        }\n      }\n    ':
     types.ProfilePictureByAccountIdDocument,
   '\n      query allUploads($after: Cursor, $first: Int!, $accountId: UUID) {\n        allUploads(\n          after: $after\n          condition: { accountId: $accountId }\n          first: $first\n        ) {\n          nodes {\n            ...UploadItem\n          }\n          pageInfo {\n            hasNextPage\n            endCursor\n          }\n          totalCount\n        }\n      }\n    ':
@@ -354,6 +356,12 @@ export function graphql(
 export function graphql(
   source: '\n  query allInvitations($after: Cursor, $eventId: UUID!, $first: Int!) {\n    allInvitations(\n      after: $after\n      condition: { eventId: $eventId }\n      first: $first\n    ) {\n      nodes {\n        ...InvitationItem\n      }\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      totalCount\n    }\n  }\n',
 ): (typeof documents)['\n  query allInvitations($after: Cursor, $eventId: UUID!, $first: Int!) {\n    allInvitations(\n      after: $after\n      condition: { eventId: $eventId }\n      first: $first\n    ) {\n      nodes {\n        ...InvitationItem\n      }\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      totalCount\n    }\n  }\n']
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n  query allLegalTerms {\n    allLegalTerms {\n      edges {\n        node {\n          id\n          term\n        }\n      }\n    }\n  }\n',
+): (typeof documents)['\n  query allLegalTerms {\n    allLegalTerms {\n      edges {\n        node {\n          id\n          term\n        }\n      }\n    }\n  }\n']
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
