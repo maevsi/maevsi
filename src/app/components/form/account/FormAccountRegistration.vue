@@ -1,3 +1,4 @@
+m
 <template>
   <div class="flex flex-col items-center gap-4">
     <Form
@@ -52,10 +53,7 @@
       @open-general-terms="openGeneralTerms"
     />
 
-    <ModalGeneralTerms
-      v-model="generalTermsModalOpen"
-      :handle-accept="handleGeneralTermsAccept"
-    />
+    <ModalGeneralTerms v-model="generalTermsModalOpen" @accepted="submit" />
   </div>
 </template>
 
@@ -85,7 +83,7 @@ const form = reactive({
 const isFormSent = ref(false)
 
 // Methods
-const submit = async () => {
+const submit = async (termId: string) => {
   store.turnstileToken = form.captcha
 
   const accountResult = await accountRegistrationMutation.executeMutation({
@@ -95,27 +93,38 @@ const submit = async () => {
     username: form.username || '',
   })
 
-  if (accountResult.error || !accountResult.data?.accountRegistration?.uuid)
+  if (accountResult.error) {
     return
+  }
+
+  const accountUuid = accountResult.data?.accountRegistration?.uuid
+  if (!accountUuid) {
+    console.error('No account UUID received')
+    return
+  }
 
   const legalTermAcceptanceMutation = useCreateLegalTermAcceptanceMutation()
+
   const acceptanceResult = await legalTermAcceptanceMutation.executeMutation({
     input: {
       legalTermAcceptance: {
-        accountId: accountResult.data.accountRegistration.uuid,
-        legalTermId: '', //ADD LEGAL TERM ID
+        accountId: accountUuid,
+        legalTermId: termId,
       },
     },
   })
 
-  if (acceptanceResult.error) return
-}
+  if (acceptanceResult.error) {
+    console.error('Legal term acceptance error:', acceptanceResult.error)
+    return
+  }
 
-await fireAlert({
-  level: 'success',
-  title: t('registrationSuccessTitle'),
-  text: t('registrationSuccessBody'),
-})
+  await fireAlert({
+    level: 'success',
+    title: t('registrationSuccessTitle'),
+    text: t('registrationSuccessBody'),
+  })
+}
 
 const handleSubmit = async () => {
   if (!(await isFormValid({ v$, isFormSent }))) return
@@ -125,11 +134,6 @@ const handleSubmit = async () => {
 
 const openGeneralTerms = () => {
   generalTermsModalOpen.value = true
-}
-
-const handleGeneralTermsAccept = () => {
-  generalTermsModalOpen.value = false
-  submit()
 }
 
 // vuelidate
