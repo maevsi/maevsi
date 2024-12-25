@@ -61,7 +61,6 @@
 </template>
 
 <script lang="ts">
-// @ts-expect-error wasm url is correct
 import wasmFile from 'zxing-wasm/reader/zxing_reader.wasm?url'
 import { consola } from 'consola'
 import type { DetectedBarcode } from 'barcode-detector'
