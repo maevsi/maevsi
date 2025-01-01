@@ -3,7 +3,7 @@
   "devDependencies": {
     "@aws-sdk/client-ses": "3.716.0",
     "@aws-sdk/credential-providers": "3.716.0",
-    "@dargmuesli/nuxt-cookie-control": "8.4.19",
+    "@dargmuesli/nuxt-cookie-control": "8.4.20",
     "@dargmuesli/nuxt-vio": "15.1.0",
     "@fontsource-variable/manrope": "5.1.1",
     "@graphql-codegen/add": "5.0.3",
@@ -50,7 +50,7 @@
     "@types/html-to-text": "9.0.4",
     "@types/lodash-es": "4.17.12",
     "@types/mustache": "4.2.5",
-    "@types/node": "22.10.2",
+    "@types/node": "22.10.3",
     "@types/nodemailer": "6.4.17",
     "@types/pg": "8.11.10",
     "@types/seedrandom": "3.0.8",
