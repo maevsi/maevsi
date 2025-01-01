@@ -33,7 +33,6 @@
     "@nuxtjs/tailwindcss": "6.12.2",
     "@nuxtjs/turnstile": "0.9.11",
     "@pinia/nuxt": "0.9.0",
-    "@primevue/nuxt-module": "^4.2.5",
     "@sentry/node": "8.47.0",
     "@sentry/profiling-node": "8.47.0",
     "@sentry/vite-plugin": "2.22.7",
@@ -160,9 +159,5 @@
     "supportedBrowsers": "echo \"export default $(browserslist-useragent-regexp --allowHigherVersions);\" > supportedBrowsers.js"
   },
   "type": "module",
-  "version": "5.3.1",
-  "dependencies": {
-    "@primevue/themes": "^4.2.5",
-    "primevue": "^4.2.5"
-  }
+  "version": "5.3.1"
 }
