@@ -67,11 +67,10 @@
   }
 
   a[target='_blank']:not([is-external-icon-disabled])::after {
-    @apply inline-table h-3 w-3 bg-current;
+    @apply inline-table h-3 w-3 bg-current; /* inline-table centers the element vertically in the tiptap text area, instead of inline-block */
 
     content: '';
     margin-left: 0.3125rem;
-
     /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
     mask: url('data:image/svg+xml;base64,PHN2ZyBhcmlhLWhpZGRlbj0idHJ1ZSIgZm9jdXNhYmxlPSJmYWxzZSIgZGF0YS1wcmVmaXg9ImZhcyIgZGF0YS1pY29uPSJhcnJvdy11cC1yaWdodC1mcm9tLXNxdWFyZSIgY2xhc3M9InN2Zy1pbmxpbmUtLWZhIGZhLWFycm93LXVwLXJpZ2h0LWZyb20tc3F1YXJlIiByb2xlPSJpbWciIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDUxMiA1MTIiPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTM4NCAzMjBjLTE3LjY3IDAtMzIgMTQuMzMtMzIgMzJ2OTZINjRWMTYwaDk2YzE3LjY3IDAgMzItMTQuMzIgMzItMzJzLTE0LjMzLTMyLTMyLTMyTDY0IDk2Yy0zNS4zNSAwLTY0IDI4LjY1LTY0IDY0VjQ0OGMwIDM1LjM0IDI4LjY1IDY0IDY0IDY0aDI4OGMzNS4zNSAwIDY0LTI4LjY2IDY0LTY0di05NkM0MTYgMzM0LjMgNDAxLjcgMzIwIDM4NCAzMjB6TTUwMi42IDkuMzY3QzQ5Ni44IDMuNTc4IDQ4OC44IDAgNDgwIDBoLTE2MGMtMTcuNjcgMC0zMS4xIDE0LjMyLTMxLjEgMzEuMWMwIDE3LjY3IDE0LjMyIDMxLjEgMzEuOTkgMzEuMWg4Mi43NUwxNzguNyAyOTAuN2MtMTIuNSAxMi41LTEyLjUgMzIuNzYgMCA0NS4yNkMxOTEuMiAzNDguNSAyMTEuNSAzNDguNSAyMjQgMzM2bDIyNC0yMjYuOFYxOTJjMCAxNy42NyAxNC4zMyAzMS4xIDMxLjEgMzEuMVM1MTIgMjA5LjcgNTEyIDE5MlYzMS4xQzUxMiAyMy4xNiA1MDguNCAxNS4xNiA1MDIuNiA5LjM2N3oiPjwvcGF0aD48L3N2Zz4K')
       no-repeat 50% 50%;
@@ -112,7 +111,84 @@
   }
 }
 
-/* stylelint-disable declaration-empty-line-before */
+@layer components {
+  .form-input {
+    @apply w-full appearance-none rounded border border-gray-300 bg-gray-50 px-4 py-2 leading-tight text-text-dark shadow-sm;
+  }
+
+  .form-input:focus {
+    @apply bg-white;
+  }
+
+  .form-input::placeholder {
+    @apply opacity-50;
+  }
+
+  .form-input-error .form-input {
+    @apply border-red-500;
+  }
+
+  .form-input-success .form-input {
+    @apply border-green-600;
+  }
+
+  .form-input-warning .form-input {
+    @apply border-yellow-600;
+  }
+
+  .form-textarea::placeholder {
+    @apply opacity-50;
+  }
+}
+
+@layer utilities {
+  .disabled {
+    @apply pointer-events-none opacity-75;
+  }
+
+  .truncate-overflow {
+    @apply overflow-hidden text-ellipsis;
+  }
+
+  .under-construction {
+    background: repeating-linear-gradient(
+      -45deg,
+      #fb0,
+      #fb0 10px,
+      #0000 10px,
+      #0000 30px
+    );
+  }
+
+  .vio-bg-darken {
+    @apply bg-background-brighten dark:bg-background-darken;
+  }
+
+  .vio-border-darken {
+    @apply border-background-brighten dark:border-background-darken;
+  }
+
+  .vio-line-clamp-2 {
+    @apply line-clamp-2 max-w-full text-ellipsis break-words;
+  }
+
+  .vio-prose {
+    @apply prose prose-sm sm:prose-base lg:prose-lg xl:prose-xl m-auto;
+  }
+
+  .vio-prose-fullwidth {
+    @apply vio-prose max-w-full sm:max-w-full md:max-w-full xl:max-w-full 2xl:max-w-full;
+  }
+
+  .vio-prose-scheme {
+    @apply vio-prose dark:prose-invert;
+  }
+
+  .vio-divide-darken {
+    @apply divide-background-brighten dark:divide-background-darken;
+  }
+}
+
 .layout-enter-active,
 .layout-leave-active {
   transition: opacity 0.1s;
@@ -122,7 +198,6 @@
 .layout-leave-active {
   opacity: 0;
 }
-/* stylelint-enable declaration-empty-line-before */
 
 /* stylelint-disable selector-class-pattern */
 .ProseMirror {
