@@ -18,6 +18,8 @@ import {
 } from '../shared/utils/constants'
 import { GET_CSP } from '../server/utils/constants'
 
+import { fileURLToPath } from 'node:url'
+
 const execPromise = promisify(exec)
 const RELEASE_NAME = async () =>
   process.env.RELEASE_NAME ||
@@ -27,6 +29,9 @@ const RELEASE_NAME = async () =>
 // setImmediate(() => {})
 
 export default defineNuxtConfig({
+  alias: {
+    '@shadcn': fileURLToPath(new URL('./src/shadcn', import.meta.url)),
+  },
   app: {
     head: {
       htmlAttrs: {
@@ -75,6 +80,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@vite-pwa/nuxt',
     'nuxt-gtag',
+    'shadcn-nuxt',
     async (_options: ModuleOptions, nuxt: Nuxt) => {
       nuxt.options.runtimeConfig.public.vio.releaseName = await RELEASE_NAME()
     },
@@ -113,6 +119,10 @@ export default defineNuxtConfig({
     },
     'nuxt-security',
   ],
+  shadcn: {
+    prefix: '',
+    componentDir: 'components/ui',
+  },
   nitro: {
     compressPublicAssets: true,
     experimental: {

@@ -111,6 +111,7 @@
     "prosemirror-view": "1.37.1",
     "qrcode.vue": "3.6.0",
     "seedrandom": "3.0.5",
+    "shadcn-nuxt": "0.11.3",
     "slugify": "1.6.6",
     "stylelint": "16.12.0",
     "stylelint-config-recommended-vue": "1.5.0",
@@ -159,5 +160,13 @@
     "supportedBrowsers": "echo \"export default $(browserslist-useragent-regexp --allowHigherVersions);\" > supportedBrowsers.js"
   },
   "type": "module",
-  "version": "5.3.1"
+  "version": "5.3.1",
+  "dependencies": {
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-vue-next": "^0.469.0",
+    "radix-vue": "^1.9.12",
+    "tailwind-merge": "^2.6.0",
+    "tailwindcss-animate": "^1.0.7"
+  }
 }
