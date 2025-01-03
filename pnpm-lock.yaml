@@ -258,9 +258,15 @@ importers:
       chart.js:
         specifier: 4.4.7
         version: 4.4.7
+      class-variance-authority:
+        specifier: 0.7.1
+        version: 0.7.1
       clipboardy:
         specifier: 4.0.0
         version: 4.0.0
+      clsx:
+        specifier: 2.1.1
+        version: 2.1.1
       consola:
         specifier: 3.3.3
         version: 3.3.3
@@ -303,6 +309,9 @@ importers:
       lodash-es:
         specifier: 4.17.21
         version: 4.17.21
+      lucide-vue-next:
+        specifier: 0.469.0
+        version: 0.469.0(vue@3.5.13(typescript@5.6.3))
       moment-timezone:
         specifier: 0.5.46
         version: 0.5.46
@@ -375,9 +384,15 @@ importers:
       qrcode.vue:
         specifier: 3.6.0
         version: 3.6.0(vue@3.5.13(typescript@5.6.3))
+      radix-vue:
+        specifier: 1.9.12
+        version: 1.9.12(vue@3.5.13(typescript@5.6.3))
       seedrandom:
         specifier: 3.0.5
         version: 3.0.5
+      shadcn-nuxt:
+        specifier: 0.11.3
+        version: 0.11.3(magicast@0.3.5)(rollup@4.29.1)
       slugify:
         specifier: 1.6.6
         version: 1.6.6
@@ -396,9 +411,15 @@ importers:
       sweetalert2:
         specifier: 11.15.9
         version: 11.15.9
+      tailwind-merge:
+        specifier: 2.6.0
+        version: 2.6.0
       tailwindcss:
         specifier: 3.4.17
         version: 3.4.17
+      tailwindcss-animate:
+        specifier: 1.0.7
+        version: 1.0.7(tailwindcss@3.4.17)
       unhead:
         specifier: 1.11.14
         version: 1.11.14
@@ -414,6 +435,9 @@ importers:
       v-calendar:
         specifier: 3.1.2
         version: 3.1.2(@popperjs/core@2.11.8)(vue@3.5.13(typescript@5.6.3))
+      vaul-vue:
+        specifier: 0.2.0
+        version: 0.2.0(radix-vue@1.9.12(vue@3.5.13(typescript@5.6.3)))(vue@3.5.13(typescript@5.6.3))
       vue:
         specifier: 3.5.13
         version: 3.5.13(typescript@5.6.3)
@@ -1800,6 +1824,18 @@ packages:
     resolution: {integrity: sha512-OIHZrb2ImZ7XG85HXOONLcJWGosv7sIvM2ifAPQVhg9Lv7qdmMBNVaai4QTdyuaqbKM5eO6sLSQOYI7wEQeCJQ==}
     engines: {node: '>=14'}
 
+  '@floating-ui/core@1.6.8':
+    resolution: {integrity: sha512-7XJ9cPU+yI2QeLS+FCSlqNFZJq8arvswefkZrYI1yQBbftw6FyrZOxYSh+9S7z7TpeWlRt9zJ5IhM1WIL334jA==}
+
+  '@floating-ui/dom@1.6.12':
+    resolution: {integrity: sha512-NP83c0HjokcGVEMeoStg317VD9W7eDlGK7457dMBANbKA6GJZdc7rjujdgqzTaz93jkGgc5P/jeWbaCHnMNc+w==}
+
+  '@floating-ui/utils@0.2.8':
+    resolution: {integrity: sha512-kym7SodPp8/wloecOpcmSnWJsK7M0E5Wg8UcFA+uO4B9s5d0ywXOEro/8HM9x0rW+TljRzul/14UYz3TleT3ig==}
+
+  '@floating-ui/vue@1.1.5':
+    resolution: {integrity: sha512-ynL1p5Z+woPVSwgMGqeDrx6HrJfGIDzFyESFkyqJKilGW1+h/8yVY29Khn0LaU6wHBRwZ13ntG6reiHWK6jyzw==}
+
   '@fontsource-variable/manrope@5.1.1':
     resolution: {integrity: sha512-bJTED5u+nlztikeRJwCgK3ij3qMVsivP4xTxpcrfQ15crvZuW9hjM5f61CgYF3ryL0rJwkjzOpZjB4CwL/pnBw==}
 
@@ -2172,6 +2208,12 @@ packages:
     resolution: {integrity: sha512-CMynoz9BDWugDO2B7LU/s8L99dHCiqDGCjCki6bhVx5etZhw9x0BTV7wWRdj82jtl1yQTc+QQRcHQmSvUY6R+g==}
     peerDependencies:
       vue: '>=3'
+
+  '@internationalized/date@3.6.0':
+    resolution: {integrity: sha512-+z6ti+CcJnRlLHok/emGEsWQhe7kfSmEW+/6qCzvKY67YPh7YOBfvc7+/+NXq+zJlbArg30tYpqLjNgcAYv2YQ==}
+
+  '@internationalized/number@3.6.0':
+    resolution: {integrity: sha512-PtrRcJVy7nw++wn4W2OuePQQfTqDzfusSuY1QTtui4wa7r+rGVtR75pO8CyKvHvzyQYi3Q1uO5sY0AsB4e65Bw==}
 
   '@intlify/bundle-utils@10.0.0':
     resolution: {integrity: sha512-BR5yLOkF2dzrARTbAg7RGAIPcx9Aark7p1K/0O285F7rfzso9j2dsa+S4dA67clZ0rToZ10NSSTfbyUptVu7Bg==}
@@ -2782,6 +2824,9 @@ packages:
     engines: {node: '>=14'}
     peerDependencies:
       '@opentelemetry/api': ^1.1.0
+
+  '@oxc-parser/wasm@0.29.0':
+    resolution: {integrity: sha512-Ks5yFtJHypJZUdSNLImwtfkDt0/8ll9CDPyfmldhudtKB/1o6F/WQGWA4Oo+bCskDIp2MPKc3HfHccN3ALhtSg==}
 
   '@parcel/watcher-android-arm64@2.5.0':
     resolution: {integrity: sha512-qlX4eS28bUcQCdribHkg/herLe+0A9RyYC+mm2PXpncit8z5b3nSqGVzMNR3CmtAOgRutiZ02eIJJgP/b1iEFQ==}
@@ -3595,6 +3640,9 @@ packages:
 
   '@surma/rollup-plugin-off-main-thread@2.2.3':
     resolution: {integrity: sha512-lR8q/9W7hZpMWweNiAKU7NQerBnzQQLvi8qnTDU/fxItPhtZVMbPV3lbCwjhIlNBe9Bbr5V+KHshvWmVSG9cxQ==}
+
+  '@swc/helpers@0.5.15':
+    resolution: {integrity: sha512-JQ5TuMi45Owi4/BIMAJBoSQoOJu12oOk/gADqlcUL9JEdHB8vyjUSsxqeNXnmXHjYKMi2WcYtezGEEhqUI/E2g==}
 
   '@tailwindcss/aspect-ratio@0.4.2':
     resolution: {integrity: sha512-8QPrypskfBa7QIMuKHg2TA7BqES6vhBrDLOv8Unb6FcFyd3TjKbc6lcmb9UPQHxfl24sXoJ41ux/H7qQQvfaSQ==}
@@ -4464,6 +4512,9 @@ packages:
       '@vue/composition-api':
         optional: true
 
+  '@vueuse/core@10.11.1':
+    resolution: {integrity: sha512-guoy26JQktXPcz+0n3GukWIy/JDNKti9v6VEMu6kV2sYBsWuGiTU8OWdg+ADfUbHg3/3DlqySDe7JmdHrktiww==}
+
   '@vueuse/core@11.3.0':
     resolution: {integrity: sha512-7OC4Rl1f9G8IT6rUfi9JrKiXy4bfmHhZ5x2Ceojy0jnd3mHNEvV4JaRygH362ror6/NZ+Nl+n13LPzGiPN8cKA==}
 
@@ -4514,6 +4565,9 @@ packages:
   '@vueuse/math@12.2.0':
     resolution: {integrity: sha512-dBWvdZAKfwg6L6fxEvBQ1yF+dWmOHgXcph67+LAzO8SXMzdkP4BXy4+5JXRF11ZJlTFIdSuhFm3LZr70gzQpBw==}
 
+  '@vueuse/metadata@10.11.1':
+    resolution: {integrity: sha512-IGa5FXd003Ug1qAZmyE8wF3sJ81xGLSqTqtQ6jaVfkeZ4i5kS2mwQF61yhVqojRnenVew5PldLyRgvdl4YYuSw==}
+
   '@vueuse/metadata@11.3.0':
     resolution: {integrity: sha512-pwDnDspTqtTo2HwfLw4Rp6yywuuBdYnPYDq+mO38ZYKGebCUQC/nVj/PXSiK9HX5otxLz8Fn7ECPbjiRz2CC3g==}
 
@@ -4524,6 +4578,9 @@ packages:
     resolution: {integrity: sha512-ffAQOeIahFmp7NmI3dDrKeo3pLMV8S58p+TuEbNYPZ25gET7R3PRq0DpxaWghHXtVXOKVYR+U1nimx9XtpAVyg==}
     peerDependencies:
       nuxt: ^3.0.0
+
+  '@vueuse/shared@10.11.1':
+    resolution: {integrity: sha512-LHpC8711VFZlDaYUXEBbFBCQ7GS3dVU9mjOhhMhXP6txTV4EhYQg/KGnQuvt/sPAtoUKq7VVUnL6mVtFoL42sA==}
 
   '@vueuse/shared@11.3.0':
     resolution: {integrity: sha512-P8gSSWQeucH5821ek2mn/ciCk+MS/zoRKqdQIM3bHq6p7GXDAJLmnRRKmF5F65sAVJIfzQlwR3aDzwCn10s8hA==}
@@ -4735,6 +4792,10 @@ packages:
 
   argv-formatter@1.0.0:
     resolution: {integrity: sha512-F2+Hkm9xFaRg+GkaNnbwXNDV5O6pnCFEmqyhvfC/Ic5LbgOWjJh3L+mN/s91rxVL3znE7DYVpW0GJFT+4YBgWw==}
+
+  aria-hidden@1.2.4:
+    resolution: {integrity: sha512-y+CcFFwelSXpLZk/7fMB2mUbGtX9lKycf1MWJ7CaTIERyitVlyQx6C+sxcROU2BAJ24OiZyK+8wj2i8AlBoS3A==}
+    engines: {node: '>=10'}
 
   array-buffer-byte-length@1.0.2:
     resolution: {integrity: sha512-LHE+8BuR7RYGDKvnrmcuSq3tDcKv9OFEXQt/HpbZhY7V6h0zlUXutnAD82GiFx9rdieCMjkvtcsPqBwgUl1Iiw==}
@@ -5124,6 +5185,9 @@ packages:
   cjs-module-lexer@1.4.1:
     resolution: {integrity: sha512-cuSVIHi9/9E/+821Qjdvngor+xpnlwnuwIyZOaLmHBVdXL+gP+I6QQB9VkO7RI77YIcTV+S1W9AreJ5eN63JBA==}
 
+  class-variance-authority@0.7.1:
+    resolution: {integrity: sha512-Ka+9Trutv7G8M6WT6SeiRWz792K5qEqIGEGzXKhAE6xOWAY6pPH8U+9IY3oCMv6kqTmLsv7Xh/2w2RigkePMsg==}
+
   classnames@2.5.1:
     resolution: {integrity: sha512-saHYOzhIQs6wy2sVxTM6bUDsQO4F50V9RQ22qBpEdCW+I+/Wmke2HOl6lS6dTpdxVhb88/I6+Hs+438c3lfUow==}
 
@@ -5189,6 +5253,10 @@ packages:
   clone@1.0.4:
     resolution: {integrity: sha512-JQHZ2QMW6l3aH/j6xCqQThY/9OH4D/9ls34cgkUBiEeocRTU04tHfKPBsUK1PqZCUQM7GiA0IIXJSuXHI64Kbg==}
     engines: {node: '>=0.8'}
+
+  clsx@2.1.1:
+    resolution: {integrity: sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==}
+    engines: {node: '>=6'}
 
   cluster-key-slot@1.1.2:
     resolution: {integrity: sha512-RMr0FhtfXemyinomL4hrWcYJxmX6deFdCxpJzhDttxgO1+bcCnkk+9drydLVDmAMG7NE6aN/fl4F7ucU/90gAA==}
@@ -7533,6 +7601,11 @@ packages:
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
 
+  lucide-vue-next@0.469.0:
+    resolution: {integrity: sha512-EjOap+vY3xEzCMrnaccDHO4BH3k3Lr+sOyvzRQCaayYxkxKla0w6Jr4h3cHAzA4vMSp63Dcy7vDiGeCPcCY+Gg==}
+    peerDependencies:
+      vue: '>=3.0.1'
+
   magic-string-ast@0.6.3:
     resolution: {integrity: sha512-C9sgUzVZtUtzCBoMdYtwrIRQ4IucGRFGgdhkjL7PXsVfPYmTuWtewqzk7dlipaCMWH/gOYehW9rgMoa4Oebtpw==}
     engines: {node: '>=16.14.0'}
@@ -9001,6 +9074,11 @@ packages:
     resolution: {integrity: sha512-AAFUA5O1d83pIHEhJwWCq/RQcRukCkn/NSm2QsTEMle5f2hP0ChI2+3Xb051PZCkLryI/Ir1MVKviT2FIloaTQ==}
     engines: {node: '>=12'}
 
+  radix-vue@1.9.12:
+    resolution: {integrity: sha512-zkr66Jqxbej4+oR6O/pZRzyM/VZi66ndbyIBZQjJKAXa1lIoYReZJse6W1EEDZKXknD7rXhpS+jM9Sr23lIqfg==}
+    peerDependencies:
+      vue: '>= 3.2.0'
+
   radix3@1.1.2:
     resolution: {integrity: sha512-b484I/7b8rDEdSDKckSSBA8knMpcdsXudlE/LNL639wFoHKwLbEkQFZHWEYwDC0wa0FKUcCY+GAF73Z7wxNVFA==}
 
@@ -9380,6 +9458,9 @@ packages:
 
   setprototypeof@1.2.0:
     resolution: {integrity: sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==}
+
+  shadcn-nuxt@0.11.3:
+    resolution: {integrity: sha512-Q0OxqTEbTmtbm/4wV9jd/7DTQYn65AGHkVJZjjHQdHGHTHCwhAbZ2jlCPnMuzJ8kgSsJyXFGNcImAphDCjjV5w==}
 
   sharp@0.32.6:
     resolution: {integrity: sha512-KyLTWwgcR9Oe4d9HwCwNM2l7+J0dUQwn/yf7S0EnTtb0eVS4RxO0eUSvxPtzT4F3SY+C4K6fqdv/DO27sJ/v/w==}
@@ -9840,6 +9921,11 @@ packages:
 
   tailwind-merge@2.6.0:
     resolution: {integrity: sha512-P+Vu1qXfzediirmHOC3xKGAYeZtPcV9g76X+xg2FD4tYgR71ewMA35Y3sCz3zhiN/dwefRpJX0yBcgwi1fXNQA==}
+
+  tailwindcss-animate@1.0.7:
+    resolution: {integrity: sha512-bl6mpH3T7I3UFxuvDEXLxy/VuFxBk5bbzplh7tXI68mwMokNYd1t9qPBHlnyTwfa4JGC4zP516I1hYYtQ/vspA==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || insiders'
 
   tailwindcss@3.4.17:
     resolution: {integrity: sha512-w33E2aCvSDP0tW9RZuNXadXlkHXqFzSkQew/aIa2i/Sj8fThxwovwlXHSPXTbAHwEIhBFXAedUhP2tueAKP8Og==}
@@ -10469,6 +10555,12 @@ packages:
   vary@1.1.2:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
+
+  vaul-vue@0.2.0:
+    resolution: {integrity: sha512-YV0zqxc8NiVzr1z/Awwbaty0UDDchxj5BfhFbLiYu+Uz0rCfSaDK2zwmuXZvejBJKLGbWw9I5GLHJRse14lQew==}
+    peerDependencies:
+      radix-vue: ^1.4.0
+      vue: ^3.3.0
 
   vfile-message@4.0.2:
     resolution: {integrity: sha512-jRDZ1IMLttGj41KcZvlrYAaI3CfqpLpfpf+Mfig13viT6NKvRzWZ+lXz0Y5D60w6uJIBAOGq9mSHf0gktF0duw==}
@@ -12821,6 +12913,26 @@ snapshots:
   '@fastify/accept-negotiator@1.1.0':
     optional: true
 
+  '@floating-ui/core@1.6.8':
+    dependencies:
+      '@floating-ui/utils': 0.2.8
+
+  '@floating-ui/dom@1.6.12':
+    dependencies:
+      '@floating-ui/core': 1.6.8
+      '@floating-ui/utils': 0.2.8
+
+  '@floating-ui/utils@0.2.8': {}
+
+  '@floating-ui/vue@1.1.5(vue@3.5.13(typescript@5.6.3))':
+    dependencies:
+      '@floating-ui/dom': 1.6.12
+      '@floating-ui/utils': 0.2.8
+      vue-demi: 0.14.10(vue@3.5.13(typescript@5.6.3))
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+
   '@fontsource-variable/manrope@5.1.1': {}
 
   '@graphql-codegen/add@5.0.3(graphql@16.10.0)':
@@ -13450,6 +13562,14 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
       vue: 3.5.13(typescript@5.6.3)
+
+  '@internationalized/date@3.6.0':
+    dependencies:
+      '@swc/helpers': 0.5.15
+
+  '@internationalized/number@3.6.0':
+    dependencies:
+      '@swc/helpers': 0.5.15
 
   '@intlify/bundle-utils@10.0.0(vue-i18n@10.0.5(vue@3.5.13(typescript@5.6.3)))':
     dependencies:
@@ -14736,6 +14856,8 @@ snapshots:
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/core': 1.30.0(@opentelemetry/api@1.9.0)
 
+  '@oxc-parser/wasm@0.29.0': {}
+
   '@parcel/watcher-android-arm64@2.5.0':
     optional: true
 
@@ -15723,6 +15845,10 @@ snapshots:
       json5: 2.2.3
       magic-string: 0.25.9
       string.prototype.matchall: 4.0.12
+
+  '@swc/helpers@0.5.15':
+    dependencies:
+      tslib: 2.8.1
 
   '@tailwindcss/aspect-ratio@0.4.2(tailwindcss@3.4.17)':
     dependencies:
@@ -16909,6 +17035,16 @@ snapshots:
       vue: 3.5.13(typescript@5.6.3)
       vue-demi: 0.13.11(vue@3.5.13(typescript@5.6.3))
 
+  '@vueuse/core@10.11.1(vue@3.5.13(typescript@5.6.3))':
+    dependencies:
+      '@types/web-bluetooth': 0.0.20
+      '@vueuse/metadata': 10.11.1
+      '@vueuse/shared': 10.11.1(vue@3.5.13(typescript@5.6.3))
+      vue-demi: 0.14.10(vue@3.5.13(typescript@5.6.3))
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+
   '@vueuse/core@11.3.0(vue@3.5.13(typescript@5.6.3))':
     dependencies:
       '@types/web-bluetooth': 0.0.20
@@ -16947,6 +17083,8 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
+  '@vueuse/metadata@10.11.1': {}
+
   '@vueuse/metadata@11.3.0': {}
 
   '@vueuse/metadata@12.2.0': {}
@@ -16964,6 +17102,13 @@ snapshots:
       - rollup
       - supports-color
       - typescript
+
+  '@vueuse/shared@10.11.1(vue@3.5.13(typescript@5.6.3))':
+    dependencies:
+      vue-demi: 0.14.10(vue@3.5.13(typescript@5.6.3))
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
 
   '@vueuse/shared@11.3.0(vue@3.5.13(typescript@5.6.3))':
     dependencies:
@@ -17215,6 +17360,10 @@ snapshots:
   argue-cli@2.1.0: {}
 
   argv-formatter@1.0.0: {}
+
+  aria-hidden@1.2.4:
+    dependencies:
+      tslib: 2.8.1
 
   array-buffer-byte-length@1.0.2:
     dependencies:
@@ -17704,6 +17853,10 @@ snapshots:
 
   cjs-module-lexer@1.4.1: {}
 
+  class-variance-authority@0.7.1:
+    dependencies:
+      clsx: 2.1.1
+
   classnames@2.5.1: {}
 
   clean-regexp@1.0.0:
@@ -17778,6 +17931,8 @@ snapshots:
       wrap-ansi: 7.0.0
 
   clone@1.0.4: {}
+
+  clsx@2.1.1: {}
 
   cluster-key-slot@1.1.2: {}
 
@@ -20399,6 +20554,10 @@ snapshots:
     dependencies:
       yallist: 3.1.1
 
+  lucide-vue-next@0.469.0(vue@3.5.13(typescript@5.6.3)):
+    dependencies:
+      vue: 3.5.13(typescript@5.6.3)
+
   magic-string-ast@0.6.3:
     dependencies:
       magic-string: 0.30.17
@@ -22117,6 +22276,23 @@ snapshots:
 
   quick-lru@6.1.2: {}
 
+  radix-vue@1.9.12(vue@3.5.13(typescript@5.6.3)):
+    dependencies:
+      '@floating-ui/dom': 1.6.12
+      '@floating-ui/vue': 1.1.5(vue@3.5.13(typescript@5.6.3))
+      '@internationalized/date': 3.6.0
+      '@internationalized/number': 3.6.0
+      '@tanstack/vue-virtual': 3.11.2(vue@3.5.13(typescript@5.6.3))
+      '@vueuse/core': 10.11.1(vue@3.5.13(typescript@5.6.3))
+      '@vueuse/shared': 10.11.1(vue@3.5.13(typescript@5.6.3))
+      aria-hidden: 1.2.4
+      defu: 6.1.4
+      fast-deep-equal: 3.1.3
+      nanoid: 5.0.9
+      vue: 3.5.13(typescript@5.6.3)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+
   radix3@1.1.2: {}
 
   randombytes@2.1.0:
@@ -22610,6 +22786,16 @@ snapshots:
   setprototypeof@1.1.0: {}
 
   setprototypeof@1.2.0: {}
+
+  shadcn-nuxt@0.11.3(magicast@0.3.5)(rollup@4.29.1):
+    dependencies:
+      '@nuxt/kit': 3.15.0(magicast@0.3.5)(rollup@4.29.1)
+      '@oxc-parser/wasm': 0.29.0
+      typescript: 5.6.3
+    transitivePeerDependencies:
+      - magicast
+      - rollup
+      - supports-color
 
   sharp@0.32.6:
     dependencies:
@@ -23160,6 +23346,10 @@ snapshots:
       - supports-color
 
   tailwind-merge@2.6.0: {}
+
+  tailwindcss-animate@1.0.7(tailwindcss@3.4.17):
+    dependencies:
+      tailwindcss: 3.4.17
 
   tailwindcss@3.4.17:
     dependencies:
@@ -23863,6 +24053,14 @@ snapshots:
   value-or-promise@1.0.12: {}
 
   vary@1.1.2: {}
+
+  vaul-vue@0.2.0(radix-vue@1.9.12(vue@3.5.13(typescript@5.6.3)))(vue@3.5.13(typescript@5.6.3)):
+    dependencies:
+      '@vueuse/core': 10.11.1(vue@3.5.13(typescript@5.6.3))
+      radix-vue: 1.9.12(vue@3.5.13(typescript@5.6.3))
+      vue: 3.5.13(typescript@5.6.3)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
 
   vfile-message@4.0.2:
     dependencies:
