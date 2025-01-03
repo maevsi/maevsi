@@ -18,8 +18,6 @@ import {
 } from '../shared/utils/constants'
 import { GET_CSP } from '../server/utils/constants'
 
-import { fileURLToPath } from 'node:url'
-
 const execPromise = promisify(exec)
 const RELEASE_NAME = async () =>
   process.env.RELEASE_NAME ||
@@ -29,9 +27,6 @@ const RELEASE_NAME = async () =>
 // setImmediate(() => {})
 
 export default defineNuxtConfig({
-  alias: {
-    '@shadcn': fileURLToPath(new URL('./src/shadcn', import.meta.url)),
-  },
   app: {
     head: {
       htmlAttrs: {
