@@ -121,7 +121,7 @@ export default defineNuxtConfig({
   ],
   shadcn: {
     prefix: '',
-    componentDir: 'components/ui',
+    componentDir: 'app/components/scn',
   },
   nitro: {
     compressPublicAssets: true,

@@ -12,7 +12,8 @@
   },
   "framework": "nuxt",
   "aliases": {
-    "components": "shadcn/components",
-    "utils": "shadcn/utils"
+    "ui": "app/components/scn",
+    "components": "app/components",
+    "utils": "@/utils/shadcn"
   }
 }
