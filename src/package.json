@@ -71,7 +71,9 @@
     "browserslist-useragent-regexp": "4.1.3",
     "camelcase-keys": "9.1.3",
     "chart.js": "4.4.7",
+    "class-variance-authority": "0.7.1",
     "clipboardy": "4.0.0",
+    "clsx": "2.1.1",
     "consola": "3.3.3",
     "css-element-queries": "1.2.3",
     "dayjs": "2.0.0-alpha.4",
@@ -86,6 +88,7 @@
     "js-confetti": "0.12.0",
     "kafkajs": "2.2.4",
     "lodash-es": "4.17.21",
+    "lucide-vue-next": "0.469.0",
     "moment-timezone": "0.5.46",
     "mustache": "4.2.0",
     "nodemailer": "6.9.16",
@@ -110,6 +113,7 @@
     "prosemirror-transform": "1.10.2",
     "prosemirror-view": "1.37.1",
     "qrcode.vue": "3.6.0",
+    "radix-vue": "1.9.12",
     "seedrandom": "3.0.5",
     "shadcn-nuxt": "0.11.3",
     "slugify": "1.6.6",
@@ -118,7 +122,9 @@
     "stylelint-config-standard": "36.0.1",
     "stylelint-no-unsupported-browser-features": "8.0.2",
     "sweetalert2": "11.15.5",
+    "tailwind-merge": "2.6.0",
     "tailwindcss": "3.4.17",
+    "tailwindcss-animate": "1.0.7",
     "unhead": "1.11.14",
     "unplugin-icons": "0.22.0",
     "unplugin-vue-components": "0.28.0",
@@ -133,13 +139,7 @@
     "vue-router": "4.5.0",
     "vue-tsc": "2.2.0",
     "workbox-precaching": "7.3.0",
-    "zod": "3.24.1",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "lucide-vue-next": "^0.469.0",
-    "radix-vue": "^1.9.12",
-    "tailwind-merge": "^2.6.0",
-    "tailwindcss-animate": "^1.0.7"
+    "zod": "3.24.1"
   },
   "engines": {
     "node": "22"
@@ -166,6 +166,5 @@
     "supportedBrowsers": "echo \"export default $(browserslist-useragent-regexp --allowHigherVersions);\" > supportedBrowsers.js"
   },
   "type": "module",
-  "version": "5.3.1",
-  "dependencies": {}
+  "version": "5.3.1"
 }
