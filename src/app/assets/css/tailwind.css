@@ -60,6 +60,8 @@
 
   :disabled {
     @apply pointer-events-none opacity-75;
+
+    /* @apply cursor-not-allowed */
   }
 
   a:focus {
@@ -144,6 +146,8 @@
 @layer utilities {
   .disabled {
     @apply pointer-events-none opacity-75;
+
+    /* @apply cursor-not-allowed */
   }
 
   .truncate-overflow {
@@ -173,7 +177,7 @@
   }
 
   .vio-prose {
-    @apply prose prose-sm sm:prose-base lg:prose-lg xl:prose-xl m-auto;
+    @apply prose prose-sm sm:prose-base lg:prose-lg xl:prose-xl m-auto; /* 2xl:prose-2xl */
   }
 
   .vio-prose-fullwidth {
