@@ -15,12 +15,6 @@ export default defineAppConfig({
 })
 
 declare module 'nuxt/schema' {
-  interface NuxtConfig {
-    shadcn?: {
-      prefix?: string
-      componentDir?: string
-    }
-  }
   interface AppConfigInput {
     vio: {
       pages?: {
