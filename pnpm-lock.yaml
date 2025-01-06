@@ -211,11 +211,11 @@ importers:
         specifier: 1.11.14
         version: 1.11.14(vue@3.5.13(typescript@5.6.3))
       '@uppy/core':
-        specifier: 4.3.1
-        version: 4.3.1
+        specifier: 4.3.2
+        version: 4.3.2
       '@uppy/tus':
         specifier: 4.1.5
-        version: 4.1.5(@uppy/core@4.3.1)
+        version: 4.1.5(@uppy/core@4.3.2)
       '@urql/core':
         specifier: 5.1.0
         version: 5.1.0(graphql@16.10.0)
@@ -4153,8 +4153,8 @@ packages:
     peerDependencies:
       '@uppy/core': ^4.3.1
 
-  '@uppy/core@4.3.1':
-    resolution: {integrity: sha512-vov6agqmZrbmkG6E5LpSGNOeVXP4u0pe3UXCqVBZvU+WPInA264d4+X7NUnD6cF/BHPfckbfKh+60Tm1A40VEg==}
+  '@uppy/core@4.3.2':
+    resolution: {integrity: sha512-c4WzS56WpAAjyl7mKi4B+DQQWmHDhZOI0jAzUlsF32xSO1TdNxJIGIFjTHcEJPxnrBOtV83m1vu2A+cehXFFRw==}
 
   '@uppy/store-default@4.1.2':
     resolution: {integrity: sha512-1Zi4S9rZiiEzDw/7TDNtwCWP8Y/6aBtWzKwP6EWH7NHBKX8yGFlQMRDwAXCKaxDxb46L0RNK8nWjOzHM+0Farg==}
@@ -16476,14 +16476,14 @@ snapshots:
       - rollup
       - supports-color
 
-  '@uppy/companion-client@4.3.0(@uppy/core@4.3.1)':
+  '@uppy/companion-client@4.3.0(@uppy/core@4.3.2)':
     dependencies:
-      '@uppy/core': 4.3.1
+      '@uppy/core': 4.3.2
       '@uppy/utils': 6.0.6
       namespace-emitter: 2.0.1
       p-retry: 6.2.1
 
-  '@uppy/core@4.3.1':
+  '@uppy/core@4.3.2':
     dependencies:
       '@transloadit/prettier-bytes': 0.3.5
       '@uppy/store-default': 4.1.2
@@ -16496,10 +16496,10 @@ snapshots:
 
   '@uppy/store-default@4.1.2': {}
 
-  '@uppy/tus@4.1.5(@uppy/core@4.3.1)':
+  '@uppy/tus@4.1.5(@uppy/core@4.3.2)':
     dependencies:
-      '@uppy/companion-client': 4.3.0(@uppy/core@4.3.1)
-      '@uppy/core': 4.3.1
+      '@uppy/companion-client': 4.3.0(@uppy/core@4.3.2)
+      '@uppy/core': 4.3.2
       '@uppy/utils': 6.0.6
       tus-js-client: 4.2.3
 

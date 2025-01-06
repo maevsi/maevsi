@@ -55,7 +55,7 @@
     "@types/pg": "8.11.10",
     "@types/seedrandom": "3.0.8",
     "@unhead/vue": "1.11.14",
-    "@uppy/core": "4.3.1",
+    "@uppy/core": "4.3.2",
     "@uppy/tus": "4.1.5",
     "@urql/core": "5.1.0",
     "@urql/devtools": "2.0.3",
