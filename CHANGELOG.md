@@ -1,3 +1,9 @@
+## [5.4.0](https://github.com/maevsi/maevsi/compare/5.3.1...5.4.0) (2025-01-03)
+
+### Features
+
+* **components:** add shadcn ([#1709](https://github.com/maevsi/maevsi/issues/1709)) ([2d60446](https://github.com/maevsi/maevsi/commit/2d60446a066d6b2871836068d910bdb9e68820c1))
+
 ## [5.3.1](https://github.com/maevsi/maevsi/compare/5.3.0...5.3.1) (2024-12-28)
 
 ### Bug Fixes

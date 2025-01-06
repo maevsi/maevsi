@@ -75,6 +75,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@vite-pwa/nuxt',
     'nuxt-gtag',
+    'shadcn-nuxt',
     async (_options: ModuleOptions, nuxt: Nuxt) => {
       nuxt.options.runtimeConfig.public.vio.releaseName = await RELEASE_NAME()
     },
@@ -113,6 +114,10 @@ export default defineNuxtConfig({
     },
     'nuxt-security',
   ],
+  shadcn: {
+    prefix: '',
+    componentDir: 'app/components/scn',
+  },
   nitro: {
     compressPublicAssets: true,
     experimental: {
