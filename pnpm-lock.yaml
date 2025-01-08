@@ -427,8 +427,8 @@ importers:
         specifier: 0.22.0
         version: 0.22.0(@vue/compiler-sfc@3.5.13)
       unplugin-vue-components:
-        specifier: 0.28.0
-        version: 0.28.0(@babel/parser@7.26.3)(@nuxt/kit@3.15.1(magicast@0.3.5)(rollup@4.29.2))(rollup@4.29.2)(vue@3.5.13(typescript@5.6.3))
+        specifier: 28.0.0
+        version: 28.0.0(@babel/parser@7.26.3)(@nuxt/kit@3.15.1(magicast@0.3.5)(rollup@4.29.2))(rollup@4.29.2)(vue@3.5.13(typescript@5.6.3))
       unplugin-vue-router:
         specifier: 0.10.9
         version: 0.10.9(rollup@4.29.2)(vue-router@4.5.0(vue@3.5.13(typescript@5.6.3)))(vue@3.5.13(typescript@5.6.3))
@@ -10422,8 +10422,8 @@ packages:
   unplugin-remove@1.0.3:
     resolution: {integrity: sha512-BZMt9v8Y/Z27cY7YQv+DpcW928znjP1cqplBXOirbANiFQtM2YCdiyNAJhHCvjppT0lScNn1aDrQnXqnRp32pQ==}
 
-  unplugin-vue-components@0.28.0:
-    resolution: {integrity: sha512-jiTGtJ3JsRFBjgvyilfrX7yUoGKScFgbdNw+6p6kEXU+Spf/rhxzgvdfuMcvhCcLmflB/dY3pGQshYBVGOUx7Q==}
+  unplugin-vue-components@28.0.0:
+    resolution: {integrity: sha512-vYe0wSyqTVhyNFIad1iiGyQGhG++tDOMgohqenMDOAooMJP9vvzCdXTqCVx20A0rCQXFNjgoRbSeDAioLPH36Q==}
     engines: {node: '>=14'}
     peerDependencies:
       '@babel/parser': ^7.15.8
@@ -24012,7 +24012,7 @@ snapshots:
       - rollup
       - supports-color
 
-  unplugin-vue-components@0.28.0(@babel/parser@7.26.3)(@nuxt/kit@3.15.1(magicast@0.3.5)(rollup@4.29.2))(rollup@4.29.2)(vue@3.5.13(typescript@5.6.3)):
+  unplugin-vue-components@28.0.0(@babel/parser@7.26.3)(@nuxt/kit@3.15.1(magicast@0.3.5)(rollup@4.29.2))(rollup@4.29.2)(vue@3.5.13(typescript@5.6.3)):
     dependencies:
       '@antfu/utils': 0.7.10
       '@rollup/pluginutils': 5.1.4(rollup@4.29.2)
