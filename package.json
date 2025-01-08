@@ -37,8 +37,7 @@
   },
   "pnpm": {
     "overrides": {
-      "nuxt-og-image": "4.0.1",
-      "typescript": "5.6.3"
+      "nuxt-og-image": "4.0.1"
     }
   },
   "type": "module"
