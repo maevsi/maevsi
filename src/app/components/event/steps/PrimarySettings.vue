@@ -156,7 +156,6 @@ import type { EventItemFragment } from '~~/gql/generated/graphql'
 
 const { form: eventForm, v$, updateFormName } = useEventForm()
 
-// Rename the prop form to propsForm to avoid collision
 const props = defineProps<{
   form: {
     name: string
@@ -194,7 +193,6 @@ const eventCategory = [
 const onInputName = ($event: string) => {
   v$.value.name.$model = $event
 
-  // Use eventForm instead of form
   eventForm.value.name = $event
 
   eventForm.value.slug = slugify($event, {
