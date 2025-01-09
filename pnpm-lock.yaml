@@ -210,11 +210,11 @@ importers:
         specifier: 1.11.15
         version: 1.11.15(vue@3.5.13(typescript@5.7.3))
       '@uppy/core':
-        specifier: 4.4.0
-        version: 4.4.0
+        specifier: 4.4.1
+        version: 4.4.1
       '@uppy/tus':
-        specifier: 4.2.0
-        version: 4.2.0(@uppy/core@4.4.0)
+        specifier: 4.2.1
+        version: 4.2.1(@uppy/core@4.4.1)
       '@urql/core':
         specifier: 5.1.0
         version: 5.1.0(graphql@16.10.0)
@@ -4165,21 +4165,21 @@ packages:
     peerDependencies:
       webpack: ^4 || ^5
 
-  '@uppy/companion-client@4.4.0':
-    resolution: {integrity: sha512-+pmb4T3VRZkHe6vC2gjvPiLNkWxTJXPe/xX/vdB7WcjAg8hLm8TyKtS8cakJfg0S0K6Gg4sVlhSpTckmU5Vq6g==}
+  '@uppy/companion-client@4.4.1':
+    resolution: {integrity: sha512-ardMacShsfzaIbqHEH48YlpzWZkBj1qhAj0Dvn3r31p9d0HA5xFUvAdLYrZ6ezKvZ0RcDbf0SB5qCrQMkjscXQ==}
     peerDependencies:
-      '@uppy/core': ^4.4.0
+      '@uppy/core': ^4.4.1
 
-  '@uppy/core@4.4.0':
-    resolution: {integrity: sha512-zR7yOsVzZGP/NQqPFEaQnLWOlzJeVMKlfrKg3SA9PDJ8w4/3BoflcqrpmIRS/+UQCgnB0FwHjVWEyI7kxNFTZQ==}
+  '@uppy/core@4.4.1':
+    resolution: {integrity: sha512-WQnphWj3bk0EYzy4j4rn7nEHKOExqYLm/YOWIpBjXZMY7tJIHbzpv60qHqE6oQsRMwmNcz3mkq8PGR5NubBbvQ==}
 
   '@uppy/store-default@4.2.0':
     resolution: {integrity: sha512-PieFVa8yTvRHIqsNKfpO/yaJw5Ae/hT7uT58ryw7gvCBY5bHrNWxH5N0XFe8PFHMpLpLn8v3UXGx9ib9QkB6+Q==}
 
-  '@uppy/tus@4.2.0':
-    resolution: {integrity: sha512-nNxKrvrnExoSYY9OFfwCvP0KwQlqtowOClbbnsi4ew5SfUxt0YGkCvV2c4cfcPMY1Q9IsWhyBj9ltvbDJuvqfQ==}
+  '@uppy/tus@4.2.1':
+    resolution: {integrity: sha512-GogJgDEe9zN533faqGkzkeweh6T3A1Fie7lj0J65XKAAf/6ILEEOWz33JrwWj9AK70O0VEmO14PQLAMGWjmTPQ==}
     peerDependencies:
-      '@uppy/core': ^4.4.0
+      '@uppy/core': ^4.4.1
 
   '@uppy/utils@6.1.1':
     resolution: {integrity: sha512-60guVvz+TXvN1gEgbTjDAfleo6HeTGE02/9T+tycv7hVqIkzLbYsJBgVFhVY/Y2fBW0fOX/lzKc1kN4YZQtvpA==}
@@ -16554,14 +16554,14 @@ snapshots:
       - rollup
       - supports-color
 
-  '@uppy/companion-client@4.4.0(@uppy/core@4.4.0)':
+  '@uppy/companion-client@4.4.1(@uppy/core@4.4.1)':
     dependencies:
-      '@uppy/core': 4.4.0
+      '@uppy/core': 4.4.1
       '@uppy/utils': 6.1.1
       namespace-emitter: 2.0.1
       p-retry: 6.2.1
 
-  '@uppy/core@4.4.0':
+  '@uppy/core@4.4.1':
     dependencies:
       '@transloadit/prettier-bytes': 0.3.5
       '@uppy/store-default': 4.2.0
@@ -16574,10 +16574,10 @@ snapshots:
 
   '@uppy/store-default@4.2.0': {}
 
-  '@uppy/tus@4.2.0(@uppy/core@4.4.0)':
+  '@uppy/tus@4.2.1(@uppy/core@4.4.1)':
     dependencies:
-      '@uppy/companion-client': 4.4.0(@uppy/core@4.4.0)
-      '@uppy/core': 4.4.0
+      '@uppy/companion-client': 4.4.1(@uppy/core@4.4.1)
+      '@uppy/core': 4.4.1
       '@uppy/utils': 6.1.1
       tus-js-client: 4.2.3
 
