@@ -20,8 +20,22 @@ export function useEventForm(eventSlug?: string) {
     start: '',
     url: '',
     visibility: null as EventVisibility | null,
+    street: '',
+    houseNumber: '',
+    additionalStreet: '',
+    postcode: '',
+    city: '',
+    country: '',
+    startDate: '',
+    startTime: '',
+    endDate: '',
+    endTime: '23:00',
+    isRecurring: false,
+    frequency: '',
+    recurringEndDate: '',
   })
 
+  // Validation rules for step 1
   const stepOneRules = {
     name: {
       required,
@@ -38,7 +52,20 @@ export function useEventForm(eventSlug?: string) {
     category: { required: true },
   }
 
-  const v$ = useVuelidate(stepOneRules, form)
+  const stepTwoRules = {
+    startDate: { required },
+    startTime: { required },
+    endDate: { required },
+    endTime: { required },
+    street: { required },
+    city: { required },
+    postcode: { required },
+    country: { required },
+  }
+
+  const allRules = { ...stepOneRules, ...stepTwoRules }
+
+  const v$ = useVuelidate(allRules, form)
 
   const updateFormName = (name: string) => {
     const trimmedName = name.trim()
@@ -52,9 +79,7 @@ export function useEventForm(eventSlug?: string) {
   }
 
   const isStepOneValid = async () => {
-    await v$.value.$validate() // Trigger validation on the form
-
-    // You can check individual field validity
+    await v$.value.$validate()
     return (
       !v$.value.name.$invalid &&
       !v$.value.format.$invalid &&
@@ -62,10 +87,34 @@ export function useEventForm(eventSlug?: string) {
     )
   }
 
+  const isStepTwoValid = async () => {
+    await v$.value.$validate()
+
+    return (
+      !v$.value.startDate.$invalid &&
+      !v$.value.endDate.$invalid &&
+      !v$.value.street.$invalid &&
+      !v$.value.city.$invalid &&
+      !v$.value.postcode.$invalid &&
+      !v$.value.country.$invalid
+    )
+  }
+
+  const updateStartTime = (time: string) => {
+    form.value.startTime = time
+  }
+
+  const updateEndTime = (time: string) => {
+    form.value.endTime = time
+  }
+
   return {
     form,
     v$,
     isStepOneValid,
+    isStepTwoValid,
     updateFormName,
+    updateStartTime,
+    updateEndTime,
   }
 }

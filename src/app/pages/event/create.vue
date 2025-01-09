@@ -13,7 +13,6 @@
           :total-steps="5"
           class="flex min-h-screen flex-col"
         >
-          <!-- Stepper dots -->
           <div class="flex w-full justify-center gap-2 py-4">
             <StepperItem
               v-for="step in 5"
@@ -54,6 +53,7 @@
                 v-else-if="stepIndex === 2"
                 :form="form"
                 :validation="v$"
+                @update-form="(updatedForm) => Object.assign(form, updatedForm)"
               />
               <EventStepsCover
                 v-else-if="stepIndex === 3"
@@ -72,7 +72,6 @@
               />
             </div>
 
-            <!-- Next button -->
             <div class="mt-6">
               <ButtonColored
                 :aria-label="stepIndex === 5 ? t('create') : t('next')"
@@ -109,7 +108,7 @@ const { jwtDecoded } = storeToRefs(store)
 const stepIndex = ref(1)
 const isFormSent = ref(false)
 
-const { form, v$, isStepOneValid } = useEventForm()
+const { form, v$, isStepOneValid, isStepTwoValid } = useEventForm()
 
 const stepTitles = [
   t('primarySettings'),
@@ -119,7 +118,7 @@ const stepTitles = [
   t('visibility'),
 ]
 
-// Compute step validity based on current step
+//TODO: check all fields together instead of individual
 const isStepValid = computed(() => {
   switch (stepIndex.value) {
     case 1:
@@ -130,32 +129,39 @@ const isStepValid = computed(() => {
         (form.value.isInPerson || form.value.isRemote)
       )
     case 2:
-      // Add validation for date and location step
-      return form.value.start !== '' && form.value.end !== ''
+      return (
+        form.value.startDate !== '' &&
+        form.value.endDate !== '' &&
+        form.value.street !== '' &&
+        form.value.city !== '' &&
+        form.value.postcode !== '' &&
+        form.value.country !== ''
+      )
     case 3:
-      // Add validation for cover image step if needed
       return true
     case 4:
-      // Add validation for event details step
       return form.value.description !== ''
     case 5:
-      // Add validation for visibility step
       return form.value.visibility !== null
     default:
       return true
   }
 })
-
 const handleNext = async () => {
   try {
-    // Validate current step based on step index
     let isValid = false
 
     switch (stepIndex.value) {
       case 1:
         isValid = await isStepOneValid()
         break
-      // Add cases for other steps as needed
+      case 2:
+        console.log('here')
+
+        isValid = await isStepTwoValid()
+        console.log('isValid', isValid)
+        break
+
       default:
         isValid = true
     }
@@ -184,9 +190,7 @@ const handleSubmit = async () => {
       isFormSent.value = true
 
       // TODO: Implement actual form submission logic
-      // const response = await submitEventForm(form.value)
     } else {
-      // Touch all fields to show validation errors
       v$.value.$touch()
       console.error('Final form validation failed')
     }
