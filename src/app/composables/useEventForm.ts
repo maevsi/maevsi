@@ -33,6 +33,8 @@ export function useEventForm(eventSlug?: string) {
     isRecurring: false,
     frequency: '',
     recurringEndDate: '',
+    address: '',
+    website: '',
   })
 
   // Validation rules for step 1
@@ -63,7 +65,12 @@ export function useEventForm(eventSlug?: string) {
     country: { required },
   }
 
-  const allRules = { ...stepOneRules, ...stepTwoRules }
+  const stepThreeRules = {
+    description: { required },
+    website: { required },
+  }
+
+  const allRules = { ...stepOneRules, ...stepTwoRules, ...stepThreeRules }
 
   const v$ = useVuelidate(allRules, form)
 
@@ -100,6 +107,11 @@ export function useEventForm(eventSlug?: string) {
     )
   }
 
+  const isStepThreeValid = async () => {
+    await v$.value.$validate()
+
+    return !v$.value.description.$invalid && !v$.value.website.$invalid
+  }
   const updateStartTime = (time: string) => {
     form.value.startTime = time
   }
@@ -116,5 +128,6 @@ export function useEventForm(eventSlug?: string) {
     updateFormName,
     updateStartTime,
     updateEndTime,
+    isStepThreeValid,
   }
 }
