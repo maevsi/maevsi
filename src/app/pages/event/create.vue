@@ -31,7 +31,6 @@
             </StepperItem>
           </div>
 
-          <!-- Content section -->
           <div class="flex-1 px-4">
             <h2 class="mb-2 text-2xl font-bold">
               {{ stepTitles[stepIndex - 1] }}
@@ -40,7 +39,6 @@
               {{ t('allFieldsRequired') }}
             </p>
 
-            <!-- Steps -->
             <div class="space-y-6">
               <EventStepsPrimarySettings
                 v-if="stepIndex === 1"
@@ -48,23 +46,24 @@
                 :validation="v$"
                 @update-form="(updatedForm) => Object.assign(form, updatedForm)"
               />
-
               <EventStepsDateLocation
                 v-else-if="stepIndex === 2"
                 :form="form"
                 :validation="v$"
                 @update-form="(updatedForm) => Object.assign(form, updatedForm)"
               />
-              <EventStepsCover
+              <EventStepsDetails
                 v-else-if="stepIndex === 3"
                 :form="form"
                 :validation="v$"
+                @update-form="(updatedForm) => Object.assign(form, updatedForm)"
               />
-              <EventStepsDetails
+              <EventStepsCover
                 v-else-if="stepIndex === 4"
                 :form="form"
                 :validation="v$"
               />
+
               <EventStepsVisibility
                 v-else-if="stepIndex === 5"
                 :form="form"
@@ -108,13 +107,15 @@ const { jwtDecoded } = storeToRefs(store)
 const stepIndex = ref(1)
 const isFormSent = ref(false)
 
-const { form, v$, isStepOneValid, isStepTwoValid } = useEventForm()
+const { form, v$, isStepOneValid, isStepTwoValid, isStepThreeValid } =
+  useEventForm()
 
 const stepTitles = [
   t('primarySettings'),
   t('dateAndLocation'),
-  t('coverImage'),
   t('eventDetails'),
+  t('coverImage'),
+
   t('visibility'),
 ]
 
@@ -138,7 +139,8 @@ const isStepValid = computed(() => {
         form.value.country !== ''
       )
     case 3:
-      return true
+      return form.value.description !== '' && form.value.website !== ''
+
     case 4:
       return form.value.description !== ''
     case 5:
@@ -156,12 +158,14 @@ const handleNext = async () => {
         isValid = await isStepOneValid()
         break
       case 2:
-        console.log('here')
-
         isValid = await isStepTwoValid()
-        console.log('isValid', isValid)
+
         break
 
+      case 3:
+        isValid = await isStepThreeValid()
+
+        break
       default:
         isValid = true
     }
@@ -236,6 +240,6 @@ en:
   primarySettings: Primary settings
   dateAndLocation: Date and location
   coverImage: Cover image
-  eventDetails: Event details
+  eventDetails: Details
   visibility: Visibility
 </i18n>
