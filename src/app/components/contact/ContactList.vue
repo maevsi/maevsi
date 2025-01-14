@@ -8,7 +8,7 @@
         @load-more="after = api.data.allContacts?.pageInfo.endCursor"
       >
         <table>
-          <thead>
+          <LayoutThead>
             <tr>
               <th scope="col">
                 {{ t('contact') }}
@@ -27,8 +27,8 @@
               </th>
               <th scope="col" />
             </tr>
-          </thead>
-          <tbody>
+          </LayoutThead>
+          <LayoutTbody>
             <ContactListItem
               v-for="contact in contacts"
               :id="contact.nodeId"
@@ -39,7 +39,7 @@
               @delete="delete_(contact.nodeId, contact.id)"
               @edit="edit(contact)"
             />
-          </tbody>
+          </LayoutTbody>
         </table>
       </ScrollContainer>
       <div class="flex justify-center">
