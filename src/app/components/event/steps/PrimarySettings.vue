@@ -1,5 +1,8 @@
 <template>
   <div class="space-y-6">
+    <p class="mb-4 text-sm text-gray-500">
+      {{ t('allFieldsRequired') }}
+    </p>
     <FormInput
       id-label="event-name"
       is-required
@@ -204,6 +207,7 @@ const onInputName = ($event: string) => {
 
   emit('updateForm', {
     name: eventForm.value.name,
+    slug: eventForm.value.slug,
   })
 
   updateFormName($event)
@@ -245,6 +249,7 @@ const selectCategory = (category: { id: number; name: string }) => {
 
 <i18n lang="yaml">
 de:
+  allFieldsRequired: Alle Felder sind erforderlich
   eventTitle: Veranstaltungstitel
   # eventTitlePlaceholder: Gib deiner Veranstaltung einen Namen
   attendanceType: Anwesenheitstyp
@@ -257,6 +262,7 @@ de:
   validationWarningNameChangeSlug: Wenn du den Namen änderst, funktionieren bestehende Links zur Veranstaltung möglicherweise nicht mehr
   validationExistenceNone: Du hast bereits eine Veranstaltung mit der ID "{slug}"
 en:
+  allFieldsRequired: All fields are required
   eventTitle: Event title
   # eventTitlePlaceholder: Give your event a name
   attendanceType: Attendance type
