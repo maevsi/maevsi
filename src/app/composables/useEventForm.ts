@@ -35,9 +35,11 @@ export function useEventForm(eventSlug?: string) {
     recurringEndDate: '',
     address: '',
     website: '',
+    images: [] as File[],
+    coverImage: null as File | null,
+    previewUrls: [] as string[],
   })
 
-  // Validation rules for step 1
   const stepOneRules = {
     name: {
       required,
@@ -58,7 +60,7 @@ export function useEventForm(eventSlug?: string) {
     startDate: { required },
     startTime: { required },
     endDate: { required },
-    endTime: { required },
+    endTime: {},
     street: { required },
     city: { required },
     postcode: { required },
@@ -70,19 +72,37 @@ export function useEventForm(eventSlug?: string) {
     website: { required },
   }
 
-  const allRules = { ...stepOneRules, ...stepTwoRules, ...stepThreeRules }
+  const stepFiveRules = {
+    visibility: { required },
+    inviteeCountMaximum: { required },
+  }
+
+  const allRules = {
+    ...stepOneRules,
+    ...stepTwoRules,
+    ...stepThreeRules,
+    ...stepFiveRules,
+  }
 
   const v$ = useVuelidate(allRules, form)
 
   const updateFormName = (name: string) => {
     const trimmedName = name.trim()
-
     form.value.name = trimmedName
-
     form.value.slug = slugify(trimmedName, {
       lower: true,
       strict: true,
     })
+  }
+
+  const updateImages = (
+    files: File[],
+    previews: string[],
+    coverIndex: number,
+  ) => {
+    form.value.images = files
+    form.value.previewUrls = previews
+    form.value.coverImage = files[coverIndex] || null
   }
 
   const isStepOneValid = async () => {
@@ -96,7 +116,6 @@ export function useEventForm(eventSlug?: string) {
 
   const isStepTwoValid = async () => {
     await v$.value.$validate()
-
     return (
       !v$.value.startDate.$invalid &&
       !v$.value.endDate.$invalid &&
@@ -109,8 +128,16 @@ export function useEventForm(eventSlug?: string) {
 
   const isStepThreeValid = async () => {
     await v$.value.$validate()
-
     return !v$.value.description.$invalid && !v$.value.website.$invalid
+  }
+
+  //StepFour is optional so no validation function required
+
+  const isStepFiveValid = async () => {
+    await v$.value.$validate()
+    return (
+      !v$.value.visibility.$invalid && !v$.value.inviteeCountMaximum.$invalid
+    )
   }
   const updateStartTime = (time: string) => {
     form.value.startTime = time
@@ -125,9 +152,12 @@ export function useEventForm(eventSlug?: string) {
     v$,
     isStepOneValid,
     isStepTwoValid,
+    isStepThreeValid,
+    isStepFiveValid,
     updateFormName,
     updateStartTime,
     updateEndTime,
-    isStepThreeValid,
+
+    updateImages,
   }
 }

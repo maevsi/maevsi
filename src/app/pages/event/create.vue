@@ -22,10 +22,17 @@
               :step="step"
             >
               <div
-                class="h-2.5 w-2.5 rounded-full transition-colors duration-200"
+                class="h-2.5 w-2.5 rounded-full border transition-colors duration-200"
                 :class="[
-                  state === 'active' ? 'bg-primary' : 'bg-gray-200',
-                  state === 'completed' ? 'bg-primary' : '',
+                  state === 'active'
+                    ? 'h-4 w-4 border-accent-weak bg-accent-strong'
+                    : '',
+                  state === 'completed'
+                    ? 'h-3 w-3 border-transparent bg-accent-strong'
+                    : '',
+                  state !== 'active' && state !== 'completed'
+                    ? 'border-transparent bg-gray-300'
+                    : '',
                 ]"
               />
             </StepperItem>
@@ -35,52 +42,68 @@
             <h2 class="mb-2 text-2xl font-bold">
               {{ stepTitles[stepIndex - 1] }}
             </h2>
-            <p class="mb-4 text-sm text-gray-500">
-              {{ t('allFieldsRequired') }}
-            </p>
 
             <div class="space-y-6">
               <EventStepsPrimarySettings
                 v-if="stepIndex === 1"
                 :form="form"
                 :validation="v$"
-                @update-form="(updatedForm) => Object.assign(form, updatedForm)"
+                @update-form="
+                  (updatedForm: any) => Object.assign(form, updatedForm)
+                "
               />
               <EventStepsDateLocation
                 v-else-if="stepIndex === 2"
                 :form="form"
                 :validation="v$"
-                @update-form="(updatedForm) => Object.assign(form, updatedForm)"
+                @update-form="
+                  (updatedForm: any) => Object.assign(form, updatedForm)
+                "
               />
               <EventStepsDetails
                 v-else-if="stepIndex === 3"
                 :form="form"
                 :validation="v$"
-                @update-form="(updatedForm) => Object.assign(form, updatedForm)"
+                @update-form="
+                  (updatedForm: any) => Object.assign(form, updatedForm)
+                "
               />
               <EventStepsCover
                 v-else-if="stepIndex === 4"
                 :form="form"
                 :validation="v$"
+                @update-form="(updatedForm) => Object.assign(form, updatedForm)"
               />
 
               <EventStepsVisibility
                 v-else-if="stepIndex === 5"
                 :form="form"
                 :validation="v$"
+                @update-form="(updatedForm) => Object.assign(form, updatedForm)"
               />
             </div>
 
             <div class="mt-6">
-              <ButtonColored
+              <ShadButton
+                variant="default"
+                class="w-full bg-accent-fancy text-white hover:bg-accent-strong/90"
                 :aria-label="stepIndex === 5 ? t('create') : t('next')"
                 :disabled="!isStepValid"
-                class="w-full"
                 :type="stepIndex === 5 ? 'submit' : 'button'"
                 @click="handleNext"
               >
                 {{ stepIndex === 5 ? t('create') : t('next') }}
-              </ButtonColored>
+              </ShadButton>
+            </div>
+            <div class="mt-4">
+              <ShadButton
+                v-if="stepIndex === 4"
+                variant="outline"
+                class="w-full"
+                @click="handleNext"
+              >
+                {{ t('skipThisStep') }}
+              </ShadButton>
             </div>
           </div>
         </Stepper>
@@ -99,6 +122,9 @@ import { ref, computed } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useI18n } from 'vue-i18n'
 import { useEventForm } from '~/composables/useEventForm'
+import { useCreateEventMutation } from '~~/gql/documents/mutations/event/eventCreate'
+
+import { EventVisibility } from '~~/gql/generated/graphql'
 
 const { t } = useI18n()
 const store = useMaevsiStore()
@@ -107,8 +133,14 @@ const { jwtDecoded } = storeToRefs(store)
 const stepIndex = ref(1)
 const isFormSent = ref(false)
 
-const { form, v$, isStepOneValid, isStepTwoValid, isStepThreeValid } =
-  useEventForm()
+const {
+  form,
+  v$,
+  isStepOneValid,
+  isStepTwoValid,
+  isStepThreeValid,
+  isStepFiveValid,
+} = useEventForm()
 
 const stepTitles = [
   t('primarySettings'),
@@ -119,7 +151,6 @@ const stepTitles = [
   t('visibility'),
 ]
 
-//TODO: check all fields together instead of individual
 const isStepValid = computed(() => {
   switch (stepIndex.value) {
     case 1:
@@ -159,12 +190,20 @@ const handleNext = async () => {
         break
       case 2:
         isValid = await isStepTwoValid()
-
         break
-
       case 3:
         isValid = await isStepThreeValid()
-
+        break
+      case 4:
+        // Cover images are optional
+        isValid = true
+        break
+      case 5:
+        isValid = await isStepFiveValid()
+        if (isValid) {
+          await handleSubmit()
+          return
+        }
         break
       default:
         isValid = true
@@ -186,20 +225,141 @@ const handlePrevious = () => {
   }
 }
 
+const createEventMutation = useCreateEventMutation()
+// const uploadCreateMutation = useUploadCreateMutation()
+
+const localePath = useLocalePath()
+// const runtimeConfig = useRuntimeConfig()
+// const TUSD_FILES_URL = useTusdFilesUrl()
+
 const handleSubmit = async () => {
   try {
     const isValid = await v$.value.$validate()
 
-    if (isValid) {
-      isFormSent.value = true
-
-      // TODO: Implement actual form submission logic
-    } else {
+    if (!isValid) {
       v$.value.$touch()
-      console.error('Final form validation failed')
+      return
     }
+
+    if (!store.signedInAccountId) throw new Error('Account id is missing!')
+
+    isFormSent.value = true
+
+    const result = await createEventMutation.executeMutation({
+      createEventInput: {
+        event: {
+          authorAccountId: store.signedInAccountId,
+          name: form.value.name,
+          slug: form.value.slug,
+          description: form.value.description || null,
+          isInPerson: form.value.isInPerson,
+          isRemote: form.value.isRemote,
+          start: form.value.startDate || null,
+          end: form.value.endDate || null,
+          location: form.value.address || null,
+          visibility: form.value.visibility || EventVisibility.Private,
+          inviteeCountMaximum: form.value.inviteeCountMaximum
+            ? +form.value.inviteeCountMaximum
+            : null,
+        },
+      },
+    })
+
+    if (result.error || !result.data) {
+      throw new Error('Event creation failed')
+    }
+
+    // Image upload logic commented out
+    /*
+   if (form.value.images?.length) {
+     const uploadPromises = form.value.images.map(async (file) => {
+       const blob = file instanceof Blob ? file : await file.arrayBuffer()
+
+       const uploadResult = await uploadCreateMutation.executeMutation({
+         uploadCreateInput: {
+           sizeByte: file.size,
+         },
+       })
+
+       if (
+         uploadResult.error ||
+         !uploadResult.data?.uploadCreate?.upload?.id
+       ) {
+         throw new Error('Upload creation failed')
+       }
+
+       const uppy = new Uppy({
+         id: 'event-images',
+         debug: !runtimeConfig.public.vio.isInProduction,
+         restrictions: {
+           maxFileSize: 1048576,
+           maxNumberOfFiles: 1,
+           minNumberOfFiles: 1,
+           allowedFileTypes: ['image/*'],
+         },
+         meta: {
+           maevsiUploadUuid: uploadResult.data.uploadCreate.upload.id,
+         },
+         onBeforeUpload: (files) =>
+           Object.fromEntries(
+             Object.entries(files).map(([key, value]) => [
+               key,
+               {
+                 ...value,
+                 name: `/event-images/${value.name}`,
+               },
+             ]),
+           ),
+       })
+
+       uppy.on('restriction-failed', (_file, error) => {
+         throw new Error(error.message)
+       })
+
+       uppy.use(Tus, {
+         endpoint: TUSD_FILES_URL,
+         limit: 1,
+         removeFingerprintOnSuccess: true,
+       })
+
+       uppy.addFile({
+         source: 'event-upload',
+         name: file.name,
+         type: file.type,
+         data: file,
+         size: file.size,
+       })
+
+       const result = await uppy.upload()
+
+       if (!result?.failed || result.failed.length > 0) {
+         throw new Error(t('uploadError'))
+       }
+     })
+
+     await Promise.all(uploadPromises)
+   }
+   */
+
+    showToast({ title: t('eventCreateSuccess') })
+
+    if (!store.signedInUsername || !form.value.slug) {
+      throw new Error(
+        'Aborting navigation: required data for path templating is missing!',
+      )
+    }
+
+    await navigateTo(
+      localePath({
+        name: 'event-view-username-event_name',
+        params: {
+          username: store.signedInUsername,
+          event_name: form.value.slug,
+        },
+      }),
+    )
   } catch (error) {
-    console.error('Form submission error:', error)
+    console.log(error)
     isFormSent.value = false
   }
 }
@@ -217,29 +377,30 @@ defineExpose({
 de:
   anonymousCta: Finde ihn auf maevsi
   anonymousCtaDescription: Du suchst einen liebevollen Ort für deine Veranstaltung?
-  # title: Veranstaltung erstellen
-  next: Weiter
-  create: Erstellen
-  eventUpdate: Änderungen speichern
-  eventCreate: Veranstaltung erstellen
-  allFieldsRequired: Alle Felder sind erforderlich
-  primarySettings: Grundeinstellungen
-  dateAndLocation: Datum und Ort
   coverImage: Titelbild
+  create: Erstellen
+  dateAndLocation: Datum und Ort
+  eventCreate: Veranstaltung erstellen
+  eventCreateSuccess: Veranstaltung erfolgreich erstellt.
   eventDetails: Veranstaltungsdetails
+  eventUpdate: Änderungen speichern
+  next: Weiter
+  primarySettings: Grundeinstellungen
+  skipThisStep: Diesen Schritt überspringen
   visibility: Sichtbarkeit
+
 en:
   anonymousCta: Find it on maevsi
   anonymousCtaDescription: Are you looking for a loving place for your event?
-  # title: Create event
-  next: Next
+  coverImage: Cover and Highlights
   create: Create
-  eventUpdate: Save changes
-  eventCreate: Create event
-  allFieldsRequired: All fields are required
-  primarySettings: Primary settings
   dateAndLocation: Date and location
-  coverImage: Cover image
+  eventCreate: Create event
+  eventCreateSuccess: Event created successfully.
   eventDetails: Details
+  eventUpdate: Save changes
+  next: Next
+  primarySettings: Primary settings
+  skipThisStep: Skip this step
   visibility: Visibility
 </i18n>
