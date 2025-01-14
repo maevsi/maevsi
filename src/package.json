@@ -3,8 +3,8 @@
   "devDependencies": {
     "@aws-sdk/client-ses": "3.726.1",
     "@aws-sdk/credential-providers": "3.726.1",
-    "@dargmuesli/nuxt-cookie-control": "8.4.20",
-    "@dargmuesli/nuxt-vio": "16.0.1",
+    "@dargmuesli/nuxt-cookie-control": "8.4.21",
+    "@dargmuesli/nuxt-vio": "16.0.2",
     "@fontsource-variable/manrope": "5.1.1",
     "@graphql-codegen/add": "5.0.3",
     "@graphql-codegen/cli": "5.0.3",
