@@ -8,7 +8,7 @@
         @load-more="after = api.data.allInvitations?.pageInfo.endCursor"
       >
         <table class="border border-neutral-300 dark:border-neutral-600">
-          <thead
+          <LayoutThead
             class="sticky top-0 z-10 bg-background-bright dark:bg-background-dark"
           >
             <tr>
@@ -17,15 +17,15 @@
               </th>
               <th scope="col" />
             </tr>
-          </thead>
-          <tbody class="divide-y divide-neutral-300 dark:divide-neutral-600">
+          </LayoutThead>
+          <LayoutTbody>
             <InvitationListItem
               v-for="invitation in invitations"
               :key="invitation.id"
               :event="event"
               :invitation="invitation"
             />
-          </tbody>
+          </LayoutTbody>
         </table>
       </ScrollContainer>
       <div v-else class="flex flex-col items-center gap-2">

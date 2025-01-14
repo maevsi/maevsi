@@ -315,10 +315,9 @@
         </div>
         <Card v-if="eventDescriptionTemplate">
           <!-- eslint-disable vue/no-v-html -->
-          <div
-            class="vio-prose-scheme w-full"
-            v-html="eventDescriptionTemplate"
-          />
+          <LayoutProse class="w-full">
+            <div v-html="eventDescriptionTemplate" />
+          </LayoutProse>
           <!-- eslint-enable vue/no-v-html -->
         </Card>
       </div>

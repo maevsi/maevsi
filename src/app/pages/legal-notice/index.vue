@@ -2,7 +2,7 @@
   <div>
     <LayoutBreadcrumbs :items="breadcrumbItems" />
     <LayoutPageTitle :title="title" />
-    <div class="vio-prose-scheme">
+    <LayoutProse>
       <h2>{{ t('tmg') }}</h2>
       <p>
         {{ t('addressName') }}<br />
@@ -110,7 +110,7 @@
           </template>
         </i18n-t>
       </p>
-    </div>
+    </LayoutProse>
   </div>
 </template>
 
