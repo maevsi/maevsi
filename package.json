@@ -35,10 +35,5 @@
     "lint-staged": "15.3.0",
     "semantic-release": "24.2.1"
   },
-  "pnpm": {
-    "overrides": {
-      "nuxt-og-image": "4.0.1"
-    }
-  },
   "type": "module"
 }

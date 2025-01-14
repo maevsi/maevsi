@@ -1,10 +1,4 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["github>dargmuesli/renovate-config"],
-  "packageRules": [
-    {
-      "matchPackageNames": ["nuxt-og-image"],
-      "allowedVersions": "4.0.1"
-    }
-  ]
+  "extends": ["github>dargmuesli/renovate-config"]
 }
