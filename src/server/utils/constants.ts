@@ -147,7 +147,7 @@ export const GET_CSP = ({
       'connect-src': [
         ...(runtimeConfig
           ? [
-              `https://${runtimeConfig.public.sentry.host}/api/${runtimeConfig.public.sentry.project.client.id}/envelope/`,
+              `https://${runtimeConfig.public.sentry.host}/api/${runtimeConfig.public.sentry.project.id}/envelope/`,
             ]
           : []),
       ],

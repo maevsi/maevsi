@@ -1,7 +1,3 @@
-import { exec } from 'node:child_process'
-import { promisify } from 'node:util'
-
-import { sentryVitePlugin } from '@sentry/vite-plugin'
 import vue from '@vitejs/plugin-vue'
 import { defu } from 'defu'
 import type { Nuxt, ModuleOptions } from 'nuxt/schema'
@@ -11,17 +7,19 @@ import Components from 'unplugin-vue-components/vite'
 
 import { modulesConfig } from '../config/modules'
 import { environmentsConfig } from '../config/environments'
+import { RELEASE_NAME } from '../node'
 import {
   IS_NITRO_OPENAPI_ENABLED,
+  NUXT_PUBLIC_SENTRY_HOST,
+  NUXT_PUBLIC_SENTRY_PROFILES_SAMPLE_RATE,
+  NUXT_PUBLIC_SENTRY_PROJECT_ID,
+  NUXT_PUBLIC_SENTRY_PROJECT_PUBLIC_KEY,
+  NUXT_PUBLIC_VIO_ENVIRONMENT,
+  NUXT_PUBLIC_VIO_IS_TESTING,
   SITE_NAME,
   SITE_URL,
 } from '../shared/utils/constants'
 import { GET_CSP } from '../server/utils/constants'
-
-const execPromise = promisify(exec)
-const RELEASE_NAME = async () =>
-  process.env.RELEASE_NAME ||
-  (await execPromise('git describe --tags')).stdout.trim()
 
 // TODO: let this error in "eslint (compat/compat)"" (https://github.com/DefinitelyTyped/DefinitelyTyped/issues/55519)
 // setImmediate(() => {})
@@ -36,29 +34,15 @@ export default defineNuxtConfig({
       titleTemplate: '%s', // fully set in `composables/useAppLayout.ts`
     },
   },
+  build: {
+    transpile: ['import-in-the-middle', 'semver'],
+  },
   compatibilityDate: '2024-04-03',
   experimental: {
     typedPages: true,
   },
   future: {
     compatibilityVersion: 4,
-  },
-  hooks: {
-    'vite:extendConfig': async (config, { isClient }) => {
-      config.plugins ||= []
-      config.plugins.push(
-        sentryVitePlugin({
-          authToken: process.env.SENTRY_AUTH_TOKEN,
-          disable: !process.env.SENTRY_AUTH_TOKEN,
-          release: {
-            name: await RELEASE_NAME(),
-          },
-          org: 'maevsi',
-          project: isClient ? 'client' : 'server',
-          telemetry: false,
-        }),
-      )
-    },
   },
   modules: [
     '@dargmuesli/nuxt-cookie-control',
@@ -73,6 +57,7 @@ export default defineNuxtConfig({
     '@nuxtjs/seo',
     '@nuxtjs/turnstile',
     '@pinia/nuxt',
+    '@sentry/nuxt/module',
     '@vite-pwa/nuxt',
     'nuxt-gtag',
     'shadcn-nuxt',
@@ -125,11 +110,17 @@ export default defineNuxtConfig({
       openAPI: IS_NITRO_OPENAPI_ENABLED,
     },
     rollupConfig: {
+      output: {
+        sourcemap: true, // TODO: remove? (https://github.com/getsentry/sentry-javascript/discussions/15028)
+      },
       // @ts-expect-error deep type instantiation (https://github.com/vitejs/vite-plugin-vue/issues/422)
       plugins: [vue()],
     },
   },
   routeRules: {
+    '/**': {
+      headers: { 'Document-Policy': 'js-profiling' }, // Sentry's browser profiling (currently supported for Chromium-based browsers)
+    },
     '/api/auth-proxy': {
       security: {
         xssValidator: false, // TipTap's HTML is stored unescaped (is escaped when displayed) so api requests would trigger the xss protection on forward authentication (https://github.com/maevsi/maevsi/issues/1603)
@@ -152,19 +143,13 @@ export default defineNuxtConfig({
         },
       },
       sentry: {
-        host: 'o4507213726154752.ingest.de.sentry.io',
+        host: NUXT_PUBLIC_SENTRY_HOST,
         profiles: {
-          sampleRate: 1.0,
+          sampleRate: NUXT_PUBLIC_SENTRY_PROFILES_SAMPLE_RATE,
         },
         project: {
-          client: {
-            id: '4507213736837200',
-            publicKey: '5e253cec6a72a9eea44531e7205016ba',
-          },
-          server: {
-            id: '4507213739393104',
-            publicKey: 'a02892bc5feeb74b598b1edd33c14336',
-          },
+          id: NUXT_PUBLIC_SENTRY_PROJECT_ID,
+          publicKey: NUXT_PUBLIC_SENTRY_PROJECT_PUBLIC_KEY,
         },
         replays: {
           onError: {
@@ -185,8 +170,8 @@ export default defineNuxtConfig({
         siteKey: '0x4AAAAAAABtEW1Hc8mcgWcZ',
       },
       vio: {
-        environment: process.env.NODE_ENV || 'development',
-        isTesting: false,
+        environment: NUXT_PUBLIC_VIO_ENVIRONMENT, // || 'development'
+        isTesting: NUXT_PUBLIC_VIO_IS_TESTING,
         stagingHost:
           process.env.NODE_ENV !== 'production' &&
           !process.env.NUXT_PUBLIC_SITE_URL
@@ -207,6 +192,7 @@ export default defineNuxtConfig({
     optimizeDeps: {
       include: [
         '@headlessui/vue',
+        '@sentry/nuxt',
         '@tiptap/extension-link',
         '@tiptap/extension-text-align',
         '@tiptap/starter-kit',

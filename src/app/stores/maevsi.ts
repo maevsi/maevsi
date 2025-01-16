@@ -1,4 +1,5 @@
 // This file must exist for the i18n module too, as this file's existence enables the store.
+import * as Sentry from '@sentry/nuxt'
 import { decodeJwt, type JWTPayload } from 'jose'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
@@ -9,7 +10,7 @@ import type { Modal } from '~/types/modal'
 export const useMaevsiStore = defineStore('maevsi', () => {
   const localePath = useLocalePath()
 
-  const jwt = ref<string>()
+  const jwt = ref<string>() // TODO: remove (https://github.com/maevsi/maevsi/issues/1720)
   const jwtDecoded = ref<JWTPayload>()
   const modals = ref<Modal[]>([])
   const routeHistory = ref<string[]>([])
@@ -20,6 +21,7 @@ export const useMaevsiStore = defineStore('maevsi', () => {
 
   const jwtRemove = () => {
     jwtSet(undefined)
+    Sentry.setUser(null)
   }
 
   const jwtSet = (jwtNew?: string) => {
@@ -27,18 +29,27 @@ export const useMaevsiStore = defineStore('maevsi', () => {
 
     jwt.value = jwtNew
     jwtDecoded.value = jwtDecodedNew
-    signedInAccountId.value =
+
+    if (
       jwtDecodedNew?.role === 'maevsi_account' &&
       jwtDecodedNew.exp !== undefined &&
       jwtDecodedNew.exp > Math.floor(Date.now() / 1000)
-        ? (jwtDecodedNew.account_id as string | undefined)
-        : undefined
-    signedInUsername.value =
-      jwtDecodedNew?.role === 'maevsi_account' &&
-      jwtDecodedNew.exp !== undefined &&
-      jwtDecodedNew.exp > Math.floor(Date.now() / 1000)
-        ? (jwtDecodedNew.account_username as string | undefined)
-        : undefined
+    ) {
+      signedInAccountId.value = jwtDecodedNew.account_id as string | undefined
+      signedInUsername.value = jwtDecodedNew.account_username as
+        | string
+        | undefined
+
+      Sentry.setUser({
+        id: jwtDecodedNew.account_id as string | undefined,
+        username: jwtDecodedNew.account_username as string | undefined,
+      })
+    } else {
+      signedInAccountId.value = undefined
+      signedInUsername.value = undefined
+
+      Sentry.setUser(null)
+    }
   }
 
   const modalRemove = (modalId: string) => {
