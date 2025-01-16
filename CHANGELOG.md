@@ -1,3 +1,13 @@
+## [6.0.0](https://github.com/maevsi/maevsi/compare/5.4.1...6.0.0) (2025-01-16)
+
+### ⚠ BREAKING CHANGES
+
+* **sentry:** migrate to official module (#1721)
+
+### Features
+
+* **sentry:** migrate to official module ([#1721](https://github.com/maevsi/maevsi/issues/1721)) ([43b145a](https://github.com/maevsi/maevsi/commit/43b145a77973011c665693d45ff5bdcea8edad74))
+
 ## [5.4.1](https://github.com/maevsi/maevsi/compare/5.4.0...5.4.1) (2025-01-11)
 
 ### Bug Fixes
