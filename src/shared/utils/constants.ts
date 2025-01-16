@@ -35,6 +35,13 @@ export const LOCALES = [
     name: 'English',
   },
 ]
+export const NUXT_PUBLIC_SENTRY_HOST = 'o4507213726154752.ingest.de.sentry.io'
+export const NUXT_PUBLIC_SENTRY_PROFILES_SAMPLE_RATE = 1.0
+export const NUXT_PUBLIC_SENTRY_PROJECT_ID = '4507213736837200'
+export const NUXT_PUBLIC_SENTRY_PROJECT_PUBLIC_KEY =
+  '5e253cec6a72a9eea44531e7205016ba'
+export const NUXT_PUBLIC_VIO_ENVIRONMENT = process.env.NODE_ENV
+export const NUXT_PUBLIC_VIO_IS_TESTING = false
 export const POLYFILLS = ['Promise', 'requestAnimationFrame']
 export const POSTGRES_INTEGER_MAXIMUM = Math.pow(2, 31) - 1
 export const REGEX_PHONE_NUMBER = /^\+(?:[0-9] ?){6,14}[0-9]$/
