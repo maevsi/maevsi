@@ -161,6 +161,7 @@
     "lint:style": "stylelint --cache \"**/*.{vue,css}\" --ignore-path .gitignore",
     "lint:ts": "nuxt typecheck",
     "prepare": "nuxt prepare",
+    "start": "pnpm run start:node",
     "start:dev": "nuxt dev",
     "start:node": "node .output/server/index.mjs",
     "start:static": "serve .output/public",
