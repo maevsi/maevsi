@@ -74,18 +74,24 @@
               :validation="v$"
               @update-form="(updatedForm) => Object.assign(form, updatedForm)"
             />
+            <EventStepsPreview
+              v-else-if="stepIndex === 6"
+              :form="form"
+              :validation="v$"
+              @update-form="(updatedForm) => Object.assign(form, updatedForm)"
+            />
           </div>
 
           <div class="mt-6">
             <ShadButton
               variant="default"
               class="w-full bg-accent-fancy text-white hover:bg-accent-strong/90"
-              :aria-label="stepIndex === 5 ? t('create') : t('next')"
+              :aria-label="stepIndex === 5 ? t('preview') : t('next')"
               :disabled="!isStepValid"
-              :type="stepIndex === 5 ? 'submit' : 'button'"
+              :type="stepIndex === 6 ? 'submit' : 'button'"
               @click="handleNext"
             >
-              {{ stepIndex === 5 ? t('create') : t('next') }}
+              {{ stepIndex === 5 ? t('preview') : t('next') }}
             </ShadButton>
           </div>
           <div class="mt-4">
@@ -147,6 +153,7 @@ const stepTitles = [
   t('coverImage'),
 
   t('visibility'),
+  t('previewHeading'),
 ]
 
 const isStepValid = computed(() => {
@@ -194,16 +201,15 @@ const handleNext = async () => {
         break
       case 5:
         isValid = await isStepFiveValid()
-        if (isValid) {
-          await handleSubmit()
-          return
-        }
         break
+      case 6:
+        break
+
       default:
         isValid = true
     }
 
-    if (isValid && stepIndex.value < 5) {
+    if (isValid && stepIndex.value < 6) {
       stepIndex.value++
     } else if (!isValid) {
       v$.value.$touch()
@@ -349,7 +355,6 @@ de:
   anonymousCta: Finde ihn auf maevsi
   anonymousCtaDescription: Du suchst einen liebevollen Ort für deine Veranstaltung?
   coverImage: Titelbild
-  create: Erstellen
   dateAndLocation: Datum und Ort
   eventCreateSuccess: Veranstaltung erfolgreich erstellt.
   eventDetails: Veranstaltungsdetails
@@ -357,12 +362,13 @@ de:
   primarySettings: Grundeinstellungen
   skipThisStep: Diesen Schritt überspringen
   visibility: Sichtbarkeit
+  preview: Vorschau des Ereignisses
+  previewHeading: Ereignisvorschau
 
 en:
   anonymousCta: Find it on maevsi
   anonymousCtaDescription: Are you looking for a loving place for your event?
   coverImage: Cover and Highlights
-  create: Create
   dateAndLocation: Date and location
   eventCreateSuccess: Event created successfully.
   eventDetails: Details
@@ -370,4 +376,6 @@ en:
   primarySettings: Primary settings
   skipThisStep: Skip this step
   visibility: Visibility
+  preview: Preview the Event
+  previewHeading: Event Preview
 </i18n>
