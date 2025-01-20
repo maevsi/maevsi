@@ -1,3 +1,9 @@
+## [6.1.0](https://github.com/maevsi/maevsi/compare/6.0.0...6.1.0) (2025-01-20)
+
+### Features
+
+* **browserslist:** explain banner ([#1725](https://github.com/maevsi/maevsi/issues/1725)) ([6c6ae80](https://github.com/maevsi/maevsi/commit/6c6ae80480ba01b4936ccfc405a7d89fbd1f75e6))
+
 ## [6.0.0](https://github.com/maevsi/maevsi/compare/5.4.1...6.0.0) (2025-01-16)
 
 ### ⚠ BREAKING CHANGES
