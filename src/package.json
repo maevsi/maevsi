@@ -29,7 +29,7 @@
     "@nuxt/ui": "2.21.0",
     "@nuxtjs/html-validator": "1.8.2",
     "@nuxtjs/i18n": "9.1.1",
-    "@nuxtjs/seo": "2.0.3",
+    "@nuxtjs/seo": "2.1.0",
     "@nuxtjs/tailwindcss": "6.13.1",
     "@nuxtjs/turnstile": "0.9.11",
     "@pinia/nuxt": "0.9.0",
