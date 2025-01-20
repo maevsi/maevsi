@@ -85,6 +85,12 @@
         <xhtml:link rel="alternate" hreflang="x-default" href="http://localhost:3001/docs/app" />
     </url>
     <url>
+        <loc>http://localhost:3001/docs/browser-support</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="http://localhost:3001/de/docs/browser-support" />
+        <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3001/docs/browser-support" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="http://localhost:3001/docs/browser-support" />
+    </url>
+    <url>
         <loc>http://localhost:3001/event/create</loc>
         <xhtml:link rel="alternate" hreflang="de" href="http://localhost:3001/de/event/create" />
         <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3001/event/create" />
