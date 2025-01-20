@@ -95,7 +95,7 @@
     "nuxt-security": "2.1.5",
     "nuxt-seo-ui": "0.4.4",
     "pg": "8.13.1",
-    "pinia": "2.3.0",
+    "pinia": "2.3.1",
     "prettier": "3.4.2",
     "prettier-plugin-tailwindcss": "0.6.10",
     "pretty-bytes": "6.1.1",
