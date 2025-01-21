@@ -7,13 +7,13 @@ export const getSharedSentryConfig = ({
   projectPublicKey,
   release,
 }: {
-  environment: string
+  environment?: string
   host: string
   isInProduction: boolean
   isTesting?: boolean
   projectId: string
   projectPublicKey: string
-  release: string
+  release?: string
 }) => ({
   dsn:
     projectPublicKey && host && projectId

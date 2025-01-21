@@ -1,3 +1,25 @@
+## [6.1.0](https://github.com/maevsi/maevsi/compare/6.0.0...6.1.0) (2025-01-20)
+
+### Features
+
+* **browserslist:** explain banner ([#1725](https://github.com/maevsi/maevsi/issues/1725)) ([6c6ae80](https://github.com/maevsi/maevsi/commit/6c6ae80480ba01b4936ccfc405a7d89fbd1f75e6))
+
+## [6.0.0](https://github.com/maevsi/maevsi/compare/5.4.1...6.0.0) (2025-01-16)
+
+### ⚠ BREAKING CHANGES
+
+* **sentry:** migrate to official module (#1721)
+
+### Features
+
+* **sentry:** migrate to official module ([#1721](https://github.com/maevsi/maevsi/issues/1721)) ([43b145a](https://github.com/maevsi/maevsi/commit/43b145a77973011c665693d45ff5bdcea8edad74))
+
+## [5.4.1](https://github.com/maevsi/maevsi/compare/5.4.0...5.4.1) (2025-01-11)
+
+### Bug Fixes
+
+* schedule release ([13e66a0](https://github.com/maevsi/maevsi/commit/13e66a0e2fc89318a7928f135d310d347abe712f))
+
 ## [5.4.0](https://github.com/maevsi/maevsi/compare/5.3.1...5.4.0) (2025-01-03)
 
 ### Features

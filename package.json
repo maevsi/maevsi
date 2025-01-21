@@ -3,18 +3,19 @@
   "engines": {
     "node": "22"
   },
-  "packageManager": "pnpm@9.15.3",
+  "packageManager": "pnpm@9.15.4",
   "scripts": {
-    "build": "pnpm --dir src run build:node",
-    "build:node": "nuxt --dir src run build",
-    "build:static": "nuxt --dir src run generate",
+    "build": "pnpm --dir src run build",
+    "build:node": "nuxt --dir src run build:node",
+    "build:static": "nuxt --dir src run build:static",
     "dev": "pnpm --dir src run start:dev",
-    "generate": "pnpm --dir src run build:static",
+    "generate": "pnpm --dir src run generate",
     "lint": "pnpm -r lint",
     "prepare": "husky",
-    "start:dev": "pnpm --dir src exec nuxt dev",
-    "start:node": "node src/.output/server/index.mjs",
-    "start:static": "pnpm --dir src exec serve .output/public",
+    "start": "pnpm --dir src run start",
+    "start:dev": "pnpm --dir src run start:dev",
+    "start:node": "pnpm --dir src run start:node",
+    "start:static": "pnpm --dir src run start:static",
     "test:e2e:docker:server:dev:update": "pnpm --dir tests run test:e2e:docker:server:dev:update",
     "test:e2e:docker:server:dev": "pnpm --dir tests run test:e2e:docker:server:dev",
     "test:e2e:docker:server:node:update": "pnpm --dir tests run test:e2e:docker:server:node:update",
@@ -33,14 +34,8 @@
     "conventional-changelog-conventionalcommits": "8.0.0",
     "husky": "9.1.7",
     "jiti": "2.4.2",
-    "lint-staged": "15.3.0",
+    "lint-staged": "15.4.1",
     "semantic-release": "24.2.1"
-  },
-  "pnpm": {
-    "overrides": {
-      "nuxt-og-image": "4.0.1",
-      "typescript": "5.6.3"
-    }
   },
   "type": "module"
 }

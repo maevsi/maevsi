@@ -2,7 +2,7 @@
   <div>
     <LayoutBreadcrumbs :items="breadcrumbItems" />
     <LayoutPageTitle :title="title" />
-    <div class="vio-prose-scheme">
+    <LayoutProse>
       <h2>{{ t('summary') }}</h2>
       <h3>{{ t('generalNotesTitle') }}</h3>
       <p>{{ t('generalNotesDescription') }}</p>
@@ -254,7 +254,7 @@
           {{ t('source') }}
         </AppLink>
       </p>
-    </div>
+    </LayoutProse>
   </div>
 </template>
 

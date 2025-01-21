@@ -2,7 +2,7 @@ import { test } from '@playwright/test'
 
 // import { TIMEZONE_COOKIE_NAME } from '~/utils/constants'
 // import {
-//   COOKIE_CONTROL_DEFAULT,
+//   COOKIE_CONTROL_CONSENT_COOKIE_DEFAULT,
 //   TIMEZONE_DEFAULT,
 // } from '~/cypress/utils/constants'
 
@@ -10,7 +10,7 @@ test.describe('account username page', () => {
   // TODO: mock data
   // beforeEach(() => {
   //   cy.setCookie(TIMEZONE_COOKIE_NAME, TIMEZONE_DEFAULT)
-  //   cy.setCookie('ncc_c', COOKIE_CONTROL_DEFAULT)
+  //   cy.setCookie('ncc_c', COOKIE_CONTROL_CONSENT_COOKIE_DEFAULT)
   // })
   //
   // TODO: mock data
