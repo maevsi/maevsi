@@ -154,7 +154,6 @@ const isStepValid = computed(() => {
     case 1:
       return (
         form.value.name.trim() !== '' &&
-        form.value.format !== '' &&
         form.value.category !== '' &&
         (form.value.isInPerson || form.value.isRemote)
       )
@@ -162,10 +161,7 @@ const isStepValid = computed(() => {
       return (
         form.value.startDate !== '' &&
         form.value.endDate !== '' &&
-        form.value.street !== '' &&
-        form.value.city !== '' &&
-        form.value.postcode !== '' &&
-        form.value.country !== ''
+        form.value.address !== ''
       )
     case 3:
       return form.value.description !== '' && form.value.website !== ''
@@ -241,7 +237,6 @@ const handleSubmit = async () => {
 
     isFormSent.value = true
 
-    // First create the event
     const result = await createEventMutation.executeMutation({
       createEventInput: {
         event: {
@@ -258,6 +253,7 @@ const handleSubmit = async () => {
           inviteeCountMaximum: form.value.inviteeCountMaximum
             ? +form.value.inviteeCountMaximum
             : null,
+          url: form.value.website,
         },
       },
     })

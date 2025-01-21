@@ -136,7 +136,6 @@ const props = defineProps<{
     slug: string
     isInPerson: boolean
     isRemote: boolean
-    format: string
     category: string
   }
   validation: BaseValidation
@@ -211,26 +210,26 @@ const selectCategory = (category: { id: number; name: string }) => {
 <i18n lang="yaml">
 de:
   allFieldsRequired: Alle Felder sind erforderlich
-  eventTitle: Veranstaltungstitel
-  # eventTitlePlaceholder: Gib deiner Veranstaltung einen Namen
   attendanceType: Anwesenheitstyp
-  faceToFace: Face to face
-  online: Online
-  eventCategory: Veranstaltungskategorie
   choose: Wählen
+  eventCategory: Veranstaltungskategorie
+  eventTitle: Veranstaltungstitel
+  faceToFace: Face to face
   namePlaceholder: Willkommensfeier
-  validationWarningNameChangeSlug: Wenn du den Namen änderst, funktionieren bestehende Links zur Veranstaltung möglicherweise nicht mehr
+  online: Online
   validationExistenceNone: Du hast bereits eine Veranstaltung mit der ID "{slug}"
+  validationWarningNameChangeSlug: Wenn du den Namen änderst, funktionieren bestehende Links zur Veranstaltung möglicherweise nicht mehr
+  # eventTitlePlaceholder: Gib deiner Veranstaltung einen Namen
 en:
   allFieldsRequired: All fields are required
-  eventTitle: Event title
-  # eventTitlePlaceholder: Give your event a name
   attendanceType: Attendance type
-  faceToFace: Face to face
-  online: Online
-  eventCategory: Event category
   choose: Choose
+  eventCategory: Event category
+  eventTitle: Event title
+  faceToFace: Face to face
   namePlaceholder: Welcome Party
-  validationWarningNameChangeSlug: If you change the name, existing links to the event may no longer work
+  online: Online
   validationExistenceNone: You have already created an event with id "{slug}"
+  validationWarningNameChangeSlug: If you change the name, existing links to the event may no longer work
+  # eventTitlePlaceholder: Give your event a name
 </i18n>

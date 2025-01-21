@@ -5,38 +5,38 @@ import { required, maxLength } from '@vuelidate/validators'
 
 export function useEventForm(eventSlug?: string) {
   const form = ref({
-    name: '',
-    slug: '',
-    isInPerson: false,
-    isRemote: false,
-    category: '',
-    id: '',
-    authorAccountId: '',
-    description: '',
-    end: '',
-    inviteeCountMaximum: '',
-    location: '',
-    start: '',
-    url: '',
-    visibility: null as EventVisibility | null,
-    street: '',
-    houseNumber: '',
     additionalStreet: '',
-    postcode: '',
+    address: '',
+    authorAccountId: '',
+    category: '',
     city: '',
     country: '',
+    coverImage: null as File | null,
+    description: '',
+    end: '',
+    endDate: '',
+    endTime: '',
+    frequency: '',
+    houseNumber: '',
+    id: '',
+    images: [] as File[],
+    inviteeCountMaximum: '',
+    isInPerson: false,
+    isRecurring: false,
+    isRemote: false,
+    location: '',
+    name: '',
+    postcode: '',
+    previewUrls: [] as string[],
+    recurringEndDate: '',
+    slug: '',
+    start: '',
     startDate: '',
     startTime: '',
-    endDate: '',
-    endTime: '23:00',
-    isRecurring: false,
-    frequency: '',
-    recurringEndDate: '',
-    address: '',
+    street: '',
+    url: '',
+    visibility: null as EventVisibility | null,
     website: '',
-    images: [] as File[],
-    coverImage: null as File | null,
-    previewUrls: [] as string[],
   })
 
   const stepOneRules = {
@@ -55,14 +55,11 @@ export function useEventForm(eventSlug?: string) {
   }
 
   const stepTwoRules = {
-    startDate: { required },
-    startTime: { required },
+    address: { required },
     endDate: { required },
     endTime: {},
-    street: { required },
-    city: { required },
-    postcode: { required },
-    country: { required },
+    startDate: { required },
+    startTime: { required },
   }
 
   const stepThreeRules = {
@@ -110,13 +107,11 @@ export function useEventForm(eventSlug?: string) {
 
   const isStepTwoValid = async () => {
     await v$.value.$validate()
+
     return (
       !v$.value.startDate.$invalid &&
       !v$.value.endDate.$invalid &&
-      !v$.value.street.$invalid &&
-      !v$.value.city.$invalid &&
-      !v$.value.postcode.$invalid &&
-      !v$.value.country.$invalid
+      !v$.value.address.$invalid
     )
   }
 
@@ -151,7 +146,6 @@ export function useEventForm(eventSlug?: string) {
     updateFormName,
     updateStartTime,
     updateEndTime,
-
     updateImages,
   }
 }

@@ -195,7 +195,6 @@ const clearAll = () => {
 }
 
 const emitFormUpdate = () => {
-  console.log(selectedFiles.value.length)
   emit('updateForm', {
     images: selectedFiles.value,
     previewUrls: previewUrls.value,
