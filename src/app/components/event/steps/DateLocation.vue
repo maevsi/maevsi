@@ -107,15 +107,15 @@
       <div class="space-y-6">
         <div class="border-b border-gray-100 pb-4">
           <input
-            v-model="eventForm.street"
+            v-model="eventForm.address"
             type="text"
-            :placeholder="t('street')"
-            class="px-0 py-2 text-xl text-gray-600 placeholder:text-gray-400 focus:outline-none"
+            :placeholder="t('address')"
+            class="w-full px-0 py-2 text-xl text-gray-600 placeholder:text-gray-400 focus:outline-none"
             pattern="^[A-Za-z0-9\s\-\.]+$"
             @input="onAddressInput"
           />
         </div>
-
+        <!--  
         <div class="border-b border-gray-100 pb-4">
           <input
             v-model="eventForm.houseNumber"
@@ -170,7 +170,9 @@
             class="border-0 px-0 py-2 text-xl text-gray-600 placeholder:text-gray-400 focus:outline-none"
             @input="onAddressInput"
           />
+         
         </div>
+         -->
       </div>
     </div>
   </div>
@@ -193,6 +195,20 @@ import type { BaseValidation } from '@vuelidate/core'
 import { useEventForm } from '~/composables/useEventForm'
 const { form: eventForm } = useEventForm()
 const { t } = useI18n()
+
+const props = defineProps<{
+  form: {
+    address: string
+    endDate: string
+    endTime: string
+    frequency: string | null
+    isRecurring: boolean
+    recurringEndDate: string | null
+    startDate: string
+    startTime: string
+  }
+  validation: BaseValidation
+}>()
 
 const isRecurring = ref(false)
 
@@ -217,25 +233,6 @@ const frequencyOptions = computed(() => [
 
 const emit = defineEmits<{
   updateForm: [value: Partial<typeof props.form>]
-}>()
-
-const props = defineProps<{
-  form: {
-    startDate: string
-    startTime: string
-    endDate: string
-    endTime: string
-    street: string
-    houseNumber: string
-    additionalStreet: string
-    city: string
-    postcode: string
-    country: string
-    isRecurring: boolean
-    frequency: string | null
-    recurringEndDate: string | null
-  }
-  validation: BaseValidation
 }>()
 
 const selectStartDateTime = ({
@@ -298,54 +295,38 @@ const selectFrequency = (option: { label: string; value: string }) => {
 
 const onAddressInput = () => {
   emit('updateForm', {
-    additionalStreet: eventForm.value.additionalStreet,
-    city: eventForm.value.city,
-    country: eventForm.value.country,
-    postcode: eventForm.value.postcode,
-    street: eventForm.value.street,
+    address: eventForm.value.address,
   })
 }
 </script>
 
 <i18n lang="yaml">
 de:
-  startDateTime: Startdatum & Uhrzeit
-  endDateTime: Enddatum & Uhrzeit
-  startDate: Startdatum
-  endDate: Enddatum
-  recurringEvent: Wiederkehrendes Event
-  frequency: Häufigkeit
-  endsOn: Endet am
-  everyYear: Jedes Jahr
-  everyDay: Jeden Tag
-  everyWeek: Jede Woche
-  everyMonth: Jeden Monat
   address: Adresse
-  street: Straße
-  houseNumber: Hausnummer
-  additionalStreet: Zusätzliche Straße
-  postcode: Postleitzahl
-  city: Stadt
-  country: Land
   defaultEndDate: 24. März 2026
+  endDate: Enddatum
+  endDateTime: Enddatum & Uhrzeit
+  endsOn: Endet am
+  everyDay: Jeden Tag
+  everyMonth: Jeden Monat
+  everyWeek: Jede Woche
+  everyYear: Jedes Jahr
+  frequency: Häufigkeit
+  recurringEvent: Wiederkehrendes Event
+  startDate: Startdatum
+  startDateTime: Startdatum & Uhrzeit
 en:
-  startDateTime: Start date & time
-  endDateTime: End date & time
-  startDate: Start Date
-  endDate: End Date
-  recurringEvent: Recurring event
-  frequency: Frequency
-  endsOn: Ends on
-  everyYear: Every year
-  everyDay: Every day
-  everyWeek: Every week
-  everyMonth: Every month
   address: Address
-  street: Street
-  houseNumber: House Number
-  additionalStreet: Additional Street
-  postcode: Postcode
-  city: City
-  country: Country
   defaultEndDate: 24 Mar 2026
+  endDate: End Date
+  endDateTime: End date & time
+  endsOn: Ends on
+  everyDay: Every day
+  everyMonth: Every month
+  everyWeek: Every week
+  everyYear: Every year
+  frequency: Frequency
+  recurringEvent: Recurring event
+  startDate: Start Date
+  startDateTime: Start date & time
 </i18n>
