@@ -133,6 +133,11 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
+    private: {
+      openai: {
+        apiKey: '',
+      },
+    },
     public: {
       i18n: {
         baseUrl: SITE_URL,
