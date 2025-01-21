@@ -60,37 +60,6 @@
       </FormCheckbox>
     </FormInput>
 
-    <FormInput :title="t('eventFormat')" type="dropdown">
-      <DropdownMenu v-model:open="open">
-        <DropdownMenuTrigger
-          class="w-full rounded-lg border border-gray-200 bg-white px-4 py-2 text-left"
-        >
-          <div class="flex items-center justify-between">
-            <span :class="{ 'text-gray-500': !props.form.format }">
-              {{ props.form.format || t('choose') }}
-            </span>
-
-            <ChevronDown
-              :class="{ 'rotate-180': open }"
-              class="h-4 w-4 transition-transform"
-            />
-          </div>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent
-          class="w-[--radix-dropdown-menu-trigger-width] rounded-lg border border-gray-200 bg-white p-1 shadow-lg"
-        >
-          <DropdownMenuItem
-            v-for="format in eventFormats"
-            :key="format.id"
-            class="cursor-pointer rounded-md px-3 py-2 hover:bg-gray-50"
-            @click="selectFormat(format)"
-          >
-            {{ format.name }}
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
-    </FormInput>
-
     <FormInput :title="t('eventCategory')" type="dropdown">
       <DropdownMenu v-model:open="categoryOpen">
         <DropdownMenuTrigger
@@ -156,6 +125,8 @@ import { ref } from 'vue'
 import { ChevronDown } from 'lucide-vue-next'
 import slugify from 'slugify'
 import type { EventItemFragment } from '~~/gql/generated/graphql'
+import { useEventForm } from '~/composables/useEventForm'
+import { useEventCategoriesQuery } from '~~/gql/documents/queries/event/eventCategories'
 
 const { form: eventForm, v$, updateFormName } = useEventForm()
 
@@ -178,20 +149,17 @@ const emit = defineEmits<{
 
 const { t } = useI18n()
 
-const open = ref(false)
 const categoryOpen = ref(false)
 
-const eventFormats = [
-  { id: 1, name: 'Face to Face' },
-  { id: 2, name: 'Online' },
-  { id: 3, name: 'Hybrid' },
-]
+const { data } = useEventCategoriesQuery()
 
-const eventCategory = [
-  { id: 1, name: 'Any' },
-  { id: 2, name: 'Party' },
-  { id: 3, name: 'Politics' },
-]
+const eventCategory = computed(
+  () =>
+    data.value?.allEventCategories?.edges?.map((edge, index) => ({
+      id: index + 1,
+      name: edge.node.category,
+    })) ?? [],
+)
 
 const onInputName = ($event: string) => {
   v$.value.name.$model = $event
@@ -232,13 +200,6 @@ const onAttendanceTypeChange = (
   })
 }
 
-const selectFormat = (format: { id: number; name: string }) => {
-  eventForm.value.format = format.name
-
-  emit('updateForm', { ...props.form, format: format.name })
-  open.value = false
-}
-
 const selectCategory = (category: { id: number; name: string }) => {
   eventForm.value.category = category.name
 
@@ -255,7 +216,6 @@ de:
   attendanceType: Anwesenheitstyp
   faceToFace: Face to face
   online: Online
-  eventFormat: Veranstaltungsformat
   eventCategory: Veranstaltungskategorie
   choose: Wählen
   namePlaceholder: Willkommensfeier
@@ -268,7 +228,6 @@ en:
   attendanceType: Attendance type
   faceToFace: Face to face
   online: Online
-  eventFormat: Event format
   eventCategory: Event category
   choose: Choose
   namePlaceholder: Welcome Party

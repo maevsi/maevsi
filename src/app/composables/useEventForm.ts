@@ -9,7 +9,6 @@ export function useEventForm(eventSlug?: string) {
     slug: '',
     isInPerson: false,
     isRemote: false,
-    format: '',
     category: '',
     id: '',
     authorAccountId: '',
@@ -52,7 +51,6 @@ export function useEventForm(eventSlug?: string) {
         exclude: eventSlug,
       }),
     }),
-    format: { required: true },
     category: { required: true },
   }
 
@@ -107,11 +105,7 @@ export function useEventForm(eventSlug?: string) {
 
   const isStepOneValid = async () => {
     await v$.value.$validate()
-    return (
-      !v$.value.name.$invalid &&
-      !v$.value.format.$invalid &&
-      !v$.value.category.$invalid
-    )
+    return !v$.value.name.$invalid && !v$.value.category.$invalid
   }
 
   const isStepTwoValid = async () => {
