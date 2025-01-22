@@ -1,4 +1,3 @@
-import type { H3Event } from 'h3'
 import { z } from 'zod'
 
 const icalPostBodySchema = z.object({
@@ -28,7 +27,7 @@ const icalPostBodySchema = z.object({
     .optional(),
 })
 
-export default defineEventHandler(async (h3Event: H3Event) => {
+export default defineEventHandler(async (h3Event) => {
   const body = await getBodySafe({ event: h3Event, schema: icalPostBodySchema })
 
   const contact = body.contact

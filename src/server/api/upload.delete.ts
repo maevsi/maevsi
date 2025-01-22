@@ -1,18 +1,16 @@
-import type { H3Event } from 'h3'
-import { consola } from 'consola'
 import { z } from 'zod'
 
 const uploadDeleteQuerySchema = z.object({
   uploadId: z.string(),
 })
 
-export default defineEventHandler(async (event: H3Event) => {
+export default defineEventHandler(async (event) => {
   await verifyAuth(event)
 
   const query = await getQuerySafe({ event, schema: uploadDeleteQuerySchema })
   const uploadId = query.uploadId
 
-  consola.log('tusdDelete: ' + uploadId)
+  console.log('tusdDelete: ' + uploadId)
 
   const queryResult = await pool
     .query('SELECT * FROM maevsi.upload WHERE id = $1;', [uploadId])
@@ -51,12 +49,9 @@ export default defineEventHandler(async (event: H3Event) => {
   switch (response.status) {
     case 204:
       await deleteUpload(event, uploadId)
-      event.node.res.statusCode = 204
-      await send(event)
-      break
+      return sendNoContent(event)
     case 404:
-      await deleteUpload(event, uploadId)
-      break
+      return deleteUpload(event, uploadId)
     default:
       return throwError({
         code: 500,
