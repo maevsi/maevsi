@@ -1,15 +1,14 @@
-import type { H3Event } from 'h3'
 import { jwtVerify, importSPKI } from 'jose'
 
-export default defineEventHandler(async (event: H3Event) => {
+export default defineEventHandler(async (event) => {
   const runtimeConfig = useRuntimeConfig()
-
-  const { req, res } = event.node
   const jwtPublicKey = await useJwtPublicKey()
+
+  const headerAuthorization = getRequestHeader(event, 'authorization')
   let jwt = ''
 
-  if (req.headers.authorization) {
-    jwt = req.headers.authorization.substring(7)
+  if (headerAuthorization) {
+    jwt = headerAuthorization.substring(7)
 
     // TODO: decide whether to use the following if / to fetch the authentication key from staging (https://github.com/maevsi/maevsi/issues/916)
     if (process.env.NODE_ENV === 'production') {
@@ -42,5 +41,4 @@ export default defineEventHandler(async (event: H3Event) => {
     sameSite: 'lax', // Cannot be 'strict' to allow authentications after clicking on links within webmailers.
     secure: runtimeConfig.public.vio.isInProduction,
   })
-  res.end()
 })
