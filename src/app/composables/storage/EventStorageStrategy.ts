@@ -9,7 +9,6 @@ export interface EventFormData {
   slug: string
   isInPerson: boolean
   isRemote: boolean
-  format: string
   category: string
   id: string
   authorAccountId: string
