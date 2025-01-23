@@ -91,7 +91,13 @@
               :type="stepIndex === 6 ? 'submit' : 'button'"
               @click="handleNext"
             >
-              {{ stepIndex === 5 ? t('preview') : t('next') }}
+              {{
+                stepIndex === 5
+                  ? t('preview')
+                  : stepIndex === 6
+                    ? t('saveAndPublishing')
+                    : t('next')
+              }}
             </ShadButton>
           </div>
           <div class="mt-4">
@@ -102,6 +108,16 @@
               @click="handleNext"
             >
               {{ t('skipThisStep') }}
+            </ShadButton>
+          </div>
+          <div class="mt-4">
+            <ShadButton
+              v-if="stepIndex === 6"
+              variant="outline"
+              class="w-full"
+              @click="handleDraftSave"
+            >
+              {{ t('saveDraft') }}
             </ShadButton>
           </div>
         </div>
@@ -126,6 +142,8 @@ import { Uppy } from '@uppy/core'
 
 import { EventVisibility } from '~~/gql/generated/graphql'
 import Tus from '@uppy/tus'
+import type { EventStorageStrategy } from '~/composables/storage/EventStorageStrategy'
+import { LocalStorageStrategy } from '~/composables/storage/LocalStorageStrategy'
 
 const { t } = useI18n()
 const store = useMaevsiStore()
@@ -227,6 +245,9 @@ const handlePrevious = () => {
 
 const createEventMutation = useCreateEventMutation()
 const uploadCreateMutation = useUploadCreateMutation()
+const storageStrategy = ref<EventStorageStrategy>(
+  LocalStorageStrategy.getInstance(),
+)
 
 const localePath = useLocalePath()
 
@@ -341,6 +362,11 @@ const handleSubmit = async () => {
   }
 }
 
+const handleDraftSave = async () => {
+  await storageStrategy.value.saveEvent(form.value)
+  showToast({ title: t('draftSaved') })
+}
+
 defineExpose({
   handleNext,
   handlePrevious,
@@ -364,6 +390,9 @@ de:
   visibility: Sichtbarkeit
   preview: Vorschau des Ereignisses
   previewHeading: Ereignisvorschau
+  saveAndPublishing: Speichern und zur Veröffentlichung
+  saveDraft: Als Entwurf speichern
+  draftSaved: Entwurf erfolgreich gespeichert
 
 en:
   anonymousCta: Find it on maevsi
@@ -378,4 +407,7 @@ en:
   visibility: Visibility
   preview: Preview the Event
   previewHeading: Event Preview
+  saveAndPublishing: Save and go to publishing
+  saveDraft: Save as draft
+  draftSaved: Draft saved successfully
 </i18n>

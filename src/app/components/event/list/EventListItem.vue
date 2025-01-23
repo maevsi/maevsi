@@ -77,16 +77,28 @@ import mustache from 'mustache'
 import type { EventItemFragment } from '~~/gql/generated/graphql'
 
 export interface Props {
-  event: Pick<
-    EventItemFragment,
-    | 'name'
-    | 'accountByAuthorAccountId'
-    | 'start'
-    | 'visibility'
-    | 'slug'
-    | 'end'
-    | 'description'
-  >
+  event:
+    | Pick<
+        EventItemFragment,
+        | 'name'
+        | 'accountByAuthorAccountId'
+        | 'start'
+        | 'visibility'
+        | 'slug'
+        | 'end'
+        | 'description'
+      >
+    | {
+        name: string
+        accountByAuthorAccountId: EventItemFragment['accountByAuthorAccountId']
+        start: string
+        visibility: EventItemFragment['visibility']
+        slug: string
+        end: string
+        description: string
+        isDraft: boolean
+        savedAt: Date
+      }
 }
 const props = withDefaults(defineProps<Props>(), {})
 
