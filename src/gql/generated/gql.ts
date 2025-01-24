@@ -86,6 +86,8 @@ const documents = {
     types.AllContactsDocument,
   '\n  query eventByAuthorAccountIdAndSlug(\n    $authorAccountId: UUID!\n    $slug: String!\n    $invitationId: UUID\n  ) {\n    eventByAuthorAccountIdAndSlug(\n      authorAccountId: $authorAccountId\n      slug: $slug\n    ) {\n      ...EventItem\n      invitationsByEventId(condition: { id: $invitationId }) {\n        nodes {\n          ...InvitationItem\n          contactByContactId {\n            ...ContactItem\n          }\n        }\n      }\n    }\n  }\n':
     types.EventByAuthorAccountIdAndSlugDocument,
+  '\n  query EventCategories {\n    allEventCategories {\n      edges {\n        node {\n          category\n        }\n      }\n    }\n  }\n':
+    types.EventCategoriesDocument,
   '\n  query eventIsExisting($authorAccountId: UUID!, $slug: String!) {\n    eventIsExisting(authorAccountId: $authorAccountId, slug: $slug)\n  }\n':
     types.EventIsExistingDocument,
   '\n      query allEvents($after: Cursor, $authorAccountId: UUID, $first: Int!) {\n        allEvents(\n          after: $after\n          condition: { authorAccountId: $authorAccountId }\n          first: $first\n          orderBy: START_DESC\n        ) {\n          nodes {\n            ...EventItem\n          }\n          pageInfo {\n            hasNextPage\n            endCursor\n          }\n          totalCount\n        }\n      }\n    ':
@@ -328,6 +330,12 @@ export function graphql(
 export function graphql(
   source: '\n  query eventByAuthorAccountIdAndSlug(\n    $authorAccountId: UUID!\n    $slug: String!\n    $invitationId: UUID\n  ) {\n    eventByAuthorAccountIdAndSlug(\n      authorAccountId: $authorAccountId\n      slug: $slug\n    ) {\n      ...EventItem\n      invitationsByEventId(condition: { id: $invitationId }) {\n        nodes {\n          ...InvitationItem\n          contactByContactId {\n            ...ContactItem\n          }\n        }\n      }\n    }\n  }\n',
 ): (typeof documents)['\n  query eventByAuthorAccountIdAndSlug(\n    $authorAccountId: UUID!\n    $slug: String!\n    $invitationId: UUID\n  ) {\n    eventByAuthorAccountIdAndSlug(\n      authorAccountId: $authorAccountId\n      slug: $slug\n    ) {\n      ...EventItem\n      invitationsByEventId(condition: { id: $invitationId }) {\n        nodes {\n          ...InvitationItem\n          contactByContactId {\n            ...ContactItem\n          }\n        }\n      }\n    }\n  }\n']
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n  query EventCategories {\n    allEventCategories {\n      edges {\n        node {\n          category\n        }\n      }\n    }\n  }\n',
+): (typeof documents)['\n  query EventCategories {\n    allEventCategories {\n      edges {\n        node {\n          category\n        }\n      }\n    }\n  }\n']
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
