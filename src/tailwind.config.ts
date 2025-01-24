@@ -76,11 +76,18 @@ export default <Partial<Config>>{
         shake: 'shake 0.6s ease-in-out 0s 1 normal forwards running',
       },
       colors: {
+        accent: {
+          fancy: '#4743B1',
+          mid: '#CECCEB',
+          strong: '#2D2B70',
+          weak: '#E2E1F4',
+        },
         background: {
           bright: colors.white,
           brighten: gray['200'],
           dark: gray['800'],
           darken: gray['700'],
+          surface: '#EDECF8',
         },
         link: {
           bright: colors.blue['400'],

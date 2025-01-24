@@ -24,6 +24,7 @@
     "test:e2e:docker:server:static": "pnpm --dir tests run test:e2e:docker:server:static"
   },
   "devDependencies": {
+    "@internationalized/date": "^3.6.0",
     "@semantic-release/changelog": "6.0.3",
     "@semantic-release/commit-analyzer": "13.0.1",
     "@semantic-release/git": "10.0.1",
@@ -36,5 +37,8 @@
     "lint-staged": "15.4.2",
     "semantic-release": "24.2.1"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@opentelemetry/resources": "^1.30.1"
+  }
 }
