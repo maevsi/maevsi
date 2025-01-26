@@ -9,13 +9,16 @@ export const EventItem = graphql(`
       id
       username
     }
+    addressByAddressId {
+      ...AddressItem
+    }
+    createdBy
     description
     end
     inviteeCountMaximum
     isArchived
     isInPerson
     isRemote
-    location
     name
     slug
     start
