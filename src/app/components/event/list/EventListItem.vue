@@ -47,12 +47,12 @@
             {{ eventStart.format('lll') }}
           </div>
           <Tag
-            v-if="event.visibility === 'PRIVATE'"
+            v-if="event.visibility === EventVisibility.Unlisted"
             class="self-start text-sm font-medium"
           >
             <div class="flex items-center gap-1">
-              <IHeroiconsEyeSlash :title="t('private')" />
-              {{ t('private') }}
+              <IHeroiconsEyeSlash :title="t('unlisted')" />
+              {{ t('unlisted') }}
             </div>
           </Tag>
         </div>
@@ -74,7 +74,10 @@
 import DOMPurify from 'isomorphic-dompurify'
 import mustache from 'mustache'
 
-import type { EventItemFragment } from '~~/gql/generated/graphql'
+import {
+  EventVisibility,
+  type EventItemFragment,
+} from '~~/gql/generated/graphql'
 
 export interface Props {
   event: Pick<
@@ -115,7 +118,7 @@ const eventStart = computed(() => dateTime(props.event.start))
 
 <i18n lang="yaml">
 de:
-  private: privat
+  unlisted: ungelistet
 en:
-  private: private
+  unlisted: unlisted
 </i18n>
