@@ -12,6 +12,11 @@ export const developmentConfig: ReturnType<DefineNuxtConfig> = {
         },
       },
     },
+    vite: {
+      server: {
+        allowedHosts: ['maevsi'],
+      },
+    },
 
     // modules
     gtag: {
