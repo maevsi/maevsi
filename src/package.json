@@ -161,7 +161,8 @@
     "prepare": "nuxt prepare",
     "start": "pnpm run start:node",
     "start:dev": "nuxt dev",
-    "start:node": "node --import ./.output/server/sentry.server.config.mjs .output/server/index.mjs",
+    "start:node": "node .output/server/index.mjs",
+    "start:node:sentry": "node --import .output/server/sentry.server.config.mjs .output/server/index.mjs",
     "start:static": "serve .output/public",
     "supportedBrowsers": "echo \"export default $(browserslist-useragent-regexp --allowHigherVersions);\" > supportedBrowsers.js"
   },
