@@ -63,14 +63,14 @@ importers:
         specifier: 5.0.3
         version: 5.0.3(graphql@16.10.0)
       '@graphql-codegen/cli':
-        specifier: 5.0.3
-        version: 5.0.3(@babel/core@7.26.7)(@parcel/watcher@2.5.1)(@types/node@22.12.0)(graphql@16.10.0)(typescript@5.7.3)
+        specifier: 5.0.4
+        version: 5.0.4(@babel/core@7.26.7)(@parcel/watcher@2.5.1)(@types/node@22.12.0)(graphql@16.10.0)(typescript@5.7.3)
       '@graphql-codegen/client-preset':
-        specifier: 4.5.1
-        version: 4.5.1(@babel/core@7.26.7)(graphql@16.10.0)
+        specifier: 4.6.0
+        version: 4.6.0(@babel/core@7.26.7)(graphql@16.10.0)
       '@graphql-codegen/typescript':
-        specifier: 4.1.2
-        version: 4.1.2(@babel/core@7.26.7)(graphql@16.10.0)
+        specifier: 4.1.3
+        version: 4.1.3(@babel/core@7.26.7)(graphql@16.10.0)
       '@graphql-codegen/typescript-urql-graphcache':
         specifier: 3.1.0
         version: 3.1.0(@urql/exchange-graphcache@7.2.2(@urql/core@5.1.0(graphql@16.10.0))(graphql@16.10.0))(graphql-tag@2.12.6(graphql@16.10.0))(graphql@16.10.0)
@@ -141,11 +141,11 @@ importers:
         specifier: 0.9.0
         version: 0.9.0(magicast@0.3.5)(pinia@2.3.1(typescript@5.7.3)(vue@3.5.13(typescript@5.7.3)))(rollup@4.32.0)
       '@sentry/nuxt':
-        specifier: 8.51.0
-        version: 8.51.0(@opentelemetry/api@1.9.0)(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.56.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.28.0)(magicast@0.3.5)(nuxt@3.15.3(@parcel/watcher@2.5.1)(@types/node@22.12.0)(db0@0.2.1)(eslint@9.18.0(jiti@2.4.2))(ioredis@5.4.2)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.32.0)(stylelint@16.14.1(typescript@5.7.3))(terser@5.37.0)(tsx@4.19.2)(typescript@5.7.3)(vite@6.0.11(@types/node@22.12.0)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.7.0))(vue-tsc@2.2.0(typescript@5.7.3))(yaml@2.7.0))(pinia@2.3.1(typescript@5.7.3)(vue@3.5.13(typescript@5.7.3)))(rollup@4.32.0)(vue@3.5.13(typescript@5.7.3))
+        specifier: 8.52.0
+        version: 8.52.0(@opentelemetry/api@1.9.0)(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.56.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.28.0)(magicast@0.3.5)(nuxt@3.15.3(@parcel/watcher@2.5.1)(@types/node@22.12.0)(db0@0.2.1)(eslint@9.18.0(jiti@2.4.2))(ioredis@5.4.2)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.32.0)(stylelint@16.14.1(typescript@5.7.3))(terser@5.37.0)(tsx@4.19.2)(typescript@5.7.3)(vite@6.0.11(@types/node@22.12.0)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.7.0))(vue-tsc@2.2.0(typescript@5.7.3))(yaml@2.7.0))(pinia@2.3.1(typescript@5.7.3)(vue@3.5.13(typescript@5.7.3)))(rollup@4.32.0)(vue@3.5.13(typescript@5.7.3))
       '@sentry/profiling-node':
-        specifier: 8.51.0
-        version: 8.51.0
+        specifier: 8.52.0
+        version: 8.52.0
       '@tailwindcss/forms':
         specifier: 0.5.10
         version: 0.5.10(tailwindcss@3.4.17)
@@ -283,7 +283,7 @@ importers:
         version: 9.0.5
       ical-generator:
         specifier: 8.1.1
-        version: 8.1.1(@types/node@22.12.0)(dayjs@2.0.0-alpha.4)(moment-timezone@0.5.46)(moment@2.30.1)
+        version: 8.1.1(@types/node@22.12.0)(dayjs@2.0.0-alpha.4)(moment-timezone@0.5.47)(moment@2.30.1)
       isomorphic-dompurify:
         specifier: 2.20.0
         version: 2.20.0
@@ -303,8 +303,8 @@ importers:
         specifier: 0.474.0
         version: 0.474.0(vue@3.5.13(typescript@5.7.3))
       moment-timezone:
-        specifier: 0.5.46
-        version: 0.5.46
+        specifier: 0.5.47
+        version: 0.5.47
       mustache:
         specifier: 4.2.0
         version: 4.2.0
@@ -1713,8 +1713,8 @@ packages:
     peerDependencies:
       graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
 
-  '@graphql-codegen/cli@5.0.3':
-    resolution: {integrity: sha512-ULpF6Sbu2d7vNEOgBtE9avQp2oMgcPY/QBYcCqk0Xru5fz+ISjcovQX29V7CS7y5wWBRzNLoXwJQGeEyWbl05g==}
+  '@graphql-codegen/cli@5.0.4':
+    resolution: {integrity: sha512-vPO1mCtrttFVy8mPR+jMAvsYTv8E/7payIPaneeGE15mQjyvQXXsHoAg06Qpf6tykOdCwKVLWre0Mf6g0KBwUg==}
     engines: {node: '>=16'}
     hasBin: true
     peerDependencies:
@@ -1724,8 +1724,8 @@ packages:
       '@parcel/watcher':
         optional: true
 
-  '@graphql-codegen/client-preset@4.5.1':
-    resolution: {integrity: sha512-UE2/Kz2eaxv35HIXFwlm2QwoUH77am6+qp54aeEWYq+T+WPwmIc6+YzqtGiT/VcaXgoOUSgidREGm9R6jKcf9g==}
+  '@graphql-codegen/client-preset@4.6.0':
+    resolution: {integrity: sha512-+zSdT2ru3BOX6e1iuBk2VMe04HumJQQZDCXO4N2LXzv9c15ohFmjY8HdTtFjoi9IKsAH4fT32BzszY6pqVSvHw==}
     engines: {node: '>=16'}
     peerDependencies:
       graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
@@ -1735,8 +1735,8 @@ packages:
     peerDependencies:
       graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
 
-  '@graphql-codegen/gql-tag-operations@4.0.12':
-    resolution: {integrity: sha512-v279i49FJ5dMmQXIGUgm6FtnnkxtJjVJWDNYh9JK4ppvOixdHp+PmEzW227DkLN6avhVxNnYdp/1gdRBwdWypw==}
+  '@graphql-codegen/gql-tag-operations@4.0.13':
+    resolution: {integrity: sha512-oZYa57ywkCAPZdNmiUknoHnHbPx+5HQNfHDVwCBKRKrVmJS0dMVZuHV0Vr/4GQUNQIFP0Jn6EEFjVlqfPwbEMQ==}
     engines: {node: '>=16'}
     peerDependencies:
       graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
@@ -1762,14 +1762,14 @@ packages:
     peerDependencies:
       graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
 
-  '@graphql-codegen/typed-document-node@5.0.12':
-    resolution: {integrity: sha512-Wsbc1AqC+MFp3maWPzrmmyHLuWCPB63qBBFLTKtO6KSsnn0KnLocBp475wkfBZnFISFvzwpJ0e6LV71gKfTofQ==}
+  '@graphql-codegen/typed-document-node@5.0.13':
+    resolution: {integrity: sha512-/r23W1WF9PKymIET3SdCDfyuZ6tHeflvbZF3mL3cMp4849M1fe1J2eWefeqn2MMbKATstNqRVxtrq6peJ3A/Ew==}
     engines: {node: '>=16'}
     peerDependencies:
       graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
 
-  '@graphql-codegen/typescript-operations@4.4.0':
-    resolution: {integrity: sha512-oVlos2ySx8xIbbe8r5ZI6mOpI+OTeP14RmS2MchBJ6DL+S9G16O6+9V3Y8V22fTnmBTZkTfAAaBv4HYhhDGWVA==}
+  '@graphql-codegen/typescript-operations@4.4.1':
+    resolution: {integrity: sha512-iqAdEe4wfxGPT9s/VD+EhehBzaTxvWdisbsqiM6dMfk+8FfjrOj8SDBsHzKwmkRcrpMK6h9gLr3XcuBPu0JoFg==}
     engines: {node: '>=16'}
     peerDependencies:
       graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
@@ -1782,8 +1782,8 @@ packages:
       graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
       graphql-tag: ^2.0.0
 
-  '@graphql-codegen/typescript@4.1.2':
-    resolution: {integrity: sha512-GhPgfxgWEkBrvKR2y77OThus3K8B6U3ESo68l7+sHH1XiL2WapK5DdClViblJWKQerJRjfJu8tcaxQ8Wpk6Ogw==}
+  '@graphql-codegen/typescript@4.1.3':
+    resolution: {integrity: sha512-/7qNPj+owhxBZB3Kv0FuUILZq9A6Gl5P5wiIZGAmw500n6Vc8ceOFLRXeVkyvDccxTGWS/vJv+sUnl94T2Pu+A==}
     engines: {node: '>=16'}
     peerDependencies:
       graphql: ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
@@ -1799,8 +1799,8 @@ packages:
     peerDependencies:
       graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
 
-  '@graphql-codegen/visitor-plugin-common@5.6.0':
-    resolution: {integrity: sha512-PowcVPJbUqMC9xTJ/ZRX1p/fsdMZREc+69CM1YY+AlFng2lL0zsdBskFJSRoviQk2Ch9IPhKGyHxlJCy9X22tg==}
+  '@graphql-codegen/visitor-plugin-common@5.6.1':
+    resolution: {integrity: sha512-q+DkGWWS7pvSc1c4Hw1xD0RI+EplTe2PCyTCT0WuaswnodBytteKTqFOVVGadISLX0xhO25aANTFB4+TLwTBSA==}
     engines: {node: '>=16'}
     peerDependencies:
       graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
@@ -2244,9 +2244,6 @@ packages:
 
   '@jsdevtools/ono@7.1.3':
     resolution: {integrity: sha512-4JQNk+3mVzK3xh2rqd6RB4J46qUR19azEHBneZyTZM+c456qOrbbM/5xcR8huNCCcbVt7+UmizG6GuUvPvKUYg==}
-
-  '@kamilkisiela/fast-url-parser@1.1.4':
-    resolution: {integrity: sha512-gbkePEBupNydxCelHCESvFSFM8XPh1Zs/OAVRW/rKpEqPAl5PbOM90Si8mv9bvnR53uPD2s/FiRxdvSejpRJew==}
 
   '@keyv/serialize@1.0.2':
     resolution: {integrity: sha512-+E/LyaAeuABniD/RvUezWVXKpeuvwLEA9//nE9952zBaOdBd2mQ3pPoM8cUe2X6IcMByfuSLzmYqnYshG60+HQ==}
@@ -3177,20 +3174,20 @@ packages:
     peerDependencies:
       semantic-release: '>=20.1.0'
 
-  '@sentry-internal/browser-utils@8.51.0':
-    resolution: {integrity: sha512-r94yfRK17zNJER0hgQE4qOSy5pWzsnFcGTJQSqhSEKUcC4KK37qSfoPrPejFxtIqXhqlkd/dTWKvrMwXWcn0MQ==}
+  '@sentry-internal/browser-utils@8.52.0':
+    resolution: {integrity: sha512-ojFldpRpGrgacIQMbbMZeqLYetNJJ61n+Pz29FpggaIRrbkq84ocoy4FCy+9BuLo6ywgxtUFrjOXD9pPRcZtUA==}
     engines: {node: '>=14.18'}
 
-  '@sentry-internal/feedback@8.51.0':
-    resolution: {integrity: sha512-VgfxSZWLYUPKDnkt2zG+Oe5ccv8U3WPM6Mo4kfABIJT3Ai4VbZB7+vb2a4pm6lUCF9DeOPXHb5o9Tg17SHDAHw==}
+  '@sentry-internal/feedback@8.52.0':
+    resolution: {integrity: sha512-r62Ufg4uGlvQsQ+nRSiq9y0ieVFRlZvUaoT/zMjmPuMg29O9rRAMdPJuiCpBH4++x8KJoJ9c2HBRizn6/3uc5Q==}
     engines: {node: '>=14.18'}
 
-  '@sentry-internal/replay-canvas@8.51.0':
-    resolution: {integrity: sha512-ERXIbwdULkdtIQnfkMLRVfpoGV2rClwySGRlTPepFKeLxlcXo9o09cPu+qbukiDnGK0cgEgRnrV961hMg21Bmw==}
+  '@sentry-internal/replay-canvas@8.52.0':
+    resolution: {integrity: sha512-4ES2uCUb9yEO1cbg15UBqiYU/syQYj5GviI+TvYvnPX3I8K2mK941ZRqfHh2HpFMhMxLgfX4jDqDGizNhXWdqg==}
     engines: {node: '>=14.18'}
 
-  '@sentry-internal/replay@8.51.0':
-    resolution: {integrity: sha512-lkm7id3a2n3yMZeF5socCVQUeEeShNOGr7Wtsmb5RORacEnld0z+NfbMTilo1mDwiWBzI5OYBjm62eglm1HFsQ==}
+  '@sentry-internal/replay@8.52.0':
+    resolution: {integrity: sha512-b4hQPni1G2tcV5XuAPSV4RTX3vqPXO9RfUXLuTBzOTNzBHDoj8nQv0yVvcysGy5tBAuVRo5ya5A+PG/iC6FA9A==}
     engines: {node: '>=14.18'}
 
   '@sentry/babel-plugin-component-annotate@2.22.6':
@@ -3201,8 +3198,8 @@ packages:
     resolution: {integrity: sha512-aa7XKgZMVl6l04NY+3X7BP7yvQ/s8scn8KzQfTLrGRarziTlMGrsCOBQtCNWXOPEbtxAIHpZ9dsrAn5EJSivOQ==}
     engines: {node: '>= 14'}
 
-  '@sentry/browser@8.51.0':
-    resolution: {integrity: sha512-1kbbyVfBBAx5Xyynp+lC5lLnAHo0qJ2r4mtmdT6koPjesvoOocEK0QQnouQBmdUbm3L0L/bPI1SgXjbeJyhzHQ==}
+  '@sentry/browser@8.52.0':
+    resolution: {integrity: sha512-7JpJ9zpInozBzy61eJf/6RPHoKUCFcoFuKd9rttkN1gyY9xkU1cQK+x1f0deiIHnF9ydftmDtXW+kGFI/+xqtw==}
     engines: {node: '>=14.18'}
 
   '@sentry/bundler-plugin-core@2.22.6':
@@ -3305,22 +3302,22 @@ packages:
     engines: {node: '>= 10'}
     hasBin: true
 
-  '@sentry/core@8.51.0':
-    resolution: {integrity: sha512-Go0KxCYLw+OBIlLSv5YsYX+x9NW43fNVcyB6rhkSp2Q5Zme3tAE6KtZFvyu4SO7G/903wisW5Q6qV6UuK/ee4A==}
+  '@sentry/core@8.52.0':
+    resolution: {integrity: sha512-2j3B7IKmseTKFm6AyheJ+RSgXqIsx+3blFSuxpkdvsEt60Lbzva2uDkCENfBDOclioo1kvHgsyuXLfWW4A+wwA==}
     engines: {node: '>=14.18'}
 
-  '@sentry/node@8.51.0':
-    resolution: {integrity: sha512-KfXk3QaeNXmJgUUCDAwZW7cdZ+1GvRXNdTPLpWbAKGaNulAeimck5fGGL8FRMSF0sMz6BT6Ku7u6DUaZTtbB7w==}
+  '@sentry/node@8.52.0':
+    resolution: {integrity: sha512-k+GuWbLDcqIS766zF+TvVRnfbshNy6XKRd+HRNIEaeYa9Tm4LH/ZgCxz39AhFAQGWlZUHm/G2KkCt3AvgswJEg==}
     engines: {node: '>=14.18'}
 
-  '@sentry/nuxt@8.51.0':
-    resolution: {integrity: sha512-TmHvM67VMkqwg5rsUlmStOBp2RogVniHyJdkCcWg2GbnscBTr7yQirI8ptPMXAmPH6tcm3zB9wqrv/5HOEuEOw==}
+  '@sentry/nuxt@8.52.0':
+    resolution: {integrity: sha512-2G827xKbntIg3LDVzUT6ALIdGP088l3EXhP4pqNH4qLTbDkNeZIvTY6rlXsYcpEuhk5otVL+S392CuVIgoZRKg==}
     engines: {node: '>=16'}
     peerDependencies:
       nuxt: '>=3.7.0 || 4.x'
 
-  '@sentry/opentelemetry@8.51.0':
-    resolution: {integrity: sha512-SvH/rl/P+S7EKXIZA6kq2HzFYfXKQx8Ytgx4WZJV+katsdaDay24QtycYE+PaqbotAkV6MOMECEb8a9XXttQcg==}
+  '@sentry/opentelemetry@8.52.0':
+    resolution: {integrity: sha512-NbGPsCZmXQW/B2wlgIjeIn9bCsNKhZGenB0DLK8ZIS/eDOI0JRBjHWMpLS9H9Q0xqgFBjyp+Gwyu3nEZcN4lXw==}
     engines: {node: '>=14.18'}
     peerDependencies:
       '@opentelemetry/api': ^1.9.0
@@ -3329,8 +3326,8 @@ packages:
       '@opentelemetry/sdk-trace-base': ^1.29.0
       '@opentelemetry/semantic-conventions': ^1.28.0
 
-  '@sentry/profiling-node@8.51.0':
-    resolution: {integrity: sha512-5tyb48P+wxmeqjk8vMv35aXoHQOV9InO3dQI1lLdQl5AzeHMyl+7CfW+LKc31u3V6Uqgr0ZAAafH1xS7gickSw==}
+  '@sentry/profiling-node@8.52.0':
+    resolution: {integrity: sha512-Omr2VFptPGM/+rMLcuzksTkMrCIXCUL2dHWoqbmA2+IRqX4QxDCzfxGCN7sw6yeQni3GpVyPkSMFc9oa3TiFDA==}
     engines: {node: '>=14.18'}
     hasBin: true
 
@@ -3344,8 +3341,8 @@ packages:
     resolution: {integrity: sha512-zIieP1VLWQb3wUjFJlwOAoaaJygJhXeUoGd0e/Ha2RLb2eW2S+4gjf6y6NqyY71tZ74LYVZKg/4prB6FAZSMXQ==}
     engines: {node: '>= 14'}
 
-  '@sentry/vue@8.51.0':
-    resolution: {integrity: sha512-Lc4QW41AUv/7127N7wDDJA9X6VzFpDGNA6JXM2J+xur6TKiPR6c5ot0GU5+CQ8giFTZCz3HwOIsNYqAdJe0oWQ==}
+  '@sentry/vue@8.52.0':
+    resolution: {integrity: sha512-E2ozI9866o8V8q5AG01jqu8A8O3mOgC5PaBIyhg0a+CwqWkpg/ao8jYbP1Of3mXqZSxwJQCN/LPU8AkFaCPyMg==}
     engines: {node: '>=14.18'}
     peerDependencies:
       pinia: 2.x
@@ -4606,14 +4603,6 @@ packages:
 
   '@whatwg-node/fetch@0.10.3':
     resolution: {integrity: sha512-jCTL/qYcIW2GihbBRHypQ/Us7saWMNZ5fsumsta+qPY0Pmi1ccba/KRQvgctmQsbP69FWemJSs8zVcFaNwdL0w==}
-    engines: {node: '>=18.0.0'}
-
-  '@whatwg-node/fetch@0.9.23':
-    resolution: {integrity: sha512-7xlqWel9JsmxahJnYVUj/LLxWcnA93DR4c9xlw3U814jWTiYalryiH1qToik1hOxweKKRLi4haXHM5ycRksPBA==}
-    engines: {node: '>=18.0.0'}
-
-  '@whatwg-node/node-fetch@0.6.0':
-    resolution: {integrity: sha512-tcZAhrpx6oVlkEsRngeTEEE7I5/QdLjeEz4IlekabGaESP7+Dkm/6a9KcF1KdCBB7mO9PXtBkwCuTCt8+UPg8Q==}
     engines: {node: '>=18.0.0'}
 
   '@whatwg-node/node-fetch@0.7.7':
@@ -6219,9 +6208,6 @@ packages:
   fast-content-type-parse@2.0.1:
     resolution: {integrity: sha512-nGqtvLrj5w0naR6tDPfB4cUmYCqouzyQiz6C5y/LtcDllJdrcc6WaWW6iXyIIOErTa/XRybj28aasdn4LkVk6Q==}
 
-  fast-decode-uri-component@1.0.1:
-    resolution: {integrity: sha512-WKgKWg5eUxvRZGwW8FvfbaH7AXSh2cL+3j5fMGzUMCxWBJ3dV3a7Wz8y2f/uQ0e3B6WmodD3oS54jTQ9HVTIIg==}
-
   fast-deep-equal@3.1.3:
     resolution: {integrity: sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==}
 
@@ -6243,9 +6229,6 @@ packages:
 
   fast-npm-meta@0.2.2:
     resolution: {integrity: sha512-E+fdxeaOQGo/CMWc9f4uHFfgUPJRAu7N3uB8GBvB3SDPAIWJK4GKyYhkAGFq+GYrcbKNfQIz5VVQyJnDuPPCrg==}
-
-  fast-querystring@1.1.2:
-    resolution: {integrity: sha512-g6KuKWmFXc0fID8WWH0jit4g0AGBoJhCkJMb1RmbsSEUNvQ+ZC8D6CUZ+GtF8nMzSPXnhiePyyqqipzNNEnHjg==}
 
   fast-uri@3.0.6:
     resolution: {integrity: sha512-Atfo14OibSv5wAp4VWNsFYE1AchQRTv9cBGWET4pZWHzYshFSS9NQI6I57rdKn9croWVMbYFbLhJ+yJvmZIIHw==}
@@ -7860,8 +7843,8 @@ packages:
   module-details-from-path@1.0.3:
     resolution: {integrity: sha512-ySViT69/76t8VhE1xXHK6Ch4NcDd26gx0MzKXLO+F7NOtnqH68d9zF94nT8ZWSxXh8ELOERsnJO/sWt1xZYw5A==}
 
-  moment-timezone@0.5.46:
-    resolution: {integrity: sha512-ZXm9b36esbe7OmdABqIWJuBBiLLwAjrN7CE+7sYdCCx82Nabt1wHDj8TVseS59QIlfFPbOoiBPm6ca9BioG4hw==}
+  moment-timezone@0.5.47:
+    resolution: {integrity: sha512-UbNt/JAWS0m/NJOebR0QMRHBk0hu03r5dx9GK8Cs0AS3I81yDcOc9k+DytPItgVvBP7J6Mf6U2n3BPAacAV9oA==}
 
   moment@2.30.1:
     resolution: {integrity: sha512-uEmtNhbDOrWPFS+hdjFCBfy9f2YoyzRpwcl+DqpC6taX21FzsTLQVbMV/W7PzNSX6x/bhC1zA3c2UQ5NzH6how==}
@@ -12890,12 +12873,12 @@ snapshots:
       graphql: 16.10.0
       tslib: 2.6.3
 
-  '@graphql-codegen/cli@5.0.3(@babel/core@7.26.7)(@parcel/watcher@2.5.1)(@types/node@22.12.0)(graphql@16.10.0)(typescript@5.7.3)':
+  '@graphql-codegen/cli@5.0.4(@babel/core@7.26.7)(@parcel/watcher@2.5.1)(@types/node@22.12.0)(graphql@16.10.0)(typescript@5.7.3)':
     dependencies:
       '@babel/generator': 7.26.5
       '@babel/template': 7.25.9
       '@babel/types': 7.26.7
-      '@graphql-codegen/client-preset': 4.5.1(@babel/core@7.26.7)(graphql@16.10.0)
+      '@graphql-codegen/client-preset': 4.6.0(@babel/core@7.26.7)(graphql@16.10.0)
       '@graphql-codegen/core': 4.0.2(graphql@16.10.0)
       '@graphql-codegen/plugin-helpers': 5.1.0(graphql@16.10.0)
       '@graphql-tools/apollo-engine-loader': 8.0.13(graphql@16.10.0)
@@ -12908,7 +12891,7 @@ snapshots:
       '@graphql-tools/prisma-loader': 8.0.17(@types/node@22.12.0)(graphql@16.10.0)
       '@graphql-tools/url-loader': 8.0.24(@types/node@22.12.0)(graphql@16.10.0)
       '@graphql-tools/utils': 10.7.2(graphql@16.10.0)
-      '@whatwg-node/fetch': 0.9.23
+      '@whatwg-node/fetch': 0.10.3
       chalk: 4.1.2
       cosmiconfig: 8.3.6(typescript@5.7.3)
       debounce: 1.2.1
@@ -12941,17 +12924,17 @@ snapshots:
       - typescript
       - utf-8-validate
 
-  '@graphql-codegen/client-preset@4.5.1(@babel/core@7.26.7)(graphql@16.10.0)':
+  '@graphql-codegen/client-preset@4.6.0(@babel/core@7.26.7)(graphql@16.10.0)':
     dependencies:
       '@babel/helper-plugin-utils': 7.26.5
       '@babel/template': 7.25.9
       '@graphql-codegen/add': 5.0.3(graphql@16.10.0)
-      '@graphql-codegen/gql-tag-operations': 4.0.12(@babel/core@7.26.7)(graphql@16.10.0)
+      '@graphql-codegen/gql-tag-operations': 4.0.13(@babel/core@7.26.7)(graphql@16.10.0)
       '@graphql-codegen/plugin-helpers': 5.1.0(graphql@16.10.0)
-      '@graphql-codegen/typed-document-node': 5.0.12(@babel/core@7.26.7)(graphql@16.10.0)
-      '@graphql-codegen/typescript': 4.1.2(@babel/core@7.26.7)(graphql@16.10.0)
-      '@graphql-codegen/typescript-operations': 4.4.0(@babel/core@7.26.7)(graphql@16.10.0)
-      '@graphql-codegen/visitor-plugin-common': 5.6.0(@babel/core@7.26.7)(graphql@16.10.0)
+      '@graphql-codegen/typed-document-node': 5.0.13(@babel/core@7.26.7)(graphql@16.10.0)
+      '@graphql-codegen/typescript': 4.1.3(@babel/core@7.26.7)(graphql@16.10.0)
+      '@graphql-codegen/typescript-operations': 4.4.1(@babel/core@7.26.7)(graphql@16.10.0)
+      '@graphql-codegen/visitor-plugin-common': 5.6.1(@babel/core@7.26.7)(graphql@16.10.0)
       '@graphql-tools/documents': 1.0.1(graphql@16.10.0)
       '@graphql-tools/utils': 10.7.2(graphql@16.10.0)
       '@graphql-typed-document-node/core': 3.2.0(graphql@16.10.0)
@@ -12970,10 +12953,10 @@ snapshots:
       graphql: 16.10.0
       tslib: 2.6.3
 
-  '@graphql-codegen/gql-tag-operations@4.0.12(@babel/core@7.26.7)(graphql@16.10.0)':
+  '@graphql-codegen/gql-tag-operations@4.0.13(@babel/core@7.26.7)(graphql@16.10.0)':
     dependencies:
       '@graphql-codegen/plugin-helpers': 5.1.0(graphql@16.10.0)
-      '@graphql-codegen/visitor-plugin-common': 5.6.0(@babel/core@7.26.7)(graphql@16.10.0)
+      '@graphql-codegen/visitor-plugin-common': 5.6.1(@babel/core@7.26.7)(graphql@16.10.0)
       '@graphql-tools/utils': 10.7.2(graphql@16.10.0)
       auto-bind: 4.0.0
       graphql: 16.10.0
@@ -13020,10 +13003,10 @@ snapshots:
       graphql: 16.10.0
       tslib: 2.6.3
 
-  '@graphql-codegen/typed-document-node@5.0.12(@babel/core@7.26.7)(graphql@16.10.0)':
+  '@graphql-codegen/typed-document-node@5.0.13(@babel/core@7.26.7)(graphql@16.10.0)':
     dependencies:
       '@graphql-codegen/plugin-helpers': 5.1.0(graphql@16.10.0)
-      '@graphql-codegen/visitor-plugin-common': 5.6.0(@babel/core@7.26.7)(graphql@16.10.0)
+      '@graphql-codegen/visitor-plugin-common': 5.6.1(@babel/core@7.26.7)(graphql@16.10.0)
       auto-bind: 4.0.0
       change-case-all: 1.0.15
       graphql: 16.10.0
@@ -13033,11 +13016,11 @@ snapshots:
       - encoding
       - supports-color
 
-  '@graphql-codegen/typescript-operations@4.4.0(@babel/core@7.26.7)(graphql@16.10.0)':
+  '@graphql-codegen/typescript-operations@4.4.1(@babel/core@7.26.7)(graphql@16.10.0)':
     dependencies:
       '@graphql-codegen/plugin-helpers': 5.1.0(graphql@16.10.0)
-      '@graphql-codegen/typescript': 4.1.2(@babel/core@7.26.7)(graphql@16.10.0)
-      '@graphql-codegen/visitor-plugin-common': 5.6.0(@babel/core@7.26.7)(graphql@16.10.0)
+      '@graphql-codegen/typescript': 4.1.3(@babel/core@7.26.7)(graphql@16.10.0)
+      '@graphql-codegen/visitor-plugin-common': 5.6.1(@babel/core@7.26.7)(graphql@16.10.0)
       auto-bind: 4.0.0
       graphql: 16.10.0
       tslib: 2.6.3
@@ -13060,11 +13043,11 @@ snapshots:
       - encoding
       - supports-color
 
-  '@graphql-codegen/typescript@4.1.2(@babel/core@7.26.7)(graphql@16.10.0)':
+  '@graphql-codegen/typescript@4.1.3(@babel/core@7.26.7)(graphql@16.10.0)':
     dependencies:
       '@graphql-codegen/plugin-helpers': 5.1.0(graphql@16.10.0)
       '@graphql-codegen/schema-ast': 4.1.0(graphql@16.10.0)
-      '@graphql-codegen/visitor-plugin-common': 5.6.0(@babel/core@7.26.7)(graphql@16.10.0)
+      '@graphql-codegen/visitor-plugin-common': 5.6.1(@babel/core@7.26.7)(graphql@16.10.0)
       auto-bind: 4.0.0
       graphql: 16.10.0
       tslib: 2.6.3
@@ -13097,7 +13080,7 @@ snapshots:
       - encoding
       - supports-color
 
-  '@graphql-codegen/visitor-plugin-common@5.6.0(@babel/core@7.26.7)(graphql@16.10.0)':
+  '@graphql-codegen/visitor-plugin-common@5.6.1(@babel/core@7.26.7)(graphql@16.10.0)':
     dependencies:
       '@graphql-codegen/plugin-helpers': 5.1.0(graphql@16.10.0)
       '@graphql-tools/optimize': 2.0.0(graphql@16.10.0)
@@ -13163,7 +13146,7 @@ snapshots:
     dependencies:
       graphql: 16.10.0
       lodash.sortby: 4.7.0
-      tslib: 2.6.3
+      tslib: 2.8.1
 
   '@graphql-tools/executor-common@0.0.1(graphql@16.10.0)':
     dependencies:
@@ -13303,12 +13286,12 @@ snapshots:
   '@graphql-tools/optimize@1.4.0(graphql@16.10.0)':
     dependencies:
       graphql: 16.10.0
-      tslib: 2.6.3
+      tslib: 2.8.1
 
   '@graphql-tools/optimize@2.0.0(graphql@16.10.0)':
     dependencies:
       graphql: 16.10.0
-      tslib: 2.6.3
+      tslib: 2.8.1
 
   '@graphql-tools/prisma-loader@8.0.17(@types/node@22.12.0)(graphql@16.10.0)':
     dependencies:
@@ -13341,7 +13324,7 @@ snapshots:
       '@ardatan/relay-compiler': 12.0.0(graphql@16.10.0)
       '@graphql-tools/utils': 9.2.1(graphql@16.10.0)
       graphql: 16.10.0
-      tslib: 2.6.3
+      tslib: 2.8.1
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -13351,7 +13334,7 @@ snapshots:
       '@ardatan/relay-compiler': 12.0.1(@babel/core@7.26.7)(graphql@16.10.0)
       '@graphql-tools/utils': 10.7.2(graphql@16.10.0)
       graphql: 16.10.0
-      tslib: 2.6.3
+      tslib: 2.8.1
     transitivePeerDependencies:
       - '@babel/core'
       - encoding
@@ -13396,13 +13379,13 @@ snapshots:
   '@graphql-tools/utils@8.13.1(graphql@16.10.0)':
     dependencies:
       graphql: 16.10.0
-      tslib: 2.6.3
+      tslib: 2.8.1
 
   '@graphql-tools/utils@9.2.1(graphql@16.10.0)':
     dependencies:
       '@graphql-typed-document-node/core': 3.2.0(graphql@16.10.0)
       graphql: 16.10.0
-      tslib: 2.6.3
+      tslib: 2.8.1
 
   '@graphql-tools/wrap@10.0.28(graphql@16.10.0)':
     dependencies:
@@ -13694,8 +13677,6 @@ snapshots:
       '@jridgewell/sourcemap-codec': 1.5.0
 
   '@jsdevtools/ono@7.1.3': {}
-
-  '@kamilkisiela/fast-url-parser@1.1.4': {}
 
   '@keyv/serialize@1.0.2':
     dependencies:
@@ -15297,35 +15278,35 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@sentry-internal/browser-utils@8.51.0':
+  '@sentry-internal/browser-utils@8.52.0':
     dependencies:
-      '@sentry/core': 8.51.0
+      '@sentry/core': 8.52.0
 
-  '@sentry-internal/feedback@8.51.0':
+  '@sentry-internal/feedback@8.52.0':
     dependencies:
-      '@sentry/core': 8.51.0
+      '@sentry/core': 8.52.0
 
-  '@sentry-internal/replay-canvas@8.51.0':
+  '@sentry-internal/replay-canvas@8.52.0':
     dependencies:
-      '@sentry-internal/replay': 8.51.0
-      '@sentry/core': 8.51.0
+      '@sentry-internal/replay': 8.52.0
+      '@sentry/core': 8.52.0
 
-  '@sentry-internal/replay@8.51.0':
+  '@sentry-internal/replay@8.52.0':
     dependencies:
-      '@sentry-internal/browser-utils': 8.51.0
-      '@sentry/core': 8.51.0
+      '@sentry-internal/browser-utils': 8.52.0
+      '@sentry/core': 8.52.0
 
   '@sentry/babel-plugin-component-annotate@2.22.6': {}
 
   '@sentry/babel-plugin-component-annotate@2.22.7': {}
 
-  '@sentry/browser@8.51.0':
+  '@sentry/browser@8.52.0':
     dependencies:
-      '@sentry-internal/browser-utils': 8.51.0
-      '@sentry-internal/feedback': 8.51.0
-      '@sentry-internal/replay': 8.51.0
-      '@sentry-internal/replay-canvas': 8.51.0
-      '@sentry/core': 8.51.0
+      '@sentry-internal/browser-utils': 8.52.0
+      '@sentry-internal/feedback': 8.52.0
+      '@sentry-internal/replay': 8.52.0
+      '@sentry-internal/replay-canvas': 8.52.0
+      '@sentry/core': 8.52.0
 
   '@sentry/bundler-plugin-core@2.22.6':
     dependencies:
@@ -15435,9 +15416,9 @@ snapshots:
       - encoding
       - supports-color
 
-  '@sentry/core@8.51.0': {}
+  '@sentry/core@8.52.0': {}
 
-  '@sentry/node@8.51.0':
+  '@sentry/node@8.52.0':
     dependencies:
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/context-async-hooks': 1.30.1(@opentelemetry/api@1.9.0)
@@ -15471,22 +15452,22 @@ snapshots:
       '@opentelemetry/sdk-trace-base': 1.30.1(@opentelemetry/api@1.9.0)
       '@opentelemetry/semantic-conventions': 1.28.0
       '@prisma/instrumentation': 5.22.0
-      '@sentry/core': 8.51.0
-      '@sentry/opentelemetry': 8.51.0(@opentelemetry/api@1.9.0)(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.56.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.28.0)
+      '@sentry/core': 8.52.0
+      '@sentry/opentelemetry': 8.52.0(@opentelemetry/api@1.9.0)(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.56.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.28.0)
       import-in-the-middle: 1.12.0
     transitivePeerDependencies:
       - supports-color
 
-  '@sentry/nuxt@8.51.0(@opentelemetry/api@1.9.0)(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.56.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.28.0)(magicast@0.3.5)(nuxt@3.15.3(@parcel/watcher@2.5.1)(@types/node@22.12.0)(db0@0.2.1)(eslint@9.18.0(jiti@2.4.2))(ioredis@5.4.2)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.32.0)(stylelint@16.14.1(typescript@5.7.3))(terser@5.37.0)(tsx@4.19.2)(typescript@5.7.3)(vite@6.0.11(@types/node@22.12.0)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.7.0))(vue-tsc@2.2.0(typescript@5.7.3))(yaml@2.7.0))(pinia@2.3.1(typescript@5.7.3)(vue@3.5.13(typescript@5.7.3)))(rollup@4.32.0)(vue@3.5.13(typescript@5.7.3))':
+  '@sentry/nuxt@8.52.0(@opentelemetry/api@1.9.0)(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.56.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.28.0)(magicast@0.3.5)(nuxt@3.15.3(@parcel/watcher@2.5.1)(@types/node@22.12.0)(db0@0.2.1)(eslint@9.18.0(jiti@2.4.2))(ioredis@5.4.2)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.32.0)(stylelint@16.14.1(typescript@5.7.3))(terser@5.37.0)(tsx@4.19.2)(typescript@5.7.3)(vite@6.0.11(@types/node@22.12.0)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.7.0))(vue-tsc@2.2.0(typescript@5.7.3))(yaml@2.7.0))(pinia@2.3.1(typescript@5.7.3)(vue@3.5.13(typescript@5.7.3)))(rollup@4.32.0)(vue@3.5.13(typescript@5.7.3))':
     dependencies:
       '@nuxt/kit': 3.15.3(magicast@0.3.5)(rollup@4.32.0)
-      '@sentry/browser': 8.51.0
-      '@sentry/core': 8.51.0
-      '@sentry/node': 8.51.0
-      '@sentry/opentelemetry': 8.51.0(@opentelemetry/api@1.9.0)(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.56.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.28.0)
+      '@sentry/browser': 8.52.0
+      '@sentry/core': 8.52.0
+      '@sentry/node': 8.52.0
+      '@sentry/opentelemetry': 8.52.0(@opentelemetry/api@1.9.0)(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.56.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.28.0)
       '@sentry/rollup-plugin': 2.22.7(rollup@4.32.0)
       '@sentry/vite-plugin': 2.22.6
-      '@sentry/vue': 8.51.0(pinia@2.3.1(typescript@5.7.3)(vue@3.5.13(typescript@5.7.3)))(vue@3.5.13(typescript@5.7.3))
+      '@sentry/vue': 8.52.0(pinia@2.3.1(typescript@5.7.3)(vue@3.5.13(typescript@5.7.3)))(vue@3.5.13(typescript@5.7.3))
       nuxt: 3.15.3(@parcel/watcher@2.5.1)(@types/node@22.12.0)(db0@0.2.1)(eslint@9.18.0(jiti@2.4.2))(ioredis@5.4.2)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.32.0)(stylelint@16.14.1(typescript@5.7.3))(terser@5.37.0)(tsx@4.19.2)(typescript@5.7.3)(vite@6.0.11(@types/node@22.12.0)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.7.0))(vue-tsc@2.2.0(typescript@5.7.3))(yaml@2.7.0)
     transitivePeerDependencies:
       - '@opentelemetry/api'
@@ -15501,19 +15482,19 @@ snapshots:
       - supports-color
       - vue
 
-  '@sentry/opentelemetry@8.51.0(@opentelemetry/api@1.9.0)(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.56.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.28.0)':
+  '@sentry/opentelemetry@8.52.0(@opentelemetry/api@1.9.0)(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.56.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.28.0)':
     dependencies:
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/core': 1.30.1(@opentelemetry/api@1.9.0)
       '@opentelemetry/instrumentation': 0.56.0(@opentelemetry/api@1.9.0)
       '@opentelemetry/sdk-trace-base': 1.30.1(@opentelemetry/api@1.9.0)
       '@opentelemetry/semantic-conventions': 1.28.0
-      '@sentry/core': 8.51.0
+      '@sentry/core': 8.52.0
 
-  '@sentry/profiling-node@8.51.0':
+  '@sentry/profiling-node@8.52.0':
     dependencies:
-      '@sentry/core': 8.51.0
-      '@sentry/node': 8.51.0
+      '@sentry/core': 8.52.0
+      '@sentry/node': 8.52.0
       detect-libc: 2.0.3
       node-abi: 3.73.0
     transitivePeerDependencies:
@@ -15536,10 +15517,10 @@ snapshots:
       - encoding
       - supports-color
 
-  '@sentry/vue@8.51.0(pinia@2.3.1(typescript@5.7.3)(vue@3.5.13(typescript@5.7.3)))(vue@3.5.13(typescript@5.7.3))':
+  '@sentry/vue@8.52.0(pinia@2.3.1(typescript@5.7.3)(vue@3.5.13(typescript@5.7.3)))(vue@3.5.13(typescript@5.7.3))':
     dependencies:
-      '@sentry/browser': 8.51.0
-      '@sentry/core': 8.51.0
+      '@sentry/browser': 8.52.0
+      '@sentry/core': 8.52.0
       vue: 3.5.13(typescript@5.7.3)
     optionalDependencies:
       pinia: 2.3.1(typescript@5.7.3)(vue@3.5.13(typescript@5.7.3))
@@ -17300,18 +17281,6 @@ snapshots:
       '@whatwg-node/node-fetch': 0.7.7
       urlpattern-polyfill: 10.0.0
 
-  '@whatwg-node/fetch@0.9.23':
-    dependencies:
-      '@whatwg-node/node-fetch': 0.6.0
-      urlpattern-polyfill: 10.0.0
-
-  '@whatwg-node/node-fetch@0.6.0':
-    dependencies:
-      '@kamilkisiela/fast-url-parser': 1.1.4
-      busboy: 1.6.0
-      fast-querystring: 1.1.2
-      tslib: 2.8.1
-
   '@whatwg-node/node-fetch@0.7.7':
     dependencies:
       '@whatwg-node/disposablestack': 0.0.5
@@ -17873,7 +17842,7 @@ snapshots:
       path-case: 3.0.4
       sentence-case: 3.0.4
       snake-case: 3.0.4
-      tslib: 2.6.3
+      tslib: 2.8.1
 
   change-case@5.4.4: {}
 
@@ -19196,8 +19165,6 @@ snapshots:
 
   fast-content-type-parse@2.0.1: {}
 
-  fast-decode-uri-component@1.0.1: {}
-
   fast-deep-equal@3.1.3: {}
 
   fast-diff@1.3.0: {}
@@ -19217,10 +19184,6 @@ snapshots:
   fast-levenshtein@2.0.6: {}
 
   fast-npm-meta@0.2.2: {}
-
-  fast-querystring@1.1.2:
-    dependencies:
-      fast-decode-uri-component: 1.0.1
 
   fast-uri@3.0.6: {}
 
@@ -19620,7 +19583,7 @@ snapshots:
   graphql-tag@2.12.6(graphql@16.10.0):
     dependencies:
       graphql: 16.10.0
-      tslib: 2.6.3
+      tslib: 2.8.1
 
   graphql-ws@5.16.2(graphql@16.10.0):
     dependencies:
@@ -19838,14 +19801,14 @@ snapshots:
 
   husky@9.1.7: {}
 
-  ical-generator@8.1.1(@types/node@22.12.0)(dayjs@2.0.0-alpha.4)(moment-timezone@0.5.46)(moment@2.30.1):
+  ical-generator@8.1.1(@types/node@22.12.0)(dayjs@2.0.0-alpha.4)(moment-timezone@0.5.47)(moment@2.30.1):
     dependencies:
       uuid-random: 1.3.2
     optionalDependencies:
       '@types/node': 22.12.0
       dayjs: 2.0.0-alpha.4
       moment: 2.30.1
-      moment-timezone: 0.5.46
+      moment-timezone: 0.5.47
 
   iconv-lite@0.4.24:
     dependencies:
@@ -20133,7 +20096,7 @@ snapshots:
 
   is-lower-case@2.0.2:
     dependencies:
-      tslib: 2.6.3
+      tslib: 2.8.1
 
   is-map@2.0.3: {}
 
@@ -20218,7 +20181,7 @@ snapshots:
 
   is-upper-case@2.0.2:
     dependencies:
-      tslib: 2.6.3
+      tslib: 2.8.1
 
   is-weakmap@2.0.2: {}
 
@@ -20709,11 +20672,11 @@ snapshots:
 
   lower-case-first@2.0.2:
     dependencies:
-      tslib: 2.6.3
+      tslib: 2.8.1
 
   lower-case@2.0.2:
     dependencies:
-      tslib: 2.6.3
+      tslib: 2.8.1
 
   lru-cache@10.4.3: {}
 
@@ -20934,7 +20897,7 @@ snapshots:
 
   module-details-from-path@1.0.3: {}
 
-  moment-timezone@0.5.46:
+  moment-timezone@0.5.47:
     dependencies:
       moment: 2.30.1
 
@@ -23227,7 +23190,7 @@ snapshots:
 
   sponge-case@1.0.1:
     dependencies:
-      tslib: 2.6.3
+      tslib: 2.8.1
 
   stable-hash@0.0.4: {}
 
@@ -23516,7 +23479,7 @@ snapshots:
 
   swap-case@2.0.2:
     dependencies:
-      tslib: 2.6.3
+      tslib: 2.8.1
 
   sweetalert2@11.15.10: {}
 
@@ -23736,7 +23699,7 @@ snapshots:
 
   title-case@3.0.3:
     dependencies:
-      tslib: 2.6.3
+      tslib: 2.8.1
 
   tldts-core@6.1.75: {}
 
@@ -24254,11 +24217,11 @@ snapshots:
 
   upper-case-first@2.0.2:
     dependencies:
-      tslib: 2.6.3
+      tslib: 2.8.1
 
   upper-case@2.0.2:
     dependencies:
-      tslib: 2.6.3
+      tslib: 2.8.1
 
   uqr@0.1.2: {}
 
