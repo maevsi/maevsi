@@ -31,7 +31,7 @@
           </StepperItem>
         </div>
 
-        <div class="flex-1 px-4">
+        <div class="flex-1 md:px-12">
           <h2 class="mb-2 text-2xl font-bold">
             {{ stepTitles[stepIndex - 1] }}
           </h2>
@@ -221,6 +221,8 @@ const handleNext = async () => {
         isValid = await isStepFiveValid()
         break
       case 6:
+        await handleSubmit()
+
         break
 
       default:

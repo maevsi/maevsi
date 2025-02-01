@@ -2,7 +2,6 @@ import useVuelidate from '@vuelidate/core'
 import slugify from 'slugify'
 import type { EventVisibility } from '~~/gql/generated/graphql'
 import { required, maxLength } from '@vuelidate/validators'
-import type { EventFormData } from './storage/EventStorageStrategy'
 
 export function useEventForm(eventSlug?: string) {
   const form = ref({
