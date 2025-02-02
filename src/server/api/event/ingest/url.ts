@@ -1,15 +1,23 @@
 import OpenAI from 'openai'
 import { zodResponseFormat } from 'openai/helpers/zod'
 import { z } from 'zod'
-import axios from 'axios'
 import * as cheerio from 'cheerio'
 
-export default defineEventHandler(async () => {
+const eventIngestUrlPostBodySchema = z.object({
+  url: z.string(),
+})
+
+export default defineEventHandler(async (event) => {
+  await verifyAuth(event)
+
   const runtimeConfig = useRuntimeConfig()
   const openai = new OpenAI({
     apiKey: runtimeConfig.private.openai.apiKey,
   })
-
+  const body = await getBodySafe({
+    event,
+    schema: eventIngestUrlPostBodySchema,
+  })
   const Event = z.object({
     id: z.string(),
     author_account_id: z.string(),
@@ -28,11 +36,9 @@ export default defineEventHandler(async () => {
     created_at: z.string(),
   })
 
-  const response = await axios.get(
-    'https://veranstaltungen.uni-kassel.de/event/unikasseltransfer-feiert-20-jahre-jubilaum-4270/',
-  )
+  const response = await $fetch(body.url)
 
-  const html = response.data
+  const html = response as string
   const $ = cheerio.load(html)
 
   const completion = await openai.beta.chat.completions.parse({
@@ -52,9 +58,10 @@ export default defineEventHandler(async () => {
     response_format: zodResponseFormat(Event, 'event'),
   })
   const usageJson = completion.usage
-  const costs = parseFloat(
-    ((completion.usage.total_tokens * 0.15) / 1e6).toFixed(7),
-  )
+
+  if (!usageJson) return
+
+  const costs = parseFloat(((usageJson.total_tokens * 0.15) / 1e6).toFixed(7))
   const parsedMessage = completion.choices[0].message.parsed
 
   return {
@@ -62,6 +69,4 @@ export default defineEventHandler(async () => {
     usage: usageJson,
     costs: `${costs}€`,
   }
-
-  return completion.choices[0].message.parsed
 })
