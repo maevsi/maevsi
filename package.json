@@ -36,9 +36,5 @@
     "lint-staged": "15.4.1",
     "semantic-release": "24.2.1"
   },
-  "type": "module",
-  "dependencies": {
-    "axios": "^1.7.9",
-    "cheerio": "^1.0.0"
-  }
+  "type": "module"
 }
