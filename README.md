@@ -15,10 +15,16 @@ This project is deployed within the [maevsi_stack](https://github.com/maevsi/mae
 ![Welcome](https://maev.si/__og-image__/image/og.png "maevsi")
 
 ## Table of Contents
+1. **[Contributing](#contributing)**
 1. **[Development](#development)**
     1. **[Frontend only](#frontend-only)**
     1. **[Fullstack](#fullstack)**
+1. **[Security](#security)**
 1. **[Technology](#technology)**
+
+## Contributing
+
+Before you start with development, make sure you familiarize yourself with our [guide for contributions](CONTRIBUTING.md) to ensure your development experience stays flawless! 🔧
 
 ## Development
 
@@ -147,6 +153,11 @@ On your local Portainer website, create a user, add an environment, start the Do
 Under "home", select the newly created environment then.
 You'll have access to all containers, images, volumes and more via the left sidebar then.
 </details>
+
+
+## Security
+
+Head to our [disclosure policy](SECURITY.md) to see how to report security issues and how [we value your report](SECURITY_CONTRIBUTION.md).
 
 
 ## Technology
