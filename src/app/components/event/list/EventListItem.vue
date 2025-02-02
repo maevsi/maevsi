@@ -19,11 +19,7 @@
               event_name: event.slug,
             },
           })
-          console.log('Navigation path:', path)
-          console.log('Navigation params:', {
-            username: event.accountByAuthorAccountId?.username,
-            event_name: event.slug,
-          })
+
           return path
         })()
       "
@@ -112,9 +108,6 @@ export interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {})
-console.log('Event:', props.event)
-console.log('Author:', props.event.accountByAuthorAccountId)
-console.log('Username:', props.event.accountByAuthorAccountId?.username)
 
 const localePath = useLocalePath()
 const { t } = useI18n()
