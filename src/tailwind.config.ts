@@ -97,6 +97,9 @@ export default <Partial<Config>>{
           bright: gray['50'],
           dark: gray['900'],
         },
+        warning: {
+          strong: '#F7A650',
+        },
       },
       fontFamily: {
         sans: ['Manrope Variable', ...defaultTheme.fontFamily.sans],
