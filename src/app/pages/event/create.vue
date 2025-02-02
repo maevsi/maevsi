@@ -366,6 +366,12 @@ const handleSubmit = async () => {
 
 const handleDraftSave = async () => {
   await storageStrategy.value.saveEvent(form.value)
+  await navigateTo(
+    localePath({
+      name: 'event-view-username',
+      params: { username: store.signedInUsername },
+    }),
+  )
   showToast({ title: t('draftSaved') })
 }
 

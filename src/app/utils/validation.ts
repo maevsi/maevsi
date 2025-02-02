@@ -19,6 +19,7 @@ import { eventByAuthorAccountIdAndSlugQuery } from '~~/gql/documents/queries/eve
 import { getAccountItem } from '~~/gql/documents/fragments/accountItem'
 import { EventVisibility } from '~~/gql/generated/graphql'
 import { getEventItem } from '~~/gql/documents/fragments/eventItem'
+import { LocalStorageStrategy } from '~/composables/storage/LocalStorageStrategy'
 
 export const VALIDATION_ADDRESS_LENGTH_MAXIMUM = 300
 export const VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM = 254 // source: https://www.dominicsayers.com/isemail/
@@ -244,6 +245,7 @@ export const validateEventExistence = async (
   >,
 ) => {
   const { $urql } = useNuxtApp()
+  const nuxtApp = useNuxtApp()
 
   const account = await getAccountByUsername({
     $urql,
@@ -253,8 +255,8 @@ export const validateEventExistence = async (
   if (!account) {
     throw createError({
       statusCode: 404,
+      message: 'Account not found',
     })
-    // return abortNavigation({ statusCode: 404 })
   }
 
   if (
@@ -263,29 +265,45 @@ export const validateEventExistence = async (
   ) {
     throw createError({
       statusCode: 500,
+      message: 'Invalid parameters',
     })
-    // return abortNavigation({ statusCode: 500 })
   }
 
-  const eventIsExisting = await $urql.value
-    .query(eventIsExistingQuery, {
-      slug: route.params.event_name,
-      authorAccountId: account.id,
-    })
-    .toPromise()
+  try {
+    const eventIsExisting = await $urql.value
+      .query(eventIsExistingQuery, {
+        slug: route.params.event_name,
+        authorAccountId: account.id,
+      })
+      .toPromise()
 
-  if (eventIsExisting.error) {
-    throw createError(eventIsExisting.error)
+    if (eventIsExisting.data?.eventIsExisting) {
+      return true
+    }
+  } catch (error) {
+    console.error(error)
   }
 
-  if (!eventIsExisting.data?.eventIsExisting) {
-    throw createError({
-      statusCode: 404,
-    })
-    // return abortNavigation({ statusCode: 404 })
+  if (!nuxtApp.isHydrating) {
+    return true
   }
 
-  return true
+  if (nuxtApp.isHydrating) {
+    const storageStrategy = LocalStorageStrategy.getInstance()
+    const draftEvent = storageStrategy.getEventByAuthorAndSlug(
+      account.id,
+      route.params.event_name,
+    )
+
+    if (draftEvent) {
+      return true
+    }
+  }
+
+  throw createError({
+    statusCode: 404,
+    message: 'Event not found',
+  })
 }
 
 export const validateEventSlug =

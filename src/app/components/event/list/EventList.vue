@@ -1,35 +1,7 @@
 <template>
   <Loader :api="api">
     <div class="mb-4">
-      <div class="mb-4 flex gap-x-4">
-        <Button
-          :aria-label="'Published Tab'"
-          class="justify-center rounded-md px-4 py-2 font-medium"
-          :class="{
-            'bg-accent-strong': activeTab === 'published',
-            'bg-accent-weak': activeTab !== 'published',
-          }"
-          :disabled="false"
-          @click="activeTab = 'published'"
-        >
-          {{ t('published') }}
-        </Button>
-
-        <Button
-          :aria-label="'Draft Tab'"
-          class="justify-center rounded-md px-4 py-2 font-medium"
-          :class="{
-            'bg-accent-strong': activeTab === 'drafts',
-            'bg-accent-weak': activeTab !== 'drafts',
-          }"
-          :disabled="false"
-          @click="activeTab = 'drafts'"
-        >
-          {{ t('draft') }}
-        </Button>
-      </div>
-
-      <div v-if="activeTab === 'published'">
+      <div>
         <div
           v-if="regularEvents.length"
           class="flex flex-col items-center gap-4"
@@ -52,13 +24,14 @@
         </div>
       </div>
 
-      <div v-if="activeTab === 'drafts'">
+      <div class="mt-4">
         <div v-if="draftEvents.length" class="flex flex-col gap-4">
           <ul class="flex w-full flex-col gap-4">
             <EventListItem
               v-for="event in draftEvents"
               :key="event.id"
               :event="event"
+              :is-draft="true"
             />
           </ul>
         </div>
@@ -87,7 +60,6 @@ const { t } = useI18n()
 const after = ref<string>()
 const storageStrategy = LocalStorageStrategy.getInstance()
 const draftEvents = ref<DraftEvent[]>([])
-const activeTab = ref<'published' | 'drafts'>('published')
 
 const eventsQuery = await zalgo(
   useAllEventsQuery({
@@ -109,12 +81,3 @@ onMounted(async () => {
   draftEvents.value = await storageStrategy.getAllEvents()
 })
 </script>
-
-<i18n lang="yaml">
-de:
-  draft: Entwurf
-  published: Veröffentlicht
-en:
-  draft: Draft
-  published: Published
-</i18n>

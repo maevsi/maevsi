@@ -11,13 +11,21 @@
       :aria-label="event.name"
       is-block
       :to="
-        localePath({
-          name: 'event-view-username-event_name',
-          params: {
-            username: event.accountByAuthorAccountId.username,
+        (() => {
+          const path = localePath({
+            name: 'event-view-username-event_name',
+            params: {
+              username: event.accountByAuthorAccountId?.username,
+              event_name: event.slug,
+            },
+          })
+          console.log('Navigation path:', path)
+          console.log('Navigation params:', {
+            username: event.accountByAuthorAccountId?.username,
             event_name: event.slug,
-          },
-        })
+          })
+          return path
+        })()
       "
     >
       <div class="relative">
@@ -44,7 +52,7 @@
                 eventStart.isSameOrAfter(now),
             }"
           >
-            {{ eventStart.format('lll') }}
+            {{ formatEventDate(event.start) }}
           </div>
           <Tag
             v-if="event.visibility === 'PRIVATE'"
@@ -55,7 +63,17 @@
               {{ t('private') }}
             </div>
           </Tag>
+
+          <Tag
+            v-if="isDraft"
+            class="self-start bg-warning-strong text-sm font-medium"
+          >
+            <div class="flex items-center gap-1">
+              {{ t('draft') }}
+            </div>
+          </Tag>
         </div>
+
         <!-- <div class="flex items-baseline gap-2 truncate">
           <div class="truncate text-xl font-bold">
             {{ event.name }}
@@ -71,36 +89,32 @@
 </template>
 
 <script setup lang="ts">
+import dayjs from 'dayjs'
 import DOMPurify from 'isomorphic-dompurify'
 import mustache from 'mustache'
+import type { DraftEvent } from '~/composables/storage/LocalStorageStrategy'
 
 import type { EventItemFragment } from '~~/gql/generated/graphql'
 
 export interface Props {
-  event:
-    | Pick<
-        EventItemFragment,
-        | 'name'
-        | 'accountByAuthorAccountId'
-        | 'start'
-        | 'visibility'
-        | 'slug'
-        | 'end'
-        | 'description'
-      >
-    | {
-        name: string
-        accountByAuthorAccountId: EventItemFragment['accountByAuthorAccountId']
-        start: string
-        visibility: EventItemFragment['visibility']
-        slug: string
-        end: string
-        description: string
-        isDraft: boolean
-        savedAt: Date
-      }
+  event: Pick<
+    EventItemFragment,
+    | 'name'
+    | 'accountByAuthorAccountId'
+    | 'start'
+    | 'visibility'
+    | 'slug'
+    | 'end'
+    | 'description'
+    | 'id'
+  >
+  isDraft?: boolean | DraftEvent
 }
+
 const props = withDefaults(defineProps<Props>(), {})
+console.log('Event:', props.event)
+console.log('Author:', props.event.accountByAuthorAccountId)
+console.log('Username:', props.event.accountByAuthorAccountId?.username)
 
 const localePath = useLocalePath()
 const { t } = useI18n()
@@ -123,11 +137,20 @@ const eventDescriptionTemplate = computed(() => {
 })
 const eventEnd = computed(() => dateTime(props.event.end))
 const eventStart = computed(() => dateTime(props.event.start))
+const formatEventDate = (dateString: string) => {
+  if (dateString.includes('ZT')) {
+    return dayjs(dateString.split('T')[0]).format('lll')
+  } else {
+    return dayjs(dateString).format('lll')
+  }
+}
 </script>
 
 <i18n lang="yaml">
 de:
+  draft: Entwurf
   private: privat
 en:
+  draft: Draft
   private: private
 </i18n>

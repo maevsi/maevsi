@@ -13,6 +13,7 @@
       <LayoutBreadcrumbs :items="breadcrumbItems" />
       <section>
         <LayoutPageTitle :title="t('title')" />
+
         <FormEvent :event="event" />
       </section>
       <section>
@@ -47,6 +48,10 @@ import { useEventDeleteMutation } from '~~/gql/documents/mutations/event/eventDe
 import { useAccountByUsernameQuery } from '~~/gql/documents/queries/account/accountByUsername'
 import { useEventByAuthorAccountIdAndSlugQuery } from '~~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
 import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
+import {
+  LocalStorageStrategy,
+  type EventOrDraft,
+} from '~/composables/storage/LocalStorageStrategy'
 
 const ROUTE_NAME: keyof RouteNamedMap = 'event-edit-username-event_name___en'
 
@@ -95,9 +100,25 @@ const eventQuery = await zalgo(
     slug: route.params.event_name,
   }),
 )
-const event = computed(() =>
-  getEventItem(eventQuery.data.value?.eventByAuthorAccountIdAndSlug),
-)
+const loadDraftEvent = () => {
+  if (import.meta.client && accountId.value) {
+    const storageStrategy = LocalStorageStrategy.getInstance()
+    return storageStrategy.getEventByAuthorAndSlug(
+      accountId.value,
+      route.params.event_name as string,
+    )
+  }
+  return null
+}
+
+const event = computed<EventOrDraft>(() => {
+  const dbEvent = getEventItem(
+    eventQuery.data.value?.eventByAuthorAccountIdAndSlug,
+  )
+  if (dbEvent) return dbEvent
+
+  return loadDraftEvent()
+})
 const eventDeleteMutation = useEventDeleteMutation()
 const api = getApiData([
   accountByUsernameQuery,
