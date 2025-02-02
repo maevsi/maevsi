@@ -12,6 +12,20 @@ export const developmentConfig: ReturnType<DefineNuxtConfig> = {
         },
       },
     },
+    vite: {
+      server: {
+        allowedHosts: ['maevsi'],
+      },
+      ssr: {
+        noExternal: [
+          // TODO: remove (https://github.com/nuxt/nuxt/issues/30749)
+          'detect-libc',
+          'node-abi',
+          '@sentry/profiling-node',
+          'tailwindcss',
+        ],
+      },
+    },
 
     // modules
     gtag: {

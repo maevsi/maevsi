@@ -1,3 +1,10 @@
+## [6.1.1](https://github.com/maevsi/maevsi/compare/6.1.0...6.1.1) (2025-01-26)
+
+### Bug Fixes
+
+* **sentry:** disable server wrapper ([#1733](https://github.com/maevsi/maevsi/issues/1733)) ([313ae5f](https://github.com/maevsi/maevsi/commit/313ae5f4c9d1159198c8dc377927711c33ee63b2))
+* **vite:** allow host `maevsi` ([#1731](https://github.com/maevsi/maevsi/issues/1731)) ([fe10465](https://github.com/maevsi/maevsi/commit/fe10465b310a13656b32acac04d20f4ef4508e80))
+
 ## [6.1.0](https://github.com/maevsi/maevsi/compare/6.0.0...6.1.0) (2025-01-20)
 
 ### Features
