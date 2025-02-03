@@ -8,6 +8,8 @@ FROM node:22.13.1-alpine AS base-image
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
+# TODO: remove (https://github.com/nodejs/corepack/issues/612)
+ENV COREPACK_DEFAULT_TO_LATEST=0
 
 WORKDIR /srv/app/
 
@@ -99,6 +101,8 @@ FROM mcr.microsoft.com/playwright:v1.50.1 AS test-e2e-base-image
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
+# TODO: remove (https://github.com/nodejs/corepack/issues/612)
+ENV COREPACK_DEFAULT_TO_LATEST=0
 ENV PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
 
 WORKDIR /srv/app/
