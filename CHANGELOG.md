@@ -1,3 +1,9 @@
+## [6.1.2](https://github.com/maevsi/maevsi/compare/6.1.1...6.1.2) (2025-02-03)
+
+### Bug Fixes
+
+* schedule release ([9780d04](https://github.com/maevsi/maevsi/commit/9780d0420dd1a92b67191f0be273a56ee4c010e4))
+
 ## [6.1.1](https://github.com/maevsi/maevsi/compare/6.1.0...6.1.1) (2025-01-26)
 
 ### Bug Fixes
