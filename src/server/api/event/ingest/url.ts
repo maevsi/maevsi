@@ -9,7 +9,7 @@ const eventIngestUrlPostBodySchema = z.object({
 })
 
 export default defineEventHandler(async (event) => {
-  // await verifyAuth(event)
+  await verifyAuth(event)
 
   const runtimeConfig = useRuntimeConfig()
   const openai = new OpenAI({
@@ -20,49 +20,6 @@ export default defineEventHandler(async (event) => {
     event,
     schema: eventIngestUrlPostBodySchema,
   })
-
-  function extractTextFromHtml(html: string): string[] {
-    const document = parse5.parse(html)
-    const texts: string[] = []
-    traverseNodes(document, texts)
-    return texts
-  }
-
-  function traverseNodes(node: Node, texts: string[]): void {
-    if (isTextNode(node)) {
-      if (!isExcluded(node)) {
-        const text = node.value.trim()
-        if (text) {
-          texts.push(text)
-        }
-      }
-    } else if (isParentNode(node)) {
-      node.childNodes.forEach((child) => traverseNodes(child, texts))
-    }
-  }
-
-  function isTextNode(node: Node): node is TextNode {
-    return node.nodeName === '#text'
-  }
-
-  function isParentNode(node: Node): node is ParentNode {
-    return (
-      'childNodes' in node &&
-      Array.isArray((node as { childNodes?: unknown }).childNodes)
-    )
-  }
-
-  function isExcluded(node: Node): boolean {
-    let current = node.parentNode
-    while (current) {
-      const tagName = current.nodeName.toLowerCase()
-      if (['script', 'style', 'noscript'].includes(tagName)) {
-        return true
-      }
-      current = current.parentNode
-    }
-    return false
-  }
 
   const Event = z.object({
     id: z.string().optional(),
@@ -135,5 +92,47 @@ export default defineEventHandler(async (event) => {
       usage: usageJson,
       costs: `${costs}€`,
     }
+  }
+  function extractTextFromHtml(html: string): string[] {
+    const document = parse5.parse(html)
+    const texts: string[] = []
+    traverseNodes(document, texts)
+    return texts
+  }
+
+  function traverseNodes(node: Node, texts: string[]): void {
+    if (isTextNode(node)) {
+      if (!isExcluded(node)) {
+        const text = node.value.trim()
+        if (text) {
+          texts.push(text)
+        }
+      }
+    } else if (isParentNode(node)) {
+      node.childNodes.forEach((child) => traverseNodes(child, texts))
+    }
+  }
+
+  function isTextNode(node: Node): node is TextNode {
+    return node.nodeName === '#text'
+  }
+
+  function isParentNode(node: Node): node is ParentNode {
+    return (
+      'childNodes' in node &&
+      Array.isArray((node as { childNodes?: unknown }).childNodes)
+    )
+  }
+
+  function isExcluded(node: Node): boolean {
+    let current = node.parentNode
+    while (current) {
+      const tagName = current.nodeName.toLowerCase()
+      if (['script', 'style', 'noscript'].includes(tagName)) {
+        return true
+      }
+      current = current.parentNode
+    }
+    return false
   }
 })
