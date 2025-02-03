@@ -1,8 +1,7 @@
 import OpenAI from 'openai'
 import { zodResponseFormat } from 'openai/helpers/zod'
 import { z } from 'zod'
-import * as parse5 from 'parse5'
-import type { Node, TextNode } from 'parse5'
+import * as cheerio from 'cheerio'
 
 const eventIngestUrlPostBodySchema = z.object({
   url: z.string(),
@@ -42,8 +41,7 @@ export default defineEventHandler(async (event) => {
   const response = await $fetch(body.url)
 
   const html = response as string
-  // const $ = cheerio.load(html)
-  const $ = extractTextFromHtml(html).join(' ')
+  const $ = cheerio.load(html)
 
   console.log($)
 
@@ -53,15 +51,14 @@ export default defineEventHandler(async (event) => {
         role: 'system',
         content: `
         You are a data extraction specialist responsible for identifying and formatting event information.
-        First, check if the given texts are about an event. If not, return an empty string. If it is indeed an event
-        export this event into JSON (use an empty string for any missing information) if the input describes an event; Ensure that:
+        First, check if the given texts are about an event. If not, return "not an event" in the description field. If it is indeed an event, export this event into JSON (use an empty string for any missing information) if the input describes an event; Ensure that:
           - The given texts are about an event. If not, return an empty string.
           - All text must use proper casing and correct spelling.
           - Dates must be formatted in ISO 8601.`,
       },
       {
         role: 'user',
-        content: extractTextFromHtml(html).join(' '),
+        content: $.text(),
       },
     ],
     model: 'gpt-4o-mini',
@@ -76,63 +73,15 @@ export default defineEventHandler(async (event) => {
     (
       (usageJson.prompt_tokens * 0.15 +
         usageJson.completion_tokens * 0.06 +
-        usageJson.prompt_tokens_details.cached_tokens * 0.075) /
+        (usageJson.prompt_tokens_details?.cached_tokens ?? 0) * 0.075) /
       1e6
     ).toFixed(7),
   )
   const parsedMessage = completion.choices[0]?.message?.parsed
 
-  if (!parsedMessage) {
-    throw new Error('Parsed message is undefined')
-  }
-  if (parsedMessage) {
-    parsedMessage.url = body.url
-    return {
-      output: parsedMessage,
-      usage: usageJson,
-      costs: `${costs}€`,
-    }
-  }
-  function extractTextFromHtml(html: string): string[] {
-    const document = parse5.parse(html)
-    const texts: string[] = []
-    traverseNodes(document, texts)
-    return texts
-  }
-
-  function traverseNodes(node: Node, texts: string[]): void {
-    if (isTextNode(node)) {
-      if (!isExcluded(node)) {
-        const text = node.value.trim()
-        if (text) {
-          texts.push(text)
-        }
-      }
-    } else if (isParentNode(node)) {
-      node.childNodes.forEach((child) => traverseNodes(child, texts))
-    }
-  }
-
-  function isTextNode(node: Node): node is TextNode {
-    return node.nodeName === '#text'
-  }
-
-  function isParentNode(node: Node): node is ParentNode {
-    return (
-      'childNodes' in node &&
-      Array.isArray((node as { childNodes?: unknown }).childNodes)
-    )
-  }
-
-  function isExcluded(node: Node): boolean {
-    let current = node.parentNode
-    while (current) {
-      const tagName = current.nodeName.toLowerCase()
-      if (['script', 'style', 'noscript'].includes(tagName)) {
-        return true
-      }
-      current = current.parentNode
-    }
-    return false
+  return {
+    output: parsedMessage,
+    usage: usageJson,
+    costs: `${costs}€`,
   }
 })
