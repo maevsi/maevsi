@@ -114,6 +114,7 @@ export default defineEventHandler(async (event) => {
 
   if (!usageJson) return
 
+  // source: https://openai.com/api/pricing/
   const costs = parseFloat(
     (
       (usageJson.prompt_tokens * 0.15 +
