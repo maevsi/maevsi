@@ -168,5 +168,8 @@
     "supportedBrowsers": "echo \"export default $(browserslist-useragent-regexp --allowHigherVersions);\" > supportedBrowsers.js"
   },
   "type": "module",
-  "version": "6.1.2"
+  "version": "6.1.2",
+  "dependencies": {
+    "firebase-admin": "^13.0.2"
+  }
 }
