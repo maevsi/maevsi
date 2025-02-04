@@ -79,7 +79,7 @@ export default defineEventHandler(async (event) => {
   const costs = parseFloat(
     (
       (usageJson.prompt_tokens * 0.15 +
-        usageJson.completion_tokens * 0.06 +
+        usageJson.completion_tokens * 0.6 +
         (usageJson.prompt_tokens_details?.cached_tokens ?? 0) * 0.075) /
       1e6
     ).toFixed(7),
