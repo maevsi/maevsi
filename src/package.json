@@ -77,6 +77,7 @@
     "dayjs": "2.0.0-alpha.4",
     "defu": "6.1.4",
     "downloadjs": "1.4.7",
+    "firebase": "11.2.0",
     "graphql": "16.10.0",
     "h3": "1.14.0",
     "html-to-text": "9.0.5",
