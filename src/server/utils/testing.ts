@@ -1,7 +1,20 @@
 import type { H3Event } from 'h3'
 
-export const isTestingServer = (event?: H3Event) => {
-  const isTestingByRuntimeConfig = useRuntimeConfig().public.vio.isTesting
+export const useIsTesting = () => {
+  const event = useEvent()
+  const runtimeConfig = useRuntimeConfig()
+
+  return getIsTesting({ event, runtimeConfig })
+}
+
+export const getIsTesting = ({
+  event,
+  runtimeConfig,
+}: {
+  event?: H3Event
+  runtimeConfig: ReturnType<typeof useRuntimeConfig>
+}) => {
+  const isTestingByRuntimeConfig = runtimeConfig.public.vio.isTesting
 
   if (isTestingByRuntimeConfig) return true
 
