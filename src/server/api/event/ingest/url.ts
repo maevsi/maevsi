@@ -43,22 +43,29 @@ export default defineEventHandler(async (event) => {
   const html = response as string
   const $ = cheerio.load(html)
 
-  console.log($)
-
   const completion = await openai.beta.chat.completions.parse({
     messages: [
       {
         role: 'system',
         content: `
         You are a data extraction specialist responsible for identifying and formatting event information.
-        First, check if the given texts are about an event. If not, return "not an event" in the description field. If it is indeed an event, export this event into JSON (use an empty string for any missing information) if the input describes an event; Ensure that:
-          - The given texts are about an event. If not, return an empty string.
-          - All text must use proper casing and correct spelling.
-          - Dates must be formatted in ISO 8601.`,
+        Make sure the image is an event, and the dates are formatted in ISO 8601.
+        `,
       },
       {
         role: 'user',
-        content: $.text(),
+        content: [
+          {
+            type: 'text',
+            text: `First, check if the given image is about an event. If not, return "not an event" in the description field. If it is indeed an event, export this event into JSON (use an empty string for any missing information) if the input describes an event; Ensure that:
+          - The given texts are about an event. If not, return an empty string.
+          - All text must use proper casing and correct spelling.
+          - Dates must be formatted in ISO 8601.
+
+          Here's the text:
+          '''${$.text()}'''`,
+          },
+        ],
       },
     ],
     model: 'gpt-4o-mini',
