@@ -84,11 +84,17 @@ export default defineEventHandler(async (event) => {
       1e6
     ).toFixed(7),
   )
+  const formatter = new Intl.NumberFormat('de-DE', {
+    style: 'currency',
+    currency: 'EUR',
+    minimumFractionDigits: 8,
+  })
+
   const parsedMessage = completion.choices[0]?.message?.parsed
 
   return {
     output: parsedMessage,
     usage: usageJson,
-    costs: `${costs}€`,
+    costs: formatter.format(costs),
   }
 })
