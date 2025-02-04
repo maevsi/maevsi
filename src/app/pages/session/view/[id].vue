@@ -127,6 +127,22 @@
               </div>
               <div class="flex gap-2">
                 <IHeroiconsQuestionMarkCircle
+                  v-if="isIosHavingPushCapability === undefined"
+                />
+                <IHeroiconsCheckCircle
+                  v-else-if="isIosHavingPushCapability"
+                  class="text-green-600 dark:text-green-500"
+                />
+                <IHeroiconsXCircle
+                  v-else
+                  class="text-red-600 dark:text-red-500"
+                />
+                <span>
+                  {{ t('hasIosPushCapability') }}
+                </span>
+              </div>
+              <div class="flex gap-2">
+                <IHeroiconsQuestionMarkCircle
                   v-if="permissionState === undefined"
                 />
                 <IHeroiconsCheckCircle
@@ -221,6 +237,7 @@ const breadcrumbItems = getBreadcrumbItemProps([
 const isNavigatorHavingPermissions = ref<boolean>()
 const isNavigatorHavingServiceWorker = ref<boolean>()
 const isWindowHavingNotification = ref<boolean>()
+const isIosHavingPushCapability = ref<boolean>()
 const permissionState = ref<PermissionState>()
 const title = t('title')
 
@@ -264,6 +281,17 @@ onMounted(async () => {
   isNavigatorHavingPermissions.value = 'permissions' in navigator
   isNavigatorHavingServiceWorker.value = 'serviceWorker' in navigator
   isWindowHavingNotification.value = 'Notification' in window
+  isIosHavingPushCapability.value = (() => {
+    const windowWebkit = window as unknown as {
+      webkit?: { messageHandlers?: Record<string, unknown> }
+    }
+    return (
+      windowWebkit.webkit?.messageHandlers?.['push-permission-state'] !==
+        undefined &&
+      windowWebkit.webkit?.messageHandlers?.['push-permission-request'] !==
+        undefined
+    )
+  })()
 
   if (isNavigatorHavingPermissions.value) {
     const permissionStatus = await navigator.permissions.query({
@@ -298,6 +326,7 @@ de:
   codesEnteredNone: Dieser Sitzung sind keine Einladungscodes zugeordnet.
   end: Ende
   endNow: Diese Sitzung beenden
+  hasIosPushCapability: iOS hat Push-Capability
   hasNavigatorPermissions: Navigator hat Berechtigungen
   hasNavigatorServiceWorkers: Navigator hat Service Worker
   hasWindowNotification: Fenster hat Benachrichtigung
@@ -315,6 +344,7 @@ en:
   codesEnteredNone: There are no invitation codes assigned to this session.
   end: End
   endNow: End this session
+  hasIosPushCapability: iOS has Push-Capability
   hasNavigatorPermissions: Navigator has permissions
   hasNavigatorServiceWorkers: Navigator has service workers
   hasWindowNotification: Window has notification
