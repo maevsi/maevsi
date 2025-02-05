@@ -63,8 +63,10 @@
 <script lang="ts">
 import wasmFile from 'zxing-wasm/reader/zxing_reader.wasm?url'
 import { consola } from 'consola'
-import type { DetectedBarcode } from 'barcode-detector'
-import { setZXingModuleOverrides } from 'vue-qrcode-reader'
+import {
+  setZXingModuleOverrides,
+  type DetectedBarcode,
+} from 'vue-qrcode-reader'
 import type { RouteLocationNormalized } from 'vue-router'
 import type { RouteNamedMap } from 'vue-router/auto-routes'
 
