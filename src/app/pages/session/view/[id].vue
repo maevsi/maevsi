@@ -127,6 +127,22 @@
               </div>
               <div class="flex gap-2">
                 <IHeroiconsQuestionMarkCircle
+                  v-if="isIosHavingPushCapability === undefined"
+                />
+                <IHeroiconsCheckCircle
+                  v-else-if="isIosHavingPushCapability"
+                  class="text-green-600 dark:text-green-500"
+                />
+                <IHeroiconsXCircle
+                  v-else
+                  class="text-red-600 dark:text-red-500"
+                />
+                <span>
+                  {{ t('hasIosPushCapability') }}
+                </span>
+              </div>
+              <div class="flex gap-2">
+                <IHeroiconsQuestionMarkCircle
                   v-if="permissionState === undefined"
                 />
                 <IHeroiconsCheckCircle
@@ -170,6 +186,17 @@
                 {{ t('notificationSend') }}
                 <template #prefix>
                   <IHeroiconsBellAlert />
+                </template>
+              </ButtonColored>
+              <ButtonColored
+                :aria-label="t('copyFcmToken')"
+                :is-primary="false"
+                :disabled="!fcmToken"
+                @click="copyFcmToken"
+              >
+                {{ t('copyFcmToken') }}
+                <template #prefix>
+                  <IHeroiconsClipboard />
                 </template>
               </ButtonColored>
             </div>
@@ -218,13 +245,18 @@ const breadcrumbItems = getBreadcrumbItemProps([
     ...usePageBreadcrumb(),
   },
 ])
+const fcmToken = ref<string>()
 const isNavigatorHavingPermissions = ref<boolean>()
 const isNavigatorHavingServiceWorker = ref<boolean>()
 const isWindowHavingNotification = ref<boolean>()
+const isIosHavingPushCapability = ref<boolean>()
 const permissionState = ref<PermissionState>()
 const title = t('title')
 
 // methods
+const copyFcmToken = async () => {
+  if (fcmToken.value) await copyText(fcmToken.value)
+}
 const sendNotification = async () => {
   const serviceWorkerRegistration = await navigator.serviceWorker.ready
 
@@ -264,21 +296,40 @@ onMounted(async () => {
   isNavigatorHavingPermissions.value = 'permissions' in navigator
   isNavigatorHavingServiceWorker.value = 'serviceWorker' in navigator
   isWindowHavingNotification.value = 'Notification' in window
+  isIosHavingPushCapability.value = (() => {
+    const windowWebkit = window as unknown as {
+      webkit?: { messageHandlers?: Record<string, unknown> }
+    }
+    return (
+      windowWebkit.webkit?.messageHandlers?.['push-permission-state'] !==
+        undefined &&
+      windowWebkit.webkit?.messageHandlers?.['push-permission-request'] !==
+        undefined
+    )
+  })()
 
   if (isNavigatorHavingPermissions.value) {
     const permissionStatus = await navigator.permissions.query({
       name: 'notifications',
     })
 
-    permissionStatus.addEventListener('change', () => {
+    permissionStatus.addEventListener('change', async () => {
       consola.log(
-        'User decided to change his seettings. New permission: ' +
+        'User decided to change his settings. New permission: ' +
           permissionStatus.state,
       )
       permissionState.value = permissionStatus.state
+
+      if (permissionStatus.state === 'granted') {
+        fcmToken.value = await requestFcmToken()
+      }
     })
 
     permissionState.value = permissionStatus.state
+
+    if (permissionStatus.state === 'granted') {
+      fcmToken.value = await requestFcmToken()
+    }
   }
 
   if (!permissionState.value && isWindowHavingNotification.value) {
@@ -298,6 +349,7 @@ de:
   codesEnteredNone: Dieser Sitzung sind keine Einladungscodes zugeordnet.
   end: Ende
   endNow: Diese Sitzung beenden
+  hasIosPushCapability: iOS hat Push-Capability
   hasNavigatorPermissions: Navigator hat Berechtigungen
   hasNavigatorServiceWorkers: Navigator hat Service Worker
   hasWindowNotification: Fenster hat Benachrichtigung
@@ -307,6 +359,7 @@ de:
   notificationSend: Benachrichtigung senden
   sessionExpiry: Deine Sitzung läuft am {exp} ab.
   sessionExpiryNone: Es sind keine Sitzungsdaten verfügbar.
+  copyFcmToken: FCM Token kopieren
   title: Sitzung
   userAgentString: User agent string
 en:
@@ -315,6 +368,7 @@ en:
   codesEnteredNone: There are no invitation codes assigned to this session.
   end: End
   endNow: End this session
+  hasIosPushCapability: iOS has Push-Capability
   hasNavigatorPermissions: Navigator has permissions
   hasNavigatorServiceWorkers: Navigator has service workers
   hasWindowNotification: Window has notification
@@ -324,6 +378,7 @@ en:
   notificationSend: Send notification
   sessionExpiry: Your session expires on {exp}.
   sessionExpiryNone: No session data is available.
+  copyFcmToken: Copy FCM Token
   title: Session
   userAgentString: User agent string
 </i18n>

@@ -142,6 +142,13 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
+    private: {
+      api: {
+        notification: {
+          secret: '',
+        },
+      },
+    },
     public: {
       i18n: {
         baseUrl: SITE_URL,
@@ -213,6 +220,9 @@ export default defineNuxtConfig({
         'clipboardy',
         'css-element-queries',
         'downloadjs',
+        'firebase/app',
+        'firebase/messaging',
+        'firebase/messaging/sw',
         'html-to-text',
         'isomorphic-dompurify',
         'js-confetti',
