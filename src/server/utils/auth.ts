@@ -3,26 +3,9 @@ import fs from 'node:fs'
 import type { H3Event } from 'h3'
 import { decodeJwt, jwtVerify, importSPKI } from 'jose'
 
-// const configPostgraphileJwtPublicKeyPath =
-//   process.env.POSTGRAPHILE_JWT_PUBLIC_KEY_FILE || ''
-// const configPostgraphileJwtPublicKey = fs.existsSync(
-//   configPostgraphileJwtPublicKeyPath,
-// )
-//   ? fs.readFileSync(configPostgraphileJwtPublicKeyPath, 'utf-8')
-//   : undefined
-
-export const verifyAuth = async (event: H3Event) => {
-  const {
-    node: { req },
-  } = event
+export const useVerifyAuth = async () => {
+  const event = useEvent()
   const jwtPublicKey = await useJwtPublicKey()
-
-  if (!req.headers.authorization) {
-    return throwError({
-      code: 401,
-      message: 'The request header "Authorization" is missing!',
-    })
-  }
 
   if (!jwtPublicKey) {
     return throwError({
@@ -31,7 +14,20 @@ export const verifyAuth = async (event: H3Event) => {
     })
   }
 
-  const jwt = req.headers.authorization.substring(7)
+  return async () => await verifyAuth(event, jwtPublicKey)
+}
+
+const verifyAuth = async (event: H3Event, jwtPublicKey: string) => {
+  const headerAuthorization = getRequestHeader(event, 'authorization')
+
+  if (!headerAuthorization) {
+    return throwError({
+      code: 401,
+      message: 'The request header "Authorization" is missing!',
+    })
+  }
+
+  const jwt = headerAuthorization.substring(7)
 
   try {
     jwtVerify(jwt, await importSPKI(jwtPublicKey, JWT_ALGORITHM), {

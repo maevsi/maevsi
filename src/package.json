@@ -28,7 +28,7 @@
     "@nuxt/scripts": "0.9.5",
     "@nuxt/ui": "2.21.0",
     "@nuxtjs/html-validator": "1.8.2",
-    "@nuxtjs/i18n": "9.1.4",
+    "@nuxtjs/i18n": "9.1.5",
     "@nuxtjs/seo": "2.1.1",
     "@nuxtjs/tailwindcss": "6.13.1",
     "@nuxtjs/turnstile": "0.9.11",
@@ -82,7 +82,7 @@
     "h3": "1.14.0",
     "html-to-text": "9.0.5",
     "ical-generator": "8.1.1",
-    "isomorphic-dompurify": "2.20.0",
+    "isomorphic-dompurify": "2.21.0",
     "jose": "5.9.6",
     "js-confetti": "0.12.0",
     "kafkajs": "2.2.4",
@@ -169,5 +169,5 @@
     "supportedBrowsers": "echo \"export default $(browserslist-useragent-regexp --allowHigherVersions);\" > supportedBrowsers.js"
   },
   "type": "module",
-  "version": "6.1.1"
+  "version": "6.1.2"
 }

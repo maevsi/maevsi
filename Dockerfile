@@ -8,15 +8,14 @@ FROM node:22.13.1-alpine AS base-image
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
-# TODO: remove (https://github.com/nodejs/corepack/issues/612)
-ENV COREPACK_DEFAULT_TO_LATEST=0
 
 WORKDIR /srv/app/
 
 RUN apk update \
     && apk add --no-cache git \
+    && npm install -g corepack@latest \
+    # TODO: remove (https://github.com/nodejs/corepack/issues/612)
     && corepack enable
-
 
 #############
 # Serve Nuxt in development mode.
@@ -43,7 +42,7 @@ EXPOSE 3000
 
 FROM base-image AS prepare
 
-COPY ./pnpm-lock.yaml ./
+COPY ./pnpm-lock.yaml ./package.json ./
 
 RUN pnpm fetch
 
@@ -101,13 +100,13 @@ FROM mcr.microsoft.com/playwright:v1.50.1 AS test-e2e-base-image
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
-# TODO: remove (https://github.com/nodejs/corepack/issues/612)
-ENV COREPACK_DEFAULT_TO_LATEST=0
 ENV PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
 
 WORKDIR /srv/app/
 
-RUN corepack enable
+RUN npm install -g corepack@latest \
+    # TODO: remove (https://github.com/nodejs/corepack/issues/612)
+    && corepack enable
 
 
 ########################
