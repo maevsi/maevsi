@@ -188,6 +188,17 @@
                   <IHeroiconsBellAlert />
                 </template>
               </ButtonColored>
+              <ButtonColored
+                :aria-label="t('copyFCMToken')"
+                :is-primary="false"
+                :disabled="!fcmToken"
+                @click="copyFCMToken"
+              >
+                {{ t('copyFCMToken') }}
+                <template #prefix>
+                  <IHeroiconsClipboard />
+                </template>
+              </ButtonColored>
             </div>
           </section>
         </div>
@@ -234,6 +245,7 @@ const breadcrumbItems = getBreadcrumbItemProps([
     ...usePageBreadcrumb(),
   },
 ])
+const fcmToken = ref<string>()
 const isNavigatorHavingPermissions = ref<boolean>()
 const isNavigatorHavingServiceWorker = ref<boolean>()
 const isWindowHavingNotification = ref<boolean>()
@@ -242,6 +254,9 @@ const permissionState = ref<PermissionState>()
 const title = t('title')
 
 // methods
+const copyFCMToken = async () => {
+  if (fcmToken.value) await navigator.clipboard.writeText(fcmToken.value)
+}
 const sendNotification = async () => {
   const serviceWorkerRegistration = await navigator.serviceWorker.ready
 
@@ -298,15 +313,23 @@ onMounted(async () => {
       name: 'notifications',
     })
 
-    permissionStatus.addEventListener('change', () => {
+    permissionStatus.addEventListener('change', async () => {
       consola.log(
-        'User decided to change his seettings. New permission: ' +
+        'User decided to change his settings. New permission: ' +
           permissionStatus.state,
       )
       permissionState.value = permissionStatus.state
+
+      if (permissionStatus.state === 'granted') {
+        fcmToken.value = await requestFCMToken()
+      }
     })
 
     permissionState.value = permissionStatus.state
+
+    if (permissionStatus.state === 'granted') {
+      fcmToken.value = await requestFCMToken()
+    }
   }
 
   if (!permissionState.value && isWindowHavingNotification.value) {
@@ -336,6 +359,7 @@ de:
   notificationSend: Benachrichtigung senden
   sessionExpiry: Deine Sitzung läuft am {exp} ab.
   sessionExpiryNone: Es sind keine Sitzungsdaten verfügbar.
+  copyFCMToken: FCM Token kopieren
   title: Sitzung
   userAgentString: User agent string
 en:
@@ -354,6 +378,7 @@ en:
   notificationSend: Send notification
   sessionExpiry: Your session expires on {exp}.
   sessionExpiryNone: No session data is available.
+  copyFCMToken: Copy FCM Token
   title: Session
   userAgentString: User agent string
 </i18n>

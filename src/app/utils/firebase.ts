@@ -1,4 +1,5 @@
 import { initializeApp } from 'firebase/app'
+import { getMessaging, getToken } from 'firebase/messaging'
 
 export const initializeFirebaseClient = () => {
   initializeApp({
@@ -10,4 +11,17 @@ export const initializeFirebaseClient = () => {
     appId: '1:98545254520:web:252cec1d26203e2bb36d8d',
     measurementId: 'G-JTPHD951BS',
   })
+}
+
+export const requestFCMToken = async () => {
+  const messaging = getMessaging()
+  const serviceWorker = await navigator.serviceWorker.ready
+
+  const token = await getToken(messaging, {
+    vapidKey:
+      'BCbddl5GH4QyQNHjxooJoQ7hB42f2bqjeHrQqwIADPSPtSh9JAZbbXM141gYNtqR5R95Ga7UTIEmzOVvTKxduXQ',
+    serviceWorkerRegistration: serviceWorker,
+  })
+
+  return token
 }
