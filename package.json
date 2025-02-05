@@ -3,7 +3,12 @@
   "engines": {
     "node": "22"
   },
-  "packageManager": "pnpm@9.15.5",
+  "packageManager": "pnpm@10.2.0",
+  "pnpm": {
+    "overrides": {
+      "require-in-the-middle": "7.4.0"
+    }
+  },
   "scripts": {
     "build": "pnpm --dir src run build",
     "build:node": "nuxt --dir src run build:node",

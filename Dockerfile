@@ -12,7 +12,10 @@ ENV CI=true
 WORKDIR /srv/app/
 
 RUN apk update \
-    && apk add --no-cache git \
+    && apk add --no-cache \
+      git \
+    && apk add --no-cache --repository=https://dl-cdn.alpinelinux.org/alpine/edge/testing \
+      mkcert \
     && npm install -g corepack@latest \
     # TODO: remove (https://github.com/nodejs/corepack/issues/612)
     && corepack enable
@@ -42,7 +45,7 @@ EXPOSE 3000
 
 FROM base-image AS prepare
 
-COPY ./pnpm-lock.yaml ./
+COPY ./pnpm-lock.yaml ./package.json ./
 
 RUN pnpm fetch
 
@@ -70,7 +73,7 @@ RUN pnpm --dir src run build:node
 
 # FROM prepare AS build-static
 
-# ARG SITE_URL=http://localhost:3002
+# ARG SITE_URL=https://localhost:3002
 # ENV SITE_URL=${SITE_URL}
 
 # ENV NODE_ENV=production
@@ -106,7 +109,8 @@ WORKDIR /srv/app/
 
 RUN npm install -g corepack@latest \
     # TODO: remove (https://github.com/nodejs/corepack/issues/612)
-    && corepack enable
+    && corepack enable \
+    && apt update && apt install mkcert
 
 
 ########################
