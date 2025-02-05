@@ -15,7 +15,7 @@
     "test:e2e:docker:server:static": "pnpm run test:e2e:docker:br pnpm --dir tests run test:e2e:server:static",
     "test:e2e:server:dev": "cross-env PORT=3000 SITE_URL=http://localhost:3000 VIO_SERVER=dev pnpm run test:e2e",
     "test:e2e:server:node": "cross-env NODE_ENV=production NUXT_PUBLIC_I18N_BASE_URL=http://localhost:3001 NUXT_PUBLIC_SITE_URL=http://localhost:3001 PORT=3001 VIO_SERVER=node pnpm run test:e2e",
-    "test:e2e:server:static": "cross-env NODE_ENV=production PORT=3002 SITE_URL=http://localhost:3002 VIO_SERVER=static pnpm run test:e2e",
+    "test:e2e:server:static": "cross-env NODE_ENV=production PORT=3002 SITE_URL=https://localhost:3002 VIO_SERVER=static pnpm run test:e2e",
     "test:e2e": "playwright test",
     "test": "vitest"
   },
