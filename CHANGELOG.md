@@ -1,3 +1,9 @@
+## [6.2.2](https://github.com/maevsi/maevsi/compare/6.2.1...6.2.2) (2025-02-05)
+
+### Bug Fixes
+
+* **firebase:** explicitly import in service worker ([#1758](https://github.com/maevsi/maevsi/issues/1758)) ([2dfc0c7](https://github.com/maevsi/maevsi/commit/2dfc0c7eca4d594be85a5f707b08d358d1ce53be))
+
 ## [6.2.1](https://github.com/maevsi/maevsi/compare/6.2.0...6.2.1) (2025-02-05)
 
 ### Bug Fixes
