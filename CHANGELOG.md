@@ -1,3 +1,9 @@
+## [6.2.0](https://github.com/maevsi/maevsi/compare/6.1.2...6.2.0) (2025-02-05)
+
+### Features
+
+* **notifications:** add notification basics ([#1756](https://github.com/maevsi/maevsi/issues/1756)) ([cb05d34](https://github.com/maevsi/maevsi/commit/cb05d34a720f78e2e0c05185051865632515babb))
+
 ## [6.1.2](https://github.com/maevsi/maevsi/compare/6.1.1...6.1.2) (2025-02-03)
 
 ### Bug Fixes
