@@ -1,3 +1,9 @@
+## [6.2.1](https://github.com/maevsi/maevsi/compare/6.2.0...6.2.1) (2025-02-05)
+
+### Bug Fixes
+
+* **firebase:** try initialization ([#1757](https://github.com/maevsi/maevsi/issues/1757)) ([55e722b](https://github.com/maevsi/maevsi/commit/55e722b468de69ce04b0321232d6009499449e4e))
+
 ## [6.2.0](https://github.com/maevsi/maevsi/compare/6.1.2...6.2.0) (2025-02-05)
 
 ### Features
