@@ -202,5 +202,12 @@ export const GET_CSP = ({
           }
         : {}),
     },
+    {
+      // Firebase (Cloud Messaging)
+      'connect-src': [
+        'https://firebaseinstallations.googleapis.com',
+        'https://fcmregistrations.googleapis.com',
+      ],
+    },
   )
 }

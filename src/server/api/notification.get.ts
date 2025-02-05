@@ -7,8 +7,9 @@ export default defineEventHandler(async (_) => {
       title: 'Hello!',
       body: 'Text',
     },
-    condition: 'true',
+    token: '',
   }
 
-  await firebaseAdmin.messaging().send(message)
+  const re = await firebaseAdmin.messaging().send(message)
+  return re
 })
