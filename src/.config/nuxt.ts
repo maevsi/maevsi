@@ -200,7 +200,6 @@ export default defineNuxtConfig({
         '@uppy/core',
         '@uppy/tus',
         '@vuelidate/core',
-        'barcode-detector',
         'chart.js',
         'clipboardy',
         'css-element-queries',
