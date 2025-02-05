@@ -2,6 +2,8 @@
 import { getMessaging } from 'firebase/messaging/sw'
 import { cleanupOutdatedCaches, precacheAndRoute } from 'workbox-precaching'
 
+import { initializeFirebaseClient } from '../utils/dependencies/firebase'
+
 declare let self: ServiceWorkerGlobalScope
 
 cleanupOutdatedCaches()
