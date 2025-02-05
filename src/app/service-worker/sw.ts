@@ -1,6 +1,6 @@
 /// <reference lib="WebWorker" />
-import { cleanupOutdatedCaches, precacheAndRoute } from 'workbox-precaching'
 import { getMessaging } from 'firebase/messaging/sw'
+import { cleanupOutdatedCaches, precacheAndRoute } from 'workbox-precaching'
 
 declare let self: ServiceWorkerGlobalScope
 

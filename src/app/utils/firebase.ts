@@ -13,7 +13,7 @@ export const initializeFirebaseClient = () => {
   })
 }
 
-export const requestFCMToken = async () => {
+export const requestFcmToken = async () => {
   const messaging = getMessaging()
   const serviceWorker = await navigator.serviceWorker.ready
 

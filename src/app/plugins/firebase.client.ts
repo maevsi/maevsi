@@ -1,1 +1,1 @@
-export default defineNuxtPlugin((_) => initializeFirebaseClient())
+export default defineNuxtPlugin(() => initializeFirebaseClient())

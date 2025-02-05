@@ -77,6 +77,7 @@
     "defu": "6.1.4",
     "downloadjs": "1.4.7",
     "firebase": "11.2.0",
+    "firebase-admin": "13.0.2",
     "eslint": "9.19.0",
     "graphql": "16.10.0",
     "h3": "1.14.0",
@@ -168,8 +169,5 @@
     "supportedBrowsers": "echo \"export default $(browserslist-useragent-regexp --allowHigherVersions);\" > supportedBrowsers.js"
   },
   "type": "module",
-  "version": "6.1.2",
-  "dependencies": {
-    "firebase-admin": "^13.0.2"
-  }
+  "version": "6.1.2"
 }

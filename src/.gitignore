@@ -226,7 +226,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# Firebase
-service-account-credentials.json
-
 # End of https://www.toptal.com/developers/gitignore/api/node,linux,macos,nuxtjs,windows

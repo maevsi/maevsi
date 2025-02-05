@@ -189,12 +189,12 @@
                 </template>
               </ButtonColored>
               <ButtonColored
-                :aria-label="t('copyFCMToken')"
+                :aria-label="t('copyFcmToken')"
                 :is-primary="false"
                 :disabled="!fcmToken"
-                @click="copyFCMToken"
+                @click="copyFcmToken"
               >
-                {{ t('copyFCMToken') }}
+                {{ t('copyFcmToken') }}
                 <template #prefix>
                   <IHeroiconsClipboard />
                 </template>
@@ -254,8 +254,8 @@ const permissionState = ref<PermissionState>()
 const title = t('title')
 
 // methods
-const copyFCMToken = async () => {
-  if (fcmToken.value) await navigator.clipboard.writeText(fcmToken.value)
+const copyFcmToken = async () => {
+  if (fcmToken.value) await copyText(fcmToken.value)
 }
 const sendNotification = async () => {
   const serviceWorkerRegistration = await navigator.serviceWorker.ready
@@ -321,14 +321,14 @@ onMounted(async () => {
       permissionState.value = permissionStatus.state
 
       if (permissionStatus.state === 'granted') {
-        fcmToken.value = await requestFCMToken()
+        fcmToken.value = await requestFcmToken()
       }
     })
 
     permissionState.value = permissionStatus.state
 
     if (permissionStatus.state === 'granted') {
-      fcmToken.value = await requestFCMToken()
+      fcmToken.value = await requestFcmToken()
     }
   }
 
@@ -359,7 +359,7 @@ de:
   notificationSend: Benachrichtigung senden
   sessionExpiry: Deine Sitzung läuft am {exp} ab.
   sessionExpiryNone: Es sind keine Sitzungsdaten verfügbar.
-  copyFCMToken: FCM Token kopieren
+  copyFcmToken: FCM Token kopieren
   title: Sitzung
   userAgentString: User agent string
 en:
@@ -378,7 +378,7 @@ en:
   notificationSend: Send notification
   sessionExpiry: Your session expires on {exp}.
   sessionExpiryNone: No session data is available.
-  copyFCMToken: Copy FCM Token
+  copyFcmToken: Copy FCM Token
   title: Session
   userAgentString: User agent string
 </i18n>

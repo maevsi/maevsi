@@ -1,4 +1,3 @@
-import { firebaseAdmin } from '../utils/firebase'
 import { z } from 'zod'
 
 const fcmMessageSchema = z.object({
@@ -16,8 +15,23 @@ export default defineEventHandler(async (event) => {
   const runtimeConfig = useRuntimeConfig(event)
   const body = await getBodySafe({ event, schema: fcmMessageSchema })
 
-  if (runtimeConfig.private.notification.secret === body.secret) {
-    return await firebaseAdmin.messaging().send({ ...body.payload })
-  }
-  return 'NO AUTH'
+  if (!firebaseAdmin)
+    return throwError({
+      code: 500,
+      message: 'Firebase uninitialized',
+    })
+
+  if (!runtimeConfig.private.api.notification.secret)
+    return throwError({
+      code: 500,
+      message: 'Notification secret uninitialized',
+    })
+
+  if (body.secret !== runtimeConfig.private.api.notification.secret)
+    return throwError({
+      code: 403,
+      message: 'Invalid secret',
+    })
+
+  return firebaseAdmin.messaging().send({ ...body.payload })
 })
