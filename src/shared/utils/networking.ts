@@ -1,6 +1,6 @@
 import type { H3Event } from 'h3'
 
-export const getDomainTldPort = (host: string) => {
+export const getSiteAndPort = (host: string) => {
   const hostParts = host.split('.')
   const hostPartsLast = hostParts[hostParts.length - 1]
 
@@ -44,6 +44,6 @@ export const getServiceHref = ({
   } else if (isSsr && process.server) {
     return `http://${name}${portString}`
   } else {
-    return `https://${nameSubdomainString}${getDomainTldPort(host)}`
+    return `https://${nameSubdomainString}${getSiteAndPort(host)}`
   }
 }
