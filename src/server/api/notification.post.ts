@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { getMessaging } from 'firebase-admin/messaging'
 
 const fcmMessageSchema = z.object({
   payload: z.object({
@@ -33,5 +34,5 @@ export default defineEventHandler(async (event) => {
       message: 'Invalid secret',
     })
 
-  return firebaseAdminApp.messaging().send({ ...body.payload })
+  return getMessaging(firebaseAdminApp).send({ ...body.payload })
 })
