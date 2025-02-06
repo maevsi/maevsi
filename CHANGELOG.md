@@ -1,3 +1,9 @@
+## [6.2.6](https://github.com/maevsi/maevsi/compare/6.2.5...6.2.6) (2025-02-06)
+
+### Bug Fixes
+
+* **sentry:** disable profiling ([#1761](https://github.com/maevsi/maevsi/issues/1761)) ([3decab4](https://github.com/maevsi/maevsi/commit/3decab4882bd87d8ad7d6317e659e132c256fbb1))
+
 ## [6.2.5](https://github.com/maevsi/maevsi/compare/6.2.4...6.2.5) (2025-02-06)
 
 ### Bug Fixes
