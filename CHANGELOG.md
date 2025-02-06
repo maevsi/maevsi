@@ -1,3 +1,9 @@
+## [6.2.4](https://github.com/maevsi/maevsi/compare/6.2.3...6.2.4) (2025-02-06)
+
+### Bug Fixes
+
+* **firebase:** use modern syntax ([#1760](https://github.com/maevsi/maevsi/issues/1760)) ([e1e3268](https://github.com/maevsi/maevsi/commit/e1e3268180182cffce85cbc913064e3cd1c25399)), closes [#1759](https://github.com/maevsi/maevsi/issues/1759)
+
 ## [6.2.3](https://github.com/maevsi/maevsi/compare/6.2.2...6.2.3) (2025-02-06)
 
 ### Bug Fixes
