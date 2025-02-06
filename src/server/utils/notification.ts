@@ -147,7 +147,7 @@ export const processNotification = async ({
   }
 
   const { channel, payload } = channelEvent
-  const locale = payload.template.language as unknown as Locale
+  const locale = payload.template.language
 
   switch (channel) {
     case CHANNEL_NAME_ACCOUNT_PASSWORD_RESET:

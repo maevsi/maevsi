@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { getMessaging } from 'firebase-admin/messaging'
 
 const fcmMessageSchema = z.object({
   payload: z.object({
@@ -15,7 +16,7 @@ export default defineEventHandler(async (event) => {
   const runtimeConfig = useRuntimeConfig(event)
   const body = await getBodySafe({ event, schema: fcmMessageSchema })
 
-  if (!firebaseAdmin)
+  if (!firebaseAdminApp)
     return throwError({
       code: 500,
       message: 'Firebase uninitialized',
@@ -33,5 +34,5 @@ export default defineEventHandler(async (event) => {
       message: 'Invalid secret',
     })
 
-  return firebaseAdmin.messaging().send({ ...body.payload })
+  return getMessaging(firebaseAdminApp).send({ ...body.payload })
 })

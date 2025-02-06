@@ -34,9 +34,6 @@ export default defineNuxtConfig({
       titleTemplate: '%s', // fully set in `composables/useAppLayout.ts`
     },
   },
-  build: {
-    transpile: ['import-in-the-middle', 'semver'],
-  },
   compatibilityDate: '2024-04-03',
   experimental: {
     typedPages: true,
@@ -57,7 +54,6 @@ export default defineNuxtConfig({
     '@nuxtjs/seo',
     '@nuxtjs/turnstile',
     '@pinia/nuxt',
-    '@sentry/nuxt/module',
     '@vite-pwa/nuxt',
     'nuxt-gtag',
     'shadcn-nuxt',
