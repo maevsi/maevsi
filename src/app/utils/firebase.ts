@@ -25,3 +25,20 @@ export const requestFcmToken = async () => {
 
   return token
 }
+
+export const updateRemoteFcmToken = async (
+  store: ReturnType<typeof useMaevsiStore>,
+) => {
+  if (!store.signedInAccountId) return
+
+  const permissionStatus = await navigator.permissions.query({
+    name: 'notifications',
+  })
+  if (permissionStatus.state !== 'granted') return
+
+  const token = await requestFcmToken()
+  // update/add Token
+  showToast({
+    title: token,
+  })
+}
