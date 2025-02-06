@@ -1,3 +1,9 @@
+## [6.3.0](https://github.com/maevsi/maevsi/compare/6.2.7...6.3.0) (2025-02-06)
+
+### Features
+
+* **token:** show token using dialog ([#1764](https://github.com/maevsi/maevsi/issues/1764)) ([344e44e](https://github.com/maevsi/maevsi/commit/344e44e79cb892868fa719877400e20ce57e2a9c))
+
 ## [6.2.7](https://github.com/maevsi/maevsi/compare/6.2.6...6.2.7) (2025-02-06)
 
 ### Bug Fixes
