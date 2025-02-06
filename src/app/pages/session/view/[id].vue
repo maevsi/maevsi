@@ -189,12 +189,11 @@
                 </template>
               </ButtonColored>
               <ButtonColored
-                :aria-label="t('copyFcmToken')"
+                :aria-label="t('showFcmToken')"
                 :is-primary="false"
-                :disabled="!fcmToken"
-                @click="copyFcmToken"
+                @click="showFcmToken"
               >
-                {{ t('copyFcmToken') }}
+                {{ t('showFcmToken') }}
                 <template #prefix>
                   <IHeroiconsClipboard />
                 </template>
@@ -236,6 +235,7 @@ const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 const store = useMaevsiStore()
 const dateTime = useDateTime()
 const { signOut } = useSignOut()
+const fireAlert = useFireAlert()
 
 // data
 const breadcrumbItems = getBreadcrumbItemProps([
@@ -245,7 +245,6 @@ const breadcrumbItems = getBreadcrumbItemProps([
     ...usePageBreadcrumb(),
   },
 ])
-const fcmToken = ref<string>()
 const isNavigatorHavingPermissions = ref<boolean>()
 const isNavigatorHavingServiceWorker = ref<boolean>()
 const isWindowHavingNotification = ref<boolean>()
@@ -254,9 +253,6 @@ const permissionState = ref<PermissionState>()
 const title = t('title')
 
 // methods
-const copyFcmToken = async () => {
-  if (fcmToken.value) await copyText(fcmToken.value)
-}
 const sendNotification = async () => {
   const serviceWorkerRegistration = await navigator.serviceWorker.ready
 
@@ -264,6 +260,14 @@ const sendNotification = async () => {
     body: "It's great to see you!",
     icon: '/assets/static/logos/maevsi_icon.svg',
     tag: 'test',
+  })
+}
+const showFcmToken = async () => {
+  const token = await requestFcmToken()
+  await fireAlert({
+    level: 'info',
+    title: 'FCM Token',
+    text: token,
   })
 }
 const requestNotificationPermissions = () =>
@@ -319,17 +323,9 @@ onMounted(async () => {
           permissionStatus.state,
       )
       permissionState.value = permissionStatus.state
-
-      if (permissionStatus.state === 'granted') {
-        fcmToken.value = await requestFcmToken()
-      }
     })
 
     permissionState.value = permissionStatus.state
-
-    if (permissionStatus.state === 'granted') {
-      fcmToken.value = await requestFcmToken()
-    }
   }
 
   if (!permissionState.value && isWindowHavingNotification.value) {
@@ -359,7 +355,7 @@ de:
   notificationSend: Benachrichtigung senden
   sessionExpiry: Deine Sitzung läuft am {exp} ab.
   sessionExpiryNone: Es sind keine Sitzungsdaten verfügbar.
-  copyFcmToken: FCM Token kopieren
+  showFcmToken: FCM Token anzeigen
   title: Sitzung
   userAgentString: User agent string
 en:
@@ -378,7 +374,7 @@ en:
   notificationSend: Send notification
   sessionExpiry: Your session expires on {exp}.
   sessionExpiryNone: No session data is available.
-  copyFcmToken: Copy FCM Token
+  showFcmToken: Show FCM Token
   title: Session
   userAgentString: User agent string
 </i18n>
