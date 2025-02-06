@@ -2,6 +2,7 @@ import type { DefineNuxtConfig } from 'nuxt/config'
 
 export const productionConfig: ReturnType<DefineNuxtConfig> = {
   $production: {
+    modules: ['@sentry/nuxt/module'],
     runtimeConfig: {
       public: {
         vio: {

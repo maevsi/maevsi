@@ -33,7 +33,7 @@ Sentry.init({
     (process.env.NUXT_PUBLIC_VIO_IS_TESTING === 'true') === false,
   environment: process.env.NODE_ENV,
   // release: await RELEASE_NAME(), // TODO: enable once this file is moved to the `server` directory (https://github.com/getsentry/sentry-javascript/issues/14487),
-  tracesSampleRate: 1.0,
+  // tracesSampleRate: 1.0, // TODO: reenable when "require" bug is resolved in build
   integrations: [nodeProfilingIntegration()],
   profilesSampleRate: 1.0, // (isNaN(Number(process.env.NUXT_PUBLIC_SENTRY_PROFILES_SAMPLE_RATE)) ? undefined : Number(process.env.NUXT_PUBLIC_SENTRY_PROFILES_SAMPLE_RATE)) || NUXT_PUBLIC_SENTRY_PROFILES_SAMPLE_RATE, // profiling sample rate is relative to traces sample rate
 })
