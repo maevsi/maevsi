@@ -2,6 +2,9 @@ import type { DefineNuxtConfig } from 'nuxt/config'
 
 export const developmentConfig: ReturnType<DefineNuxtConfig> = {
   $development: {
+    build: {
+      transpile: ['import-in-the-middle', 'semver'],
+    },
     ...(process.env.NUXT_PUBLIC_SITE_URL // TODO: make more readable, find better naming ("enable https only in standalone mode, not when running inside the stack")
       ? {}
       : {

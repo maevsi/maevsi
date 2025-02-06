@@ -1,11 +1,11 @@
-import firebaseAdmin from 'firebase-admin'
+import { initializeApp, cert } from 'firebase-admin/app'
 
 const getFirebaseAdminApp = () => {
   if (!process.env.FIREBASE_SERVICE_ACCOUNT_CREDENTIALS) return
 
   try {
-    return firebaseAdmin.initializeApp({
-      credential: firebaseAdmin.credential.cert(
+    return initializeApp({
+      credential: cert(
         JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_CREDENTIALS),
       ),
     })
