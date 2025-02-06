@@ -34,9 +34,6 @@ export default defineNuxtConfig({
       titleTemplate: '%s', // fully set in `composables/useAppLayout.ts`
     },
   },
-  build: {
-    transpile: ['import-in-the-middle', 'semver'],
-  },
   compatibilityDate: '2024-04-03',
   experimental: {
     typedPages: true,
