@@ -57,7 +57,7 @@ export default defineNuxtConfig({
     '@nuxtjs/seo',
     '@nuxtjs/turnstile',
     '@pinia/nuxt',
-    //'@sentry/nuxt/module',
+    '@sentry/nuxt/module',
     '@vite-pwa/nuxt',
     'nuxt-gtag',
     'shadcn-nuxt',
