@@ -5,7 +5,9 @@ const uploadDeleteQuerySchema = z.object({
 })
 
 export default defineEventHandler(async (event) => {
-  await verifyAuth(event)
+  const verifyAuth = await useVerifyAuth()
+
+  await verifyAuth()
 
   const query = await getQuerySafe({ event, schema: uploadDeleteQuerySchema })
   const uploadId = query.uploadId
