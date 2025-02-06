@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app'
 import { getMessaging, getToken } from 'firebase/messaging'
 
-export const initializeFirebaseClient = () => {
+export const initializeFirebaseClient = () =>
   initializeApp({
     apiKey: 'AIzaSyCN84hedLiyTvPmB2HGPgpQACQ419xx4zE',
     authDomain: 'maevsi-3f373.firebaseapp.com',
@@ -11,7 +11,6 @@ export const initializeFirebaseClient = () => {
     appId: '1:98545254520:web:252cec1d26203e2bb36d8d',
     measurementId: 'G-JTPHD951BS',
   })
-}
 
 export const requestFcmToken = async () => {
   const messaging = getMessaging()
