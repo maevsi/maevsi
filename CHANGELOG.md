@@ -1,3 +1,9 @@
+## [6.2.5](https://github.com/maevsi/maevsi/compare/6.2.4...6.2.5) (2025-02-06)
+
+### Bug Fixes
+
+* **sentry:** temporarily disable tracing ([79bd1a0](https://github.com/maevsi/maevsi/commit/79bd1a0ed7802cb67e362a842ccf8a9d9ac316b9))
+
 ## [6.2.4](https://github.com/maevsi/maevsi/compare/6.2.3...6.2.4) (2025-02-06)
 
 ### Bug Fixes
