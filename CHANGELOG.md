@@ -1,3 +1,9 @@
+## [6.2.7](https://github.com/maevsi/maevsi/compare/6.2.6...6.2.7) (2025-02-06)
+
+### Bug Fixes
+
+* **sentry:** remove server configuration ([#1762](https://github.com/maevsi/maevsi/issues/1762)) ([4f74924](https://github.com/maevsi/maevsi/commit/4f749249f845f28a647acbbe2b2e999fb8692a67))
+
 ## [6.2.6](https://github.com/maevsi/maevsi/compare/6.2.5...6.2.6) (2025-02-06)
 
 ### Bug Fixes
