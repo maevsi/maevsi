@@ -3,7 +3,7 @@
   "engines": {
     "node": "22"
   },
-  "packageManager": "pnpm@10.2.0",
+  "packageManager": "pnpm@10.2.1",
   "pnpm": {
     "overrides": {
       "require-in-the-middle": "7.4.0"
