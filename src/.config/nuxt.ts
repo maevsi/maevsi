@@ -34,9 +34,6 @@ export default defineNuxtConfig({
       titleTemplate: '%s', // fully set in `composables/useAppLayout.ts`
     },
   },
-  build: {
-    transpile: ['import-in-the-middle', 'semver'],
-  },
   compatibilityDate: '2024-04-03',
   experimental: {
     typedPages: true,
@@ -57,7 +54,6 @@ export default defineNuxtConfig({
     '@nuxtjs/seo',
     '@nuxtjs/turnstile',
     '@pinia/nuxt',
-    '@sentry/nuxt/module',
     '@vite-pwa/nuxt',
     'nuxt-gtag',
     'shadcn-nuxt',
@@ -131,9 +127,23 @@ export default defineNuxtConfig({
         xssValidator: false, // TipTap's HTML is stored unescaped (is escaped when displayed) so api requests would trigger the xss protection here (https://github.com/maevsi/maevsi/issues/1603)
       },
     },
+    '/event/view/**': {
+      security: {
+        headers: {
+          permissionsPolicy: {
+            camera: ['self'],
+          },
+        },
+      },
+    },
   },
   runtimeConfig: {
     private: {
+      api: {
+        notification: {
+          secret: '',
+        },
+      },
       openai: {
         apiKey: '',
       },
@@ -205,11 +215,13 @@ export default defineNuxtConfig({
         '@uppy/core',
         '@uppy/tus',
         '@vuelidate/core',
-        'barcode-detector',
         'chart.js',
         'clipboardy',
         'css-element-queries',
         'downloadjs',
+        'firebase/app',
+        'firebase/messaging',
+        'firebase/messaging/sw',
         'html-to-text',
         'isomorphic-dompurify',
         'js-confetti',

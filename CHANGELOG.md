@@ -1,3 +1,57 @@
+## [6.3.0](https://github.com/maevsi/maevsi/compare/6.2.7...6.3.0) (2025-02-06)
+
+### Features
+
+* **token:** show token using dialog ([#1764](https://github.com/maevsi/maevsi/issues/1764)) ([344e44e](https://github.com/maevsi/maevsi/commit/344e44e79cb892868fa719877400e20ce57e2a9c))
+
+## [6.2.7](https://github.com/maevsi/maevsi/compare/6.2.6...6.2.7) (2025-02-06)
+
+### Bug Fixes
+
+* **sentry:** remove server configuration ([#1762](https://github.com/maevsi/maevsi/issues/1762)) ([4f74924](https://github.com/maevsi/maevsi/commit/4f749249f845f28a647acbbe2b2e999fb8692a67))
+
+## [6.2.6](https://github.com/maevsi/maevsi/compare/6.2.5...6.2.6) (2025-02-06)
+
+### Bug Fixes
+
+* **sentry:** disable profiling ([#1761](https://github.com/maevsi/maevsi/issues/1761)) ([3decab4](https://github.com/maevsi/maevsi/commit/3decab4882bd87d8ad7d6317e659e132c256fbb1))
+
+## [6.2.5](https://github.com/maevsi/maevsi/compare/6.2.4...6.2.5) (2025-02-06)
+
+### Bug Fixes
+
+* **sentry:** temporarily disable tracing ([79bd1a0](https://github.com/maevsi/maevsi/commit/79bd1a0ed7802cb67e362a842ccf8a9d9ac316b9))
+
+## [6.2.4](https://github.com/maevsi/maevsi/compare/6.2.3...6.2.4) (2025-02-06)
+
+### Bug Fixes
+
+* **firebase:** use modern syntax ([#1760](https://github.com/maevsi/maevsi/issues/1760)) ([e1e3268](https://github.com/maevsi/maevsi/commit/e1e3268180182cffce85cbc913064e3cd1c25399)), closes [#1759](https://github.com/maevsi/maevsi/issues/1759)
+
+## [6.2.3](https://github.com/maevsi/maevsi/compare/6.2.2...6.2.3) (2025-02-06)
+
+### Bug Fixes
+
+* **sentry:** temporarily disable tracing ([#1759](https://github.com/maevsi/maevsi/issues/1759)) ([68ae4a5](https://github.com/maevsi/maevsi/commit/68ae4a54c8765e4b8164d51cac67a9900ce761d5))
+
+## [6.2.2](https://github.com/maevsi/maevsi/compare/6.2.1...6.2.2) (2025-02-05)
+
+### Bug Fixes
+
+* **firebase:** explicitly import in service worker ([#1758](https://github.com/maevsi/maevsi/issues/1758)) ([2dfc0c7](https://github.com/maevsi/maevsi/commit/2dfc0c7eca4d594be85a5f707b08d358d1ce53be))
+
+## [6.2.1](https://github.com/maevsi/maevsi/compare/6.2.0...6.2.1) (2025-02-05)
+
+### Bug Fixes
+
+* **firebase:** try initialization ([#1757](https://github.com/maevsi/maevsi/issues/1757)) ([55e722b](https://github.com/maevsi/maevsi/commit/55e722b468de69ce04b0321232d6009499449e4e))
+
+## [6.2.0](https://github.com/maevsi/maevsi/compare/6.1.2...6.2.0) (2025-02-05)
+
+### Features
+
+* **notifications:** add notification basics ([#1756](https://github.com/maevsi/maevsi/issues/1756)) ([cb05d34](https://github.com/maevsi/maevsi/commit/cb05d34a720f78e2e0c05185051865632515babb))
+
 ## [6.1.2](https://github.com/maevsi/maevsi/compare/6.1.1...6.1.2) (2025-02-03)
 
 ### Bug Fixes
