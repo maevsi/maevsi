@@ -144,6 +144,9 @@ export default defineNuxtConfig({
           secret: '',
         },
       },
+      openai: {
+        apiKey: '',
+      },
     },
     public: {
       i18n: {
