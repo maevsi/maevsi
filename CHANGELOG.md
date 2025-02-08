@@ -1,3 +1,9 @@
+## [6.4.0](https://github.com/maevsi/maevsi/compare/6.3.0...6.4.0) (2025-02-08)
+
+### Features
+
+* **event:** ingest from url ([#1741](https://github.com/maevsi/maevsi/issues/1741)) ([02abf7c](https://github.com/maevsi/maevsi/commit/02abf7c0d80efb4ebad45b54e7efc5e0c8537c57))
+
 ## [6.3.0](https://github.com/maevsi/maevsi/compare/6.2.7...6.3.0) (2025-02-06)
 
 ### Features
