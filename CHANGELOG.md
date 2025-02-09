@@ -1,3 +1,9 @@
+## [6.4.1](https://github.com/maevsi/maevsi/compare/6.4.0...6.4.1) (2025-02-09)
+
+### Bug Fixes
+
+* **sw:** use data field for notification ([#1767](https://github.com/maevsi/maevsi/issues/1767)) ([619ac9a](https://github.com/maevsi/maevsi/commit/619ac9a3bb7755e3ba6e6f4c2c9b9db2aae98b52))
+
 ## [6.4.0](https://github.com/maevsi/maevsi/compare/6.3.0...6.4.0) (2025-02-08)
 
 ### Features
