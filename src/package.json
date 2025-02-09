@@ -99,7 +99,7 @@
     "openai": "4.83.0",
     "pg": "8.13.1",
     "pinia": "2.3.1",
-    "prettier": "3.4.2",
+    "prettier": "3.5.0",
     "prettier-plugin-tailwindcss": "0.6.11",
     "pretty-bytes": "6.1.1",
     "prntr": "2.0.18",
@@ -170,5 +170,5 @@
     "supportedBrowsers": "echo \"export default $(browserslist-useragent-regexp --allowHigherVersions);\" > supportedBrowsers.js"
   },
   "type": "module",
-  "version": "6.4.0"
+  "version": "6.4.1"
 }
