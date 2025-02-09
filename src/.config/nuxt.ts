@@ -1,4 +1,5 @@
 import vue from '@vitejs/plugin-vue'
+import tailwindcss from '@tailwindcss/vite'
 import { defu } from 'defu'
 import type { Nuxt, ModuleOptions } from 'nuxt/schema'
 import IconsResolver from 'unplugin-icons/resolver'
@@ -35,6 +36,7 @@ export default defineNuxtConfig({
     },
   },
   compatibilityDate: '2024-04-03',
+  css: ['~/assets/css/main.css'],
   experimental: {
     typedPages: true,
   },
@@ -45,12 +47,10 @@ export default defineNuxtConfig({
     '@dargmuesli/nuxt-cookie-control',
     '@nuxt/eslint',
     '@nuxt/image',
-    '@nuxt/ui',
     '@nuxt/scripts',
-    // '@nuxtjs/color-mode', // installed by @nuxt/ui
+    // '@nuxtjs/color-mode', // installed by `shadcn-nuxt
     '@nuxtjs/html-validator',
     '@nuxtjs/i18n',
-    // '@nuxtjs/tailwindcss', // installed by @nuxt/ui
     '@nuxtjs/seo',
     '@nuxtjs/turnstile',
     '@pinia/nuxt',
@@ -247,6 +247,7 @@ export default defineNuxtConfig({
       Icons({
         scale: 1.5,
       }),
+      tailwindcss(),
     ],
   },
   ...modulesConfig,
