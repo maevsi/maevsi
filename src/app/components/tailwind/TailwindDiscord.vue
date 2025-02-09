@@ -20,7 +20,7 @@
       </div>
       <svg
         viewBox="0 0 1024 1024"
-        class="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-x-1/2"
+        class="absolute top-1/2 left-1/2 -z-10 h-[64rem] w-[64rem] -translate-x-1/2"
         aria-hidden="true"
       >
         <circle

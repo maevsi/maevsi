@@ -2,7 +2,7 @@
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <div class="mx-auto max-w-4xl sm:text-center">
       <h2
-        class="text-base font-semibold leading-7 text-indigo-600 dark:text-indigo-300"
+        class="text-base leading-7 font-semibold text-indigo-600 dark:text-indigo-300"
       >
         {{ t('titlePrefix') }}
       </h2>
@@ -11,20 +11,20 @@
       </p>
     </div>
     <p
-      class="mx-auto mt-6 max-w-2xl text-lg leading-8 text-gray-600 dark:text-gray-100 sm:text-center"
+      class="mx-auto mt-6 max-w-2xl text-lg leading-8 text-gray-600 sm:text-center dark:text-gray-100"
     >
       {{ t('description') }}
     </p>
     <div class="mt-20 flow-root">
       <div
-        class="isolate -mt-16 grid max-w-sm grid-cols-1 gap-y-16 divide-y divide-gray-100 dark:divide-gray-600 sm:mx-auto lg:-mx-8 lg:mt-0 lg:max-w-none lg:grid-cols-3 lg:divide-x lg:divide-y-0 xl:-mx-4"
+        class="isolate -mt-16 grid max-w-sm grid-cols-1 gap-y-16 divide-y divide-gray-100 sm:mx-auto lg:-mx-8 lg:mt-0 lg:max-w-none lg:grid-cols-3 lg:divide-x lg:divide-y-0 xl:-mx-4 dark:divide-gray-600"
       >
         <div
           v-for="tier in tiers"
           :key="tier.id"
           class="pt-16 lg:px-8 lg:pt-0 xl:px-14"
         >
-          <h3 :id="tier.id" class="text-base font-semibold leading-7">
+          <h3 :id="tier.id" class="text-base leading-7 font-semibold">
             {{ tier.name }}
           </h3>
           <p class="mt-6 flex items-baseline gap-x-1">
@@ -33,7 +33,7 @@
             </span>
             <span
               v-if="tier.price"
-              class="text-sm font-semibold leading-6 text-gray-600 dark:text-gray-100"
+              class="text-sm leading-6 font-semibold text-gray-600 dark:text-gray-100"
             >
               {{ t('perMonth') }}
             </span>
@@ -47,14 +47,14 @@
           <Button
             :aria-describedby="tier.id"
             :aria-label="tier.cta.name"
-            class="mt-10 flex w-full justify-center px-3 py-2 text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+            class="mt-10 flex w-full justify-center px-3 py-2 text-sm leading-6 font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
             :class="tier.cta.class"
             :to="tier.to"
             @click="tier.onClick"
           >
             {{ tier.cta.name }}
           </Button>
-          <p class="mt-10 text-sm font-semibold leading-6">
+          <p class="mt-10 text-sm leading-6 font-semibold">
             {{ tier.description }}
           </p>
           <ul

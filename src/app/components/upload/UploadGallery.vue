@@ -35,7 +35,7 @@
             />
             <div
               v-if="!isReadonly"
-              class="absolute right-0 top-0 flex rounded-bl-lg bg-red-600 bg-opacity-75"
+              class="bg-opacity-75 absolute top-0 right-0 flex rounded-bl-lg bg-red-600"
               @click="deleteUpload(upload.id)"
             >
               <Button
@@ -43,7 +43,7 @@
                 class="flex h-full justify-center"
               >
                 <IHeroiconsTrash
-                  class="m-1 text-text-bright"
+                  class="text-text-bright m-1"
                   :title="t('iconTrash')"
                 />
               </Button>

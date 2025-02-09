@@ -9,20 +9,20 @@
         <div class="relative pb-8">
           <span
             v-if="activityItemIdx !== activity.length - 1"
-            class="absolute left-5 top-5 -ml-px h-full w-0.5 bg-gray-200 dark:bg-gray-600"
+            class="absolute top-5 left-5 -ml-px h-full w-0.5 bg-gray-200 dark:bg-gray-600"
             aria-hidden="true"
           />
           <div class="relative flex items-start space-x-3">
             <template v-if="activityItem.type === 'comment'">
               <div class="relative">
                 <img
-                  class="flex h-10 w-10 items-center justify-center rounded-full bg-gray-400 ring-8 ring-background-bright dark:ring-background-dark"
+                  class="ring-background-bright dark:ring-background-dark flex h-10 w-10 items-center justify-center rounded-full bg-gray-400 ring-8"
                   :src="activityItem.imageUrl"
                   alt=""
                 />
 
                 <span
-                  class="absolute -bottom-0.5 -right-1 rounded-tl bg-background-bright px-0.5 py-px dark:bg-background-dark"
+                  class="bg-background-bright dark:bg-background-dark absolute -right-1 -bottom-0.5 rounded-tl px-0.5 py-px"
                 >
                   <IHeroiconsChatBubbleLeftEllipsis
                     class="h-5 w-5 text-gray-400"
@@ -35,7 +35,7 @@
                   <div class="text-sm">
                     <a
                       :href="activityItem.person.href"
-                      class="font-medium text-gray-900 dark:text-text-bright"
+                      class="dark:text-text-bright font-medium text-gray-900"
                       >{{ activityItem.person.name }}</a
                     >
                   </div>
@@ -52,7 +52,7 @@
               <div>
                 <div class="relative px-1">
                   <div
-                    class="flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 ring-8 ring-background-bright dark:bg-zinc-800 dark:ring-background-dark"
+                    class="ring-background-bright dark:ring-background-dark flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 ring-8 dark:bg-zinc-800"
                   >
                     <IHeroiconsUserCircle
                       class="h-5 w-5 text-gray-500 dark:text-gray-400"
@@ -68,7 +68,7 @@
                 >
                   <a
                     :href="activityItem.person.href"
-                    class="font-medium text-gray-900 dark:text-text-bright"
+                    class="dark:text-text-bright font-medium text-gray-900"
                     >{{ activityItem.person.name }}</a
                   >
                   {{ ' ' }}
@@ -76,7 +76,7 @@
                   {{ ' ' }}
                   <a
                     :href="activityItem.assigned.href"
-                    class="font-medium text-gray-900 dark:text-text-bright"
+                    class="dark:text-text-bright font-medium text-gray-900"
                     >{{ activityItem.assigned.name }}</a
                   >
                   {{ ' ' }}
@@ -88,7 +88,7 @@
               <div>
                 <div class="relative px-1">
                   <div
-                    class="flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 ring-8 ring-background-bright dark:bg-zinc-800 dark:ring-background-dark"
+                    class="ring-background-bright dark:ring-background-dark flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 ring-8 dark:bg-zinc-800"
                   >
                     <IHeroiconsTag
                       class="h-5 w-5 text-gray-500 dark:text-gray-400"
@@ -102,7 +102,7 @@
                   <span class="mr-0.5">
                     <a
                       :href="activityItem.person.href"
-                      class="font-medium text-gray-900 dark:text-text-bright"
+                      class="dark:text-text-bright font-medium text-gray-900"
                       >{{ activityItem.person.name }}</a
                     >
                     {{ ' ' }}
@@ -113,7 +113,7 @@
                     <template v-for="tag in activityItem.tags" :key="tag.name">
                       <a
                         :href="tag.href"
-                        class="inline-flex items-center gap-x-1.5 rounded-full px-2 py-1 text-xs font-medium text-gray-900 ring-1 ring-inset ring-gray-200 dark:text-text-bright dark:ring-gray-600"
+                        class="dark:text-text-bright inline-flex items-center gap-x-1.5 rounded-full px-2 py-1 text-xs font-medium text-gray-900 ring-1 ring-gray-200 ring-inset dark:ring-gray-600"
                       >
                         <svg
                           :class="[tag.color, 'h-1.5 w-1.5']"

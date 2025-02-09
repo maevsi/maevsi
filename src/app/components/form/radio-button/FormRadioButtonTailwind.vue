@@ -4,7 +4,7 @@
     @update:model-value="(value) => emit('change', value)"
   >
     <div
-      class="relative -space-y-px rounded-md bg-background-brighten dark:bg-background-darken"
+      class="bg-background-brighten dark:bg-background-darken relative -space-y-px rounded-md"
     >
       <RadioGroupOption
         v-for="(option, index) in options"
@@ -16,11 +16,11 @@
         <div
           :class="[
             index === 0 ? 'rounded-tl-md rounded-tr-md' : '',
-            index === options.length - 1 ? 'rounded-bl-md rounded-br-md' : '',
+            index === options.length - 1 ? 'rounded-br-md rounded-bl-md' : '',
             checked
               ? 'z-10 border-indigo-200 bg-indigo-50 dark:border-blue-900 dark:bg-zinc-600'
               : 'border-gray-200 dark:border-gray-800',
-            'relative flex cursor-pointer flex-col border p-4 focus:outline-none md:grid md:grid-cols-3 md:pl-4 md:pr-6',
+            'relative flex cursor-pointer flex-col border p-4 focus:outline-none md:grid md:grid-cols-3 md:pr-6 md:pl-4',
           ]"
         >
           <span class="flex items-center">

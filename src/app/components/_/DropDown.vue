@@ -8,14 +8,14 @@
       :class="
         isOpen
           ? 'backdrop-blur-sm backdrop-brightness-75'
-          : 'invisible backdrop-blur-0 backdrop-brightness-100'
+          : 'backdrop-blur-0 invisible backdrop-brightness-100'
       "
       @click="toggleIsOpen"
     />
     <div
       v-if="isOpen"
       ref="dropdownRef"
-      class="fixed z-20 mt-2 flex -translate-x-full flex-col items-stretch gap-4 rounded-md bg-background-brighten p-4 shadow-lg dark:bg-background-darken"
+      class="bg-background-brighten dark:bg-background-darken fixed z-20 mt-2 flex -translate-x-full flex-col items-stretch gap-4 rounded-md p-4 shadow-lg"
     >
       <slot name="content" />
     </div>

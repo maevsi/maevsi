@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-32 pb-64 pt-8 md:gap-64">
+  <div class="flex flex-col gap-32 pt-8 pb-64 md:gap-64">
     <section id="overview" class="flex items-center gap-8">
       <div class="flex flex-col items-start gap-8 md:gap-16">
         <h1

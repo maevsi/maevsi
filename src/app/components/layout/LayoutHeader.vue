@@ -27,7 +27,7 @@
       <div class="flex items-center gap-2 whitespace-nowrap lg:gap-4">
         <ButtonEventNew />
         <div
-          class="my-1 hidden w-px flex-none self-stretch bg-gray-300 dark:bg-gray-600 2xl:flex"
+          class="my-1 hidden w-px flex-none self-stretch bg-gray-300 2xl:flex dark:bg-gray-600"
         />
         <ButtonIcon
           v-if="store.signedInAccountId"

@@ -5,7 +5,7 @@
       @click="close"
     />
     <Card
-      class="fixed left-1/2 top-[10%] z-20 flex max-h-[80%] w-5/6 -translate-x-1/2 flex-col gap-2 overflow-auto sm:w-2/3 lg:w-1/2 xl:w-1/3"
+      class="fixed top-[10%] left-1/2 z-20 flex max-h-[80%] w-5/6 -translate-x-1/2 flex-col gap-2 overflow-auto sm:w-2/3 lg:w-1/2 xl:w-1/3"
     >
       <div class="flex justify-end">
         <ButtonIcon
