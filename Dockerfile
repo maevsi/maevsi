@@ -46,6 +46,7 @@ EXPOSE 3000
 FROM base-image AS prepare
 
 COPY ./pnpm-lock.yaml ./package.json ./
+COPY ./dependencies ./dependencies
 
 RUN pnpm fetch
 
