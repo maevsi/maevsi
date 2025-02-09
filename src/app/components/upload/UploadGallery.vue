@@ -35,7 +35,7 @@
             />
             <div
               v-if="!isReadonly"
-              class="bg-opacity-75 absolute top-0 right-0 flex rounded-bl-lg bg-red-600"
+              class="absolute top-0 right-0 flex rounded-bl-lg bg-red-600/75"
               @click="deleteUpload(upload.id)"
             >
               <Button

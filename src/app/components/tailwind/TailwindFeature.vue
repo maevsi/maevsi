@@ -5,7 +5,7 @@
     <div class="flex justify-center text-7xl lg:mt-8">
       <slot />
     </div>
-    <div class="flex-grow">
+    <div class="grow">
       <h2
         class="text-base leading-7 font-semibold text-indigo-600 dark:text-indigo-300"
       >

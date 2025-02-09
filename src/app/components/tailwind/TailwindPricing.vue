@@ -124,7 +124,7 @@ const tiers = [
     cta: {
       name: t('tier1Cta'),
       class:
-        'text-white bg-indigo-600 hover:bg-indigo-500 focus-visible:outline-indigo-600 shadow-sm',
+        'text-white bg-indigo-600 hover:bg-indigo-500 focus-visible:outline-indigo-600 shadow-xs',
     },
     name: t('tier1Name'),
     id: 'tier-basic',
@@ -146,7 +146,7 @@ const tiers = [
     cta: {
       name: t('tier2Cta'),
       class:
-        'text-white bg-indigo-600 hover:bg-indigo-500 focus-visible:outline-indigo-600 shadow-sm',
+        'text-white bg-indigo-600 hover:bg-indigo-500 focus-visible:outline-indigo-600 shadow-xs',
     },
     name: t('tier2Name'),
     id: 'tier-essential',
@@ -169,7 +169,7 @@ const tiers = [
     cta: {
       name: t('tier3Cta'),
       class:
-        'text-white bg-gray-600 hover:bg-gray-500 focus-visible:outline-gray-600 shadow-sm',
+        'text-white bg-gray-600 hover:bg-gray-500 focus-visible:outline-gray-600 shadow-xs',
     },
     name: t('tier3Name'),
     id: 'tier-growth',

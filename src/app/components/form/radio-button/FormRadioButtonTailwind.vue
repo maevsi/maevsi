@@ -20,7 +20,7 @@
             checked
               ? 'z-10 border-indigo-200 bg-indigo-50 dark:border-blue-900 dark:bg-zinc-600'
               : 'border-gray-200 dark:border-gray-800',
-            'relative flex cursor-pointer flex-col border p-4 focus:outline-none md:grid md:grid-cols-3 md:pr-6 md:pl-4',
+            'relative flex cursor-pointer flex-col border p-4 focus:outline-hidden md:grid md:grid-cols-3 md:pr-6 md:pl-4',
           ]"
         >
           <span class="flex items-center">

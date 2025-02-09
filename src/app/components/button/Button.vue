@@ -17,7 +17,7 @@
   <button
     v-else
     :aria-label="ariaLabel"
-    :class="['rounded', classes]"
+    :class="['rounded-sm', classes]"
     :disabled="disabled"
     :type="type"
     @click="emit('click')"

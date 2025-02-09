@@ -22,7 +22,7 @@
                 />
 
                 <span
-                  class="bg-background-bright dark:bg-background-dark absolute -right-1 -bottom-0.5 rounded-tl px-0.5 py-px"
+                  class="bg-background-bright dark:bg-background-dark absolute -right-1 -bottom-0.5 rounded-tl-sm px-0.5 py-px"
                 >
                   <IHeroiconsChatBubbleLeftEllipsis
                     class="h-5 w-5 text-gray-400"

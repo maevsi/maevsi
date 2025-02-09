@@ -1,7 +1,7 @@
 <template>
   <div v-if="isVisible">
     <div
-      class="fixed inset-0 z-10 backdrop-blur backdrop-brightness-50 transition"
+      class="fixed inset-0 z-10 backdrop-blur-sm backdrop-brightness-50 transition"
       @click="close"
     />
     <Card

@@ -11,7 +11,7 @@
           <div class="flex items-center gap-4">
             <AccountProfilePicture
               :account-id="account?.id"
-              classes="h-24 rounded w-24"
+              classes="h-24 rounded-sm w-24"
               height="96"
               width="96"
             />

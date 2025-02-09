@@ -7,7 +7,7 @@
       class="fixed inset-0 z-10 transition"
       :class="
         isOpen
-          ? 'backdrop-blur-sm backdrop-brightness-75'
+          ? 'backdrop-blur-xs backdrop-brightness-75'
           : 'backdrop-blur-0 invisible backdrop-brightness-100'
       "
       @click="toggleIsOpen"
