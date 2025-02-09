@@ -10,7 +10,6 @@
       v-if="event && route.params.username === store.signedInUsername"
       class="flex flex-col gap-4"
     >
-      <LayoutBreadcrumbs :items="breadcrumbItems" />
       <section>
         <LayoutPageTitle :title="t('title')" />
         <FormEvent :event="event" />
@@ -33,37 +32,18 @@
   </Loader>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import type { RouteLocationNormalized } from 'vue-router'
 import type { RouteNamedMap } from 'vue-router/auto-routes'
-
-import { pageBreadcrumb as usePageBreadcrumbEventsUserId } from '../../view/[username]/[event_name]/index.vue'
-import { usePageBreadcrumb as usePageBreadcrumbEventsUser } from '../../view/[username]/index.vue'
-import { usePageBreadcrumb as usePageBreadcrumbEvents } from '../../index.vue'
 
 import { getEventItem } from '~~/gql/documents/fragments/eventItem'
 import { getAccountItem } from '~~/gql/documents/fragments/accountItem'
 import { useEventDeleteMutation } from '~~/gql/documents/mutations/event/eventDelete'
 import { useAccountByUsernameQuery } from '~~/gql/documents/queries/account/accountByUsername'
 import { useEventByAuthorAccountIdAndSlugQuery } from '~~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
-import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
 
 const ROUTE_NAME: keyof RouteNamedMap = 'event-edit-username-event_name___en'
 
-export const usePageBreadcrumb = () => {
-  const route = useRoute(ROUTE_NAME)
-
-  return {
-    label: {
-      de: 'Bearbeiten',
-      en: 'Edit',
-    },
-    to: `/event/edit/${route.params.username}/${route.params.event_name}`,
-  } as BreadcrumbLinkLocalized
-}
-</script>
-
-<script setup lang="ts">
 definePageMeta({
   async validate(route) {
     return await validateEventExistence(
@@ -72,12 +52,10 @@ definePageMeta({
   },
 })
 
-const { $urql } = useNuxtApp()
 const localePath = useLocalePath()
 const { t } = useI18n()
 const route = useRoute(ROUTE_NAME)
 const store = useMaevsiStore()
-const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
 // api data
 const accountByUsernameQuery = await zalgo(
@@ -106,15 +84,6 @@ const api = getApiData([
 ])
 
 // data
-const breadcrumbItems = getBreadcrumbItemProps([
-  usePageBreadcrumbEvents(),
-  usePageBreadcrumbEventsUser(),
-  await usePageBreadcrumbEventsUserId({ $urql, route }),
-  {
-    current: true,
-    ...usePageBreadcrumb(),
-  },
-])
 const mutation = eventDeleteMutation
 
 // computations

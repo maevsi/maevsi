@@ -45,12 +45,11 @@ export default defineNuxtConfig({
     '@dargmuesli/nuxt-cookie-control',
     '@nuxt/eslint',
     '@nuxt/image',
-    '@nuxt/ui',
     '@nuxt/scripts',
-    // '@nuxtjs/color-mode', // installed by @nuxt/ui
+    '@nuxtjs/color-mode',
     '@nuxtjs/html-validator',
     '@nuxtjs/i18n',
-    // '@nuxtjs/tailwindcss', // installed by @nuxt/ui
+    '@nuxtjs/tailwindcss',
     '@nuxtjs/seo',
     '@nuxtjs/turnstile',
     '@pinia/nuxt',
@@ -143,6 +142,9 @@ export default defineNuxtConfig({
         notification: {
           secret: '',
         },
+      },
+      openai: {
+        apiKey: '',
       },
     },
     public: {

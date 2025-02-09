@@ -1,3 +1,21 @@
+## [6.4.1](https://github.com/maevsi/maevsi/compare/6.4.0...6.4.1) (2025-02-09)
+
+### Bug Fixes
+
+* **sw:** use data field for notification ([#1767](https://github.com/maevsi/maevsi/issues/1767)) ([619ac9a](https://github.com/maevsi/maevsi/commit/619ac9a3bb7755e3ba6e6f4c2c9b9db2aae98b52))
+
+## [6.4.0](https://github.com/maevsi/maevsi/compare/6.3.0...6.4.0) (2025-02-08)
+
+### Features
+
+* **event:** ingest from url ([#1741](https://github.com/maevsi/maevsi/issues/1741)) ([02abf7c](https://github.com/maevsi/maevsi/commit/02abf7c0d80efb4ebad45b54e7efc5e0c8537c57))
+
+## [6.3.0](https://github.com/maevsi/maevsi/compare/6.2.7...6.3.0) (2025-02-06)
+
+### Features
+
+* **token:** show token using dialog ([#1764](https://github.com/maevsi/maevsi/issues/1764)) ([344e44e](https://github.com/maevsi/maevsi/commit/344e44e79cb892868fa719877400e20ce57e2a9c))
+
 ## [6.2.7](https://github.com/maevsi/maevsi/compare/6.2.6...6.2.7) (2025-02-06)
 
 ### Bug Fixes
