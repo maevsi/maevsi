@@ -1,6 +1,5 @@
 <template>
   <div>
-    <LayoutBreadcrumbs :items="breadcrumbItems" />
     <LayoutPageTitle :title="title" />
     <ContactList v-if="store.jwtDecoded?.role === 'maevsi_account'" />
     <LayoutCallToAction
@@ -11,33 +10,11 @@
   </div>
 </template>
 
-<script lang="ts">
-import { usePageBreadcrumb as usePageBreadcrumbHome } from '../index.vue'
-import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
-
-export const usePageBreadcrumb = () =>
-  ({
-    label: {
-      de: 'Kontakte',
-      en: 'Contacts',
-    },
-    to: '/contact',
-  }) as BreadcrumbLinkLocalized
-</script>
-
 <script setup lang="ts">
 const store = useMaevsiStore()
 const { t } = useI18n()
-const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
 // data
-const breadcrumbItems = getBreadcrumbItemProps([
-  usePageBreadcrumbHome(),
-  {
-    current: true,
-    ...usePageBreadcrumb(),
-  },
-])
 const title = t('title')
 
 // initialization

@@ -197,6 +197,10 @@
   }
 }
 
+.dark {
+  color-scheme: dark;
+}
+
 .layout-enter-active,
 .layout-leave-active {
   transition: opacity 0.1s;
