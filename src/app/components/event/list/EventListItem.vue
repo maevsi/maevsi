@@ -26,7 +26,7 @@
           class="absolute bottom-4 left-4 flex flex-col justify-between gap-4 md:flex-row"
         >
           <div
-            class="flex min-w-0 flex-col items-baseline text-text-bright md:flex-row md:gap-2"
+            class="text-text-bright flex min-w-0 flex-col items-baseline md:flex-row md:gap-2"
           >
             <h1 class="m-0 line-clamp-2">
               {{ event.name }}

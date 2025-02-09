@@ -6,10 +6,10 @@
       [
         ...(isPrimary
           ? [
-              'bg-gradient-to-tr from-blue-500 to-blue-600 text-text-bright dark:from-blue-300 dark:to-blue-400 dark:text-text-dark',
+              'text-text-bright dark:text-text-dark bg-gradient-to-tr from-blue-500 to-blue-600 dark:from-blue-300 dark:to-blue-400',
             ]
           : [
-              'border border-gray-300 text-text-dark hover:bg-black/5 dark:border-gray-600 dark:text-text-bright dark:hover:bg-black/30',
+              'text-text-dark dark:text-text-bright border border-gray-300 hover:bg-black/5 dark:border-gray-600 dark:hover:bg-black/30',
             ]),
       ].join(' ')
     "

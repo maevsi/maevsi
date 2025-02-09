@@ -62,7 +62,7 @@
         v-for="contact in contactsFiltered"
         :key="contact.id"
         :aria-label="t('buttonContact')"
-        class="flex w-full items-center gap-4 rounded border-2 border-neutral-300 px-4 py-2 dark:border-neutral-600"
+        class="flex w-full items-center gap-4 rounded-sm border-2 border-neutral-300 px-4 py-2 dark:border-neutral-600"
         :disabled="invitationContactIdsExisting?.includes(contact.id)"
         type="button"
         @click="selectToggle(contact.id)"

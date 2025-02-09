@@ -11,7 +11,7 @@
     </td>
     <td class="max-w-0">
       <div
-        class="flex items-center justify-evenly gap-4 text-text-dark dark:text-text-bright"
+        class="text-text-dark dark:text-text-bright flex items-center justify-evenly gap-4"
       >
         <ButtonIcon
           :aria-label="

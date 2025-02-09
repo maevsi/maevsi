@@ -1,7 +1,7 @@
 <template>
   <Button
     :aria-label="t('text')"
-    class="shrink-0 2xl:whitespace-nowrap 2xl:px-4 2xl:py-2 2xl:font-medium"
+    class="shrink-0 2xl:px-4 2xl:py-2 2xl:font-medium 2xl:whitespace-nowrap"
     :to="localePath('event-create')"
   >
     <span class="hidden 2xl:block">
