@@ -98,23 +98,11 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import JSConfetti from 'js-confetti'
 
 import { useAchievementUnlockMutation } from '~~/gql/documents/mutations/achievement/achievementUnlock'
-import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
 
-export const usePageBreadcrumb = () =>
-  ({
-    ariaLabel: {
-      de: 'Start',
-      en: 'Home',
-    },
-    to: '/',
-  }) as BreadcrumbLinkLocalized
-</script>
-
-<script setup lang="ts">
 const { t } = useI18n()
 const localePath = useLocalePath()
 const siteConfig = useSiteConfig()
