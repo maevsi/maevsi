@@ -76,7 +76,7 @@
     "dayjs": "2.0.0-alpha.4",
     "defu": "6.1.4",
     "downloadjs": "1.4.7",
-    "eslint": "9.19.0",
+    "eslint": "9.20.0",
     "firebase": "11.3.0",
     "firebase-admin": "13.1.0",
     "graphql": "16.10.0",
@@ -169,5 +169,5 @@
     "supportedBrowsers": "echo \"export default $(browserslist-useragent-regexp --allowHigherVersions);\" > supportedBrowsers.js"
   },
   "type": "module",
-  "version": "6.4.0"
+  "version": "6.4.1"
 }

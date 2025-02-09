@@ -4,7 +4,6 @@
       v-if="event && route.params.username === store.signedInUsername"
       class="flex flex-col gap-4"
     >
-      <LayoutBreadcrumbs :items="breadcrumbItems" />
       <LayoutPageTitle :title="t('title')" />
       <InvitationList :event="event" />
     </div>
@@ -12,37 +11,18 @@
   </Loader>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import type { RouteLocationNormalized } from 'vue-router'
 import type { RouteNamedMap } from 'vue-router/auto-routes'
-
-import { usePageBreadcrumb as usePageBreadcrumbEvents } from '../../../index.vue'
-import { usePageBreadcrumb as usePageBreadcrumbEventsUser } from '../index.vue'
-import { pageBreadcrumb as usePageBreadcrumbEventsUserId } from './index.vue'
 
 import { useAccountByUsernameQuery } from '~~/gql/documents/queries/account/accountByUsername'
 import { useEventByAuthorAccountIdAndSlugQuery } from '~~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
 import { getAccountItem } from '~~/gql/documents/fragments/accountItem'
 import { getEventItem } from '~~/gql/documents/fragments/eventItem'
-import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
 
 const ROUTE_NAME: keyof RouteNamedMap =
   'event-view-username-event_name-guest___en'
 
-export const usePageBreadcrumb = () => {
-  const route = useRoute(ROUTE_NAME)
-
-  return {
-    label: {
-      de: 'Gäste',
-      en: 'Guests',
-    },
-    to: `/event/view/${route.params.username}/${route.params.event_name}/invitation`,
-  } as BreadcrumbLinkLocalized
-}
-</script>
-
-<script setup lang="ts">
 definePageMeta({
   alias: '/event/view/:username/:event_name/invitation',
   async validate(route) {
@@ -52,11 +32,9 @@ definePageMeta({
   },
 })
 
-const { $urql } = useNuxtApp()
 const route = useRoute(ROUTE_NAME)
 const { t } = useI18n()
 const store = useMaevsiStore()
-const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
 // api data
 const accountByUsernameQuery = await zalgo(
@@ -78,17 +56,6 @@ const event = computed(() =>
   getEventItem(eventQuery.data.value?.eventByAuthorAccountIdAndSlug),
 )
 const api = getApiData([accountByUsernameQuery, eventQuery])
-
-// data
-const breadcrumbItems = getBreadcrumbItemProps([
-  usePageBreadcrumbEvents(),
-  usePageBreadcrumbEventsUser(),
-  await usePageBreadcrumbEventsUserId({ $urql, route }),
-  {
-    current: true,
-    ...usePageBreadcrumb(),
-  },
-])
 
 // computations
 const title = computed(() => {

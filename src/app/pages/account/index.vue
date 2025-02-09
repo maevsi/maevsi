@@ -1,39 +1,16 @@
 <template>
   <div class="flex flex-col gap-4">
     <!-- TODO: fill page with content instead (https://github.com/maevsi/maevsi/issues/1264) -->
-    <LayoutBreadcrumbs :items="breadcrumbItems" />
     <CardStateInfo>
       {{ t('accountDescription') }}
     </CardStateInfo>
   </div>
 </template>
 
-<script lang="ts">
-import { usePageBreadcrumb as usePageBreadcrumbHome } from '../index.vue'
-import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
-
-export const usePageBreadcrumb = () =>
-  ({
-    label: {
-      de: 'Konten',
-      en: 'Accounts',
-    },
-    to: '/account',
-  }) as BreadcrumbLinkLocalized
-</script>
-
 <script setup lang="ts">
 const { t } = useI18n()
-const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
 // data
-const breadcrumbItems = getBreadcrumbItemProps([
-  usePageBreadcrumbHome(),
-  {
-    current: true,
-    ...usePageBreadcrumb(),
-  },
-])
 const title = t('title')
 
 // initialization

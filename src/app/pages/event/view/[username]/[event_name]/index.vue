@@ -4,7 +4,6 @@
       v-if="event && event.accountByAuthorAccountId?.username"
       class="flex flex-col gap-4"
     >
-      <LayoutBreadcrumbs :items="breadcrumbItems" />
       <CardStateInfo v-if="routeQueryIc && contact" class="flex flex-col gap-2">
         {{ t('invitationViewFor', { name: contactName }) }}
         <ButtonColored
@@ -360,18 +359,13 @@
   </Loader>
 </template>
 
-<script lang="ts">
-import type { Client } from '@urql/core'
+<script setup lang="ts">
 import DOMPurify from 'isomorphic-dompurify'
 import mustache from 'mustache'
 import prntr from 'prntr'
 import QrcodeVue from 'qrcode.vue'
 import type { RouteLocationNormalized } from 'vue-router'
 import type { RouteNamedMap } from 'vue-router/auto-routes'
-
-import { usePageBreadcrumb as usePageBreadcrumbEventsUser } from '../index.vue'
-import { usePageBreadcrumb as usePageBreadcrumbEvents } from '../../../index.vue'
-import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../../../index.vue'
 
 import { useUpdateInvitationByIdMutation } from '~~/gql/documents/mutations/invitation/invitationUpdateById'
 import {
@@ -385,40 +379,9 @@ import { getEventItem } from '~~/gql/documents/fragments/eventItem'
 import { getAccountItem } from '~~/gql/documents/fragments/accountItem'
 import { getContactItem } from '~~/gql/documents/fragments/contactItem'
 import { useEventByAuthorAccountIdAndSlugQuery } from '~~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
-import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
 
 const ROUTE_NAME: keyof RouteNamedMap = 'event-view-username-event_name___en'
 
-export const pageBreadcrumb = async ({
-  $urql,
-  route,
-}: {
-  $urql: Ref<Client>
-  route: RouteLocationNormalized<
-    | 'event-edit-username-event_name___en'
-    | 'event-view-username-event_name___en'
-    | 'event-view-username-event_name-attendance___en'
-    | 'event-view-username-event_name-guest___en'
-  >
-}) => {
-  const account = await getAccountByUsername({
-    $urql,
-    username: route.params.username,
-  })
-  const event = await getEventByAuthorAccountIdAndSlug({
-    $urql,
-    authorAccountId: account?.id,
-    slug: route.params.event_name,
-  })
-
-  return {
-    label: event?.name,
-    to: `/event/view/${route.params.username}/${route.params.event_name}`,
-  } as BreadcrumbLinkLocalized
-}
-</script>
-
-<script setup lang="ts">
 definePageMeta({
   async validate(route) {
     return await validateEventExistence(
@@ -427,14 +390,12 @@ definePageMeta({
   },
 })
 
-const { $urql } = useNuxtApp()
 const { t } = useI18n()
 const fireAlert = useFireAlert()
 const store = useMaevsiStore()
 const route = useRoute(ROUTE_NAME)
 const localePath = useLocalePath()
 const updateInvitationByIdMutation = useUpdateInvitationByIdMutation()
-const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
 // api data
 const accountByUsernameQuery = await zalgo(
@@ -457,17 +418,6 @@ const event = computed(() =>
   getEventItem(eventQuery.data.value?.eventByAuthorAccountIdAndSlug),
 )
 const api = getApiData([accountByUsernameQuery, eventQuery])
-
-// data
-const breadcrumbItems = getBreadcrumbItemProps([
-  usePageBreadcrumbHome(),
-  usePageBreadcrumbEvents(),
-  usePageBreadcrumbEventsUser(),
-  {
-    current: true,
-    ...(await pageBreadcrumb({ $urql, route })),
-  },
-])
 
 // methods
 const accept = () => {

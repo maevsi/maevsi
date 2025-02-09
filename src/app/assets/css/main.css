@@ -173,6 +173,45 @@
   }
 }
 
+@layer components {
+  .form-input {
+    appearance: none;
+    background-color: rgb(249 250 251 / var(--tw-bg-opacity, 1));
+    border-color: rgb(209 213 219 / var(--tw-border-opacity, 1));
+    border-radius: 0.25rem;
+    border-width: 1px;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
+    color: rgb(24 24 27 / var(--tw-text-opacity, 1));
+    line-height: 1.25;
+    padding: 0.5rem 1rem;
+    width: 100%;
+  }
+
+  .form-input:focus {
+    background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+  }
+
+  .form-input::placeholder {
+    opacity: 0.5;
+  }
+
+  .form-input-error .form-input {
+    border-color: rgb(239 68 68 / var(--tw-border-opacity, 1));
+  }
+
+  .form-input-success .form-input {
+    border-color: rgb(22 163 74 / var(--tw-border-opacity, 1));
+  }
+
+  .form-input-warning .form-input {
+    border-color: rgb(202 138 4 / var(--tw-border-opacity, 1));
+  }
+
+  .form-textarea::placeholder {
+    opacity: 0.5;
+  }
+}
+
 @utility disabled {
   /* cursor-not-allowed */
   @apply opacity-75 pointer-events-none;

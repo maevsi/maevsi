@@ -1,7 +1,6 @@
 <template>
   <Loader :api="api" indicator="ping">
     <div class="flex flex-col gap-4">
-      <LayoutBreadcrumbs :items="breadcrumbItems" />
       <LayoutPageTitle :title="routeParamUsername" />
       <div
         class="flex min-w-0 flex-col items-center justify-center sm:flex-row"
@@ -109,33 +108,18 @@
   </Loader>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import type { RouteLocationNormalized } from 'vue-router'
 import type { RouteNamedMap } from 'vue-router/auto-routes'
-
-import { usePageBreadcrumb as usePageBreadcrumbAccounts } from '../index.vue'
-import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../index.vue'
 
 import { getAccountItem } from '~~/gql/documents/fragments/accountItem'
 import { getAchievementItem } from '~~/gql/documents/fragments/achievementItem'
 import { useAccountByUsernameQuery } from '~~/gql/documents/queries/account/accountByUsername'
 import { useAllAchievementsQuery } from '~~/gql/documents/queries/achievement/achievementsAll'
-import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
 import { AchievementType } from '~~/gql/generated/graphql'
 
 const ROUTE_NAME: keyof RouteNamedMap = 'account-view-username___en'
 
-export const usePageBreadcrumb = () => {
-  const route = useRoute(ROUTE_NAME)
-
-  return {
-    label: route.params.username,
-    to: `/account/view/${route.params.username}`,
-  } as BreadcrumbLinkLocalized
-}
-</script>
-
-<script setup lang="ts">
 definePageMeta({
   async validate(route) {
     return await validateAccountExistence({
@@ -147,7 +131,6 @@ definePageMeta({
 const { t } = useI18n()
 const route = useRoute(ROUTE_NAME)
 const localePath = useLocalePath()
-const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 const store = useMaevsiStore()
 
 // api data
@@ -169,14 +152,6 @@ const achievements =
 const api = getApiData([accountByUsernameQuery, achievementsQuery])
 
 // data
-const breadcrumbItems = getBreadcrumbItemProps([
-  usePageBreadcrumbHome(),
-  usePageBreadcrumbAccounts(),
-  {
-    current: true,
-    ...usePageBreadcrumb(),
-  },
-])
 const routeParamUsername = route.params.username
 const title = route.params.username
 
