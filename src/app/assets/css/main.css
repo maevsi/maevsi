@@ -7,9 +7,10 @@
 @import 'tailwindcss';
 @import './forms.css';
 
-@config "../../../tailwind.config.ts";
+@plugin "@tailwindcss/forms" {
+  strategy: 'base';
+}
 
-/* @plugin "@tailwindcss/forms"; */
 @plugin "@tailwindcss/typography";
 
 @theme {
@@ -46,7 +47,8 @@
     }
   }
 
-  --font-manrope: 'Manrope Variable', ui-sans-serif, system-ui, sans-serif,
+  --font-manrope:
+    'Manrope Variable', ui-sans-serif, system-ui, sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   --default-font-family: var(--font-manrope);
   --text-3xl--line-height: calc(2.5 / 1.875);
@@ -118,7 +120,7 @@
 
   :disabled {
     /* cursor-not-allowed */
-    @apply opacity-75 pointer-events-none;
+    @apply pointer-events-none opacity-75;
   }
 
   a,
@@ -214,7 +216,7 @@
 
 @utility disabled {
   /* cursor-not-allowed */
-  @apply opacity-75 pointer-events-none;
+  @apply pointer-events-none opacity-75;
 }
 
 @utility heading {
@@ -236,7 +238,7 @@
 }
 
 @utility vio-line-clamp-2 {
-  @apply overflow-hidden max-w-full text-ellipsis;
+  @apply max-w-full overflow-hidden text-ellipsis;
 
   display: -webkit-box;
   overflow-wrap: break-word;
@@ -246,6 +248,68 @@
 
 .dark {
   @apply scheme-dark;
+}
+
+.prose {
+  :where(h1):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+    @apply leading-10;
+  }
+
+  :where(h4):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+    @apply text-sm;
+  }
+
+  @media (width >= 40rem) {
+    :where(h1):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+      @apply leading-12;
+    }
+
+    :where(h4):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+      @apply text-lg;
+    }
+  }
+
+  @media (width >= 48rem) {
+    :where(h1):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+      @apply leading-16;
+    }
+
+    :where(h4):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+      @apply text-xl;
+    }
+  }
+
+  @media (width >= 64rem) {
+    :where(h1):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+      @apply leading-18;
+    }
+
+    :where(h2):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+      @apply leading-12;
+    }
+
+    :where(h4):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+      @apply text-2xl;
+    }
+  }
+
+  @media (width >= 80rem) {
+    :where(h1):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+      @apply leading-22;
+    }
+
+    :where(h2):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+      @apply leading-16;
+    }
+
+    :where(h3):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+      @apply leading-12;
+    }
+
+    :where(h4):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+      @apply text-3xl;
+    }
+  }
 }
 
 .layout-enter-active,
@@ -261,7 +325,7 @@
 /* stylelint-disable selector-class-pattern */
 .ProseMirror {
   @apply prose dark:prose-invert prose-sm sm:prose-base lg:prose-lg xl:prose-xl m-auto;
-  @apply max-w-full m-0;
+  @apply m-0 max-w-full;
 }
 
 .ProseMirror > p:first-child {
