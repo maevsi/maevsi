@@ -1,12 +1,74 @@
+/* stylelint-disable at-rule-no-deprecated */
 /* stylelint-disable at-rule-no-unknown */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-/* stylelint-enable at-rule-no-unknown */
+/* stylelint-disable custom-property-pattern */
+/* stylelint-disable import-notation */
+/* stylelint-disable plugin/no-unsupported-browser-features */
 
-/* doiuse-disable css-cascade-layers */
+@import 'tailwindcss';
+@import './forms.css';
+
+@plugin "@tailwindcss/forms" {
+  strategy: 'base';
+}
+
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --animate-shake: shake 0.6s ease-in-out 0s 1 normal forwards running;
+
+  @keyframes shake {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+
+    15% {
+      transform: translateX(0.375rem);
+    }
+
+    30% {
+      transform: translateX(-0.375rem);
+    }
+
+    45% {
+      transform: translateX(0.375rem);
+    }
+
+    60% {
+      transform: translateX(-0.375rem);
+    }
+
+    75% {
+      transform: translateX(0.375rem);
+    }
+
+    90% {
+      transform: translateX(-0.375rem);
+    }
+  }
+
+  --font-manrope:
+    'Manrope Variable', ui-sans-serif, system-ui, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --default-font-family: var(--font-manrope);
+  --text-3xl--line-height: calc(2.5 / 1.875);
+  --text-4xl--line-height: calc(3 / 2.25);
+  --text-5xl--line-height: calc(4 / 3);
+  --text-6xl--line-height: calc(4.75 / 3.75);
+  --text-7xl--line-height: calc(4.75 / 4);
+  --text-8xl--line-height: calc(7.5 / 6);
+  --text-9xl--line-height: calc(10 / 8);
+  --color-background-bright: var(--color-white);
+  --color-background-brighten: var(--color-zinc-200);
+  --color-background-dark: var(--color-zinc-800);
+  --color-background-darken: var(--color-zinc-700);
+  --color-link-bright: var(--color-blue-400);
+  --color-link-dark: var(--color-blue-600);
+  --color-text-bright: var(--color-zinc-50);
+  --color-text-dark: var(--color-zinc-900);
+}
+
 @layer base {
-  /* doiuse-enable css-cascade-layers */
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
@@ -53,77 +115,72 @@
   }
 
   ::placeholder {
-    font-style: italic;
+    @apply italic;
   }
 
   :disabled {
-    /* cursor: not-allowed; */
-    opacity: 0.75;
-    pointer-events: none;
+    /* cursor-not-allowed */
+    @apply pointer-events-none opacity-75;
   }
 
-  a:focus {
-    outline: 2px solid transparent;
-    outline-offset: 2px;
-    box-shadow: var(--tw-ring-inset) 0 0 0
-      calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  a,
+  button {
+    @apply focus:ring-3 focus:ring-blue-500/50 focus:outline-none;
   }
 
   a[target='_blank']:not([is-external-icon-disabled])::after {
-    background-color: currentcolor;
+    /* inline-table centers the element vertically in the tiptap text area, instead of inline-block */
+    @apply ml-[0.3125rem] inline-table h-3 w-3 bg-current;
+
     content: '';
-    display: inline-table; /* inline-table centers the element vertically in the tiptap text area, instead of inline-block */
-    height: 0.75rem;
-    margin-left: 0.3125rem;
-    /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
     mask: url('data:image/svg+xml;base64,PHN2ZyBhcmlhLWhpZGRlbj0idHJ1ZSIgZm9jdXNhYmxlPSJmYWxzZSIgZGF0YS1wcmVmaXg9ImZhcyIgZGF0YS1pY29uPSJhcnJvdy11cC1yaWdodC1mcm9tLXNxdWFyZSIgY2xhc3M9InN2Zy1pbmxpbmUtLWZhIGZhLWFycm93LXVwLXJpZ2h0LWZyb20tc3F1YXJlIiByb2xlPSJpbWciIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDUxMiA1MTIiPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTM4NCAzMjBjLTE3LjY3IDAtMzIgMTQuMzMtMzIgMzJ2OTZINjRWMTYwaDk2YzE3LjY3IDAgMzItMTQuMzIgMzItMzJzLTE0LjMzLTMyLTMyLTMyTDY0IDk2Yy0zNS4zNSAwLTY0IDI4LjY1LTY0IDY0VjQ0OGMwIDM1LjM0IDI4LjY1IDY0IDY0IDY0aDI4OGMzNS4zNSAwIDY0LTI4LjY2IDY0LTY0di05NkM0MTYgMzM0LjMgNDAxLjcgMzIwIDM4NCAzMjB6TTUwMi42IDkuMzY3QzQ5Ni44IDMuNTc4IDQ4OC44IDAgNDgwIDBoLTE2MGMtMTcuNjcgMC0zMS4xIDE0LjMyLTMxLjEgMzEuMWMwIDE3LjY3IDE0LjMyIDMxLjEgMzEuOTkgMzEuMWg4Mi43NUwxNzguNyAyOTAuN2MtMTIuNSAxMi41LTEyLjUgMzIuNzYgMCA0NS4yNkMxOTEuMiAzNDguNSAyMTEuNSAzNDguNSAyMjQgMzM2bDIyNC0yMjYuOFYxOTJjMCAxNy42NyAxNC4zMyAzMS4xIDMxLjEgMzEuMVM1MTIgMjA5LjcgNTEyIDE5MlYzMS4xQzUxMiAyMy4xNiA1MDguNCAxNS4xNiA1MDIuNiA5LjM2N3oiPjwvcGF0aD48L3N2Zz4K')
       no-repeat 50% 50%;
-    /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
     mask-size: cover;
-    width: 0.75rem;
   }
 
   address {
-    margin: 1rem;
+    @apply m-4;
   }
 
-  button:focus {
-    outline: 2px solid transparent;
-    outline-offset: 2px;
-    box-shadow: var(--tw-ring-inset) 0 0 0
-      calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+
+  h1 {
+    @apply heading my-4 text-4xl;
+  }
+
+  h2 {
+    @apply heading text-3xl;
+  }
+
+  h3 {
+    @apply heading text-2xl;
+  }
+
+  h4 {
+    @apply heading text-xl;
   }
 
   image::before {
-    align-items: center;
-    display: flex;
-    height: 100%;
-    justify-content: center;
+    @apply flex h-full items-center justify-center;
   }
 
   table {
-    width: 100%;
+    @apply w-full;
   }
 
   td {
-    padding: 1rem 1.5rem;
-    white-space: nowrap;
+    @apply px-4 py-6 whitespace-nowrap;
   }
 
   th {
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    line-height: 1rem;
-    padding: 0.75rem 1.5rem;
-    text-align: left;
-    text-transform: uppercase;
+    @apply px-3 py-6 text-left text-xs font-medium tracking-wider uppercase;
   }
 }
 
-/* doiuse-disable css-cascade-layers */
 @layer components {
-  /* doiuse-enable css-cascade-layers */
   .form-input {
     appearance: none;
     background-color: rgb(249 250 251 / var(--tw-bg-opacity, 1));
@@ -162,68 +219,125 @@
   }
 }
 
-/* doiuse-disable css-cascade-layers */
-@layer utilities {
-  /* doiuse-enable css-cascade-layers */
-  .disabled {
-    /* cursor: not-allowed; */
-    opacity: 0.75;
-    pointer-events: none;
-  }
+@utility disabled {
+  /* cursor-not-allowed */
+  @apply pointer-events-none opacity-75;
+}
 
-  .truncate-overflow {
-    overflow: hidden; /* stylelint-disable-line plugin/no-unsupported-browser-features */ /* `hidden` is supported in UC Browser for Android 15.5 */
-    text-overflow: ellipsis;
-  }
+@utility heading {
+  @apply max-w-full overflow-hidden font-bold text-ellipsis;
+}
 
-  .under-construction {
-    background: repeating-linear-gradient(
-      -45deg,
-      #fb0,
-      #fb0 10px,
-      #0000 10px,
-      #0000 30px
-    );
-  }
+@utility truncate-overflow {
+  @apply overflow-hidden text-ellipsis;
+}
 
-  .vio-line-clamp-2 {
-    overflow: hidden; /* stylelint-disable-line plugin/no-unsupported-browser-features */ /* `hidden` is supported in UC Browser for Android 15.5 */
-    display: -webkit-box;
-    max-width: 100%;
-    overflow-wrap: break-word;
-    text-overflow: ellipsis;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-  }
+@utility under-construction {
+  background: repeating-linear-gradient(
+    -45deg,
+    #fb0,
+    #fb0 10px,
+    #0000 10px,
+    #0000 30px
+  );
+}
+
+@utility vio-line-clamp-2 {
+  @apply max-w-full overflow-hidden text-ellipsis;
+
+  display: -webkit-box;
+  overflow-wrap: break-word;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .dark {
-  color-scheme: dark;
+  @apply scheme-dark;
+}
+
+.prose {
+  :where(h1):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+    @apply leading-10;
+  }
+
+  :where(h4):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+    @apply text-sm;
+  }
+
+  @media (width >= 40rem) {
+    :where(h1):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+      @apply leading-12;
+    }
+
+    :where(h4):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+      @apply text-lg;
+    }
+  }
+
+  @media (width >= 48rem) {
+    :where(h1):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+      @apply leading-16;
+    }
+
+    :where(h4):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+      @apply text-xl;
+    }
+  }
+
+  @media (width >= 64rem) {
+    :where(h1):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+      @apply leading-18;
+    }
+
+    :where(h2):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+      @apply leading-12;
+    }
+
+    :where(h4):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+      @apply text-2xl;
+    }
+  }
+
+  @media (width >= 80rem) {
+    :where(h1):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+      @apply leading-22;
+    }
+
+    :where(h2):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+      @apply leading-16;
+    }
+
+    :where(h3):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+      @apply leading-12;
+    }
+
+    :where(h4):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+      @apply text-3xl;
+    }
+  }
 }
 
 .layout-enter-active,
 .layout-leave-active {
-  transition: opacity 0.1s;
+  @apply transition-opacity duration-100;
 }
 
 .layout-enter,
 .layout-leave-active {
-  opacity: 0;
+  @apply opacity-0;
 }
 
 /* stylelint-disable selector-class-pattern */
 .ProseMirror {
-  @apply prose dark:prose-invert prose-sm sm:prose-base lg:prose-lg xl:prose-xl m-auto; /* vio-prose */ /* stylelint-disable-line at-rule-no-deprecated */ /* stylelint-disable-line plugin/no-unsupported-browser-features */
-
-  max-width: 100%;
-  margin: 0;
+  @apply prose dark:prose-invert prose-sm sm:prose-base lg:prose-lg xl:prose-xl m-auto;
+  @apply m-0 max-w-full;
 }
 
 .ProseMirror > p:first-child {
-  margin-top: 0;
+  @apply mt-0;
 }
 
 .ProseMirror > p:last-child {
-  margin-bottom: 0;
+  @apply mb-0;
 }
 /* stylelint-enable selector-class-pattern */

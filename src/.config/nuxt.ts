@@ -1,3 +1,4 @@
+import tailwindcss from '@tailwindcss/vite'
 import vue from '@vitejs/plugin-vue'
 import { defu } from 'defu'
 import type { Nuxt, ModuleOptions } from 'nuxt/schema'
@@ -35,6 +36,7 @@ export default defineNuxtConfig({
     },
   },
   compatibilityDate: '2024-04-03',
+  css: ['~/assets/css/tailwind.css'],
   experimental: {
     typedPages: true,
   },
@@ -46,10 +48,9 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/image',
     '@nuxt/scripts',
-    '@nuxtjs/color-mode',
+    // '@nuxtjs/color-mode', // installed by `shadcn-nuxt`
     '@nuxtjs/html-validator',
     '@nuxtjs/i18n',
-    '@nuxtjs/tailwindcss',
     '@nuxtjs/seo',
     '@nuxtjs/turnstile',
     '@pinia/nuxt',
@@ -216,6 +217,7 @@ export default defineNuxtConfig({
         '@vuelidate/core',
         'chart.js',
         'clipboardy',
+        'clsx',
         'css-element-queries',
         'downloadjs',
         'firebase/app',
@@ -231,6 +233,7 @@ export default defineNuxtConfig({
         'qrcode.vue',
         'seedrandom',
         'slugify',
+        'tailwind-merge',
         'v-calendar',
         'vue-advanced-cropper',
         'vue-chartjs',
@@ -246,6 +249,7 @@ export default defineNuxtConfig({
       Icons({
         scale: 1.5,
       }),
+      tailwindcss(),
     ],
   },
   ...modulesConfig,
