@@ -1,15 +1,5 @@
 <template>
   <div class="flex flex-col items-center gap-4">
-    <ButtonColored
-      :is-primary="false"
-      :aria-label="t('register')"
-      :to="localePath('session-create')"
-    >
-      {{ t('signIn') }}
-      <template #prefix>
-        <IHeroiconsArrowLeft />
-      </template>
-    </ButtonColored>
     <Form
       :errors="api.errors"
       :errors-pg-ids="{
@@ -20,7 +10,7 @@
       form-class="w-full"
       :is-form-sent="isFormSent"
       :submit-name="t('register')"
-      @submit.prevent="submit"
+      @submit.prevent="handleSubmit"
     >
       <FormInputUsername
         :form-input="v$.username"
@@ -47,11 +37,28 @@
         </FormInputStateInfo>
       </template>
     </Form>
+
+    <AppLink
+      :to="localePath('session-create')"
+      :is-underlined="true"
+      :is-colored="true"
+    >
+      {{ t('alreadyHaveAnAccount') }}
+    </AppLink>
+
+    <!-- Modals -->
+    <ModalPrivacyPolicy
+      v-model="privacyModalOpen"
+      @open-general-terms="openGeneralTerms"
+    />
+
+    <ModalGeneralTerms v-model="generalTermsModalOpen" @accepted="submit" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
+import { useCreateLegalTermAcceptanceMutation } from '~~/gql/documents/mutations/account/accountLegalTermAcceptance'
 import { useAccountRegistrationMutation } from '~~/gql/documents/mutations/account/accountRegistration'
 
 const { locale, t } = useI18n()
@@ -59,39 +66,73 @@ const localePath = useLocalePath()
 const fireAlert = useFireAlert()
 const store = useMaevsiStore()
 
-// api data
+const privacyModalOpen = ref(false)
+const generalTermsModalOpen = ref(false)
+
 const accountRegistrationMutation = useAccountRegistrationMutation()
 const api = getApiData([accountRegistrationMutation])
 
-// data
 const form = reactive({
   captcha: ref<string>(),
   emailAddress: ref<string>(),
   password: ref<string>(),
   username: ref<string>(),
 })
+
 const isFormSent = ref(false)
 
-// methods
-const submit = async () => {
-  if (!(await isFormValid({ v$, isFormSent }))) return
-
+// Methods
+const submit = async (termId: string) => {
   store.turnstileToken = form.captcha
 
-  const result = await accountRegistrationMutation.executeMutation({
+  const accountResult = await accountRegistrationMutation.executeMutation({
     emailAddress: form.emailAddress || '',
     language: locale.value,
     password: form.password || '',
     username: form.username || '',
   })
 
-  if (result.error || !result.data) return
+  if (accountResult.error) {
+    return
+  }
+
+  const accountUuid = accountResult.data?.accountRegistration?.uuid
+  if (!accountUuid) {
+    console.error('No account UUID received')
+    return
+  }
+
+  const legalTermAcceptanceMutation = useCreateLegalTermAcceptanceMutation()
+
+  const acceptanceResult = await legalTermAcceptanceMutation.executeMutation({
+    input: {
+      legalTermAcceptance: {
+        accountId: accountUuid,
+        legalTermId: termId,
+      },
+    },
+  })
+
+  if (acceptanceResult.error) {
+    console.error('Legal term acceptance error:', acceptanceResult.error)
+    return
+  }
 
   await fireAlert({
     level: 'success',
     title: t('registrationSuccessTitle'),
     text: t('registrationSuccessBody'),
   })
+}
+
+const handleSubmit = async () => {
+  if (!(await isFormValid({ v$, isFormSent }))) return
+
+  privacyModalOpen.value = true
+}
+
+const openGeneralTerms = () => {
+  generalTermsModalOpen.value = true
 }
 
 // vuelidate
@@ -104,6 +145,7 @@ const rules = {
   password: VALIDATION_PASSWORD(),
   emailAddress: VALIDATION_EMAIL_ADDRESS({ isRequired: true }),
 }
+
 const v$ = useVuelidate(rules, form)
 </script>
 
@@ -115,13 +157,13 @@ de:
   register: Registrieren
   registrationSuccessBody: Verifiziere deinen Account über den Link in der E-Mail, die du in Kürze erhalten wirst.
   registrationSuccessTitle: Verifizierungs-E-Mail gesendet.
-  signIn: Stattdessen anmelden
+  alreadyHaveAnAccount: 'Du hast bereits ein Konto? Anmelden'
 en:
   accountDeletionNotice: "You'll be able to delete your account at any time."
   postgres22023: Your password is too short! Think of a longer one.
   postgres23505: This username or email address is already in use! Think of a new name or try signing in instead.
-  register: Register
+  register: Sign Up
   registrationSuccessBody: Verify your account using the verification link sent to you by email.
   registrationSuccessTitle: Verification email sent.
-  signIn: Sign in instead
+  alreadyHaveAnAccount: Already have an account? Log in
 </i18n>
