@@ -36,5 +36,10 @@
     "lint-staged": "15.4.3",
     "semantic-release": "24.2.2"
   },
-  "type": "module"
+  "type": "module",
+  "pnpm": {
+    "patchedDependencies": {
+      "shadcn-nuxt": "patches/shadcn-nuxt.patch"
+    }
+  }
 }

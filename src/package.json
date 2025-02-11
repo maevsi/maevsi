@@ -116,7 +116,7 @@
     "qrcode.vue": "3.6.0",
     "radix-vue": "1.9.13",
     "seedrandom": "3.0.5",
-    "shadcn-nuxt": "file:../dependencies/shadcn-nuxt-0.11.3.tgz",
+    "shadcn-nuxt": "0.11.3",
     "slugify": "1.6.6",
     "stylelint": "16.14.1",
     "stylelint-config-recommended-vue": "1.6.0",
