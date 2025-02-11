@@ -3,7 +3,7 @@
   "engines": {
     "node": "22"
   },
-  "packageManager": "pnpm@10.2.1",
+  "packageManager": "pnpm@10.3.0",
   "scripts": {
     "build": "pnpm --dir src run build",
     "build:node": "nuxt --dir src run build:node",
@@ -34,7 +34,12 @@
     "husky": "9.1.7",
     "jiti": "2.4.2",
     "lint-staged": "15.4.3",
-    "semantic-release": "24.2.1"
+    "semantic-release": "24.2.2"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "shadcn-nuxt": "patches/shadcn-nuxt.patch"
+    }
   },
   "type": "module"
 }

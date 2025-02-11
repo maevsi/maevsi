@@ -19,15 +19,15 @@
       >
         <IconLogoWithText class="h-10 w-32" />
       </Button>
-      <div class="hidden flex-grow lg:block" />
+      <div class="hidden grow lg:block" />
       <div class="hidden 2xl:flex">
         <SearchBar />
       </div>
-      <div class="flex-grow" />
+      <div class="grow" />
       <div class="flex items-center gap-2 whitespace-nowrap lg:gap-4">
         <ButtonEventNew />
         <div
-          class="my-1 hidden w-px flex-none self-stretch bg-gray-300 dark:bg-gray-600 2xl:flex"
+          class="my-1 hidden w-px flex-none self-stretch bg-gray-300 2xl:flex dark:bg-gray-600"
         />
         <ButtonIcon
           v-if="store.signedInAccountId"

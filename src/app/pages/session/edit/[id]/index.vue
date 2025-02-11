@@ -1,6 +1,5 @@
 <template>
   <div>
-    <LayoutBreadcrumbs :items="breadcrumbItems" />
     <LayoutPageTitle :title="title" />
     <div class="flex flex-col gap-8">
       <section v-if="store.signedInUsername" class="flex flex-col gap-4">
@@ -160,31 +159,12 @@
   </div>
 </template>
 
-<script lang="ts">
-import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../../index.vue'
-import { usePageBreadcrumb as usePageBreadcrumbSession } from '../../view/[id].vue'
-import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
-
+<script setup lang="ts">
 import type { RouteNamedMap } from 'vue-router/auto-routes'
 
 const ROUTE_NAME: keyof RouteNamedMap = 'session-edit-id___en'
 
-export const usePageBreadcrumb = () => {
-  const route = useRoute(ROUTE_NAME)
-
-  return {
-    label: {
-      de: 'Bearbeiten',
-      en: 'Edit',
-    },
-    to: `/session/edit/${route.params.id}`,
-  } as BreadcrumbLinkLocalized
-}
-</script>
-
-<script setup lang="ts">
 const { t } = useI18n()
-const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 const cookieControl = useCookieControl()
 const localePath = useLocalePath()
 const route = useRoute(ROUTE_NAME)
@@ -192,14 +172,6 @@ const store = useMaevsiStore()
 const { signOut } = useSignOut()
 
 // data
-const breadcrumbItems = getBreadcrumbItemProps([
-  usePageBreadcrumbHome(),
-  usePageBreadcrumbSession(),
-  {
-    current: true,
-    ...usePageBreadcrumb(),
-  },
-])
 const title = t('preferences')
 
 // initialization

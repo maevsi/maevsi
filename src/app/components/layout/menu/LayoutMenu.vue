@@ -22,7 +22,7 @@
     >
       <div class="relative">
         <IHeroiconsBell />
-        <div class="absolute right-0 top-0">
+        <div class="absolute top-0 right-0">
           <NotificationIndicator />
         </div>
       </div>

@@ -1,8 +1,9 @@
 <template>
   <AppLink
     v-if="props.to"
+    v-bind="delegatedProps"
     :aria-label="ariaLabel"
-    :class="classes"
+    :class="cn(classes, props.class)"
     :is-disabled="disabled"
     :is-colored="false"
     :to="props.to"
@@ -17,7 +18,7 @@
   <button
     v-else
     :aria-label="ariaLabel"
-    :class="['rounded', classes]"
+    :class="cn(['rounded-sm', classes], props.class)"
     :disabled="disabled"
     :type="type"
     @click="emit('click')"
@@ -31,6 +32,8 @@
 </template>
 
 <script setup lang="ts">
+import { cn } from '@/utils/shadcn'
+import type { HtmlHTMLAttributes } from 'vue'
 import type { RouteLocationRaw } from 'vue-router'
 
 export interface Props {
@@ -42,13 +45,30 @@ export interface Props {
   to?: RouteLocationRaw
   type?: 'button' | 'submit' | 'reset'
 }
-const props = withDefaults(defineProps<Props>(), {
-  disabled: false,
-  isBlock: false,
-  isExternal: undefined,
-  isLinkColored: false,
-  to: undefined,
-  type: 'button',
+const props = withDefaults(
+  defineProps<Props & { class?: HtmlHTMLAttributes['class'] }>(),
+  {
+    disabled: false,
+    class: undefined,
+    isBlock: false,
+    isExternal: undefined,
+    isLinkColored: false,
+    to: undefined,
+    type: 'button',
+  },
+)
+const delegatedProps = computed(() => {
+  const {
+    class: _class,
+    disabled: _disabled,
+    isBlock: _isBlock,
+    isLinkColored: _isLinkColored,
+    type: _type,
+    to: _to,
+    ...delegated
+  } = props
+
+  return delegated
 })
 
 const emit = defineEmits<{

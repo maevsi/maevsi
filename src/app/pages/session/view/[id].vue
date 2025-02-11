@@ -1,6 +1,5 @@
 <template>
   <div>
-    <LayoutBreadcrumbs :items="breadcrumbItems" />
     <LayoutPageTitle :title="title" />
     <div class="flex flex-col gap-8">
       <section class="flex flex-col gap-4">
@@ -206,45 +205,17 @@
   </div>
 </template>
 
-<script lang="ts">
-import { consola } from 'consola'
-import type { RouteNamedMap } from 'vue-router/auto-routes'
-
-import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../index.vue'
-import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
-
-const ROUTE_NAME: keyof RouteNamedMap = 'session-view-id___en'
-
-export const usePageBreadcrumb = () => {
-  const route = useRoute(ROUTE_NAME)
-
-  return {
-    label: {
-      de: 'Sitzung',
-      en: 'Session',
-    },
-    to: `/session/view/${route.params.id}`,
-  } as BreadcrumbLinkLocalized
-}
-</script>
-
 <script setup lang="ts">
+import { consola } from 'consola'
+
 const { t } = useI18n()
 const requestEvent = useRequestEvent()
-const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 const store = useMaevsiStore()
 const dateTime = useDateTime()
 const { signOut } = useSignOut()
 const fireAlert = useFireAlert()
 
 // data
-const breadcrumbItems = getBreadcrumbItemProps([
-  usePageBreadcrumbHome(),
-  {
-    current: true,
-    ...usePageBreadcrumb(),
-  },
-])
 const isNavigatorHavingPermissions = ref<boolean>()
 const isNavigatorHavingServiceWorker = ref<boolean>()
 const isWindowHavingNotification = ref<boolean>()

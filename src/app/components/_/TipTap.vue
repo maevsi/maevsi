@@ -4,7 +4,7 @@
       <div class="flex gap-1">
         <ButtonIcon
           :aria-label="t('undo')"
-          class="rounded p-1"
+          class="rounded-sm p-1"
           :title="t('undo')"
           @click="editor.chain().focus().undo().run()"
         >
@@ -12,7 +12,7 @@
         </ButtonIcon>
         <ButtonIcon
           :aria-label="t('redo')"
-          class="rounded p-1"
+          class="rounded-sm p-1"
           :title="t('redo')"
           @click="editor.chain().focus().redo().run()"
         >
@@ -29,7 +29,7 @@
         </ButtonIcon /> -->
         <ButtonIcon
           :aria-label="t('heading1')"
-          class="rounded p-1"
+          class="rounded-sm p-1"
           :class="{
             'bg-background-bright dark:bg-background-dark': isActive.heading1,
           }"
@@ -43,7 +43,7 @@
         </ButtonIcon>
         <ButtonIcon
           :aria-label="t('heading2')"
-          class="rounded p-1"
+          class="rounded-sm p-1"
           :class="{
             'bg-background-bright dark:bg-background-dark': isActive.heading2,
           }"
@@ -57,7 +57,7 @@
         </ButtonIcon>
         <ButtonIcon
           :aria-label="t('heading3')"
-          class="rounded p-1"
+          class="rounded-sm p-1"
           :class="{
             'bg-background-bright dark:bg-background-dark': isActive.heading3,
           }"
@@ -73,7 +73,7 @@
       <div class="flex gap-1">
         <ButtonIcon
           :aria-label="t('bold')"
-          class="rounded p-1"
+          class="rounded-sm p-1"
           :class="{
             'bg-background-bright dark:bg-background-dark': isActive.bold,
           }"
@@ -84,7 +84,7 @@
         </ButtonIcon>
         <ButtonIcon
           :aria-label="t('italic')"
-          class="rounded p-1"
+          class="rounded-sm p-1"
           :class="{
             'bg-background-bright dark:bg-background-dark': isActive.italic,
           }"
@@ -95,7 +95,7 @@
         </ButtonIcon>
         <ButtonIcon
           :aria-label="t('strike')"
-          class="rounded p-1"
+          class="rounded-sm p-1"
           :class="{
             'bg-background-bright dark:bg-background-dark': isActive.strike,
           }"
@@ -108,7 +108,7 @@
       <div class="flex gap-1">
         <ButtonIcon
           :aria-label="t('formatAlignLeft')"
-          class="rounded p-1"
+          class="rounded-sm p-1"
           :class="{
             'bg-background-bright dark:bg-background-dark':
               isActive.textAlignLeft,
@@ -120,7 +120,7 @@
         </ButtonIcon>
         <ButtonIcon
           :aria-label="t('formatAlignCenter')"
-          class="rounded p-1"
+          class="rounded-sm p-1"
           :class="{
             'bg-background-bright dark:bg-background-dark':
               isActive.textAlignCenter,
@@ -132,7 +132,7 @@
         </ButtonIcon>
         <ButtonIcon
           :aria-label="t('formatAlignRight')"
-          class="rounded p-1"
+          class="rounded-sm p-1"
           :class="{
             'bg-background-bright dark:bg-background-dark':
               isActive.textAlignRight,
@@ -146,7 +146,7 @@
       <div class="flex gap-1">
         <ButtonIcon
           :aria-label="t('listUl')"
-          class="rounded p-1"
+          class="rounded-sm p-1"
           :class="{
             'bg-background-bright dark:bg-background-dark': isActive.bulletList,
           }"
@@ -157,7 +157,7 @@
         </ButtonIcon>
         <ButtonIcon
           :aria-label="t('listOl')"
-          class="rounded p-1"
+          class="rounded-sm p-1"
           :class="{
             'bg-background-bright dark:bg-background-dark':
               isActive.orderedList,
@@ -171,7 +171,7 @@
       <div class="flex gap-1">
         <ButtonIcon
           :aria-label="t('link')"
-          class="rounded p-1"
+          class="rounded-sm p-1"
           :class="{
             'bg-background-bright dark:bg-background-dark': isActive.link,
           }"
@@ -182,7 +182,7 @@
         </ButtonIcon>
         <ButtonIcon
           :aria-label="t('linkRemove')"
-          class="rounded p-1"
+          class="rounded-sm p-1"
           :disabled="!isActive.link"
           :title="t('linkRemove')"
           @click="editor.chain().focus().unsetLink().run()"
@@ -191,7 +191,7 @@
         </ButtonIcon>
         <ButtonIcon
           :aria-label="t('blockquote')"
-          class="rounded p-1"
+          class="rounded-sm p-1"
           :class="{
             'bg-background-bright dark:bg-background-dark': isActive.blockquote,
           }"
@@ -202,7 +202,7 @@
         </ButtonIcon>
         <ButtonIcon
           :aria-label="t('code')"
-          class="rounded p-1"
+          class="rounded-sm p-1"
           :class="{
             'bg-background-bright dark:bg-background-dark': isActive.code,
           }"
@@ -215,7 +215,7 @@
       <div class="flex gap-1">
         <ButtonIcon
           :aria-label="t('horizontalRule')"
-          class="rounded p-1"
+          class="rounded-sm p-1"
           :class="{
             'bg-background-bright dark:bg-background-dark':
               isActive.horizontalRule,

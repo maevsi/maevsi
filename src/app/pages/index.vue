@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-32 pb-64 pt-8 md:gap-64">
+  <div class="flex flex-col gap-32 pt-8 pb-64 md:gap-64">
     <section id="overview" class="flex items-center gap-8">
       <div class="flex flex-col items-start gap-8 md:gap-16">
         <h1
@@ -98,23 +98,11 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import JSConfetti from 'js-confetti'
 
 import { useAchievementUnlockMutation } from '~~/gql/documents/mutations/achievement/achievementUnlock'
-import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
 
-export const usePageBreadcrumb = () =>
-  ({
-    ariaLabel: {
-      de: 'Start',
-      en: 'Home',
-    },
-    to: '/',
-  }) as BreadcrumbLinkLocalized
-</script>
-
-<script setup lang="ts">
 const { t } = useI18n()
 const localePath = useLocalePath()
 const siteConfig = useSiteConfig()

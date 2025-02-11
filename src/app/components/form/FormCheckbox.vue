@@ -2,7 +2,7 @@
   <div>
     <input
       :id="`input-${formKey}`"
-      class="rounded"
+      class="rounded-sm"
       :disabled="isDisabled"
       type="checkbox"
       :checked="value"

@@ -1,6 +1,6 @@
 <template>
   <tbody
-    class="divide-y divide-background-brighten dark:divide-background-darken"
+    class="divide-background-brighten dark:divide-background-darken divide-y"
   >
     <slot />
   </tbody>
