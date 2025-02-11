@@ -1,5 +1,5 @@
-import vue from '@vitejs/plugin-vue'
 import tailwindcss from '@tailwindcss/vite'
+import vue from '@vitejs/plugin-vue'
 import { defu } from 'defu'
 import type { Nuxt, ModuleOptions } from 'nuxt/schema'
 import IconsResolver from 'unplugin-icons/resolver'
@@ -36,7 +36,7 @@ export default defineNuxtConfig({
     },
   },
   compatibilityDate: '2024-04-03',
-  css: ['~/assets/css/main.css'],
+  css: ['~/assets/css/tailwind.css'],
   experimental: {
     typedPages: true,
   },
@@ -48,7 +48,7 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/image',
     '@nuxt/scripts',
-    // '@nuxtjs/color-mode', // installed by `shadcn-nuxt
+    // '@nuxtjs/color-mode', // installed by `shadcn-nuxt`
     '@nuxtjs/html-validator',
     '@nuxtjs/i18n',
     '@nuxtjs/seo',
