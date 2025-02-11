@@ -1,12 +1,19 @@
 import OpenAI from 'openai'
 import { zodResponseFormat } from 'openai/helpers/zod'
 import { z } from 'zod'
-// import * as fs from 'fs'
+import sharp from 'sharp'
 
 const eventIngestImagePostBodySchema = z.object({
-  base64Image: z.string(),
+  base64Image: z.string().refine(
+    (val) => {
+      const base64Regex = /^[A-Za-z0-9+/]+={0,2}$/
+      return base64Regex.test(val) && val.length % 4 === 0
+    },
+    {
+      message: 'Invalid base64 format',
+    },
+  ),
 })
-
 export default defineEventHandler(async (event) => {
   const verifyAuth = await useVerifyAuth()
 
@@ -22,31 +29,36 @@ export default defineEventHandler(async (event) => {
     schema: eventIngestImagePostBodySchema,
   })
 
+  let imgBuffer = Buffer.from(body.base64Image, 'base64')
+  sharp(imgBuffer)
+    .resize({
+      width: 1024,
+      height: 1024,
+      fit: 'inside',
+      withoutEnlargement: true,
+    })
+    .toBuffer()
+  imgBuffer = await sharp(imgBuffer).jpeg().toBuffer()
+
   const Event = z.object({
-    id: z.string().optional(),
-    author_account_id: z.string().optional(),
+    // id: z.string().optional(),
+    // author_account_id: z.string().optional(),
     description: z.string(),
     end: z.string().optional(),
-    invitee_count_maximum: z.number().optional(),
-    is_archived: z.boolean().optional(),
-    is_in_person: z.boolean().optional(),
-    is_remote: z.boolean().optional(),
+    // invitee_count_maximum: z.number().optional(),
+    // is_archived: z.boolean().optional(),
+    is_event: z.boolean(),
+    // is_in_person: z.boolean().optional(),
+    // is_remote: z.boolean().optional(),
     location: z.string().optional(),
     name: z.string().optional(),
-    slug: z.string().optional(),
+    // slug: z.string().optional(),
     start: z.string().optional(),
     url: z.string().optional(),
-    visibility: z.string().optional(),
-    created_at: z.string().optional(),
+    // visibility: z.string().optional(),
+    // created_at: z.string().optional(),
   })
 
-  // const imagePath =
-  //   '/home/dank/codebases/maevsi/maevsi/src/server/api/event/ingest/test_images/z6163147592236_c4c82d6b68d8d8792cc2cd029f678fd0.jpg'
-  // const imageBase64 = encodeImage(imagePath)
-  // function encodeImage(imagePath: string): string {
-  //   const imageBuffer = fs.readFileSync(imagePath)
-  //   return imageBuffer.toString('base64')
-  // }
   const completion = await openai.beta.chat.completions.parse({
     messages: [
       {
@@ -61,7 +73,7 @@ export default defineEventHandler(async (event) => {
         content: [
           {
             type: 'text',
-            text: `First, check if the given image is about an event. If not, return "not an event" in the description field. If it is indeed an event, export this event into JSON (use an empty string for any missing information) if the input describes an event; Ensure that:
+            text: `First, check if the given image is about an event. If it is indeed an event, export this event into JSON (use an empty string for any missing information) if the input describes an event; Ensure that:
           - The given texts are about an event. If not, return an empty string.
           - All text must use proper casing and correct spelling.
           - Dates must be formatted in ISO 8601.`,
@@ -69,7 +81,7 @@ export default defineEventHandler(async (event) => {
           {
             type: 'image_url',
             image_url: {
-              url: `data:image/jpeg;base64,${body.base64Image}`,
+              url: `data:image/jpeg;base64,${imgBuffer.toString('base64')}`,
             },
           },
         ],
