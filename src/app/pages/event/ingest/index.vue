@@ -67,8 +67,8 @@
           <ShadButton
             variant="primary"
             class="w-full"
-            :disabled="!selectedFile"
             @click="uploadFile"
+            :disabled="!selectedFile"
           >
             {{ t('uploadImage') }}
           </ShadButton>
@@ -91,13 +91,11 @@ import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
 
-const props = defineProps<{ modelValue?: File }>()
-const emit = defineEmits<{ 'update:modelValue': [file: File | null] }>()
-
+// No props or emits are used now. The component manages its own state.
 const fileInput = ref<HTMLInputElement | null>(null)
-const selectedFile = ref<File | null>(props.modelValue || null)
-const previewUrl = ref<string | null>(
-  selectedFile.value ? URL.createObjectURL(selectedFile.value) : null,
+const selectedFile = ref<File | null>(null)
+const previewUrl = ref<string | undefined>(
+  selectedFile.value ? URL.createObjectURL(selectedFile.value) : undefined,
 )
 
 const triggerFileInput = () => {
@@ -112,30 +110,28 @@ const handleFileSelect = (event: Event) => {
   if (!input.files?.length) return
 
   const file = input.files[0]
+  if (!file) return
 
   if (!['image/png', 'image/jpeg', 'image/gif'].includes(file.type)) {
     alert('Invalid file type or size')
     return
   }
 
-  if (selectedFile.value) {
-    URL.revokeObjectURL(previewUrl.value!)
+  // Revoke any existing URL to avoid memory leaks
+  if (selectedFile.value && previewUrl.value) {
+    URL.revokeObjectURL(previewUrl.value)
   }
 
-  if (file) {
-    selectedFile.value = file
-  }
+  selectedFile.value = file
   previewUrl.value = URL.createObjectURL(file)
-  emitUpdate()
 }
 
 const removeFile = () => {
-  if (selectedFile.value) {
-    URL.revokeObjectURL(previewUrl.value!)
+  if (selectedFile.value && previewUrl.value) {
+    URL.revokeObjectURL(previewUrl.value)
     selectedFile.value = null
-    previewUrl.value = null
+    previewUrl.value = undefined
     if (fileInput.value) fileInput.value.value = ''
-    emitUpdate()
   }
 }
 
@@ -146,29 +142,22 @@ const uploadFile = async () => {
   reader.readAsDataURL(selectedFile.value)
 
   reader.onload = async () => {
-    // Extract only the base64 data part (remove data URL prefix)
-    const base64String = (reader.result as string).split(',')[1] // <-- This is the key fix
+    const base64String = (reader.result as string).split(',')[1]
 
     try {
-      const response = await $fetch('/api/event/ingest/image', {
+      await $fetch('/api/event/ingest/image', {
         method: 'POST',
-        body: { base64Image: base64String }, // Make sure property name matches
+        body: { base64Image: base64String },
       })
-      console.log('Upload success:', response)
+      console.log('Upload success')
     } catch (error) {
       console.error('Upload failed:', error)
     }
   }
 
-  // Add error handling
   reader.onerror = () => {
     console.error('Error reading file')
-    // Show user error notification
   }
-}
-
-const emitUpdate = () => {
-  emit('update:modelValue', selectedFile.value)
 }
 </script>
 
