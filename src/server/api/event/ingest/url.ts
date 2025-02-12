@@ -23,21 +23,22 @@ export default defineEventHandler(async (event) => {
   })
 
   const Event = z.object({
-    id: z.string().optional(),
-    author_account_id: z.string().optional(),
+    // id: z.string().optional(),
+    // author_account_id: z.string().optional(),
     description: z.string(),
     end: z.string().optional(),
-    invitee_count_maximum: z.number().optional(),
-    is_archived: z.boolean().optional(),
-    is_in_person: z.boolean().optional(),
-    is_remote: z.boolean().optional(),
+    // invitee_count_maximum: z.number().optional(),
+    // is_archived: z.boolean().optional(),
+    is_event: z.boolean(),
+    // is_in_person: z.boolean().optional(),
+    // is_remote: z.boolean().optional(),
     location: z.string().optional(),
     name: z.string().optional(),
-    slug: z.string().optional(),
+    // slug: z.string().optional(),
     start: z.string().optional(),
     url: z.string().optional(),
-    visibility: z.string().optional(),
-    created_at: z.string().optional(),
+    // visibility: z.string().optional(),
+    // created_at: z.string().optional(),
   })
 
   const response = await $fetch(body.url)
@@ -59,7 +60,7 @@ export default defineEventHandler(async (event) => {
         content: [
           {
             type: 'text',
-            text: `First, check if the given image is about an event. If not, return "not an event" in the description field. If it is indeed an event, export this event into JSON (use an empty string for any missing information) if the input describes an event; Ensure that:
+            text: `First, check if the given texts is about an event. If it is indeed an event, export this event into JSON (use an empty string for any missing information) if the input describes an event; Ensure that:
           - The given texts are about an event. If not, return an empty string.
           - All text must use proper casing and correct spelling.
           - Dates must be formatted in ISO 8601.
