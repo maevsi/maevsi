@@ -29,16 +29,16 @@ export default defineEventHandler(async (event) => {
     schema: eventIngestImagePostBodySchema,
   })
 
-  let imgBuffer = Buffer.from(body.base64Image, 'base64')
-  sharp(imgBuffer)
+  let imgBuffer = Buffer.from(body.base64Image, 'base64') as Buffer
+  imgBuffer = (await sharp(imgBuffer)
     .resize({
       width: 1024,
       height: 1024,
       fit: 'inside',
       withoutEnlargement: true,
     })
-    .toBuffer()
-  imgBuffer = await sharp(imgBuffer).jpeg().toBuffer()
+    .toBuffer()) as Buffer
+  imgBuffer = (await sharp(imgBuffer).jpeg().toBuffer()) as Buffer
 
   const Event = z.object({
     // id: z.string().optional(),
@@ -112,11 +112,11 @@ export default defineEventHandler(async (event) => {
   const formattedCosts = formatter.format(costs)
   const parsedMessage = completion.choices[0]?.message?.parsed
 
-  // console.log({
-  //   output: parsedMessage,
-  //   usage: usageJson,
-  //   costs: formattedCosts,
-  // })
+  console.log({
+    output: parsedMessage,
+    usage: usageJson,
+    costs: formattedCosts,
+  })
   return {
     output: parsedMessage,
     usage: usageJson,
