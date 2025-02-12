@@ -15,9 +15,9 @@ const eventIngestImagePostBodySchema = z.object({
   ),
 })
 export default defineEventHandler(async (event) => {
-  const verifyAuth = await useVerifyAuth()
+  // const verifyAuth = await useVerifyAuth()
 
-  await verifyAuth()
+  // await verifyAuth()
 
   const runtimeConfig = useRuntimeConfig()
   const openai = new OpenAI({
@@ -107,10 +107,16 @@ export default defineEventHandler(async (event) => {
   const formatter = new Intl.NumberFormat('de-DE', {
     style: 'currency',
     currency: 'EUR',
+    minimumFractionDigits: 8,
   })
   const formattedCosts = formatter.format(costs)
   const parsedMessage = completion.choices[0]?.message?.parsed
 
+  // console.log({
+  //   output: parsedMessage,
+  //   usage: usageJson,
+  //   costs: formattedCosts,
+  // })
   return {
     output: parsedMessage,
     usage: usageJson,
