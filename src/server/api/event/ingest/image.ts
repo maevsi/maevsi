@@ -15,9 +15,9 @@ const eventIngestImagePostBodySchema = z.object({
   ),
 })
 export default defineEventHandler(async (event) => {
-  // const verifyAuth = await useVerifyAuth()
+  const verifyAuth = await useVerifyAuth()
 
-  // await verifyAuth()
+  await verifyAuth()
 
   const runtimeConfig = useRuntimeConfig()
   const openai = new OpenAI({
