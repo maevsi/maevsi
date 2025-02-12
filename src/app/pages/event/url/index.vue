@@ -7,13 +7,13 @@
       <input
         v-model="enteredURL"
         type="url"
-        class="w-full rounded border p-2 text-black"
-        placeholder="Enter an event's link"
+        class="text-text-dark w-full rounded border p-2"
+        :placeholder="t('enterEventLink')"
       />
       <div class="mt-4 flex items-center justify-between">
         <ShadButton
           variant="secondary"
-          class="ml-auto cursor-pointer"
+          class="cursor-pointer"
           @click="uploadURL"
         >
           {{ t('process') }}
@@ -24,12 +24,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useI18n } from 'vue-i18n'
-
 const { t } = useI18n()
 
-const enteredURL = ref<string>('')
+const enteredURL = ref<string>()
 
 const uploadURL = async () => {
   if (!enteredURL.value) return
@@ -38,7 +35,6 @@ const uploadURL = async () => {
       method: 'POST',
       body: { url: enteredURL.value },
     })
-    console.log('URL uploaded successfully')
   } catch (error) {
     console.error('Upload failed:', error)
   }
@@ -49,7 +45,9 @@ const uploadURL = async () => {
 de:
   addURL: URL hinzufügen
   process: Verarbeiten
+  enterEventLink: Veranstaltungslink eingeben
 en:
   addURL: Add URL
   process: Process
+  enterEventLink: Enter event link
 </i18n>

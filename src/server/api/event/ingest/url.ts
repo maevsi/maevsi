@@ -53,6 +53,10 @@ export default defineEventHandler(async (event) => {
         content: `
         You are a data extraction specialist responsible for identifying and formatting event information.
         Make sure the image is an event, and the dates are formatted in ISO 8601.
+        First, check if the given texts is about an event. If it is indeed an event, export this event into JSON (use an empty string for any missing information) if the input describes an event; Ensure that:
+          - The given texts are about an event. If not, return an empty string.
+          - All text must use proper casing and correct spelling.
+          - Dates must strictly be formatted in ISO 8601.
         `,
       },
       {
@@ -60,12 +64,7 @@ export default defineEventHandler(async (event) => {
         content: [
           {
             type: 'text',
-            text: `First, check if the given texts is about an event. If it is indeed an event, export this event into JSON (use an empty string for any missing information) if the input describes an event; Ensure that:
-          - The given texts are about an event. If not, return an empty string.
-          - All text must use proper casing and correct spelling.
-          - Dates must be formatted in ISO 8601.
-
-          Here's the text:
+            text: `
           '''${$.text()}'''`,
           },
         ],
@@ -95,11 +94,6 @@ export default defineEventHandler(async (event) => {
 
   const parsedMessage = completion.choices[0]?.message?.parsed
 
-  // console.log({
-  //   output: parsedMessage,
-  //   usage: usageJson,
-  //   costs: formatter.format(costs),
-  // })
   return {
     output: parsedMessage,
     usage: usageJson,
