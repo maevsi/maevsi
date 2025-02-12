@@ -65,8 +65,8 @@
         </div>
         <div class="mt-4">
           <ShadButton
-            variant="primary"
-            class="w-full"
+            variant="secondary"
+            class="ml-auto cursor-pointer"
             @click="uploadFile"
             :disabled="!selectedFile"
           >

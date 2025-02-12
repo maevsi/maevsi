@@ -30,15 +30,15 @@ export default defineEventHandler(async (event) => {
   })
 
   let imgBuffer = Buffer.from(body.base64Image, 'base64') as Buffer
-  imgBuffer = (await sharp(imgBuffer)
+  imgBuffer = await sharp(imgBuffer)
     .resize({
       width: 1024,
       height: 1024,
       fit: 'inside',
       withoutEnlargement: true,
     })
-    .toBuffer()) as Buffer
-  imgBuffer = (await sharp(imgBuffer).jpeg().toBuffer()) as Buffer
+    .toBuffer()
+  imgBuffer = await sharp(imgBuffer).jpeg().toBuffer()
 
   const Event = z.object({
     // id: z.string().optional(),
@@ -66,18 +66,16 @@ export default defineEventHandler(async (event) => {
         content: `
         You are a data extraction specialist responsible for identifying and formatting event information.
         Make sure the image is an event, and the dates are formatted in ISO 8601.
+
+        First, check if the given image is about an event. If it is indeed an event, export this event into JSON (use an empty string for any missing information) if the input describes an event; Ensure that:
+          - The given texts are about an event. If not, return an empty string.
+          - All text must use proper casing and correct spelling.
+          - Dates must be formatted in ISO 8601.
         `,
       },
       {
         role: 'user',
         content: [
-          {
-            type: 'text',
-            text: `First, check if the given image is about an event. If it is indeed an event, export this event into JSON (use an empty string for any missing information) if the input describes an event; Ensure that:
-          - The given texts are about an event. If not, return an empty string.
-          - All text must use proper casing and correct spelling.
-          - Dates must be formatted in ISO 8601.`,
-          },
           {
             type: 'image_url',
             image_url: {
