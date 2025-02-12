@@ -95,6 +95,11 @@ export default defineEventHandler(async (event) => {
 
   const parsedMessage = completion.choices[0]?.message?.parsed
 
+  // console.log({
+  //   output: parsedMessage,
+  //   usage: usageJson,
+  //   costs: formatter.format(costs),
+  // })
   return {
     output: parsedMessage,
     usage: usageJson,
