@@ -1,7 +1,4 @@
-import fs from 'node:fs'
-
 import type { H3Event } from 'h3'
-import { decodeJwt, jwtVerify, importSPKI } from 'jose'
 
 export const useVerifyAuth = async () => {
   const event = useEvent()
@@ -30,32 +27,11 @@ const verifyAuth = async (event: H3Event, jwtPublicKey: string) => {
   const jwt = headerAuthorization.substring(7)
 
   try {
-    jwtVerify(jwt, await importSPKI(jwtPublicKey, JWT_ALGORITHM), {
-      algorithms: [JWT_ALGORITHM],
-      audience: 'postgraphile',
-      issuer: 'postgraphile',
-    })
+    return (await verifyJwt({ jwt, jwtPublicKey })).payload
   } catch (error) {
     return throwError({
       code: 401,
       message: `JSON web token verification failed${error instanceof Error ? `: ${error.message}` : '.'}`,
     })
-  }
-
-  return decodeJwt(jwt)
-}
-
-export const useJwtPublicKey = async () => {
-  const runtimeConfig = useRuntimeConfig()
-  const jwtPublicKeyPath = process.env.POSTGRAPHILE_JWT_PUBLIC_KEY_FILE
-
-  if (runtimeConfig.public.vio.stagingHost) {
-    return await $fetch<string>(
-      `https://${runtimeConfig.public.vio.stagingHost}/api/auth-key`,
-    )
-  } else {
-    return jwtPublicKeyPath && fs.existsSync(jwtPublicKeyPath)
-      ? fs.readFileSync(jwtPublicKeyPath, 'utf-8')
-      : undefined
   }
 }

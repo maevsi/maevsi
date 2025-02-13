@@ -1,4 +1,3 @@
-// This file must exist for the i18n module too, as this file's existence enables the store.
 import * as Sentry from '@sentry/nuxt'
 import { decodeJwt, type JWTPayload } from 'jose'
 import { defineStore } from 'pinia'

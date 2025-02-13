@@ -1,22 +1,25 @@
 import type { Client } from '@urql/vue'
 import { consola } from 'consola'
-import { type H3Event, setCookie } from 'h3'
+import type { H3Event } from 'h3'
 import { decodeJwt } from 'jose'
+
+import type { CookieRef } from '#app'
 
 import { authenticateMutation } from '~~/gql/documents/mutations/account/accountAuthenticate'
 import { jwtRefreshMutation } from '~~/gql/documents/mutations/account/accountJwtRefresh'
+import { setJwtCookie } from '~~/server/utils/jwt'
 
 export const authenticationAnonymous = async ({
   $urqlReset,
   client,
   event,
-  isInProduction,
+  runtimeConfig,
   store,
 }: {
   $urqlReset: () => Client
   client: Client
   event?: H3Event
-  isInProduction: boolean
+  runtimeConfig: ReturnType<typeof useRuntimeConfig>
   store: ReturnType<typeof useMaevsiStore>
 }) => {
   consola.trace('Authenticating anonymously...')
@@ -38,16 +41,18 @@ export const authenticationAnonymous = async ({
     await jwtStore({
       $urqlReset,
       event,
-      isInProduction,
       jwt: result.data.authenticate.jwt,
+      runtimeConfig,
       store,
     })
   }
 }
 
-export const getJwtFromCookie = () => {
-  const cookie = useCookie(JWT_NAME())
-
+export const getJwtFromCookie = ({
+  cookie,
+}: {
+  cookie: CookieRef<string | null | undefined>
+}) => {
   if (!cookie.value) {
     consola.debug('No token cookie.')
     return
@@ -71,14 +76,14 @@ export const jwtRefresh = async ({
   client,
   event,
   id,
-  isInProduction,
+  runtimeConfig,
   store,
 }: {
   $urqlReset: () => Client
   client: Client
-  event: H3Event
+  event?: H3Event
   id: string
-  isInProduction: boolean
+  runtimeConfig: ReturnType<typeof useRuntimeConfig>
   store: ReturnType<typeof useMaevsiStore>
 }) => {
   consola.trace('Refreshing a JWT...')
@@ -87,21 +92,27 @@ export const jwtRefresh = async ({
 
   if (result.error) {
     consola.error(result.error)
-    await signOut({ $urqlReset, client, event, isInProduction, store })
+    await signOut({
+      $urqlReset,
+      client,
+      event,
+      runtimeConfig,
+      store,
+    })
   } else if (!result.data?.jwtRefresh?.jwt) {
     await authenticationAnonymous({
       $urqlReset,
       client,
       event,
-      isInProduction,
+      runtimeConfig,
       store,
     })
   } else {
     await jwtStore({
       $urqlReset,
       event,
-      isInProduction,
       jwt: result.data.jwtRefresh.jwt,
+      runtimeConfig,
       store,
     })
   }
@@ -110,14 +121,14 @@ export const jwtRefresh = async ({
 export const jwtStore = async ({
   $urqlReset,
   event,
-  isInProduction,
   jwt,
+  runtimeConfig,
   store,
 }: {
   $urqlReset: () => Client
   event?: H3Event
-  isInProduction: boolean
   jwt?: string
+  runtimeConfig: ReturnType<typeof useRuntimeConfig>
   store: ReturnType<typeof useMaevsiStore>
 }) => {
   $urqlReset()
@@ -126,13 +137,7 @@ export const jwtStore = async ({
   store.jwtSet(jwt)
 
   if (event) {
-    setCookie(event, JWT_NAME(), jwt || '', {
-      expires: jwt ? new Date(Date.now() + 86400 * 1000 * 31) : new Date(0),
-      httpOnly: true,
-      path: '/',
-      sameSite: 'lax', // Cannot be 'strict' to allow authentications after clicking on links within webmailers.
-      secure: isInProduction,
-    })
+    setJwtCookie({ event, jwt: jwt || '', runtimeConfig })
   } else {
     try {
       await $fetch('/api/auth', {
@@ -146,61 +151,25 @@ export const jwtStore = async ({
   }
 }
 
-export const useJwtStore = () => {
-  const { $urqlReset, ssrContext } = useNuxtApp()
-  const store = useMaevsiStore()
-  const runtimeConfig = useRuntimeConfig()
-
-  return {
-    async jwtStore(jwt?: string) {
-      await jwtStore({
-        $urqlReset,
-        event: ssrContext?.event,
-        isInProduction: runtimeConfig.public.vio.isInProduction,
-        jwt,
-        store,
-      })
-    },
-  }
-}
-
 export const signOut = async ({
   $urqlReset,
   client,
   event,
-  isInProduction,
+  runtimeConfig,
   store,
 }: {
   $urqlReset: () => Client
   client: Client
   event?: H3Event
-  isInProduction: boolean
+  runtimeConfig: ReturnType<typeof useRuntimeConfig>
   store: ReturnType<typeof useMaevsiStore>
 }) => {
-  await jwtStore({ $urqlReset, event, isInProduction, store })
+  await jwtStore({ $urqlReset, event, runtimeConfig, store })
   await authenticationAnonymous({
     $urqlReset,
     client,
     event,
-    isInProduction,
+    runtimeConfig,
     store,
   })
-}
-
-export const useSignOut = () => {
-  const { $urql, $urqlReset, ssrContext } = useNuxtApp()
-  const store = useMaevsiStore()
-  const runtimeConfig = useRuntimeConfig()
-
-  return {
-    async signOut() {
-      await signOut({
-        $urqlReset,
-        client: $urql.value,
-        event: ssrContext?.event,
-        isInProduction: runtimeConfig.public.vio.isInProduction,
-        store,
-      })
-    },
-  }
 }
