@@ -1,3 +1,10 @@
+## [6.5.1-beta.1](https://github.com/maevsi/maevsi/compare/6.5.0...6.5.1-beta.1) (2025-02-13)
+
+### Bug Fixes
+
+* **nuxt:** prevent some dependencies from being externalized ([dcc2365](https://github.com/maevsi/maevsi/commit/dcc2365ce0bba6d36b24733c93323410cd4091fd))
+* **vite:** allow host `maevsi` ([24fd5a3](https://github.com/maevsi/maevsi/commit/24fd5a3c36134ad93865c3fc70ac980886baf658))
+
 ## [6.1.1-beta.1](https://github.com/maevsi/maevsi/compare/6.1.0...6.1.1-beta.1) (2025-01-26)
 
 ### Bug Fixes
