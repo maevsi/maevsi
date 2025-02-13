@@ -3,14 +3,11 @@ import type { RuntimeConfig } from 'nuxt/schema'
 
 import {
   IS_NITRO_OPENAPI_ENABLED,
-  STAGING_HOST as PRODUCTION_HOST,
+  PRODUCTION_HOST,
 } from '../../shared/utils/constants'
-import { getDomainTldPort as getSiteAndPort } from '../../shared/utils/networking'
+import { getSiteAndPort } from '../../shared/utils/networking'
 
 export const MAEVSI_EMAIL_LIMIT_24H = 150
-export const IS_IN_PRODUCTION = process.env.NODE_ENV === 'production'
-export const IS_IN_STACK = !!process.env.NUXT_PUBLIC_SITE_URL
-export const IS_IN_FRONTEND_DEVELOPMENT = !IS_IN_PRODUCTION && !IS_IN_STACK
 
 export const GET_CSP = ({
   siteUrl,
@@ -45,9 +42,10 @@ export const GET_CSP = ({
       ],
       // 'manifest-src': ["'self'"],
       // 'prefetch-src': ["'self'"],
+      'script-src': [
+        "'wasm-unsafe-eval'", // vue-qrcode-reader
+      ],
       'script-src-elem': [
-        // 'blob:', // TODO: check source
-        // "'unsafe-eval'", // TODO: check source
         'https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js', // ESLint plugin compat
       ],
       'worker-src': [
@@ -201,6 +199,13 @@ export const GET_CSP = ({
             // ],
           }
         : {}),
+    },
+    {
+      // Firebase (Cloud Messaging)
+      'connect-src': [
+        'https://firebaseinstallations.googleapis.com',
+        'https://fcmregistrations.googleapis.com',
+      ],
     },
   )
 }

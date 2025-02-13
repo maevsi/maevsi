@@ -3,6 +3,7 @@
     :aria-label="ariaLabel"
     :class="classes"
     :disabled="isDisabled"
+    :external="isExternal"
     :target="targetComputed"
     :to="props.to"
     @click="emit('click')"
@@ -40,7 +41,7 @@ const emit = defineEmits<{
 // computations
 const classes = computed(() => {
   return [
-    'rounded',
+    'rounded-sm',
     ...(props.isColored ? ['text-link-dark dark:text-link-bright'] : []),
     ...(props.isDisabled ? ['disabled'] : []),
     ...(props.isUnderlined ? ['underline'] : []),

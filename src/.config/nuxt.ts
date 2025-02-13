@@ -1,3 +1,4 @@
+import tailwindcss from '@tailwindcss/vite'
 import vue from '@vitejs/plugin-vue'
 import { defu } from 'defu'
 import type { Nuxt, ModuleOptions } from 'nuxt/schema'
@@ -34,10 +35,8 @@ export default defineNuxtConfig({
       titleTemplate: '%s', // fully set in `composables/useAppLayout.ts`
     },
   },
-  build: {
-    transpile: ['import-in-the-middle', 'semver'],
-  },
   compatibilityDate: '2024-04-03',
+  css: ['~/assets/css/tailwind.css'],
   experimental: {
     typedPages: true,
   },
@@ -48,16 +47,13 @@ export default defineNuxtConfig({
     '@dargmuesli/nuxt-cookie-control',
     '@nuxt/eslint',
     '@nuxt/image',
-    '@nuxt/ui',
     '@nuxt/scripts',
-    // '@nuxtjs/color-mode', // installed by @nuxt/ui
+    // '@nuxtjs/color-mode', // installed by `shadcn-nuxt`
     '@nuxtjs/html-validator',
     '@nuxtjs/i18n',
-    // '@nuxtjs/tailwindcss', // installed by @nuxt/ui
     '@nuxtjs/seo',
     '@nuxtjs/turnstile',
     '@pinia/nuxt',
-    '@sentry/nuxt/module',
     '@vite-pwa/nuxt',
     'nuxt-gtag',
     'shadcn-nuxt',
@@ -131,8 +127,27 @@ export default defineNuxtConfig({
         xssValidator: false, // TipTap's HTML is stored unescaped (is escaped when displayed) so api requests would trigger the xss protection here (https://github.com/maevsi/maevsi/issues/1603)
       },
     },
+    '/event/view/**': {
+      security: {
+        headers: {
+          permissionsPolicy: {
+            camera: ['self'],
+          },
+        },
+      },
+    },
   },
   runtimeConfig: {
+    private: {
+      api: {
+        notification: {
+          secret: '',
+        },
+      },
+      openai: {
+        apiKey: '',
+      },
+    },
     public: {
       i18n: {
         baseUrl: SITE_URL,
@@ -200,11 +215,14 @@ export default defineNuxtConfig({
         '@uppy/core',
         '@uppy/tus',
         '@vuelidate/core',
-        'barcode-detector',
         'chart.js',
         'clipboardy',
+        'clsx',
         'css-element-queries',
         'downloadjs',
+        'firebase/app',
+        'firebase/messaging',
+        'firebase/messaging/sw',
         'html-to-text',
         'isomorphic-dompurify',
         'js-confetti',
@@ -215,6 +233,7 @@ export default defineNuxtConfig({
         'qrcode.vue',
         'seedrandom',
         'slugify',
+        'tailwind-merge',
         'v-calendar',
         'vue-advanced-cropper',
         'vue-chartjs',
@@ -230,6 +249,7 @@ export default defineNuxtConfig({
       Icons({
         scale: 1.5,
       }),
+      tailwindcss(),
     ],
   },
   ...modulesConfig,

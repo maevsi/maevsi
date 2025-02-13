@@ -4,15 +4,15 @@ export const SITE_NAME = 'maevsi'
 export const SITE_URL =
   process.env.SITE_URL ||
   process.env.NUXT_PUBLIC_SITE_URL ||
-  (process.env.HOST ? 'https' : 'http') +
-    '://' +
-    (process.env.HOST ||
-      `${process.env.HOST || 'localhost'}:${process.env.PORT || '3000'}`)
+  `https://${process.env.HOST || 'localhost'}:${process.env.PORT || '3000'}`
 
 export const CACHE_VERSION = '2EvuFKRRxT'
 export const COOKIE_CONTROL_CONSENT_COOKIE_NAME =
   DEFAULTS.cookieNameIsConsentGiven
 export const GTAG_COOKIE_ID = 'ga'
+export const IS_IN_PRODUCTION = process.env.NODE_ENV === 'production'
+export const IS_IN_STACK = !!process.env.NUXT_PUBLIC_SITE_URL
+export const IS_IN_FRONTEND_DEVELOPMENT = !IS_IN_PRODUCTION && !IS_IN_STACK
 export const IS_NITRO_OPENAPI_ENABLED =
   !!process.env.NUXT_IS_NITRO_OPENAPI_ENABLED || false
 export const ITEMS_PER_PAGE = 10
@@ -44,13 +44,13 @@ export const NUXT_PUBLIC_VIO_ENVIRONMENT = process.env.NODE_ENV
 export const NUXT_PUBLIC_VIO_IS_TESTING = false
 export const POLYFILLS = ['Promise', 'requestAnimationFrame']
 export const POSTGRES_INTEGER_MAXIMUM = Math.pow(2, 31) - 1
+export const PRODUCTION_HOST = 'maev.si'
 export const REGEX_PHONE_NUMBER = /^\+(?:[0-9] ?){6,14}[0-9]$/
 export const REGEX_SLUG = /^[-A-Za-z0-9]+$/
 export const REGEX_UPPERCASE_NONE = /^[^A-Z]+$/
 export const REGEX_URL_HTTPS = /^https:\/\//
 export const REGEX_UUID =
   /^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$/
-export const STAGING_HOST = 'maev.si'
 export const STATE_LOADING_IDS_NAME = 'loadingIds'
 export const STYLE_DEFAULT_GRAY = 'zinc'
 export const TESTING_COOKIE_NAME = 'maevsi_is-testing'

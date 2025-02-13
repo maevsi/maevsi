@@ -1,11 +1,11 @@
 <template>
   <div v-if="isVisible">
     <div
-      class="fixed inset-0 z-10 backdrop-blur backdrop-brightness-50 transition"
+      class="fixed inset-0 z-10 backdrop-blur-sm backdrop-brightness-50 transition"
       @click="close"
     />
     <Card
-      class="fixed left-1/2 top-[10%] z-20 flex max-h-[80%] w-5/6 -translate-x-1/2 flex-col gap-2 overflow-auto sm:w-2/3 lg:w-1/2 xl:w-1/3"
+      class="fixed top-[10%] left-1/2 z-20 flex max-h-[80%] w-5/6 -translate-x-1/2 flex-col gap-2 overflow-auto sm:w-2/3 lg:w-1/2 xl:w-1/3"
     >
       <div class="flex justify-end">
         <ButtonIcon

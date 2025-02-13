@@ -5,6 +5,91 @@
 * **nuxt:** prevent some dependencies from being externalized ([dcc2365](https://github.com/maevsi/maevsi/commit/dcc2365ce0bba6d36b24733c93323410cd4091fd))
 * **vite:** allow host `maevsi` ([24fd5a3](https://github.com/maevsi/maevsi/commit/24fd5a3c36134ad93865c3fc70ac980886baf658))
 
+## [6.5.0](https://github.com/maevsi/maevsi/compare/6.4.1...6.5.0) (2025-02-13)
+
+### Features
+
+* **app:** add [@myyxl](https://github.com/myyxl)'s debug key to asset links ([dd553a5](https://github.com/maevsi/maevsi/commit/dd553a58f87d9b48119b2cafdc2edd2a625b400e))
+
+## [6.4.1](https://github.com/maevsi/maevsi/compare/6.4.0...6.4.1) (2025-02-09)
+
+### Bug Fixes
+
+* **sw:** use data field for notification ([#1767](https://github.com/maevsi/maevsi/issues/1767)) ([619ac9a](https://github.com/maevsi/maevsi/commit/619ac9a3bb7755e3ba6e6f4c2c9b9db2aae98b52))
+
+## [6.4.0](https://github.com/maevsi/maevsi/compare/6.3.0...6.4.0) (2025-02-08)
+
+### Features
+
+* **event:** ingest from url ([#1741](https://github.com/maevsi/maevsi/issues/1741)) ([02abf7c](https://github.com/maevsi/maevsi/commit/02abf7c0d80efb4ebad45b54e7efc5e0c8537c57))
+
+## [6.3.0](https://github.com/maevsi/maevsi/compare/6.2.7...6.3.0) (2025-02-06)
+
+### Features
+
+* **token:** show token using dialog ([#1764](https://github.com/maevsi/maevsi/issues/1764)) ([344e44e](https://github.com/maevsi/maevsi/commit/344e44e79cb892868fa719877400e20ce57e2a9c))
+
+## [6.2.7](https://github.com/maevsi/maevsi/compare/6.2.6...6.2.7) (2025-02-06)
+
+### Bug Fixes
+
+* **sentry:** remove server configuration ([#1762](https://github.com/maevsi/maevsi/issues/1762)) ([4f74924](https://github.com/maevsi/maevsi/commit/4f749249f845f28a647acbbe2b2e999fb8692a67))
+
+## [6.2.6](https://github.com/maevsi/maevsi/compare/6.2.5...6.2.6) (2025-02-06)
+
+### Bug Fixes
+
+* **sentry:** disable profiling ([#1761](https://github.com/maevsi/maevsi/issues/1761)) ([3decab4](https://github.com/maevsi/maevsi/commit/3decab4882bd87d8ad7d6317e659e132c256fbb1))
+
+## [6.2.5](https://github.com/maevsi/maevsi/compare/6.2.4...6.2.5) (2025-02-06)
+
+### Bug Fixes
+
+* **sentry:** temporarily disable tracing ([79bd1a0](https://github.com/maevsi/maevsi/commit/79bd1a0ed7802cb67e362a842ccf8a9d9ac316b9))
+
+## [6.2.4](https://github.com/maevsi/maevsi/compare/6.2.3...6.2.4) (2025-02-06)
+
+### Bug Fixes
+
+* **firebase:** use modern syntax ([#1760](https://github.com/maevsi/maevsi/issues/1760)) ([e1e3268](https://github.com/maevsi/maevsi/commit/e1e3268180182cffce85cbc913064e3cd1c25399)), closes [#1759](https://github.com/maevsi/maevsi/issues/1759)
+
+## [6.2.3](https://github.com/maevsi/maevsi/compare/6.2.2...6.2.3) (2025-02-06)
+
+### Bug Fixes
+
+* **sentry:** temporarily disable tracing ([#1759](https://github.com/maevsi/maevsi/issues/1759)) ([68ae4a5](https://github.com/maevsi/maevsi/commit/68ae4a54c8765e4b8164d51cac67a9900ce761d5))
+
+## [6.2.2](https://github.com/maevsi/maevsi/compare/6.2.1...6.2.2) (2025-02-05)
+
+### Bug Fixes
+
+* **firebase:** explicitly import in service worker ([#1758](https://github.com/maevsi/maevsi/issues/1758)) ([2dfc0c7](https://github.com/maevsi/maevsi/commit/2dfc0c7eca4d594be85a5f707b08d358d1ce53be))
+
+## [6.2.1](https://github.com/maevsi/maevsi/compare/6.2.0...6.2.1) (2025-02-05)
+
+### Bug Fixes
+
+* **firebase:** try initialization ([#1757](https://github.com/maevsi/maevsi/issues/1757)) ([55e722b](https://github.com/maevsi/maevsi/commit/55e722b468de69ce04b0321232d6009499449e4e))
+
+## [6.2.0](https://github.com/maevsi/maevsi/compare/6.1.2...6.2.0) (2025-02-05)
+
+### Features
+
+* **notifications:** add notification basics ([#1756](https://github.com/maevsi/maevsi/issues/1756)) ([cb05d34](https://github.com/maevsi/maevsi/commit/cb05d34a720f78e2e0c05185051865632515babb))
+
+## [6.1.2](https://github.com/maevsi/maevsi/compare/6.1.1...6.1.2) (2025-02-03)
+
+### Bug Fixes
+
+* schedule release ([9780d04](https://github.com/maevsi/maevsi/commit/9780d0420dd1a92b67191f0be273a56ee4c010e4))
+
+## [6.1.1](https://github.com/maevsi/maevsi/compare/6.1.0...6.1.1) (2025-01-26)
+
+### Bug Fixes
+
+* **sentry:** disable server wrapper ([#1733](https://github.com/maevsi/maevsi/issues/1733)) ([313ae5f](https://github.com/maevsi/maevsi/commit/313ae5f4c9d1159198c8dc377927711c33ee63b2))
+* **vite:** allow host `maevsi` ([#1731](https://github.com/maevsi/maevsi/issues/1731)) ([fe10465](https://github.com/maevsi/maevsi/commit/fe10465b310a13656b32acac04d20f4ef4508e80))
+
 ## [6.1.0](https://github.com/maevsi/maevsi/compare/6.0.0...6.1.0) (2025-01-20)
 
 ### Features

@@ -1,14 +1,13 @@
 <template>
   <Loader :api="api" indicator="ping">
     <div class="flex flex-col gap-4">
-      <LayoutBreadcrumbs :items="breadcrumbItems" />
       <LayoutPageTitle :title="routeParamUsername" />
       <div
         class="flex min-w-0 flex-col items-center justify-center sm:flex-row"
       >
         <AccountProfilePicture
           :account-id="account?.id"
-          classes="h-48 rounded w-48"
+          classes="h-48 rounded-sm w-48"
           height="192"
           width="192"
         />
@@ -49,19 +48,19 @@
             <div class="isolate flex -space-x-2 overflow-hidden p-1">
               <AccountProfilePicture
                 account-id="d3d7f2d0-bbf5-46aa-84ba-82ccf3c6af6b"
-                classes="rounded-full ring ring-background-brighten dark:ring-background-darken"
+                classes="rounded-full ring-3 ring-background-brighten dark:ring-background-darken"
                 height="64"
                 width="64"
               />
               <AccountProfilePicture
                 account-id="d3d7f2d0-bbf5-46aa-84ba-82ccf3c6af6b"
-                classes="rounded-full ring ring-background-brighten dark:ring-background-darken"
+                classes="rounded-full ring-3 ring-background-brighten dark:ring-background-darken"
                 height="64"
                 width="64"
               />
               <AccountProfilePicture
                 account-id="d3d7f2d0-bbf5-46aa-84ba-82ccf3c6af6b"
-                classes="rounded-full ring ring-background-brighten dark:ring-background-darken"
+                classes="rounded-full ring-3 ring-background-brighten dark:ring-background-darken"
                 height="64"
                 width="64"
               />
@@ -109,33 +108,18 @@
   </Loader>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import type { RouteLocationNormalized } from 'vue-router'
 import type { RouteNamedMap } from 'vue-router/auto-routes'
-
-import { usePageBreadcrumb as usePageBreadcrumbAccounts } from '../index.vue'
-import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../index.vue'
 
 import { getAccountItem } from '~~/gql/documents/fragments/accountItem'
 import { getAchievementItem } from '~~/gql/documents/fragments/achievementItem'
 import { useAccountByUsernameQuery } from '~~/gql/documents/queries/account/accountByUsername'
 import { useAllAchievementsQuery } from '~~/gql/documents/queries/achievement/achievementsAll'
-import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
 import { AchievementType } from '~~/gql/generated/graphql'
 
 const ROUTE_NAME: keyof RouteNamedMap = 'account-view-username___en'
 
-export const usePageBreadcrumb = () => {
-  const route = useRoute(ROUTE_NAME)
-
-  return {
-    label: route.params.username,
-    to: `/account/view/${route.params.username}`,
-  } as BreadcrumbLinkLocalized
-}
-</script>
-
-<script setup lang="ts">
 definePageMeta({
   async validate(route) {
     return await validateAccountExistence({
@@ -147,7 +131,6 @@ definePageMeta({
 const { t } = useI18n()
 const route = useRoute(ROUTE_NAME)
 const localePath = useLocalePath()
-const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 const store = useMaevsiStore()
 
 // api data
@@ -169,14 +152,6 @@ const achievements =
 const api = getApiData([accountByUsernameQuery, achievementsQuery])
 
 // data
-const breadcrumbItems = getBreadcrumbItemProps([
-  usePageBreadcrumbHome(),
-  usePageBreadcrumbAccounts(),
-  {
-    current: true,
-    ...usePageBreadcrumb(),
-  },
-])
 const routeParamUsername = route.params.username
 const title = route.params.username
 

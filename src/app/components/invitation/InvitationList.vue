@@ -9,7 +9,7 @@
       >
         <table class="border border-neutral-300 dark:border-neutral-600">
           <LayoutThead
-            class="sticky top-0 z-10 bg-background-bright dark:bg-background-dark"
+            class="bg-background-bright dark:bg-background-dark sticky top-0 z-10"
           >
             <tr>
               <th scope="col">

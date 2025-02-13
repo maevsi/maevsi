@@ -1,6 +1,5 @@
 <template>
   <div>
-    <LayoutBreadcrumbs :items="breadcrumbItems" />
     <LayoutPageTitle :title="title" />
     <div class="flex flex-col gap-8">
       <section class="flex flex-col gap-4">
@@ -127,6 +126,22 @@
               </div>
               <div class="flex gap-2">
                 <IHeroiconsQuestionMarkCircle
+                  v-if="isIosHavingPushCapability === undefined"
+                />
+                <IHeroiconsCheckCircle
+                  v-else-if="isIosHavingPushCapability"
+                  class="text-green-600 dark:text-green-500"
+                />
+                <IHeroiconsXCircle
+                  v-else
+                  class="text-red-600 dark:text-red-500"
+                />
+                <span>
+                  {{ t('hasIosPushCapability') }}
+                </span>
+              </div>
+              <div class="flex gap-2">
+                <IHeroiconsQuestionMarkCircle
                   v-if="permissionState === undefined"
                 />
                 <IHeroiconsCheckCircle
@@ -172,6 +187,16 @@
                   <IHeroiconsBellAlert />
                 </template>
               </ButtonColored>
+              <ButtonColored
+                :aria-label="t('showFcmToken')"
+                :is-primary="false"
+                @click="showFcmToken"
+              >
+                {{ t('showFcmToken') }}
+                <template #prefix>
+                  <IHeroiconsClipboard />
+                </template>
+              </ButtonColored>
             </div>
           </section>
         </div>
@@ -180,47 +205,21 @@
   </div>
 </template>
 
-<script lang="ts">
-import { consola } from 'consola'
-import type { RouteNamedMap } from 'vue-router/auto-routes'
-
-import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../index.vue'
-import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
-
-const ROUTE_NAME: keyof RouteNamedMap = 'session-view-id___en'
-
-export const usePageBreadcrumb = () => {
-  const route = useRoute(ROUTE_NAME)
-
-  return {
-    label: {
-      de: 'Sitzung',
-      en: 'Session',
-    },
-    to: `/session/view/${route.params.id}`,
-  } as BreadcrumbLinkLocalized
-}
-</script>
-
 <script setup lang="ts">
+import { consola } from 'consola'
+
 const { t } = useI18n()
 const requestEvent = useRequestEvent()
-const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 const store = useMaevsiStore()
 const dateTime = useDateTime()
 const { signOut } = useSignOut()
+const fireAlert = useFireAlert()
 
 // data
-const breadcrumbItems = getBreadcrumbItemProps([
-  usePageBreadcrumbHome(),
-  {
-    current: true,
-    ...usePageBreadcrumb(),
-  },
-])
 const isNavigatorHavingPermissions = ref<boolean>()
 const isNavigatorHavingServiceWorker = ref<boolean>()
 const isWindowHavingNotification = ref<boolean>()
+const isIosHavingPushCapability = ref<boolean>()
 const permissionState = ref<PermissionState>()
 const title = t('title')
 
@@ -232,6 +231,14 @@ const sendNotification = async () => {
     body: "It's great to see you!",
     icon: '/assets/static/logos/maevsi_icon.svg',
     tag: 'test',
+  })
+}
+const showFcmToken = async () => {
+  const token = await requestFcmToken()
+  await fireAlert({
+    level: 'info',
+    title: 'FCM Token',
+    text: token,
   })
 }
 const requestNotificationPermissions = () =>
@@ -264,15 +271,26 @@ onMounted(async () => {
   isNavigatorHavingPermissions.value = 'permissions' in navigator
   isNavigatorHavingServiceWorker.value = 'serviceWorker' in navigator
   isWindowHavingNotification.value = 'Notification' in window
+  isIosHavingPushCapability.value = (() => {
+    const windowWebkit = window as unknown as {
+      webkit?: { messageHandlers?: Record<string, unknown> }
+    }
+    return (
+      windowWebkit.webkit?.messageHandlers?.['push-permission-state'] !==
+        undefined &&
+      windowWebkit.webkit?.messageHandlers?.['push-permission-request'] !==
+        undefined
+    )
+  })()
 
   if (isNavigatorHavingPermissions.value) {
     const permissionStatus = await navigator.permissions.query({
       name: 'notifications',
     })
 
-    permissionStatus.addEventListener('change', () => {
+    permissionStatus.addEventListener('change', async () => {
       consola.log(
-        'User decided to change his seettings. New permission: ' +
+        'User decided to change his settings. New permission: ' +
           permissionStatus.state,
       )
       permissionState.value = permissionStatus.state
@@ -298,6 +316,7 @@ de:
   codesEnteredNone: Dieser Sitzung sind keine Einladungscodes zugeordnet.
   end: Ende
   endNow: Diese Sitzung beenden
+  hasIosPushCapability: iOS hat Push-Capability
   hasNavigatorPermissions: Navigator hat Berechtigungen
   hasNavigatorServiceWorkers: Navigator hat Service Worker
   hasWindowNotification: Fenster hat Benachrichtigung
@@ -307,6 +326,7 @@ de:
   notificationSend: Benachrichtigung senden
   sessionExpiry: Deine Sitzung läuft am {exp} ab.
   sessionExpiryNone: Es sind keine Sitzungsdaten verfügbar.
+  showFcmToken: FCM Token anzeigen
   title: Sitzung
   userAgentString: User agent string
 en:
@@ -315,6 +335,7 @@ en:
   codesEnteredNone: There are no invitation codes assigned to this session.
   end: End
   endNow: End this session
+  hasIosPushCapability: iOS has Push-Capability
   hasNavigatorPermissions: Navigator has permissions
   hasNavigatorServiceWorkers: Navigator has service workers
   hasWindowNotification: Window has notification
@@ -324,6 +345,7 @@ en:
   notificationSend: Send notification
   sessionExpiry: Your session expires on {exp}.
   sessionExpiryNone: No session data is available.
+  showFcmToken: Show FCM Token
   title: Session
   userAgentString: User agent string
 </i18n>
