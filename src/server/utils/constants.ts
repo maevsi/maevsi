@@ -1,13 +1,16 @@
 import { defu } from 'defu'
 import type { RuntimeConfig } from 'nuxt/schema'
 
-import {
-  IS_NITRO_OPENAPI_ENABLED,
-  PRODUCTION_HOST,
-} from '../../shared/utils/constants'
-import { getSiteAndPort } from '../../shared/utils/networking'
-
-export const MAEVSI_EMAIL_LIMIT_24H = 150
+// `process.env` is only available server-side
+export const SITE_URL =
+  process.env.SITE_URL ||
+  process.env.NUXT_PUBLIC_SITE_URL ||
+  `https://${process.env.HOST || 'localhost'}:${process.env.PORT || '3000'}`
+export const IS_IN_PRODUCTION = process.env.NODE_ENV === 'production'
+export const IS_IN_STACK = !!process.env.NUXT_PUBLIC_SITE_URL
+export const IS_NITRO_OPENAPI_ENABLED =
+  !!process.env.NUXT_IS_NITRO_OPENAPI_ENABLED || false
+export const NUXT_PUBLIC_VIO_ENVIRONMENT = process.env.NODE_ENV
 
 export const GET_CSP = ({
   siteUrl,
@@ -18,7 +21,7 @@ export const GET_CSP = ({
 }) => {
   const domainTldPort = IS_IN_FRONTEND_DEVELOPMENT
     ? PRODUCTION_HOST
-    : getSiteAndPort(siteUrl.host)
+    : getRootHost(siteUrl.host)
 
   return defu(
     // if (isHttps(event.node.req)) {
@@ -29,7 +32,7 @@ export const GET_CSP = ({
       // maevsi
       'connect-src': [
         'blob:', // vue-advanced-cropper
-        // `https://${domainTldPort}`, // `/api` requests
+        `https://${domainTldPort}`, // `/api` requests
         `https://postgraphile.${domainTldPort}`, // backend requests
         `https://tusd.${domainTldPort}`, // image upload requests
       ],
@@ -209,3 +212,4 @@ export const GET_CSP = ({
     },
   )
 }
+export const IS_IN_FRONTEND_DEVELOPMENT = !IS_IN_PRODUCTION && !IS_IN_STACK
