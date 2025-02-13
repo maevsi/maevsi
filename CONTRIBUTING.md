@@ -33,3 +33,7 @@ To allow you and other developers to quickly navigate through Vue Single-File Co
     1. `// methods`: use `const x = () => ...` instead of `function x() {...}`
     1. `// lifecycle`: like `onMounted()`, `watch()`, ... (in that order)
     1. `// initialization`: like `init()`, `useHeadDefault()`, ... (in that order)
+
+### Tailwind CSS
+
+1. Use `flex` as spacing strategy, not `space-*` or `m-*` (except where it really doesn't make sense)
