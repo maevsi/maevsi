@@ -1,3 +1,9 @@
+## [6.5.0](https://github.com/maevsi/maevsi/compare/6.4.1...6.5.0) (2025-02-13)
+
+### Features
+
+* **app:** add [@myyxl](https://github.com/myyxl)'s debug key to asset links ([dd553a5](https://github.com/maevsi/maevsi/commit/dd553a58f87d9b48119b2cafdc2edd2a625b400e))
+
 ## [6.4.1](https://github.com/maevsi/maevsi/compare/6.4.0...6.4.1) (2025-02-09)
 
 ### Bug Fixes
