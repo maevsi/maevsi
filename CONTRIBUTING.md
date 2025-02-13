@@ -38,3 +38,7 @@ Such structure should be migrated to use [`composable`s](https://nuxt.com/docs/g
 ### Tailwind CSS
 
 1. Use `flex` as spacing strategy, not `space-*` or `m-*` (except where it really doesn't make sense)
+
+### TypeScript
+
+1. Use `const` to define variables, not `let` (except where it really doesn't make sense)
