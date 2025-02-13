@@ -17,7 +17,8 @@ Read [@dargmuesli's guide on Semantic Versioning](https://gist.github.com/dargmu
 
 ### Vue
 
-To allow you and other developers to quickly navigate through Vue Single-File Components all `pages` and `components` in this repository share a common structure in `script setup`.
+To allow you and other developers to quickly navigate through Vue Single-File Components many `pages` and `components` in this repository share a common structure in `script setup` that's inspired by [Vue's Options API](https://vueschool.io/articles/vuejs-tutorials/options-api-vs-composition-api/).
+Such structure should be migrated to use [`composable`s](https://nuxt.com/docs/guide/directory-structure/composables) as explained in [this video by Alexander Lichter](https://www.youtube.com/watch?v=iKaDFAxzJyw).
 
 1. import-like and meta elements have to be added first without preceding comments
     1. `import`: like `import { x } from 'y'`
@@ -33,3 +34,11 @@ To allow you and other developers to quickly navigate through Vue Single-File Co
     1. `// methods`: use `const x = () => ...` instead of `function x() {...}`
     1. `// lifecycle`: like `onMounted()`, `watch()`, ... (in that order)
     1. `// initialization`: like `init()`, `useHeadDefault()`, ... (in that order)
+
+### Tailwind CSS
+
+1. Use `flex` as spacing strategy, not `space-*` or `m-*` (except where it really doesn't make sense)
+
+### TypeScript
+
+1. Use `const` to define variables, not `let` (except where it really doesn't make sense)
