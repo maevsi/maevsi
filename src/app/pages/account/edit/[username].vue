@@ -62,7 +62,7 @@ definePageMeta({
 })
 
 const store = useMaevsiStore()
-const { signOut } = useSignOut()
+const { signOut } = await useSignOut()
 const { t } = useI18n()
 const route = useRoute(ROUTE_NAME)
 const accountDeleteMutation = useAccountDeleteMutation()

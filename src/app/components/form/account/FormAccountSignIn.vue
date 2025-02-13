@@ -73,7 +73,7 @@ const emit = defineEmits<{
 
 const fireAlert = useFireAlert()
 const { t } = useI18n()
-const { jwtStore } = useJwtStore()
+const { jwtStore } = await useJwtStore()
 const localePath = useLocalePath()
 const store = useMaevsiStore()
 
