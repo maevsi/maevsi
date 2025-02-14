@@ -1,6 +1,6 @@
 import { defineConfig, devices } from '@playwright/test'
 
-import { SITE_URL } from '#src/shared/utils/constants'
+import { SITE_URL } from '#src/node'
 
 /**
  * Read environment variables from file.

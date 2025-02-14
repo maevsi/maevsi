@@ -38,6 +38,7 @@ const invalidateCache = (
 export default defineNuxtPlugin(async (nuxtApp) => {
   const runtimeConfig = useRuntimeConfig()
   const getServiceHref = useGetServiceHref()
+  const store = useMaevsiStore()
 
   const ssrExchange = getSsrExchange({
     isClient: import.meta.client,
@@ -130,7 +131,6 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   const clientOptions: ClientOptions = {
     requestPolicy: 'cache-and-network',
     fetchOptions: () => {
-      const store = useMaevsiStore()
       const headers = {} as Record<string, string>
 
       if (store.jwt) {
@@ -164,31 +164,6 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     const { $urql } = useNuxtApp()
     provideClient($urql)
   })
-
-  // Either authenticate anonymously or refresh token on page load.
-  if (nuxtApp.ssrContext) {
-    const store = useMaevsiStore()
-    const jwtFromCookie = getJwtFromCookie()
-
-    if (jwtFromCookie?.jwtDecoded?.id) {
-      await jwtRefresh({
-        $urqlReset: urqlReset,
-        client: client.value,
-        event: nuxtApp.ssrContext.event,
-        id: jwtFromCookie.jwtDecoded.id as string,
-        isInProduction: runtimeConfig.public.vio.isInProduction,
-        store,
-      })
-    } else {
-      await authenticationAnonymous({
-        $urqlReset: urqlReset,
-        client: client.value,
-        event: nuxtApp.ssrContext.event,
-        isInProduction: runtimeConfig.public.vio.isInProduction,
-        store,
-      })
-    }
-  }
 
   return {
     provide: {

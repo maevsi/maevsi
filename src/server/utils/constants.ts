@@ -2,12 +2,10 @@ import { defu } from 'defu'
 import type { RuntimeConfig } from 'nuxt/schema'
 
 import {
+  IS_IN_PRODUCTION,
+  IS_IN_STACK,
   IS_NITRO_OPENAPI_ENABLED,
-  PRODUCTION_HOST,
-} from '../../shared/utils/constants'
-import { getSiteAndPort } from '../../shared/utils/networking'
-
-export const MAEVSI_EMAIL_LIMIT_24H = 150
+} from '../../node'
 
 export const GET_CSP = ({
   siteUrl,
@@ -18,7 +16,7 @@ export const GET_CSP = ({
 }) => {
   const domainTldPort = IS_IN_FRONTEND_DEVELOPMENT
     ? PRODUCTION_HOST
-    : getSiteAndPort(siteUrl.host)
+    : getRootHost(siteUrl.host)
 
   return defu(
     // if (isHttps(event.node.req)) {
@@ -29,7 +27,7 @@ export const GET_CSP = ({
       // maevsi
       'connect-src': [
         'blob:', // vue-advanced-cropper
-        // `https://${domainTldPort}`, // `/api` requests
+        `https://${domainTldPort}`, // `/api` requests
         `https://postgraphile.${domainTldPort}`, // backend requests
         `https://tusd.${domainTldPort}`, // image upload requests
       ],
@@ -209,3 +207,4 @@ export const GET_CSP = ({
     },
   )
 }
+export const IS_IN_FRONTEND_DEVELOPMENT = !IS_IN_PRODUCTION && !IS_IN_STACK

@@ -1,5 +1,7 @@
 import { z } from 'zod'
 
+import { SITE_URL } from '~~/node'
+
 const icalPostBodySchema = z.object({
   contact: z
     .object({
