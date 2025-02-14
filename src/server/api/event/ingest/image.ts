@@ -4,15 +4,15 @@ import { z } from 'zod'
 import sharp from 'sharp'
 
 const eventIngestImagePostBodySchema = z.object({
-  base64Image: z.string().refine(
-    (val) => {
-      const base64Regex = /^[A-Za-z0-9+/]+={0,2}$/
-      return base64Regex.test(val) && val.length % 4 === 0
-    },
-    {
-      message: 'Invalid base64 format',
-    },
-  ),
+  base64Image: z.string(), //.refine(
+  //   (val) => {
+  //     const base64Regex = /^[A-Za-z0-9+/]+={0,2}$/
+  //     return base64Regex.test(val) && val.length % 4 === 0
+  //   },
+  //   {
+  //     message: 'Invalid base64 format',
+  //   },
+  // ),
 })
 export default defineEventHandler(async (event) => {
   const verifyAuth = await useVerifyAuth()
@@ -29,16 +29,16 @@ export default defineEventHandler(async (event) => {
     schema: eventIngestImagePostBodySchema,
   })
 
-  let imgBuffer = Buffer.from(body.base64Image, 'base64') as Buffer
-  imgBuffer = await sharp(imgBuffer)
+  const base64Buffer = Buffer.from(body.base64Image, 'base64')
+  const sharpBuffer = await sharp(base64Buffer)
     .resize({
       width: 1024,
       height: 1024,
       fit: 'inside',
       withoutEnlargement: true,
     })
+    .jpeg()
     .toBuffer()
-  imgBuffer = await sharp(imgBuffer).jpeg().toBuffer()
 
   const Event = z.object({
     // id: z.string().optional(),
@@ -79,7 +79,7 @@ export default defineEventHandler(async (event) => {
           {
             type: 'image_url',
             image_url: {
-              url: `data:image/jpeg;base64,${imgBuffer.toString('base64')}`,
+              url: `data:image/jpeg;base64,${sharpBuffer.toString('base64')}`,
             },
           },
         ],
@@ -110,11 +110,6 @@ export default defineEventHandler(async (event) => {
   const formattedCosts = formatter.format(costs)
   const parsedMessage = completion.choices[0]?.message?.parsed
 
-  console.log({
-    output: parsedMessage,
-    usage: usageJson,
-    costs: formattedCosts,
-  })
   return {
     output: parsedMessage,
     usage: usageJson,
