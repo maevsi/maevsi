@@ -1,3 +1,13 @@
+## [7.0.0-beta.1](https://github.com/maevsi/maevsi/compare/6.5.1-beta.1...7.0.0-beta.1) (2025-02-16)
+
+### ⚠ BREAKING CHANGES
+
+* **auth:** refactor (#1776)
+
+### Features
+
+* **auth:** refactor ([#1776](https://github.com/maevsi/maevsi/issues/1776)) ([0d74b40](https://github.com/maevsi/maevsi/commit/0d74b402e8b447d0c0665bdfbef78fc8f06a409f))
+
 ## [6.5.1-beta.1](https://github.com/maevsi/maevsi/compare/6.5.0...6.5.1-beta.1) (2025-02-13)
 
 ### Bug Fixes
