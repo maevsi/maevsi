@@ -1,20 +1,24 @@
 import { z } from 'zod'
 import { getMessaging } from 'firebase-admin/messaging'
 
-const fcmMessageSchema = z.object({
-  payload: z.object({
+const notificationBody = z
+  .object({
     notification: z.object({
       title: z.string(),
       body: z.string(),
     }),
-    token: z.string(),
-  }),
-  secret: z.string(),
-})
+    fcmToken: z.string().optional(),
+    userId: z.string().optional(),
+    secret: z.string(),
+  })
+  .refine((data) => !!data.fcmToken !== !!data.userId, {
+    message: "Exactly one of 'fcmToken' or 'userId' must be provided.",
+    path: ['fcmToken', 'userId'],
+  })
 
 export default defineEventHandler(async (event) => {
   const runtimeConfig = useRuntimeConfig(event)
-  const body = await getBodySafe({ event, schema: fcmMessageSchema })
+  const body = await getBodySafe({ event, schema: notificationBody })
 
   if (!firebaseAdminApp)
     return throwError({
@@ -34,5 +38,20 @@ export default defineEventHandler(async (event) => {
       message: 'Invalid secret',
     })
 
-  return getMessaging(firebaseAdminApp).send({ ...body.payload })
+  const fcmTokenList = body.userId
+    ? getFcmTokenListByUserId(body.userId)
+    : body.fcmToken
+      ? [body.fcmToken]
+      : []
+
+  return Promise.all(
+    fcmTokenList.map((token) =>
+      getMessaging(firebaseAdminApp).send({
+        notification: body.notification,
+        token: token,
+      }),
+    ),
+  )
 })
+
+const getFcmTokenListByUserId = (_userId: string) => []

@@ -5,6 +5,7 @@ import { decodeJwt } from 'jose'
 
 import { authenticateMutation } from '~~/gql/documents/mutations/account/accountAuthenticate'
 import { jwtRefreshMutation } from '~~/gql/documents/mutations/account/accountJwtRefresh'
+import { updateRemoteFcmToken } from './dependencies'
 
 export const authenticationAnonymous = async ({
   $urqlReset,
@@ -194,6 +195,7 @@ export const useSignOut = () => {
 
   return {
     async signOut() {
+      updateRemoteFcmToken(store, { remove: true })
       await signOut({
         $urqlReset,
         client: $urql.value,
