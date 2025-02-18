@@ -1,4 +1,3 @@
-import OpenAI from 'openai'
 import { zodResponseFormat } from 'openai/helpers/zod'
 import { z } from 'zod'
 import * as cheerio from 'cheerio'
@@ -8,14 +7,10 @@ const eventIngestUrlPostBodySchema = z.object({
 })
 
 export default defineEventHandler(async (event) => {
+  const openAi = useOpenAi()
   const verifyAuth = await useVerifyAuth()
 
   await verifyAuth()
-
-  const runtimeConfig = useRuntimeConfig()
-  const openai = new OpenAI({
-    apiKey: runtimeConfig.private.openai.apiKey,
-  })
 
   const body = await getBodySafe({
     event,
@@ -46,7 +41,7 @@ export default defineEventHandler(async (event) => {
   const html = response as string
   const $ = cheerio.load(html)
 
-  const completion = await openai.beta.chat.completions.parse({
+  const completion = await openAi.beta.chat.completions.parse({
     messages: [
       {
         role: 'system',
