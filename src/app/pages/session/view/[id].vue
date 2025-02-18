@@ -211,6 +211,7 @@ import { consola } from 'consola'
 const { t } = useI18n()
 const requestEvent = useRequestEvent()
 const store = useMaevsiStore()
+const notificationStore = useNotificationStore()
 const dateTime = useDateTime()
 const { signOut } = useSignOut()
 const fireAlert = useFireAlert()
@@ -233,29 +234,30 @@ const sendNotification = async () => {
     tag: 'test',
   })
 }
+
 const showFcmToken = async () => {
-  const token = await requestFcmToken()
+  if (!notificationStore.fcmToken) {
+    await notificationStore.initializeFcmToken()
+  }
+  const token = notificationStore.fcmToken
   await fireAlert({
     level: 'info',
     title: 'FCM Token',
     text: token,
   })
 }
-const requestNotificationPermissions = () =>
-  Notification.requestPermission(
-    (notificationPermission) =>
-      (permissionState.value =
-        notificationPermission === 'default'
-          ? 'prompt'
-          : notificationPermission),
-  )
+
+const requestNotificationPermissions = () => {
+  notificationStore.requestNotificationPermission()
+}
 
 // computations
 const isNotificationPermissionRequestPossible = computed(
   () =>
-    import.meta.client &&
-    isWindowHavingNotification.value &&
-    permissionState.value === 'prompt',
+    (import.meta.client &&
+      isWindowHavingNotification.value &&
+      permissionState.value === 'prompt') ||
+    isIosHavingPushCapability,
 )
 const sessionExpiryTime = computed(() =>
   store.jwtDecoded?.exp
