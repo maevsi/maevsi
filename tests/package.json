@@ -1,24 +1,4 @@
 {
-  "scripts": {
-    "lint:fix": "pnpm run lint:js --fix",
-    "lint:js": "eslint --cache",
-    "lint:ts": "tsc --noEmit",
-    "lint": "pnpm run lint:js && pnpm run lint:ts",
-    "test:e2e:docker:br": "pnpm run test:e2e:docker:build && pnpm run test:e2e:docker:run",
-    "test:e2e:docker:build": "sudo docker build -t test-e2e_development --build-arg UID=$(id -u) --build-arg GID=$(id -g) --target test-e2e_development ..",
-    "test:e2e:docker:run": "sudo docker run --rm -v \"$PWD/..:/srv/app\" -v \"$(pnpm store path):/srv/.pnpm-store\" test-e2e_development",
-    "test:e2e:docker:server:dev:update": "pnpm run test:e2e:docker:server:dev --update-snapshots",
-    "test:e2e:docker:server:dev": "pnpm run test:e2e:docker:br pnpm --dir tests run test:e2e:server:dev",
-    "test:e2e:docker:server:node:update": "pnpm run test:e2e:docker:server:node --update-snapshots",
-    "test:e2e:docker:server:node": "pnpm run test:e2e:docker:br pnpm --dir tests run test:e2e:server:node",
-    "test:e2e:docker:server:static:update": "pnpm run test:e2e:docker:server:static --update-snapshots",
-    "test:e2e:docker:server:static": "pnpm run test:e2e:docker:br pnpm --dir tests run test:e2e:server:static",
-    "test:e2e:server:dev": "cross-env PORT=3000 SITE_URL=http://localhost:3000 VIO_SERVER=dev pnpm run test:e2e",
-    "test:e2e:server:node": "cross-env NODE_ENV=production NUXT_PUBLIC_I18N_BASE_URL=http://localhost:3001 NUXT_PUBLIC_SITE_URL=http://localhost:3001 PORT=3001 VIO_SERVER=node pnpm run test:e2e",
-    "test:e2e:server:static": "cross-env NODE_ENV=production PORT=3002 SITE_URL=https://localhost:3002 VIO_SERVER=static pnpm run test:e2e",
-    "test:e2e": "playwright test",
-    "test": "vitest"
-  },
   "devDependencies": {
     "@axe-core/playwright": "4.10.1",
     "@eslint/js": "9.20.0",
@@ -33,11 +13,31 @@
     "ufo": "1.5.4",
     "vitest": "3.0.5"
   },
+  "engines": {
+    "node": "22"
+  },
   "peerDependencies": {
     "playwright-core": "1.50.1"
   },
-  "type": "module",
-  "engines": {
-    "node": "22"
-  }
+  "scripts": {
+    "lint": "pnpm run lint:js && pnpm run lint:ts",
+    "lint:fix": "pnpm run lint:js --fix",
+    "lint:js": "eslint --cache",
+    "lint:ts": "tsc --noEmit",
+    "test": "vitest",
+    "test:e2e": "playwright test",
+    "test:e2e:docker:br": "pnpm run test:e2e:docker:build && pnpm run test:e2e:docker:run",
+    "test:e2e:docker:build": "sudo docker build -t test-e2e_development --build-arg UID=$(id -u) --build-arg GID=$(id -g) --target test-e2e_development ..",
+    "test:e2e:docker:run": "sudo docker run --rm -v \"$PWD/..:/srv/app\" -v \"$(pnpm store path):/srv/.pnpm-store\" test-e2e_development",
+    "test:e2e:docker:server:dev": "pnpm run test:e2e:docker:br pnpm --dir tests run test:e2e:server:dev",
+    "test:e2e:docker:server:dev:update": "pnpm run test:e2e:docker:server:dev --update-snapshots",
+    "test:e2e:docker:server:node": "pnpm run test:e2e:docker:br pnpm --dir tests run test:e2e:server:node",
+    "test:e2e:docker:server:node:update": "pnpm run test:e2e:docker:server:node --update-snapshots",
+    "test:e2e:docker:server:static": "pnpm run test:e2e:docker:br pnpm --dir tests run test:e2e:server:static",
+    "test:e2e:docker:server:static:update": "pnpm run test:e2e:docker:server:static --update-snapshots",
+    "test:e2e:server:dev": "cross-env PORT=3000 SITE_URL=http://localhost:3000 VIO_SERVER=dev pnpm run test:e2e",
+    "test:e2e:server:node": "cross-env NODE_ENV=production NUXT_PUBLIC_I18N_BASE_URL=http://localhost:3001 NUXT_PUBLIC_SITE_URL=http://localhost:3001 PORT=3001 VIO_SERVER=node pnpm run test:e2e",
+    "test:e2e:server:static": "cross-env NODE_ENV=production PORT=3002 SITE_URL=https://localhost:3002 VIO_SERVER=static pnpm run test:e2e"
+  },
+  "type": "module"
 }
