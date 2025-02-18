@@ -138,7 +138,7 @@
     "vue-i18n-routing": "1.2.0",
     "vue-qrcode-reader": "5.7.1",
     "vue-router": "4.5.0",
-    "vue-tsc": "2.2.2",
+    "vue-tsc": "2.2.0",
     "workbox-precaching": "7.3.0",
     "zod": "3.24.2"
   },
