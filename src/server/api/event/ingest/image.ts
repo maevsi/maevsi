@@ -59,19 +59,22 @@ export default defineEventHandler(async (event) => {
     // created_at: z.string().optional(),
   })
 
+  const prompt = `
+        You are a data extraction specialist responsible for identifying and formatting event information.
+        Only accept images and make sure the image is an event.
+
+        Only if the image contains event information, extract that information into JSON. For dates, use ISO 8601 and the current year (${new Date().getFullYear()}) if no year is given. In all other cases, set all fields to an empty string and "is_event" to false.
+        Ensure that:
+          - The given texts are about an event. If not, return an empty string.
+          - All text must use proper casing and correct spelling.
+          - Dates must be formatted in ISO 8601.
+        `
+
   const completion = await openai.beta.chat.completions.parse({
     messages: [
       {
         role: 'system',
-        content: `
-        You are a data extraction specialist responsible for identifying and formatting event information.
-        Make sure the image is an event, and the dates are formatted in ISO 8601.
-
-        First, check if the given image is about an event. If it is indeed an event, export this event into JSON (use an empty string for any missing information) if the input describes an event; Ensure that:
-          - The given texts are about an event. If not, return an empty string.
-          - All text must use proper casing and correct spelling.
-          - Dates must be formatted in ISO 8601.
-        `,
+        content: prompt,
       },
       {
         role: 'user',
