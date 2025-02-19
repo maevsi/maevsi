@@ -66,6 +66,9 @@
   --color-link-dark: var(--color-blue-600);
   --color-text-bright: var(--color-zinc-50);
   --color-text-dark: var(--color-zinc-900);
+  --color-critic-text: #8c1818;
+  --color-accent-fancy: #4743b1;
+  --color-warning-strong: #f7a650;
 }
 
 @layer base {
