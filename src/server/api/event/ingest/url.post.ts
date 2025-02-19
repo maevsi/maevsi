@@ -12,7 +12,6 @@ const eventSchema = z.object({
   location: z.string().optional(),
   name: z.string().optional(),
   start: z.string().optional(),
-  url: z.string().optional(),
 })
 const prompt = `You are a data extraction specialist responsible for identifying and cataloging event information.
 Only accept html. Only if the html contains event information, extract that information into JSON. For dates, use ISO 8601 and the current year (${new Date().getFullYear()}) if no year is given. In all other cases, set all fields to an empty string and \`is_event\` to \`false\`.`
@@ -61,7 +60,10 @@ ${htmlParsed.text()}
   })
 
   return {
-    output: completion.choices[0]?.message?.parsed,
+    output: {
+      ...completion.choices[0]?.message?.parsed,
+      url: body.url,
+    },
     usage: completion.usage,
     costs: getCompletionCost(completion),
   }
