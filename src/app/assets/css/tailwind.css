@@ -47,10 +47,21 @@
     }
   }
 
+  --default-font-family: var(--font-manrope);
   --font-manrope:
     'Manrope Variable', ui-sans-serif, system-ui, sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  --default-font-family: var(--font-manrope);
+  --color-accent-fancy: #4743b1;
+  --color-background-bright: var(--color-white); /* TODO: replace with new design variables */
+  --color-background-brighten: var(--color-zinc-200); /* TODO: replace with new design variables */
+  --color-background-dark: var(--color-zinc-800); /* TODO: replace with new design variables */
+  --color-background-darken: var(--color-zinc-700); /* TODO: replace with new design variables */
+  --color-critic-text: #8c1818;
+  --color-link-bright: var(--color-blue-400); /* TODO: replace with new design variables */
+  --color-link-dark: var(--color-blue-600); /* TODO: replace with new design variables */
+  --color-text-bright: var(--color-zinc-50); /* TODO: replace with new design variables */
+  --color-text-dark: var(--color-zinc-900); /* TODO: replace with new design variables */
+  --color-warning-strong: #f7a650;
   --text-3xl--line-height: calc(2.5 / 1.875);
   --text-4xl--line-height: calc(3 / 2.25);
   --text-5xl--line-height: calc(4 / 3);
@@ -58,17 +69,6 @@
   --text-7xl--line-height: calc(4.75 / 4);
   --text-8xl--line-height: calc(7.5 / 6);
   --text-9xl--line-height: calc(10 / 8);
-  --color-background-bright: var(--color-white);
-  --color-background-brighten: var(--color-zinc-200);
-  --color-background-dark: var(--color-zinc-800);
-  --color-background-darken: var(--color-zinc-700);
-  --color-link-bright: var(--color-blue-400);
-  --color-link-dark: var(--color-blue-600);
-  --color-text-bright: var(--color-zinc-50);
-  --color-text-dark: var(--color-zinc-900);
-  --color-critic-text: #8c1818;
-  --color-accent-fancy: #4743b1;
-  --color-warning-strong: #f7a650;
 }
 
 @layer base {
