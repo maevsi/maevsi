@@ -18,22 +18,13 @@ export default defineEventHandler(async (event) => {
   })
 
   const Event = z.object({
-    // id: z.string().optional(),
-    // author_account_id: z.string().optional(),
     description: z.string(),
     end: z.string().optional(),
-    // invitee_count_maximum: z.number().optional(),
-    // is_archived: z.boolean().optional(),
     is_event: z.boolean(),
-    // is_in_person: z.boolean().optional(),
-    // is_remote: z.boolean().optional(),
     location: z.string().optional(),
     name: z.string().optional(),
-    // slug: z.string().optional(),
     start: z.string().optional(),
     url: z.string().optional(),
-    // visibility: z.string().optional(),
-    // created_at: z.string().optional(),
   })
 
   const response = await $fetch(body.url)
