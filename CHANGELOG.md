@@ -1,3 +1,9 @@
+## [6.5.1](https://github.com/maevsi/maevsi/compare/6.5.0...6.5.1) (2025-02-19)
+
+### Bug Fixes
+
+* **style:** readd dark mode override ([#1786](https://github.com/maevsi/maevsi/issues/1786)) ([b660e48](https://github.com/maevsi/maevsi/commit/b660e48c9dde2fa5610099546327c01346073731))
+
 ## [6.5.0](https://github.com/maevsi/maevsi/compare/6.4.1...6.5.0) (2025-02-13)
 
 ### Features
