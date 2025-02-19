@@ -29,6 +29,10 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({
+  validate: () => import.meta.dev,
+})
+
 const { t } = useI18n()
 const store = useMaevsiStore()
 

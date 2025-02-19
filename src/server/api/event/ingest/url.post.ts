@@ -18,6 +18,14 @@ const prompt = `You are a data extraction specialist responsible for identifying
 Only accept html. Only if the html contains event information, extract that information into JSON. For dates, use ISO 8601 and the current year (${new Date().getFullYear()}) if no year is given. In all other cases, set all fields to an empty string and \`is_event\` to \`false\`.`
 
 export default defineEventHandler(async (event) => {
+  if (!import.meta.dev) {
+    return throwError({
+      code: 503,
+      message:
+        'This endpoint is currently disabled until proper authentication and cost tracking is implemented.',
+    })
+  }
+
   const { client: openAiClient, getCompletionCost } = useOpenAi()
   const verifyAuth = await useVerifyAuth()
 
