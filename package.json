@@ -17,6 +17,10 @@
   },
   "packageManager": "pnpm@10.4.1",
   "pnpm": {
+    "ignoredBuiltDependencies": [
+      "@sentry-internal/node-cpu-profiler",
+      "protobufjs"
+    ],
     "overrides": {
       "vue-tsc": "2.2.0"
     },
