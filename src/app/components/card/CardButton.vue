@@ -8,9 +8,9 @@
     is-external-icon-disabled
     :to="props.to"
   >
-    <Card>
+    <Card :backgroundColor="backgroundColor">
       <div class="flex items-center gap-4">
-        <div class="px-2">
+        <div class="flex items-center px-2">
           <slot />
         </div>
         <div class="flex flex-1 flex-col">
@@ -20,10 +20,16 @@
           </span>
         </div>
         <div class="opacity-60">
-          <slot v-if="$slots.iconSecondary" name="iconSecondary" />
+          <slot v-if="$slots.iconS" name="iconS" />
           <div v-else-if="props.to">
-            <IHeroiconsArrowTopRightOnSquare v-if="isExternal" />
-            <IHeroiconsChevronRight v-else />
+            <img
+              v-if="secondaryIcon === 'img' && src"
+              :src="src"
+              :alt="alt || 'Icon'"
+              class="h-5 w-5"
+            />
+
+            <IHeroiconsChevronRight v-else class="h-5 w-5" />
           </div>
         </div>
       </div>
@@ -33,6 +39,7 @@
 
 <script setup lang="ts">
 import type { RouteLocationRaw } from 'vue-router'
+import type { Component } from 'vue'
 
 export interface Props {
   description?: string
@@ -40,11 +47,22 @@ export interface Props {
   isExternal?: boolean
   title: string
   to?: RouteLocationRaw
+  backgroundColor?: string
+  secondaryIcon?: string | Component
+  src?: string
+  alt?: string
+  heroIcon?: string
 }
+
 const props = withDefaults(defineProps<Props>(), {
   description: undefined,
   isDisabled: undefined,
   isExternal: undefined,
   to: undefined,
+  backgroundColor: undefined,
+  secondaryIcon: undefined,
+  src: undefined,
+  alt: undefined,
+  heroIcon: undefined,
 })
 </script>
