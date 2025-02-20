@@ -210,7 +210,7 @@ const cookieControl = useCookieControl()
 const localePath = useLocalePath()
 const route = useRoute(ROUTE_NAME)
 const store = useMaevsiStore()
-const { signOut } = useSignOut()
+const { signOut } = await useSignOut()
 
 // data
 const title = t('preferences')

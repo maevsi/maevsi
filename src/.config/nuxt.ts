@@ -8,17 +8,19 @@ import Components from 'unplugin-vue-components/vite'
 
 import { modulesConfig } from '../config/modules'
 import { environmentsConfig } from '../config/environments'
-import { RELEASE_NAME } from '../node'
 import {
   IS_NITRO_OPENAPI_ENABLED,
+  NUXT_PUBLIC_VIO_ENVIRONMENT,
+  RELEASE_NAME,
+  SITE_URL,
+} from '../node'
+import {
   NUXT_PUBLIC_SENTRY_HOST,
   NUXT_PUBLIC_SENTRY_PROFILES_SAMPLE_RATE,
   NUXT_PUBLIC_SENTRY_PROJECT_ID,
   NUXT_PUBLIC_SENTRY_PROJECT_PUBLIC_KEY,
-  NUXT_PUBLIC_VIO_ENVIRONMENT,
   NUXT_PUBLIC_VIO_IS_TESTING,
   SITE_NAME,
-  SITE_URL,
 } from '../shared/utils/constants'
 import { GET_CSP } from '../server/utils/constants'
 
@@ -185,6 +187,11 @@ export default defineNuxtConfig({
         siteKey: '0x4AAAAAAABtEW1Hc8mcgWcZ',
       },
       vio: {
+        auth: {
+          jwt: {
+            publicKey: '',
+          },
+        },
         environment: NUXT_PUBLIC_VIO_ENVIRONMENT, // || 'development'
         isTesting: NUXT_PUBLIC_VIO_IS_TESTING,
         stagingHost:

@@ -18,8 +18,15 @@
   "packageManager": "pnpm@10.4.1",
   "pnpm": {
     "ignoredBuiltDependencies": [
+      "@intlify/vue-i18n-bridge",
+      "@intlify/vue-router-bridge",
+      "@parcel/watcher",
       "@sentry-internal/node-cpu-profiler",
-      "protobufjs"
+      "@sentry/cli",
+      "esbuild",
+      "protobufjs",
+      "sharp",
+      "vue-demi"
     ],
     "overrides": {
       "vue-tsc": "2.2.0"
