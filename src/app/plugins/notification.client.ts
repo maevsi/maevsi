@@ -1,5 +1,9 @@
 export default defineNuxtPlugin(() => {
   const notificationStore = useNotificationStore()
-  if (notificationStore.hasPushCapability)
+
+  if (hasPushCapability) {
     registerIosCallbackHandler(notificationStore)
+  } else {
+    initializeFirebaseClient()
+  }
 })

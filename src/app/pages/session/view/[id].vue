@@ -169,7 +169,7 @@
                 :aria-label="t('notificationPermit')"
                 :disabled="!isNotificationPermissionRequestPossible"
                 :is-primary="false"
-                @click="requestNotificationPermissions"
+                @click="requestNotificationPermission(notificationStore)"
               >
                 {{ t('notificationPermit') }}
                 <template #prefix>
@@ -234,21 +234,16 @@ const sendNotification = async () => {
     tag: 'test',
   })
 }
-
 const showFcmToken = async () => {
   if (!notificationStore.fcmToken) {
-    await notificationStore.initializeFcmToken()
+    await notificationStore.fcmTokenInitialize()
   }
-  const token = notificationStore.fcmToken
+
   await fireAlert({
     level: 'info',
     title: 'FCM Token',
-    text: token,
+    text: notificationStore.fcmToken,
   })
-}
-
-const requestNotificationPermissions = () => {
-  notificationStore.requestNotificationPermission()
 }
 
 // computations
