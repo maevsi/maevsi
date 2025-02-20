@@ -1,3 +1,18 @@
+## [7.0.0-beta.2](https://github.com/maevsi/maevsi/compare/7.0.0-beta.1...7.0.0-beta.2) (2025-02-20)
+
+### ⚠ BREAKING CHANGES
+
+* **security:** read postgres credentials from environment variables
+
+### Features
+
+* **event:** create link ingestion functionality ([#1775](https://github.com/maevsi/maevsi/issues/1775)) ([4e3f8ca](https://github.com/maevsi/maevsi/commit/4e3f8ca38975430d5c67aa9f1df00e4903d9821f))
+* **security:** read postgres credentials from environment variables ([384058a](https://github.com/maevsi/maevsi/commit/384058a108bbb322a9f5ffdcb6ada715c135389b))
+
+### Bug Fixes
+
+* **style:** readd dark mode override ([#1786](https://github.com/maevsi/maevsi/issues/1786)) ([b660e48](https://github.com/maevsi/maevsi/commit/b660e48c9dde2fa5610099546327c01346073731))
+
 ## [7.0.0-beta.1](https://github.com/maevsi/maevsi/compare/6.5.1-beta.1...7.0.0-beta.1) (2025-02-16)
 
 ### ⚠ BREAKING CHANGES
