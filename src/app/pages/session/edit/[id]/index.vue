@@ -16,29 +16,38 @@
               })
             "
           >
-            <IHeroiconsUser />
+            <NuxtImg
+              src="/assets/static/icons/person.svg"
+              class="h-5 w-5"
+              alt="ai"
+            />
           </CardButton>
-          <UnderConstruction>
-            <CardButton
-              :title="t('contactBook')"
-              :to="
-                localePath({
-                  name: 'account-edit-username',
-                  params: {
-                    username: store.signedInUsername,
-                  },
-                })
-              "
-            >
-              <img src="/assets/static/icons/contacts.svg" alt="contacts" />
-            </CardButton>
-          </UnderConstruction>
+
+          <CardButton
+            :title="t('contactBook')"
+            :to="
+              localePath({
+                name: 'contact',
+                params: {
+                  username: store.signedInUsername,
+                },
+              })
+            "
+          >
+            <NuxtImg
+              src="/assets/static/icons/contacts.svg"
+              class="h-5 w-5"
+              alt="contacts"
+            />
+          </CardButton>
+
           <UnderConstruction>
             <CardButton
               background-color="bg-accent-fancy"
+              :text-white="true"
               :title="t('resetAISetup')"
               secondary-icon="img"
-              src="/assets/static/icons/reset.svg"
+              src="/assets/static/icons/restart_alt.svg"
               alt="Reset icon"
               :to="
                 localePath({
@@ -49,15 +58,14 @@
                 })
               "
             >
-              <img
+              <NuxtImg
                 src="/assets/static/icons/network_intelligence.svg"
+                class="h-5 w-5"
                 alt="ai"
               />
-              <template #iconS>
-                <IHeroiconsArrowPath class="h-5 w-5 text-white" />
-              </template>
             </CardButton>
           </UnderConstruction>
+
           <UnderConstruction>
             <CardButton
               background-color="bg-warning-strong"
@@ -73,7 +81,11 @@
                 })
               "
             >
-              <img src="/assets/static/icons/early_bird.svg" alt="ai" />
+              <NuxtImg
+                src="/assets/static/icons/early_bird.svg"
+                class="h-5 w-5"
+                alt="ai"
+              />
             </CardButton>
           </UnderConstruction>
         </div>
@@ -148,6 +160,7 @@
               <IHeroiconsShieldCheck />
             </CardButton>
           </UnderConstruction>
+
           <CardButton
             :title="t('cookies')"
             @click="cookieControl.isModalActive.value = true"
@@ -168,13 +181,18 @@
           </CardButton>
 
           <CardButton
-            class="mt-8"
+            class="mt-6"
+            :text-white="true"
             background-color="bg-critic-text"
+            src="none"
             :title="t('logout')"
             @click="signOut"
           >
-            <IHeroiconsOutlineLogout />
-            <template #iconSecondary />
+            <NuxtImg
+              src="/assets/static/icons/logout.svg"
+              class="h-5 w-5"
+              alt="logout"
+            />
           </CardButton>
         </div>
       </section>
