@@ -1,3 +1,9 @@
+## [6.6.0](https://github.com/maevsi/maevsi/compare/6.5.1...6.6.0) (2025-02-20)
+
+### Features
+
+* **event:** create link ingestion functionality ([#1775](https://github.com/maevsi/maevsi/issues/1775)) ([4e3f8ca](https://github.com/maevsi/maevsi/commit/4e3f8ca38975430d5c67aa9f1df00e4903d9821f))
+
 ## [6.5.1](https://github.com/maevsi/maevsi/compare/6.5.0...6.5.1) (2025-02-19)
 
 ### Bug Fixes
