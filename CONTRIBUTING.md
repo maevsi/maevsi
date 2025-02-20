@@ -45,6 +45,7 @@ If your CI pipeline is failing because of incorrect test snapshots, `pnpm build`
 ### Tailwind CSS
 
 1. Use `flex` as spacing strategy, not `space-*` or `m-*` (except where it really doesn't make sense)
+1. Use calculated utitily values like `border-2` or variable values over hardcoded values as in `border-[0.1px]` (except where it really doesn't make sense)
 
 ### TypeScript
 
