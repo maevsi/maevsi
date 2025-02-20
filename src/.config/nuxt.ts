@@ -101,6 +101,10 @@ export default defineNuxtConfig({
     prefix: '',
     componentDir: 'app/components/scn',
   },
+  image: {
+    dir: 'assets',
+    provider: 'ipx',
+  },
   nitro: {
     compressPublicAssets: true,
     experimental: {
