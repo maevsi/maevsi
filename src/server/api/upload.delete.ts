@@ -5,9 +5,14 @@ const uploadDeleteQuerySchema = z.object({
 })
 
 export default defineEventHandler(async (event) => {
-  const verifyAuth = await useVerifyAuth()
+  const { getJwtFromHeader, verifyJwt } = await useJsonWebToken()
 
-  await verifyAuth()
+  const jwtDecoded = await verifyJwt(getJwtFromHeader())
+  if (!(jwtDecoded.role === 'maevsi_account'))
+    return throwError({
+      code: 403,
+      message: 'This endpoint only available to registered users.',
+    })
 
   const query = await getQuerySafe({ event, schema: uploadDeleteQuerySchema })
   const uploadId = query.uploadId

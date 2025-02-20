@@ -6,6 +6,18 @@ export const useJsonWebToken = async () => {
   const jwtPublicKey = await useJwtPublicKey()
 
   return {
+    getJwtFromHeader: () => {
+      const headerAuthorization = getRequestHeader(event, 'authorization')
+
+      if (!headerAuthorization) {
+        return throwError({
+          code: 401,
+          message: 'The request header "Authorization" is missing!',
+        })
+      }
+
+      return headerAuthorization.substring(7)
+    },
     setJwtCookie: (jwt: string) => setJwtCookie({ event, jwt, runtimeConfig }),
     verifyJwt: async (jwt: string) => {
       if (!jwtPublicKey) {
