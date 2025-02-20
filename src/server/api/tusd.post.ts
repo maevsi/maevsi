@@ -1,8 +1,6 @@
 import { MIMES } from 'h3'
 import { z } from 'zod'
 
-import { pool } from '../utils/dependencies/postgres'
-
 const tusdPostBodySchema = z.object({
   Type: z.string(),
   Event: z.object({
@@ -22,7 +20,7 @@ export default defineEventHandler(async (event) => {
     case 'pre-create': {
       console.log('tusd/pre-create')
 
-      const queryResult = await pool
+      const queryResult = await postgres
         .query('SELECT EXISTS(SELECT * FROM maevsi.upload WHERE id = $1);', [
           body.Event.Upload.MetaData.maevsiUploadUuid,
         ])
@@ -49,7 +47,7 @@ export default defineEventHandler(async (event) => {
     case 'pre-finish': {
       console.log('tusd/pre-finish: ' + body.Event.Upload.ID)
 
-      const queryRes = await pool
+      const queryRes = await postgres
         .query('UPDATE maevsi.upload SET storage_key = $1 WHERE id = $2;', [
           body.Event.Upload.ID,
           body.Event.Upload.MetaData.maevsiUploadUuid,

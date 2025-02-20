@@ -1,7 +1,5 @@
 import { z } from 'zod'
 
-import { pool } from '../utils/dependencies/postgres'
-
 const uploadDeleteQuerySchema = z.object({
   uploadId: z.string(),
 })
@@ -16,7 +14,7 @@ export default defineEventHandler(async (event) => {
 
   console.log('tusdDelete: ' + uploadId)
 
-  const queryResult = await pool
+  const queryResult = await postgres
     .query('SELECT * FROM maevsi.upload WHERE id = $1;', [uploadId])
     .catch((err) => {
       return throwError({
