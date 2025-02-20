@@ -37,6 +37,11 @@ Such structure should be migrated to use [`composable`s](https://nuxt.com/docs/g
 
 If you find yourself adding empty lines to a Vue component's template to add structure to it, you should extract the separated parts into individual components.
 
+### Playwright
+
+We use Playwright for end-to-end testing.
+If your CI pipeline is failing because of incorrect test snapshots, `pnpm build` the application, update the snapshots using `pnpm test:e2e:docker:server:node:update` and commit the resulting changes if they match your expectation.
+
 ### Tailwind CSS
 
 1. Use `flex` as spacing strategy, not `space-*` or `m-*` (except where it really doesn't make sense)
