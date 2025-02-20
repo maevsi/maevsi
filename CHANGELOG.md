@@ -22,6 +22,18 @@
 * **nuxt:** prevent some dependencies from being externalized ([dcc2365](https://github.com/maevsi/maevsi/commit/dcc2365ce0bba6d36b24733c93323410cd4091fd))
 * **vite:** allow host `maevsi` ([24fd5a3](https://github.com/maevsi/maevsi/commit/24fd5a3c36134ad93865c3fc70ac980886baf658))
 
+## [6.6.0](https://github.com/maevsi/maevsi/compare/6.5.1...6.6.0) (2025-02-20)
+
+### Features
+
+* **event:** create link ingestion functionality ([#1775](https://github.com/maevsi/maevsi/issues/1775)) ([4e3f8ca](https://github.com/maevsi/maevsi/commit/4e3f8ca38975430d5c67aa9f1df00e4903d9821f))
+
+## [6.5.1](https://github.com/maevsi/maevsi/compare/6.5.0...6.5.1) (2025-02-19)
+
+### Bug Fixes
+
+* **style:** readd dark mode override ([#1786](https://github.com/maevsi/maevsi/issues/1786)) ([b660e48](https://github.com/maevsi/maevsi/commit/b660e48c9dde2fa5610099546327c01346073731))
+
 ## [6.5.0](https://github.com/maevsi/maevsi/compare/6.4.1...6.5.0) (2025-02-13)
 
 ### Features

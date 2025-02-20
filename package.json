@@ -1,9 +1,41 @@
 {
-  "private": true,
+  "devDependencies": {
+    "@semantic-release/changelog": "6.0.3",
+    "@semantic-release/commit-analyzer": "13.0.1",
+    "@semantic-release/git": "10.0.1",
+    "@semantic-release/github": "11.0.1",
+    "@semantic-release/npm": "12.0.1",
+    "@semantic-release/release-notes-generator": "14.0.3",
+    "conventional-changelog-conventionalcommits": "8.0.0",
+    "husky": "9.1.7",
+    "jiti": "2.4.2",
+    "lint-staged": "15.4.3",
+    "semantic-release": "24.2.3"
+  },
   "engines": {
     "node": "22"
   },
-  "packageManager": "pnpm@10.3.0",
+  "packageManager": "pnpm@10.4.1",
+  "pnpm": {
+    "ignoredBuiltDependencies": [
+      "@intlify/vue-i18n-bridge",
+      "@intlify/vue-router-bridge",
+      "@parcel/watcher",
+      "@sentry-internal/node-cpu-profiler",
+      "@sentry/cli",
+      "esbuild",
+      "protobufjs",
+      "sharp",
+      "vue-demi"
+    ],
+    "overrides": {
+      "vue-tsc": "2.2.0"
+    },
+    "patchedDependencies": {
+      "shadcn-nuxt": "patches/shadcn-nuxt.patch"
+    }
+  },
+  "private": true,
   "scripts": {
     "build": "pnpm --dir src run build",
     "build:node": "nuxt --dir src run build:node",
@@ -16,30 +48,12 @@
     "start:dev": "pnpm --dir src run start:dev",
     "start:node": "pnpm --dir src run start:node",
     "start:static": "pnpm --dir src run start:static",
-    "test:e2e:docker:server:dev:update": "pnpm --dir tests run test:e2e:docker:server:dev:update",
     "test:e2e:docker:server:dev": "pnpm --dir tests run test:e2e:docker:server:dev",
-    "test:e2e:docker:server:node:update": "pnpm --dir tests run test:e2e:docker:server:node:update",
+    "test:e2e:docker:server:dev:update": "pnpm --dir tests run test:e2e:docker:server:dev:update",
     "test:e2e:docker:server:node": "pnpm --dir tests run test:e2e:docker:server:node",
-    "test:e2e:docker:server:static:update": "pnpm --dir tests run test:e2e:docker:server:static:update",
-    "test:e2e:docker:server:static": "pnpm --dir tests run test:e2e:docker:server:static"
-  },
-  "devDependencies": {
-    "@semantic-release/changelog": "6.0.3",
-    "@semantic-release/commit-analyzer": "13.0.1",
-    "@semantic-release/git": "10.0.1",
-    "@semantic-release/github": "11.0.1",
-    "@semantic-release/npm": "12.0.1",
-    "@semantic-release/release-notes-generator": "14.0.3",
-    "conventional-changelog-conventionalcommits": "8.0.0",
-    "husky": "9.1.7",
-    "jiti": "2.4.2",
-    "lint-staged": "15.4.3",
-    "semantic-release": "24.2.2"
-  },
-  "pnpm": {
-    "patchedDependencies": {
-      "shadcn-nuxt": "patches/shadcn-nuxt.patch"
-    }
+    "test:e2e:docker:server:node:update": "pnpm --dir tests run test:e2e:docker:server:node:update",
+    "test:e2e:docker:server:static": "pnpm --dir tests run test:e2e:docker:server:static",
+    "test:e2e:docker:server:static:update": "pnpm --dir tests run test:e2e:docker:server:static:update"
   },
   "type": "module"
 }
