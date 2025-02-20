@@ -35,6 +35,8 @@ Such structure should be migrated to use [`composable`s](https://nuxt.com/docs/g
     1. `// lifecycle`: like `onMounted()`, `watch()`, ... (in that order)
     1. `// initialization`: like `init()`, `useHeadDefault()`, ... (in that order)
 
+If you find yourself adding empty lines to a Vue component's template to add structure to it, you should extract the separated parts into individual components.
+
 ### Tailwind CSS
 
 1. Use `flex` as spacing strategy, not `space-*` or `m-*` (except where it really doesn't make sense)
