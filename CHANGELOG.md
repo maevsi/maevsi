@@ -1,3 +1,13 @@
+## [7.0.0-beta.3](https://github.com/maevsi/maevsi/compare/7.0.0-beta.2...7.0.0-beta.3) (2025-02-20)
+
+### Features
+
+* **postgres:** read host from environment variable ([901d030](https://github.com/maevsi/maevsi/commit/901d030da5c6717c47ee900fb2d45882255bfb28))
+
+### Bug Fixes
+
+* **auth:** fully verify json web token in development ([cd73559](https://github.com/maevsi/maevsi/commit/cd7355991d20c1096ed5bcc4bbe00f4825d25047))
+
 ## [7.0.0-beta.2](https://github.com/maevsi/maevsi/compare/7.0.0-beta.1...7.0.0-beta.2) (2025-02-20)
 
 ### ⚠ BREAKING CHANGES
