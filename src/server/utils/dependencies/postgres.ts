@@ -5,7 +5,7 @@ import pg from 'pg'
 
 export const postgres = new pg.Pool({
   database: process.env.PGDATABASE,
-  host: 'postgres',
+  host: process.env.PGHOST,
   password: process.env.PGPASSWORD,
   user: process.env.PGUSER,
 })
