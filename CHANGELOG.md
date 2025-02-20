@@ -1,3 +1,22 @@
+## [7.0.0](https://github.com/maevsi/maevsi/compare/6.6.0...7.0.0) (2025-02-20)
+
+### ⚠ BREAKING CHANGES
+
+* **security:** read postgres credentials from environment variables
+* **auth:** refactor (#1776)
+
+### Features
+
+* **auth:** refactor ([#1776](https://github.com/maevsi/maevsi/issues/1776)) ([0d74b40](https://github.com/maevsi/maevsi/commit/0d74b402e8b447d0c0665bdfbef78fc8f06a409f))
+* **postgres:** read host from environment variable ([901d030](https://github.com/maevsi/maevsi/commit/901d030da5c6717c47ee900fb2d45882255bfb28))
+* **security:** read postgres credentials from environment variables ([384058a](https://github.com/maevsi/maevsi/commit/384058a108bbb322a9f5ffdcb6ada715c135389b))
+
+### Bug Fixes
+
+* **auth:** fully verify json web token in development ([cd73559](https://github.com/maevsi/maevsi/commit/cd7355991d20c1096ed5bcc4bbe00f4825d25047))
+* **nuxt:** prevent some dependencies from being externalized ([dcc2365](https://github.com/maevsi/maevsi/commit/dcc2365ce0bba6d36b24733c93323410cd4091fd))
+* **vite:** allow host `maevsi` ([24fd5a3](https://github.com/maevsi/maevsi/commit/24fd5a3c36134ad93865c3fc70ac980886baf658))
+
 ## [7.0.0-beta.3](https://github.com/maevsi/maevsi/compare/7.0.0-beta.2...7.0.0-beta.3) (2025-02-20)
 
 ### Features
