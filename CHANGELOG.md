@@ -1,3 +1,9 @@
+## [7.1.0](https://github.com/maevsi/maevsi/compare/7.0.0...7.1.0) (2025-02-20)
+
+### Features
+
+* **notification:** add ios implementation ([157154b](https://github.com/maevsi/maevsi/commit/157154b688419b6b21af92516b2b9b70203ec7af))
+
 ## [7.0.0](https://github.com/maevsi/maevsi/compare/6.6.0...7.0.0) (2025-02-20)
 
 ### ⚠ BREAKING CHANGES
