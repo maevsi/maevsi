@@ -109,6 +109,12 @@
         <xhtml:link rel="alternate" hreflang="x-default" href="http://localhost:3001/session/create" />
     </url>
     <url>
+        <loc>http://localhost:3001/event/ingest/image</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="http://localhost:3001/de/event/ingest/image" />
+        <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3001/event/ingest/image" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="http://localhost:3001/event/ingest/image" />
+    </url>
+    <url>
         <loc>http://localhost:3001/event/ingest/url</loc>
         <xhtml:link rel="alternate" hreflang="de" href="http://localhost:3001/de/event/ingest/url" />
         <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3001/event/ingest/url" />
