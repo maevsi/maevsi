@@ -21,6 +21,7 @@ jobs:
         uses: 8BitJonny/gh-get-current-pr@3.0.0
         with:
           filterOutClosed: true
+          filterOutDraft: true
           sha: ${{ github.event.pull_request.head.sha }}
   release_semantic_dry:
     needs: prepare_jobs

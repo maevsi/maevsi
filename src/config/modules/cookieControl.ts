@@ -1,9 +1,9 @@
 import type { DefineNuxtConfig } from 'nuxt/config'
 
 import {
+  GTAG_COOKIE_ID,
   JWT_NAME,
   TIMEZONE_COOKIE_NAME,
-  GTAG_COOKIE_ID,
 } from '../../shared/utils/constants'
 
 export const cookieControlConfig: ReturnType<DefineNuxtConfig> = {
@@ -35,7 +35,7 @@ export const cookieControlConfig: ReturnType<DefineNuxtConfig> = {
             de: 'Authentifizierungsdaten',
             en: 'Authentication Data',
           },
-          targetCookieIds: [JWT_NAME()],
+          targetCookieIds: [JWT_NAME({ isHttps: true })], // TODO: set `isHttps` at runtime
         },
         {
           description: {

@@ -212,7 +212,7 @@ const { t } = useI18n()
 const requestEvent = useRequestEvent()
 const store = useMaevsiStore()
 const dateTime = useDateTime()
-const { signOut } = useSignOut()
+const { signOut } = await useSignOut()
 const fireAlert = useFireAlert()
 
 // data

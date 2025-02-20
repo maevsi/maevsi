@@ -77,7 +77,7 @@ definePageMeta({
     defineNuxtRouteMiddleware(async (to) => {
       const { $urql } = useNuxtApp()
       const localePath = useLocalePath()
-      const { jwtStore } = useJwtStore()
+      const { jwtStore } = await useJwtStore()
 
       if (
         !isQueryIcFormatValid(to.query.ic) ||
@@ -158,7 +158,7 @@ definePageMeta({
   ],
 })
 
-const { jwtStore } = useJwtStore()
+const { jwtStore } = await useJwtStore()
 const localePath = useLocalePath()
 const { t } = useI18n()
 const route = useRoute()
