@@ -4,7 +4,7 @@
     "@aws-sdk/client-ses": "3.750.0",
     "@aws-sdk/credential-providers": "3.750.0",
     "@dargmuesli/nuxt-cookie-control": "8.5.2",
-    "@dargmuesli/nuxt-vio": "16.0.5",
+    "@dargmuesli/nuxt-vio": "17.0.0",
     "@fontsource-variable/manrope": "5.1.1",
     "@graphql-codegen/add": "5.0.3",
     "@graphql-codegen/cli": "5.0.5",
@@ -168,5 +168,5 @@
     "supportedBrowsers": "echo \"export default $(browserslist-useragent-regexp --allowHigherVersions);\" > supportedBrowsers.js"
   },
   "type": "module",
-  "version": "6.5.0"
+  "version": "6.6.0"
 }
