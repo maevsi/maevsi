@@ -26,14 +26,14 @@
           <div v-else-if="!$slots.iconSecondary">
             <NuxtImg
               v-if="secondaryIcon === 'img' && src !== 'none'"
-              :src="src"
+              :src="`/icons/${src.split('/').pop()}`"
               :alt="alt || 'Icon'"
               class="h-5 w-5"
             />
 
             <NuxtImg
               v-else-if="src !== 'none'"
-              src="/assets/static/icons/arrow_forward.svg"
+              :src="arrowForwardIcon"
               alt="arrow forward"
               class="h-4 w-4"
             />
@@ -47,6 +47,7 @@
 <script setup lang="ts">
 import type { RouteLocationRaw } from 'vue-router'
 import type { Component } from 'vue'
+import arrowForwardIcon from '~/assets/icons/arrow_forward.svg'
 
 export interface Props {
   description?: string

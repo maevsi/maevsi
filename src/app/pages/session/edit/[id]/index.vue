@@ -16,11 +16,7 @@
               })
             "
           >
-            <NuxtImg
-              src="/assets/static/icons/person.svg"
-              class="h-5 w-5"
-              alt="ai"
-            />
+            <NuxtImg :src="personIcon" class="h-5 w-5" alt="ai" />
           </CardButton>
 
           <CardButton
@@ -34,11 +30,7 @@
               })
             "
           >
-            <NuxtImg
-              src="/assets/static/icons/contacts.svg"
-              class="h-5 w-5"
-              alt="contacts"
-            />
+            <NuxtImg :src="contactsIcon" class="h-5 w-5" alt="contacts" />
           </CardButton>
 
           <UnderConstruction>
@@ -47,7 +39,7 @@
               :text-white="true"
               :title="t('resetAISetup')"
               secondary-icon="img"
-              src="/assets/static/icons/restart_alt.svg"
+              src="~/assets/icons/restart_alt.svg"
               alt="Reset icon"
               :to="
                 localePath({
@@ -59,7 +51,7 @@
               "
             >
               <NuxtImg
-                src="/assets/static/icons/network_intelligence.svg"
+                :src="networkIntelligenceIcon"
                 class="h-5 w-5"
                 alt="ai"
               />
@@ -70,8 +62,8 @@
             <CardButton
               background-color="bg-warning-strong"
               :title="t('stopEarlyBird')"
-              secondaryIcon="img"
-              src="/assets/static/icons/close.svg"
+              secondary-Icon="img"
+              src="~/assets/icons/close.svg"
               :to="
                 localePath({
                   name: 'account-edit-username',
@@ -81,11 +73,7 @@
                 })
               "
             >
-              <NuxtImg
-                src="/assets/static/icons/early_bird.svg"
-                class="h-5 w-5"
-                alt="ai"
-              />
+              <NuxtImg :src="earlyBirdIcon" class="h-5 w-5" alt="ai" />
             </CardButton>
           </UnderConstruction>
         </div>
@@ -188,11 +176,7 @@
             :title="t('logout')"
             @click="signOut"
           >
-            <NuxtImg
-              src="/assets/static/icons/logout.svg"
-              class="h-5 w-5"
-              alt="logout"
-            />
+            <NuxtImg :src="logoutIcon" class="h-5 w-5" alt="logout" />
           </CardButton>
         </div>
       </section>
@@ -202,6 +186,12 @@
 
 <script setup lang="ts">
 import type { RouteNamedMap } from 'vue-router/auto-routes'
+
+import logoutIcon from '~/assets/icons/logout.svg'
+import earlyBirdIcon from '~/assets/icons/early_bird.svg'
+import personIcon from '~/assets/icons/person.svg'
+import contactsIcon from '~/assets/icons/contacts.svg'
+import networkIntelligenceIcon from '~/assets/icons/network_intelligence.svg'
 
 const ROUTE_NAME: keyof RouteNamedMap = 'session-edit-id___en'
 
