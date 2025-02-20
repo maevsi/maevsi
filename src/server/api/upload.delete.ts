@@ -1,5 +1,7 @@
 import { z } from 'zod'
 
+import { pool } from '../utils/dependencies/postgres'
+
 const uploadDeleteQuerySchema = z.object({
   uploadId: z.string(),
 })

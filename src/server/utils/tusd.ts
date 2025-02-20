@@ -1,15 +1,6 @@
 import { type H3Event, send } from 'h3'
-import pg from 'pg'
 
-// https://github.com/brianc/node-postgres/issues/2137
-// https://github.com/brianc/node-postgres/issues/2353
-
-export const pool = new pg.Pool({
-  database: process.env.PGDATABASE,
-  host: 'postgres',
-  password: process.env.PGPASSWORD,
-  user: process.env.PGUSER,
-})
+import { pool } from './dependencies/postgres'
 
 export const deleteUpload = async (event: H3Event, uploadId: unknown) => {
   let queryResult = await pool

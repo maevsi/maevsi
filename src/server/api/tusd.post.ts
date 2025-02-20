@@ -1,6 +1,8 @@
 import { MIMES } from 'h3'
 import { z } from 'zod'
 
+import { pool } from '../utils/dependencies/postgres'
+
 const tusdPostBodySchema = z.object({
   Type: z.string(),
   Event: z.object({
