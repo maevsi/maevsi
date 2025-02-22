@@ -49,6 +49,31 @@ export default defineEventHandler(async (event) => {
     })
     .jpeg()
     .toBuffer()
+  // moderation is free of charge (https://platform.openai.com/docs/pricing#moderation)
+  const moderation = await openAiClient.moderations.create({
+    model: 'omni-moderation-latest',
+    input: [
+      {
+        type: 'image_url',
+        image_url: {
+          url: `data:image/jpeg;base64,${sharpBuffer.toString('base64')}`,
+        },
+      },
+    ],
+  })
+
+  const result = moderation.results[0]
+
+  if (result.flagged) {
+    const flaggedCategory = Object.keys(result.categories).find(
+      (key) =>
+        result.categories[key as keyof typeof result.categories] === true,
+    )
+    return throwError({
+      code: 403,
+      message: `The image contains ${flaggedCategory} content.`,
+    })
+  }
 
   const completion = await openAiClient.beta.chat.completions.parse({
     messages: [

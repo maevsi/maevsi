@@ -70,6 +70,7 @@
 <script setup lang="ts">
 const { t } = useI18n()
 const store = useMaevsiStore()
+const fireAlert = useFireAlert()
 
 // refs
 const fileInputRef = ref<HTMLInputElement>()
@@ -135,6 +136,13 @@ const uploadFile = async () => {
       console.log('Upload success')
     } catch (error) {
       console.error('Upload failed:', error)
+      await fireAlert({
+        error,
+        level: 'error',
+        text: error.data?.message || t('invalidImage'),
+        title: t('error'),
+      })
+      return
     }
   }
   reader.onerror = () => {
@@ -147,6 +155,8 @@ const uploadFile = async () => {
 de:
   clearAll: Löschen
   fileTypes: PNG, JPG, GIF bis zu 10 MB
+  error: Fehler
+  invalidImage: Ungültiges Bild
   replaceImage: Bild ersetzen
   selectFromDevice: Vom Gerät auswählen
   title: Bild laden
@@ -155,6 +165,8 @@ de:
 en:
   clearAll: Clear
   fileTypes: PNG, JPG, GIF up to 10 MB
+  error: Error
+  invalidImage: Invalid image
   replaceImage: Replace image
   selectFromDevice: Select from device
   title: Ingest image
