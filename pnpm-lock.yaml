@@ -302,8 +302,8 @@ importers:
         specifier: 2.22.0
         version: 2.22.0
       jose:
-        specifier: 5.10.0
-        version: 5.10.0
+        specifier: 6.0.3
+        version: 6.0.3
       js-confetti:
         specifier: 0.12.0
         version: 0.12.0
@@ -7542,6 +7542,9 @@ packages:
   jose@5.10.0:
     resolution: {integrity: sha512-s+3Al/p9g32Iq+oqXxkW//7jk2Vig6FF1CFqzVXoTUXt2qz89YWbL+OwS17NFYEvxC35n0FKeGO2LGYSxeM2Gg==}
 
+  jose@6.0.3:
+    resolution: {integrity: sha512-7bOLhKorsp4NWBGpNJZPHy3CqN0JG5XKMKPtMN02EPMg3rcgbCEkJ27GCWHUOb3jHRqo1oJxfdMdAeQYX4cqSQ==}
+
   js-base64@3.7.7:
     resolution: {integrity: sha512-7rCnleh0z2CkXhH67J8K1Ytz0b2Y+yxTPL+/KOJoa20hfnVQ/3/T6W/KflYI4bRHRagNeXeU2bkNGI3v1oS/lw==}
 
@@ -12845,7 +12848,7 @@ snapshots:
       eslint: 9.20.1(jiti@2.4.2)
       eslint-config-prettier: 10.0.1(eslint@9.20.1(jiti@2.4.2))
       eslint-plugin-compat: 6.0.2(eslint@9.20.1(jiti@2.4.2))
-      eslint-plugin-prettier: 5.2.3(@types/eslint@9.6.1)(eslint-config-prettier@10.0.1(eslint@9.20.1(jiti@2.4.2)))(eslint@9.20.1(jiti@2.4.2))(prettier@3.5.1)
+      eslint-plugin-prettier: 5.2.3(@types/eslint@9.6.1)(eslint-config-prettier@10.0.1(eslint@9.21.0(jiti@2.4.2)))(eslint@9.20.1(jiti@2.4.2))(prettier@3.5.1)
       eslint-plugin-yml: 1.17.0(eslint@9.20.1(jiti@2.4.2))
       globals: 15.15.0
       jiti: 2.4.2
@@ -19386,7 +19389,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-prettier@5.2.3(@types/eslint@9.6.1)(eslint-config-prettier@10.0.1(eslint@9.20.1(jiti@2.4.2)))(eslint@9.20.1(jiti@2.4.2))(prettier@3.5.1):
+  eslint-plugin-prettier@5.2.3(@types/eslint@9.6.1)(eslint-config-prettier@10.0.1(eslint@9.21.0(jiti@2.4.2)))(eslint@9.20.1(jiti@2.4.2))(prettier@3.5.1):
     dependencies:
       eslint: 9.20.1(jiti@2.4.2)
       prettier: 3.5.1
@@ -20936,6 +20939,8 @@ snapshots:
   jose@4.15.9: {}
 
   jose@5.10.0: {}
+
+  jose@6.0.3: {}
 
   js-base64@3.7.7: {}
 
