@@ -15,7 +15,7 @@ const eventSchema = z.object({
   url: z.string().optional(),
 })
 const prompt = `You are a data extraction specialist responsible for identifying and accurately cataloging event information.
-Only accept images. Only if the image contains event information, extract that information into JSON. In all other cases, set \`is_event\` to \`false\`.
+Only accept images. Only if the image is an event poster containing event information, extract that information into JSON. In all other cases, set \`is_event\` to \`false\`.
 If the image contains event information:
 - format \`start\` and \`end\` according to ISO 8601 and use the current year (${new Date().getFullYear()}) if no year is given
 - output data exactly as given, i.e. in the same language
