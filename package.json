@@ -27,10 +27,7 @@
       "protobufjs",
       "sharp",
       "vue-demi"
-    ],
-    "overrides": {
-      "vue-tsc": "2.2.0"
-    }
+    ]
   },
   "private": true,
   "scripts": {
