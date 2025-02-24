@@ -30,9 +30,6 @@
     ],
     "overrides": {
       "vue-tsc": "2.2.0"
-    },
-    "patchedDependencies": {
-      "shadcn-nuxt": "patches/shadcn-nuxt.patch"
     }
   },
   "private": true,
