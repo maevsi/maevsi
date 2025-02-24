@@ -62,16 +62,19 @@ export default defineEventHandler(async (event) => {
     ],
   })
 
-  const result = moderation.results[0]
+  const firstResult = moderation.results[0]
 
-  if (result.flagged) {
-    const flaggedCategory = Object.keys(result.categories).find(
-      (key) =>
-        result.categories[key as keyof typeof result.categories] === true,
-    )
+  if (firstResult.flagged) {
+    const flaggedCategories = Object.keys(firstResult.categories)
+      .filter(
+        (key) =>
+          firstResult.categories[key as keyof typeof firstResult.categories],
+      )
+      .join(', ')
+
     return throwError({
       code: 403,
-      message: `The image contains ${flaggedCategory} content.`,
+      message: `The image seems to contain content that has been moderated to be of the following type${flaggedCategories.length > 1 ? 's' : ''}: ${flaggedCategories}`,
     })
   }
 
