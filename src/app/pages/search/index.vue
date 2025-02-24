@@ -1,9 +1,8 @@
 <template>
   <div>
     <LayoutPageTitle :title="title" />
-    <!-- TODO: offer proper search -->
     <div class="flex flex-col gap-4">
-      <SearchBar />
+      <SearchBar @search="handleSearch" />
       <EventList />
     </div>
   </div>
@@ -14,6 +13,12 @@ const { t } = useI18n()
 
 // data
 const title = t('title')
+const searchTerm = ref('')
+
+// methods
+const handleSearch = (term: string) => {
+  searchTerm.value = term
+}
 
 // initialization
 useHeadDefault({ title })

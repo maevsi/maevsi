@@ -4,15 +4,15 @@
       <label class="hidden" for="search">{{ t('search') }}</label>
       <input
         id="search"
-        class="form-input cursor-pointer rounded-r-none dark:border-gray-500 dark:bg-gray-700 dark:placeholder:text-gray-300"
+        v-model="searchTerm"
+        class="form-input cursor-text rounded-r-none dark:border-gray-500 dark:bg-gray-700 dark:placeholder:text-gray-300"
         :placeholder="t('search')"
-        readonly
         type="text"
-        @click="navigateToSearch"
+        @keyup.enter="handleSearch"
       />
       <span
         class="inline-flex cursor-pointer items-center rounded-r-md border border-l-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500 dark:border-gray-500 dark:bg-gray-700 dark:text-gray-300"
-        @click="navigateToSearch"
+        @click="handleSearch"
       >
         <IHeroiconsMagnifyingGlass />
       </span>
@@ -21,12 +21,15 @@
 </template>
 
 <script setup lang="ts">
-const localePath = useLocalePath()
 const { t } = useI18n()
+const emit = defineEmits(['search'])
+
+// state
+const searchTerm = ref('')
 
 // methods
-const navigateToSearch = () => {
-  navigateTo(localePath({ path: `/search`, query: { q: 'search phrase' } }))
+const handleSearch = () => {
+  emit('search', searchTerm.value)
 }
 </script>
 
