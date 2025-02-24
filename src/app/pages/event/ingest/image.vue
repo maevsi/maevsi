@@ -142,7 +142,6 @@ const uploadFile = async () => {
         text: error.data?.message || t('invalidImage'),
         title: t('error'),
       })
-      return
     }
   }
   reader.onerror = () => {
