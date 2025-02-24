@@ -49,6 +49,7 @@ export default defineEventHandler(async (event) => {
     })
     .jpeg()
     .toBuffer()
+  const base64Image = sharpBuffer.toString('base64')
   // moderation is free of charge (https://platform.openai.com/docs/pricing#moderation)
   const moderation = await openAiClient.moderations.create({
     model: 'omni-moderation-latest',
@@ -56,7 +57,7 @@ export default defineEventHandler(async (event) => {
       {
         type: 'image_url',
         image_url: {
-          url: `data:image/jpeg;base64,${sharpBuffer.toString('base64')}`,
+          url: `data:image/jpeg;base64,${base64Image}`,
         },
       },
     ],
@@ -90,7 +91,7 @@ export default defineEventHandler(async (event) => {
           {
             type: 'image_url',
             image_url: {
-              url: `data:image/jpeg;base64,${sharpBuffer.toString('base64')}`,
+              url: `data:image/jpeg;base64,${base64Image}`,
             },
           },
         ],
