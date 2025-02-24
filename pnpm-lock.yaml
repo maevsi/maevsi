@@ -7,11 +7,6 @@ settings:
 overrides:
   vue-tsc: 2.2.0
 
-patchedDependencies:
-  shadcn-nuxt:
-    hash: c14a0a952744bd8d00412344713a9e8a7edc49e50137cc70210998de68e19945
-    path: patches/shadcn-nuxt.patch
-
 importers:
 
   .:
@@ -395,8 +390,8 @@ importers:
         specifier: 3.0.5
         version: 3.0.5
       shadcn-nuxt:
-        specifier: 0.11.4
-        version: 0.11.4(patch_hash=c14a0a952744bd8d00412344713a9e8a7edc49e50137cc70210998de68e19945)(magicast@0.3.5)
+        specifier: 1.0.1
+        version: 1.0.1(magicast@0.3.5)
       slugify:
         specifier: 1.6.6
         version: 1.6.6
@@ -9819,8 +9814,8 @@ packages:
   setprototypeof@1.2.0:
     resolution: {integrity: sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==}
 
-  shadcn-nuxt@0.11.4:
-    resolution: {integrity: sha512-9c5ZWUywJBJyRFxsPHP9FLaw3ZOVM2YfZc6FJ4ZEUVds6ynOCxOhn70JF+r0Fo0MsVAiGeKjL8lsRlG3Dg7XsA==}
+  shadcn-nuxt@1.0.1:
+    resolution: {integrity: sha512-4/JwF8pCGmlLq8nHPdeWxY7DQk4h5aMb2nKvms9N1ZK5ZldWPVLn5aBG9Tl2J8ZBqJo4+XA5K8dMNeoA0Bf9qw==}
 
   sharp@0.32.6:
     resolution: {integrity: sha512-KyLTWwgcR9Oe4d9HwCwNM2l7+J0dUQwn/yf7S0EnTtb0eVS4RxO0eUSvxPtzT4F3SY+C4K6fqdv/DO27sJ/v/w==}
@@ -12856,7 +12851,7 @@ snapshots:
       eslint: 9.20.1(jiti@2.4.2)
       eslint-config-prettier: 10.0.1(eslint@9.20.1(jiti@2.4.2))
       eslint-plugin-compat: 6.0.2(eslint@9.20.1(jiti@2.4.2))
-      eslint-plugin-prettier: 5.2.3(@types/eslint@9.6.1)(eslint-config-prettier@10.0.1(eslint@9.20.1(jiti@2.4.2)))(eslint@9.20.1(jiti@2.4.2))(prettier@3.5.2)
+      eslint-plugin-prettier: 5.2.3(@types/eslint@9.6.1)(eslint-config-prettier@10.0.1(eslint@9.21.0(jiti@2.4.2)))(eslint@9.20.1(jiti@2.4.2))(prettier@3.5.2)
       eslint-plugin-yml: 1.17.0(eslint@9.20.1(jiti@2.4.2))
       globals: 15.15.0
       jiti: 2.4.2
@@ -14639,7 +14634,7 @@ snapshots:
       '@nuxt/eslint-plugin': 1.0.1(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3)
       '@stylistic/eslint-plugin': 3.1.0(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3)
       '@typescript-eslint/eslint-plugin': 8.24.1(@typescript-eslint/parser@8.24.1(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3))(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3)
-      '@typescript-eslint/parser': 8.24.1(eslint@9.21.0(jiti@2.4.2))(typescript@5.7.3)
+      '@typescript-eslint/parser': 8.24.1(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3)
       eslint: 9.20.1(jiti@2.4.2)
       eslint-config-flat-gitignore: 2.0.0(eslint@9.20.1(jiti@2.4.2))
       eslint-flat-config-utils: 2.0.1
@@ -17043,7 +17038,7 @@ snapshots:
   '@typescript-eslint/eslint-plugin@8.24.1(@typescript-eslint/parser@8.24.1(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3))(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3)':
     dependencies:
       '@eslint-community/regexpp': 4.12.1
-      '@typescript-eslint/parser': 8.24.1(eslint@9.21.0(jiti@2.4.2))(typescript@5.7.3)
+      '@typescript-eslint/parser': 8.24.1(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3)
       '@typescript-eslint/scope-manager': 8.24.1
       '@typescript-eslint/type-utils': 8.24.1(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3)
       '@typescript-eslint/utils': 8.24.1(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3)
@@ -17070,6 +17065,18 @@ snapshots:
       ignore: 5.3.2
       natural-compare: 1.4.0
       ts-api-utils: 2.0.1(typescript@5.7.3)
+      typescript: 5.7.3
+    transitivePeerDependencies:
+      - supports-color
+
+  '@typescript-eslint/parser@8.24.1(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3)':
+    dependencies:
+      '@typescript-eslint/scope-manager': 8.24.1
+      '@typescript-eslint/types': 8.24.1
+      '@typescript-eslint/typescript-estree': 8.24.1(typescript@5.7.3)
+      '@typescript-eslint/visitor-keys': 8.24.1
+      debug: 4.4.0(supports-color@9.4.0)
+      eslint: 9.20.1(jiti@2.4.2)
       typescript: 5.7.3
     transitivePeerDependencies:
       - supports-color
@@ -19401,7 +19408,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-prettier@5.2.3(@types/eslint@9.6.1)(eslint-config-prettier@10.0.1(eslint@9.20.1(jiti@2.4.2)))(eslint@9.20.1(jiti@2.4.2))(prettier@3.5.2):
+  eslint-plugin-prettier@5.2.3(@types/eslint@9.6.1)(eslint-config-prettier@10.0.1(eslint@9.21.0(jiti@2.4.2)))(eslint@9.20.1(jiti@2.4.2))(prettier@3.5.2):
     dependencies:
       eslint: 9.20.1(jiti@2.4.2)
       prettier: 3.5.2
@@ -23675,7 +23682,7 @@ snapshots:
 
   setprototypeof@1.2.0: {}
 
-  shadcn-nuxt@0.11.4(patch_hash=c14a0a952744bd8d00412344713a9e8a7edc49e50137cc70210998de68e19945)(magicast@0.3.5):
+  shadcn-nuxt@1.0.1(magicast@0.3.5):
     dependencies:
       '@nuxt/kit': 3.15.4(magicast@0.3.5)
       '@oxc-parser/wasm': 0.50.0
