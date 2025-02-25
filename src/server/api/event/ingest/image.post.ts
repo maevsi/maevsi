@@ -31,9 +31,15 @@ export default defineEventHandler(async (event) => {
   }
 
   const { client: openAiClient, getCompletionCost } = useOpenAi()
-  const verifyAuth = await useVerifyAuth()
+  const { getJwtFromHeader, verifyJwt } = await useJsonWebToken()
 
-  await verifyAuth()
+  const jwtDecoded = await verifyJwt(getJwtFromHeader())
+  if (!(jwtDecoded.role === 'maevsi_account'))
+    return throwError({
+      code: 403,
+      message: 'This endpoint only available to registered users.',
+    })
+
   const body = await getBodySafe({
     event,
     schema: eventIngestImagePostBodySchema,
