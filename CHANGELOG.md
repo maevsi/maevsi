@@ -1,3 +1,83 @@
+## [7.1.0](https://github.com/maevsi/maevsi/compare/7.0.0...7.1.0) (2025-02-20)
+
+### Features
+
+* **notification:** add ios implementation ([157154b](https://github.com/maevsi/maevsi/commit/157154b688419b6b21af92516b2b9b70203ec7af))
+
+## [7.0.0](https://github.com/maevsi/maevsi/compare/6.6.0...7.0.0) (2025-02-20)
+
+### ⚠ BREAKING CHANGES
+
+* **security:** read postgres credentials from environment variables
+* **auth:** refactor (#1776)
+
+### Features
+
+* **auth:** refactor ([#1776](https://github.com/maevsi/maevsi/issues/1776)) ([0d74b40](https://github.com/maevsi/maevsi/commit/0d74b402e8b447d0c0665bdfbef78fc8f06a409f))
+* **postgres:** read host from environment variable ([901d030](https://github.com/maevsi/maevsi/commit/901d030da5c6717c47ee900fb2d45882255bfb28))
+* **security:** read postgres credentials from environment variables ([384058a](https://github.com/maevsi/maevsi/commit/384058a108bbb322a9f5ffdcb6ada715c135389b))
+
+### Bug Fixes
+
+* **auth:** fully verify json web token in development ([cd73559](https://github.com/maevsi/maevsi/commit/cd7355991d20c1096ed5bcc4bbe00f4825d25047))
+* **nuxt:** prevent some dependencies from being externalized ([dcc2365](https://github.com/maevsi/maevsi/commit/dcc2365ce0bba6d36b24733c93323410cd4091fd))
+* **vite:** allow host `maevsi` ([24fd5a3](https://github.com/maevsi/maevsi/commit/24fd5a3c36134ad93865c3fc70ac980886baf658))
+
+## [7.0.0-beta.3](https://github.com/maevsi/maevsi/compare/7.0.0-beta.2...7.0.0-beta.3) (2025-02-20)
+
+### Features
+
+* **postgres:** read host from environment variable ([901d030](https://github.com/maevsi/maevsi/commit/901d030da5c6717c47ee900fb2d45882255bfb28))
+
+### Bug Fixes
+
+* **auth:** fully verify json web token in development ([cd73559](https://github.com/maevsi/maevsi/commit/cd7355991d20c1096ed5bcc4bbe00f4825d25047))
+
+## [7.0.0-beta.2](https://github.com/maevsi/maevsi/compare/7.0.0-beta.1...7.0.0-beta.2) (2025-02-20)
+
+### ⚠ BREAKING CHANGES
+
+* **security:** read postgres credentials from environment variables
+
+### Features
+
+* **event:** create link ingestion functionality ([#1775](https://github.com/maevsi/maevsi/issues/1775)) ([4e3f8ca](https://github.com/maevsi/maevsi/commit/4e3f8ca38975430d5c67aa9f1df00e4903d9821f))
+* **security:** read postgres credentials from environment variables ([384058a](https://github.com/maevsi/maevsi/commit/384058a108bbb322a9f5ffdcb6ada715c135389b))
+
+### Bug Fixes
+
+* **style:** readd dark mode override ([#1786](https://github.com/maevsi/maevsi/issues/1786)) ([b660e48](https://github.com/maevsi/maevsi/commit/b660e48c9dde2fa5610099546327c01346073731))
+
+## [7.0.0-beta.1](https://github.com/maevsi/maevsi/compare/6.5.1-beta.1...7.0.0-beta.1) (2025-02-16)
+
+### ⚠ BREAKING CHANGES
+
+* **auth:** refactor (#1776)
+
+### Features
+
+* **auth:** refactor ([#1776](https://github.com/maevsi/maevsi/issues/1776)) ([0d74b40](https://github.com/maevsi/maevsi/commit/0d74b402e8b447d0c0665bdfbef78fc8f06a409f))
+
+## [6.5.1-beta.1](https://github.com/maevsi/maevsi/compare/6.5.0...6.5.1-beta.1) (2025-02-13)
+
+### Bug Fixes
+
+* **nuxt:** prevent some dependencies from being externalized ([dcc2365](https://github.com/maevsi/maevsi/commit/dcc2365ce0bba6d36b24733c93323410cd4091fd))
+* **vite:** allow host `maevsi` ([24fd5a3](https://github.com/maevsi/maevsi/commit/24fd5a3c36134ad93865c3fc70ac980886baf658))
+
+## [6.1.1-beta.1](https://github.com/maevsi/maevsi/compare/6.1.0...6.1.1-beta.1) (2025-01-26)
+
+### Bug Fixes
+
+* **nuxt:** prevent some dependencies from being externalized ([dcc2365](https://github.com/maevsi/maevsi/commit/dcc2365ce0bba6d36b24733c93323410cd4091fd))
+* **vite:** allow host `maevsi` ([24fd5a3](https://github.com/maevsi/maevsi/commit/24fd5a3c36134ad93865c3fc70ac980886baf658))
+
+## [6.6.0](https://github.com/maevsi/maevsi/compare/6.5.1...6.6.0) (2025-02-20)
+
+### Features
+
+* **event:** create link ingestion functionality ([#1775](https://github.com/maevsi/maevsi/issues/1775)) ([4e3f8ca](https://github.com/maevsi/maevsi/commit/4e3f8ca38975430d5c67aa9f1df00e4903d9821f))
+
 ## [6.5.1](https://github.com/maevsi/maevsi/compare/6.5.0...6.5.1) (2025-02-19)
 
 ### Bug Fixes

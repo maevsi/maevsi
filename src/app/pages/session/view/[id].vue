@@ -169,7 +169,7 @@
                 :aria-label="t('notificationPermit')"
                 :disabled="!isNotificationPermissionRequestPossible"
                 :is-primary="false"
-                @click="requestNotificationPermissions"
+                @click="requestNotificationPermission(notificationStore)"
               >
                 {{ t('notificationPermit') }}
                 <template #prefix>
@@ -211,8 +211,9 @@ import { consola } from 'consola'
 const { t } = useI18n()
 const requestEvent = useRequestEvent()
 const store = useMaevsiStore()
+const notificationStore = useNotificationStore()
 const dateTime = useDateTime()
-const { signOut } = useSignOut()
+const { signOut } = await useSignOut()
 const fireAlert = useFireAlert()
 
 // data
@@ -234,28 +235,24 @@ const sendNotification = async () => {
   })
 }
 const showFcmToken = async () => {
-  const token = await requestFcmToken()
+  if (!notificationStore.fcmToken) {
+    await notificationStore.fcmTokenInitialize()
+  }
+
   await fireAlert({
     level: 'info',
     title: 'FCM Token',
-    text: token,
+    text: notificationStore.fcmToken,
   })
 }
-const requestNotificationPermissions = () =>
-  Notification.requestPermission(
-    (notificationPermission) =>
-      (permissionState.value =
-        notificationPermission === 'default'
-          ? 'prompt'
-          : notificationPermission),
-  )
 
 // computations
 const isNotificationPermissionRequestPossible = computed(
   () =>
-    import.meta.client &&
-    isWindowHavingNotification.value &&
-    permissionState.value === 'prompt',
+    (import.meta.client &&
+      isWindowHavingNotification.value &&
+      permissionState.value === 'prompt') ||
+    isIosHavingPushCapability,
 )
 const sessionExpiryTime = computed(() =>
   store.jwtDecoded?.exp
