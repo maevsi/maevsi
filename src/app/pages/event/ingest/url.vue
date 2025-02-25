@@ -15,16 +15,13 @@
         :placeholder="t('enterEventLink')"
       />
     </div>
-    <div>
-      <ButtonColored
-        :aria-label="t('process')"
-        variant="secondary"
-        class="cursor-pointer"
-        @click="uploadURL"
-      >
-        {{ t('process') }}
-      </ButtonColored>
-    </div>
+    <ButtonColored
+      :aria-label="t('process')"
+      class="self-end"
+      @click="uploadURL"
+    >
+      {{ t('process') }}
+    </ButtonColored>
   </div>
 </template>
 

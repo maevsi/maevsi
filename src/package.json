@@ -116,6 +116,7 @@
     "radix-vue": "1.9.16",
     "seedrandom": "3.0.5",
     "shadcn-nuxt": "1.0.1",
+    "sharp": "0.33.5",
     "slugify": "1.6.6",
     "stylelint": "16.14.1",
     "stylelint-config-recommended-vue": "1.6.0",
