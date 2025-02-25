@@ -103,6 +103,7 @@
           :options="[
             { title: t('visibilityPublic'), value: EventVisibility.Public },
             { title: t('visibilityPrivate'), value: EventVisibility.Private },
+            { title: t('visibilityUnlisted'), value: EventVisibility.Unlisted },
           ]"
         />
         <template #stateError>
@@ -499,6 +500,7 @@ de:
   visibility: Sichtbarkeit
   visibilityPrivate: privat
   visibilityPublic: öffentlich
+  visibilityUnlisted: ungelistet
 en:
   attendanceType: Attendance type
   description: Invitation text
@@ -522,4 +524,5 @@ en:
   visibility: Visibility
   visibilityPrivate: private
   visibilityPublic: public
+  visibilityUnlisted: unlisted
 </i18n>
