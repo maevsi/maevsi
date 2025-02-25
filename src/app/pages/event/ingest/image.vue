@@ -139,7 +139,7 @@ const uploadFile = async () => {
       await fireAlert({
         error,
         level: 'error',
-        text: error.data?.message || t('invalidImage'),
+        text: t('uploadFailed'),
         title: t('error'),
       })
     }
@@ -155,20 +155,20 @@ de:
   clearAll: Löschen
   fileTypes: PNG, JPG, GIF bis zu 10 MB
   error: Fehler
-  invalidImage: Ungültiges Bild
   replaceImage: Bild ersetzen
   selectFromDevice: Vom Gerät auswählen
   title: Bild laden
+  uploadFailed: Hochladen fehlgeschlagen
   uploadFiles: Datei hochladen
   uploadImage: Bild hochladen
 en:
   clearAll: Clear
   fileTypes: PNG, JPG, GIF up to 10 MB
   error: Error
-  invalidImage: Invalid image
   replaceImage: Replace image
   selectFromDevice: Select from device
   title: Ingest image
+  uploadFailed: Upload failed
   uploadFiles: Upload file
   uploadImage: Upload image
 </i18n>

@@ -71,7 +71,7 @@ export default defineEventHandler(async (event) => {
 
   const firstResult = moderation.results[0]
 
-  if (firstResult.flagged) {
+  if (firstResult?.flagged) {
     const flaggedCategories = Object.keys(firstResult.categories)
       .filter(
         (key) =>
