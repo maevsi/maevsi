@@ -19,9 +19,7 @@ export default defineEventHandler(async (event) => {
 
   console.log('tusdDelete: ' + uploadId)
 
-  const queryResult = await executeQuery(
-    sql`SELECT * FROM maevsi.upload WHERE id = ${uploadId}`,
-  )
+  const queryResult = await executeQuery(uploadSelect({ id: uploadId }))
 
   if (!queryResult.length) {
     return throwError({

@@ -21,7 +21,7 @@ export default defineEventHandler(async (event) => {
       console.log('tusd/pre-create')
 
       const queryResult = await executeQuery(
-        sql`SELECT EXISTS(SELECT * FROM maevsi.upload WHERE id = ${body.Event.Upload.MetaData.maevsiUploadUuid})`,
+        uploadExists({ id: body.Event.Upload.MetaData.maevsiUploadUuid }),
       )
 
       if (!queryResult[0]?.exists) {
@@ -39,7 +39,10 @@ export default defineEventHandler(async (event) => {
       console.log('tusd/pre-finish: ' + body.Event.Upload.ID)
 
       await executeQuery(
-        sql`UPDATE maevsi.upload SET storage_key = ${body.Event.Upload.ID} WHERE id = ${body.Event.Upload.MetaData.maevsiUploadUuid}`,
+        uploadUpdate({
+          id: body.Event.Upload.MetaData.maevsiUploadUuid,
+          storageKey: body.Event.Upload.ID,
+        }),
       )
 
       await send(event, JSON.stringify({}), MIMES.json)
