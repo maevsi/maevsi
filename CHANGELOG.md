@@ -1,3 +1,9 @@
+## [7.2.1](https://github.com/maevsi/maevsi/compare/7.2.0...7.2.1) (2025-02-26)
+
+### Performance Improvements
+
+* **postgres:** migrate from `pg` ([1e2dbba](https://github.com/maevsi/maevsi/commit/1e2dbba4a8cb7dd71e01744d7182870c6dc114b1))
+
 ## [7.2.0](https://github.com/maevsi/maevsi/compare/7.1.0...7.2.0) (2025-02-25)
 
 ### Features
