@@ -1,11 +1,14 @@
-import pg from 'pg'
+import postgres from 'postgres'
 
-// https://github.com/brianc/node-postgres/issues/2137
-// https://github.com/brianc/node-postgres/issues/2353
+export const sql = postgres()
 
-export const postgres = new pg.Pool({
-  database: process.env.PGDATABASE,
-  host: process.env.PGHOST,
-  password: process.env.PGPASSWORD,
-  user: process.env.PGUSER,
-})
+export const executeQuery = async <T>(query: Promise<T>): Promise<T> => {
+  try {
+    return await query
+  } catch (error) {
+    throw throwError({
+      code: 500,
+      message: (error as Error).message,
+    })
+  }
+}

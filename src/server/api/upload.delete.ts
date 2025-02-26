@@ -19,33 +19,24 @@ export default defineEventHandler(async (event) => {
 
   console.log('tusdDelete: ' + uploadId)
 
-  const queryResult = await postgres
-    .query('SELECT * FROM maevsi.upload WHERE id = $1;', [uploadId])
-    .catch((err) => {
-      return throwError({
-        code: 500,
-        message: err.message,
-      })
-    })
+  const queryResult = await executeQuery(
+    sql`SELECT * FROM maevsi.upload WHERE id = ${uploadId}`,
+  )
 
-  if (!queryResult) return
-
-  if (!queryResult.rows.length) {
+  if (!queryResult.length) {
     return throwError({
       code: 500,
-      message: 'No result found for id "' + uploadId + '"!',
+      message: `No result found for id "${uploadId}"!`,
     })
   }
 
-  const storageKey = (
-    queryResult.rows[0] ? queryResult.rows[0].storage_key : undefined
-  ) as string | undefined
+  const storageKey = queryResult[0]?.storage_key
 
   if (!storageKey) {
     return await deleteUpload(event, uploadId)
   }
 
-  const response = await $fetch.raw('http://tusd:8080/files/' + storageKey, {
+  const response = await $fetch.raw(`http://tusd:8080/files/${storageKey}`, {
     headers: {
       'Tus-Resumable': '1.0.0',
     },
