@@ -1,3 +1,9 @@
+## [8.0.2](https://github.com/maevsi/maevsi/compare/8.0.1...8.0.2) (2025-02-27)
+
+### Bug Fixes
+
+* **notification:** correct casing ([3c41d64](https://github.com/maevsi/maevsi/commit/3c41d64bf64863722a8024ab256a95232d0ee5f7))
+
 ## [8.0.1](https://github.com/maevsi/maevsi/compare/8.0.0...8.0.1) (2025-02-27)
 
 ### Bug Fixes
