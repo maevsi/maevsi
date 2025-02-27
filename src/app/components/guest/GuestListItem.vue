@@ -3,11 +3,11 @@
   <tr
     v-if="contact"
     :class="{
-      'animate-pulse': pending.deletions.includes(invitation.id),
+      'animate-pulse': pending.deletions.includes(guest.id),
     }"
   >
     <td class="max-w-0">
-      <ContactPreview :contact="contact" :feedback="invitation.feedback" />
+      <ContactPreview :contact="contact" :feedback="guest.feedback" />
     </td>
     <td class="max-w-0">
       <div
@@ -16,22 +16,22 @@
         <ButtonIcon
           :aria-label="
             contact.accountId || contact.emailAddress
-              ? t('invitationSend')
+              ? t('guestSend')
               : t('disabledReasonEmailAddressNone')
           "
           class="hidden md:block"
           :disabled="
             (!contact.accountId && !contact.emailAddress) ||
-            pending.sends.includes(invitation.id)
+            pending.sends.includes(guest.id)
           "
-          @click="send(invitation)"
+          @click="send(guest)"
         >
           <IHeroiconsPaperAirplane />
         </ButtonIcon>
         <ButtonIcon
-          :aria-label="t('invitationLink')"
+          :aria-label="t('guestLink')"
           class="hidden md:block"
-          @click="copyLink(invitation)"
+          @click="copyLink(guest)"
         >
           <IHeroiconsLink />
         </ButtonIcon>
@@ -43,19 +43,19 @@
             <Button
               :aria-label="
                 contact.accountId || contact.emailAddress
-                  ? t('invitationSend')
+                  ? t('guestSend')
                   : t('disabledReasonEmailAddressNone')
               "
               class="block md:hidden"
               :disabled="
                 (!contact.accountId && !contact.emailAddress) ||
-                pending.sends.includes(invitation.id)
+                pending.sends.includes(guest.id)
               "
-              @click="send(invitation)"
+              @click="send(guest)"
             >
               {{
                 contact.accountId || contact.emailAddress
-                  ? t('invitationSend')
+                  ? t('guestSend')
                   : t('disabledReasonEmailAddressNone')
               }}
               <template #prefix>
@@ -63,38 +63,38 @@
               </template>
             </Button>
             <Button
-              :aria-label="t('invitationLink')"
+              :aria-label="t('guestLink')"
               class="block md:hidden"
-              @click="copyLink(invitation)"
+              @click="copyLink(guest)"
             >
-              {{ t('invitationLink') }}
+              {{ t('guestLink') }}
               <template #prefix>
                 <IHeroiconsLink />
               </template>
             </Button>
             <Button
-              v-if="event.accountByAuthorAccountId?.username"
-              :aria-label="t('invitationView')"
+              v-if="event.accountByCreatedBy?.username"
+              :aria-label="t('guestView')"
               @click="
                 navigateTo(
                   localePath({
-                    path: `/event/view/${event.accountByAuthorAccountId.username}/${event.slug}`,
-                    query: { ic: invitation.id },
+                    path: `/event/view/${event.accountByCreatedBy.username}/${event.slug}`,
+                    query: { ic: guest.id },
                   }),
                 )
               "
             >
-              {{ t('invitationView') }}
+              {{ t('guestView') }}
               <template #prefix>
                 <IHeroiconsEye />
               </template>
             </Button>
             <Button
-              :aria-label="t('invitationDelete')"
-              :disabled="pending.deletions.includes(invitation.id)"
-              @click="delete_(invitation.id)"
+              :aria-label="t('guestDelete')"
+              :disabled="pending.deletions.includes(guest.id)"
+              @click="delete_(guest.id)"
             >
-              {{ t('invitationDelete') }}
+              {{ t('guestDelete') }}
               <template #prefix>
                 <IHeroiconsTrash />
               </template>
@@ -108,20 +108,17 @@
 </template>
 
 <script setup lang="ts">
-import { useDeleteInvitationByIdMutation } from '~~/gql/documents/mutations/invitation/invitationDelete'
-import { useInviteMutation } from '~~/gql/documents/mutations/invitation/invite'
+import { useDeleteGuestByIdMutation } from '~~/gql/documents/mutations/guest/guestDelete'
+import { useInviteMutation } from '~~/gql/documents/mutations/guest/invite'
 import { getContactItem } from '~~/gql/documents/fragments/contactItem'
 import type {
   EventItemFragment,
-  InvitationItemFragment,
+  GuestItemFragment,
 } from '~~/gql/generated/graphql'
 
 export interface Props {
-  event: Pick<EventItemFragment, 'accountByAuthorAccountId' | 'slug'>
-  invitation: Pick<
-    InvitationItemFragment,
-    'contactByContactId' | 'feedback' | 'id'
-  >
+  event: Pick<EventItemFragment, 'accountByCreatedBy' | 'slug'>
+  guest: Pick<GuestItemFragment, 'contactByContactId' | 'feedback' | 'id'>
 }
 const props = withDefaults(defineProps<Props>(), {})
 
@@ -129,9 +126,9 @@ const { locale, t } = useI18n()
 const localePath = useLocalePath()
 
 // api data
-const deleteInvitationByIdMutation = useDeleteInvitationByIdMutation()
+const deleteGuestByIdMutation = useDeleteGuestByIdMutation()
 const inviteMutation = useInviteMutation()
-// const api = getApiData([deleteInvitationByIdMutation, inviteMutation])
+// const api = getApiData([deleteGuestByIdMutation, inviteMutation])
 
 // data
 const pending = reactive({
@@ -141,31 +138,29 @@ const pending = reactive({
 })
 
 // methods
-const copyLink = async (invitation: Pick<InvitationItemFragment, 'id'>) => {
+const copyLink = async (guest: Pick<GuestItemFragment, 'id'>) => {
   if (!import.meta.client) return
 
   await copyText(
-    `${window.location.origin}${localePath(`invitation-unlock`)}?ic=${
-      invitation.id
-    }`,
+    `${window.location.origin}${localePath(`guest-unlock`)}?ic=${guest.id}`,
   )
 
   showToast({ title: t('copySuccess') })
 }
 const delete_ = async (id: string) => {
   pending.deletions.push(id)
-  await deleteInvitationByIdMutation.executeMutation({ id })
+  await deleteGuestByIdMutation.executeMutation({ id })
   pending.deletions.splice(pending.deletions.indexOf(id), 1)
 }
-const send = async (invitation: Pick<InvitationItemFragment, 'id'>) => {
-  pending.sends.push(invitation.id)
+const send = async (guest: Pick<GuestItemFragment, 'id'>) => {
+  pending.sends.push(guest.id)
 
   const result = await inviteMutation.executeMutation({
-    invitationId: invitation.id,
+    guestId: guest.id,
     language: locale.value,
   })
 
-  pending.sends.splice(pending.sends.indexOf(invitation.id), 1)
+  pending.sends.splice(pending.sends.indexOf(guest.id), 1)
 
   if (result.error || !result.data) return
 
@@ -173,28 +168,26 @@ const send = async (invitation: Pick<InvitationItemFragment, 'id'>) => {
 }
 
 // computations
-const contact = computed(() =>
-  getContactItem(props.invitation.contactByContactId),
-)
+const contact = computed(() => getContactItem(props.guest.contactByContactId))
 </script>
 
 <i18n lang="yaml">
 de:
   copySuccess: Der Einladungslink wurde in die Zwischenablage kopiert.
   disabledReasonEmailAddressNone: Diesem Kontakt fehlt eine E-Mail-Adresse.
-  invitationDelete: Einladung löschen
-  invitationLink: Einladungslink kopieren
-  invitationSend: Einladung versenden
-  invitationView: Einladung anzeigen
+  guestDelete: Einladung löschen
+  guestLink: Einladungslink kopieren
+  guestSend: Einladung versenden
+  guestView: Einladung anzeigen
   sendSuccess: Die Einladung wurde erfolgreich per E-Mail versandt.
   # postgresP0002: Die Einladung konnte nicht versandt werden! Möglicherweise hast du aktuell keinen Zugriff auf die notwendigen Daten. Versuche die Seite neu zu laden.
 en:
-  copySuccess: The invitation link has been copied to the clipboard.
+  copySuccess: The guest link has been copied to the clipboard.
   disabledReasonEmailAddressNone: This contact does not have an associated email address.
-  invitationDelete: Delete invitation
-  invitationLink: Copy invitation link
-  invitationSend: Send invitation
-  invitationView: View invitation
-  sendSuccess: The invitation was successfully sent by email.
-  # postgresP0002: The invitation could not be sent! You may not have access to the necessary data right now. Try reloading the page.
+  guestDelete: Delete guest
+  guestLink: Copy guest link
+  guestSend: Send guest
+  guestView: View guest
+  sendSuccess: The guest was successfully sent by email.
+  # postgresP0002: The guest could not be sent! You may not have access to the necessary data right now. Try reloading the page.
 </i18n>

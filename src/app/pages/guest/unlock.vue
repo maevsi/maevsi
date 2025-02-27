@@ -17,30 +17,30 @@
         id-label="input-invitation-id-maevsi"
         :is-disabled="!!routeQueryIc"
         placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-        :title="t('invitationId')"
+        :title="t('guestId')"
         type="text"
-        :value="v$.invitationId"
-        @input="form.invitationId = $event"
+        :value="v$.guestId"
+        @input="form.guestId = $event"
       >
         <template #stateInfo>
           <FormInputStateInfo v-if="routeQueryIc">
             <div>
-              {{ t('invitationIdAutomatic') }}
-              <AppLink :to="localePath('invitation-unlock')">
-                {{ t('invitationIdManual') }}
+              {{ t('guestIdAutomatic') }}
+              <AppLink :to="localePath('guest-unlock')">
+                {{ t('guestIdManual') }}
               </AppLink>
             </div>
           </FormInputStateInfo>
         </template>
         <template #stateError>
           <FormInputStateError
-            :form-input="v$.invitationId"
+            :form-input="v$.guestId"
             validation-property="formatUuid"
           >
             {{ t('globalValidationFormat') }}
           </FormInputStateError>
           <FormInputStateError
-            :form-input="v$.invitationId"
+            :form-input="v$.guestId"
             validation-property="required"
           >
             {{ t('globalValidationRequired') }}
@@ -88,7 +88,7 @@ definePageMeta({
 
       const result = await $urql.value
         .mutation(eventUnlockMutationImported, {
-          invitationId: to.query.ic,
+          guestId: to.query.ic,
         })
         .toPromise()
 
@@ -99,7 +99,7 @@ definePageMeta({
       if (!result.data?.eventUnlock?.eventUnlockResponse?.jwt) {
         return await navigateTo(
           localePath({
-            path: `/invitation/unlock`,
+            path: `/guest/unlock`,
             query: {
               ...to.query,
               error: null,
@@ -116,7 +116,7 @@ definePageMeta({
       }
 
       if (
-        !result.data.eventUnlock.eventUnlockResponse.authorAccountUsername ||
+        !result.data.eventUnlock.eventUnlockResponse.creatorUsername ||
         !result.data.eventUnlock.eventUnlockResponse.eventSlug
       ) {
         throw new Error('Author account username or event slug missing!')
@@ -128,8 +128,7 @@ definePageMeta({
             name: 'event-view-username-event_name',
             params: {
               username:
-                result.data.eventUnlock.eventUnlockResponse
-                  .authorAccountUsername,
+                result.data.eventUnlock.eventUnlockResponse.creatorUsername,
               event_name: result.data.eventUnlock.eventUnlockResponse.eventSlug,
             },
           }),
@@ -137,15 +136,14 @@ definePageMeta({
       } else {
         return await navigateTo(
           localePath({
-            path: `/invitation/unlock`,
+            path: `/guest/unlock`,
             query: {
               ...to.query,
               redirect: localePath({
                 name: 'event-view-username-event_name',
                 params: {
                   username:
-                    result.data.eventUnlock.eventUnlockResponse
-                      .authorAccountUsername,
+                    result.data.eventUnlock.eventUnlockResponse.creatorUsername,
                   event_name:
                     result.data.eventUnlock.eventUnlockResponse.eventSlug,
                 },
@@ -170,7 +168,7 @@ const api = getApiData([eventUnlockMutation])
 
 // data
 const form = reactive({
-  invitationId: ref(route.query.ic),
+  guestId: ref(route.query.ic),
 })
 const isFormSent = ref(false)
 const title = t('title')
@@ -180,7 +178,7 @@ const submit = async () => {
   if (!isFormValid({ v$, isFormSent })) return
 
   const result = await eventUnlockMutation.executeMutation({
-    invitationId: form.invitationId,
+    guestId: form.guestId,
   })
 
   if (!result.data?.eventUnlock?.eventUnlockResponse) {
@@ -204,7 +202,7 @@ const submit = async () => {
       name: 'event-view-username-event_name',
       params: {
         username:
-          result.data?.eventUnlock?.eventUnlockResponse?.authorAccountUsername,
+          result.data?.eventUnlock?.eventUnlockResponse?.creatorUsername,
         event_name: result.data?.eventUnlock?.eventUnlockResponse?.eventSlug,
       },
     }),
@@ -216,14 +214,14 @@ const routeQueryIc = computed(() => route.query.ic)
 
 // vuelidate
 const rules = {
-  invitationId: VALIDATION_UUID(),
+  guestId: VALIDATION_UUID(),
 }
 const v$ = useVuelidate(rules, form)
 
 // lifecycle
 onMounted(() => {
   if (route.query.ic) {
-    v$.value.invitationId?.$touch()
+    v$.value.guestId?.$touch()
 
     if ('error' in route.query) {
       submit()
@@ -238,18 +236,18 @@ useHeadDefault({ title })
 <i18n lang="yaml">
 de:
   greetingExplanation: Einladungscodes gewähren dir Zugriff auf nicht-öffentliche Veranstaltungsseiten, ohne dass du dir einen Account erstellen musst. Sie sind gültig, solange du zur Veranstaltung eingeladen bist, für die sie ausgestellt wurden.
-  invitationId: Einladungscode
-  invitationIdAutomatic: Der Einladungscode wurde automatisch eingegeben.
-  invitationIdManual: Code selbst eingeben.
+  guestId: Einladungscode
+  guestIdAutomatic: Der Einladungscode wurde automatisch eingegeben.
+  guestIdManual: Code selbst eingeben.
   jwtStoreFail: Fehler beim Speichern der Authentifizierungsdaten!
   postgresP0002: Zu diesem Einladungscode wurde keine Veranstaltung gefunden! Überprüfe deine Eingaben auf Schreibfehler.
   submit: Zur Veranstaltungsseite
   title: Veranstaltung freischalten
 en:
   greetingExplanation: Invitation codes grant access to non-public event pages without the need to create an account. They are valid as long as you are invited to the event they were issued for.
-  invitationId: Invitation code
-  invitationIdAutomatic: The invitation code was entered automatically.
-  invitationIdManual: Enter it yourself.
+  guestId: Invitation code
+  guestIdAutomatic: The invitation code was entered automatically.
+  guestIdManual: Enter it yourself.
   jwtStoreFail: Failed to store the authentication data!
   postgresP0002: No event was found for this invitation code! Check your input for spelling mistakes.
   submit: Show event page

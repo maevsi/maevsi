@@ -38,7 +38,7 @@ export default defineNuxtConfig({
     },
   },
   compatibilityDate: '2024-04-03',
-  css: ['~/assets/css/tailwind.css'],
+  css: ['~/assets/css/maevsi.css'],
   experimental: {
     typedPages: true,
   },
@@ -50,7 +50,7 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/image',
     '@nuxt/scripts',
-    // '@nuxtjs/color-mode', // installed by `shadcn-nuxt`
+    '@nuxtjs/color-mode',
     '@nuxtjs/html-validator',
     '@nuxtjs/i18n',
     '@nuxtjs/seo',

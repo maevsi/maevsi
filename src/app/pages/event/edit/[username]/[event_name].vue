@@ -40,7 +40,7 @@ import { getEventItem } from '~~/gql/documents/fragments/eventItem'
 import { getAccountItem } from '~~/gql/documents/fragments/accountItem'
 import { useEventDeleteMutation } from '~~/gql/documents/mutations/event/eventDelete'
 import { useAccountByUsernameQuery } from '~~/gql/documents/queries/account/accountByUsername'
-import { useEventByAuthorAccountIdAndSlugQuery } from '~~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
+import { useEventByCreatedByAndSlugQuery } from '~~/gql/documents/queries/event/eventByCreatedByAndSlug'
 
 const ROUTE_NAME: keyof RouteNamedMap = 'event-edit-username-event_name___en'
 
@@ -68,13 +68,13 @@ const accountId = computed(
     getAccountItem(accountByUsernameQuery.data.value?.accountByUsername)?.id,
 )
 const eventQuery = await zalgo(
-  useEventByAuthorAccountIdAndSlugQuery({
-    authorAccountId: accountId,
+  useEventByCreatedByAndSlugQuery({
+    createdBy: accountId,
     slug: route.params.event_name,
   }),
 )
 const event = computed(() =>
-  getEventItem(eventQuery.data.value?.eventByAuthorAccountIdAndSlug),
+  getEventItem(eventQuery.data.value?.eventByCreatedByAndSlug),
 )
 const eventDeleteMutation = useEventDeleteMutation()
 const api = getApiData([

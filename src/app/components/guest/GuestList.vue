@@ -2,10 +2,10 @@
   <Loader :api="api">
     <div class="flex flex-col gap-4">
       <ScrollContainer
-        v-if="event && invitations.length"
+        v-if="event && guests.length"
         class="max-h-[70vh]"
-        :has-next-page="!!api.data.allInvitations?.pageInfo.hasNextPage"
-        @load-more="after = api.data.allInvitations?.pageInfo.endCursor"
+        :has-next-page="!!api.data.allGuests?.pageInfo.hasNextPage"
+        @load-more="after = api.data.allGuests?.pageInfo.endCursor"
       >
         <table class="border border-neutral-300 dark:border-neutral-600">
           <LayoutThead
@@ -19,46 +19,46 @@
             </tr>
           </LayoutThead>
           <LayoutTbody>
-            <InvitationListItem
-              v-for="invitation in invitations"
-              :key="invitation.id"
+            <GuestListItem
+              v-for="guest in guests"
+              :key="guest.id"
               :event="event"
-              :invitation="invitation"
+              :guest="guest"
             />
           </LayoutTbody>
         </table>
       </ScrollContainer>
       <div v-else class="flex flex-col items-center gap-2">
-        {{ t('invitationNone') }}
+        {{ t('guestNone') }}
         <FormInputStateInfo>
           {{ t('hintInviteSelf') }}
         </FormInputStateInfo>
       </div>
       <div class="flex flex-col items-center gap-1">
         <ButtonColored
-          :aria-label="t('invitationAdd')"
+          :aria-label="t('guestAdd')"
           :disabled="
-            event.inviteeCountMaximum && api.data.allInvitations?.totalCount
-              ? api.data.allInvitations.totalCount >= event.inviteeCountMaximum
+            event.guestCountMaximum && api.data.allGuests?.totalCount
+              ? api.data.allGuests.totalCount >= event.guestCountMaximum
               : false
           "
           @click="add()"
         >
-          {{ t('invitationAdd') }}
+          {{ t('guestAdd') }}
           <template #prefix>
             <IHeroiconsPlus />
           </template>
         </ButtonColored>
         <p class="text-center text-gray-500 dark:text-gray-400">
           {{
-            t('invitationsUsed', {
-              amountCurrent: api.data.allInvitations?.totalCount,
-              amountMaximum: event.inviteeCountMaximum || '∞',
+            t('guestsUsed', {
+              amountCurrent: api.data.allGuests?.totalCount,
+              amountMaximum: event.guestCountMaximum || '∞',
             })
           }}
         </p>
       </div>
-      <div v-if="api.data.allInvitations?.totalCount">
+      <div v-if="api.data.allGuests?.totalCount">
         <h2>
           {{ t('feedback') }}
         </h2>
@@ -71,11 +71,11 @@
           />
         </div>
       </div>
-      <Modal id="ModalInvitation" is-footer-hidden>
-        <FormInvitation
+      <Modal id="ModalGuest" is-footer-hidden>
+        <FormGuest
           :event="event"
-          :invitation-contact-ids-existing="invitations.map((i) => i.contactId)"
-          @submit-success="onInvitationSubmitSuccess"
+          :guest-contact-ids-existing="guests.map((i) => i.contactId)"
+          @submit-success="onGuestSubmitSuccess"
         />
         <template #header>
           {{ t('contactSelect') }}
@@ -99,14 +99,14 @@ import {
 import { consola } from 'consola'
 import { Doughnut } from 'vue-chartjs'
 
-import { useAllInvitationsQuery } from '~~/gql/documents/queries/invitation/invitationsAll'
+import { useAllGuestsQuery } from '~~/gql/documents/queries/guest/guestsAll'
 import type { EventItemFragment } from '~~/gql/generated/graphql'
-import { getInvitationItem } from '~~/gql/documents/fragments/invitationItem'
+import { getGuestItem } from '~~/gql/documents/fragments/guestItem'
 
 export interface Props {
   event: Pick<
     EventItemFragment,
-    'authorAccountId' | 'slug' | 'inviteeCountMaximum' | 'id'
+    'createdBy' | 'slug' | 'guestCountMaximum' | 'id'
   >
 }
 const props = withDefaults(defineProps<Props>(), {})
@@ -121,12 +121,12 @@ const after = ref<string>()
 const doughnutRef = ref<DoughnutController>()
 
 // api data
-const invitationsQuery = await useAllInvitationsQuery({
+const guestsQuery = await useAllGuestsQuery({
   after,
   eventId: props.event.id,
   first: ITEMS_PER_PAGE_LARGE,
 })
-const api = getApiData([invitationsQuery])
+const api = getApiData([guestsQuery])
 
 // data
 const options = {
@@ -146,13 +146,13 @@ const options = {
 
 // methods
 const add = () => {
-  invitationsQuery.pause()
-  store.modals.push({ id: 'ModalInvitation' })
+  guestsQuery.pause()
+  store.modals.push({ id: 'ModalGuest' })
 }
-const onInvitationSubmitSuccess = () => {
-  store.modalRemove('ModalInvitation')
+const onGuestSubmitSuccess = () => {
+  store.modalRemove('ModalGuest')
   after.value = undefined
-  invitationsQuery.resume()
+  guestsQuery.resume()
 }
 const updateChart = () => {
   Chart.defaults.color = colorMode.value === 'dark' ? '#fff' : '#000'
@@ -170,9 +170,9 @@ const dataComputed = computed(() => {
     none: 0,
   }
 
-  if (invitations.value) {
-    for (const invitation of invitations.value) {
-      switch (invitation.feedback) {
+  if (guests.value) {
+    for (const guest of guests.value) {
+      switch (guest.feedback) {
         case 'ACCEPTED':
           datasetData.accepted += 1
           break
@@ -183,7 +183,7 @@ const dataComputed = computed(() => {
           datasetData.none += 1
           break
         default:
-          consola.error('Unexpected invitation type.')
+          consola.error('Unexpected guest type.')
       }
     }
   }
@@ -198,10 +198,10 @@ const dataComputed = computed(() => {
     ],
   }
 })
-const invitations = computed(
+const guests = computed(
   () =>
-    invitationsQuery.data.value?.allInvitations?.nodes
-      .map((x) => getInvitationItem(x))
+    guestsQuery.data.value?.allGuests?.nodes
+      .map((x) => getGuestItem(x))
       .filter(isNeitherNullNorUndefined) || [],
 )
 
@@ -235,19 +235,19 @@ de:
   contactSelect: Kontakt auswählen
   feedback: Rückmeldungen
   hintInviteSelf: 'Tipp: du kannst dich auch zuerst selbst einladen'
-  invitationAdd: Gäste hinzufügen
-  invitationNone: Es wurde noch kein Gast hinzugefügt 😕
-  invitationsUsed: 'Gästekontingent genutzt: {amountCurrent} / {amountMaximum}'
+  guestAdd: Gäste hinzufügen
+  guestNone: Es wurde noch kein Gast hinzugefügt 😕
+  guestsUsed: 'Gästekontingent genutzt: {amountCurrent} / {amountMaximum}'
   noFeedback: keine Rückmeldung
 en:
   accepted: accepted
   canceled: declined
   contact: Contact
   contactSelect: Select Contact
-  feedback: Invitation responses
+  feedback: Guest responses
   hintInviteSelf: 'Hint: you can also invite yourself first'
-  invitationAdd: Add guests
-  invitationNone: No guest has been added yet 😕
-  invitationsUsed: 'Guest quota used: {amountCurrent} / {amountMaximum}'
+  guestAdd: Add guests
+  guestNone: No guest has been added yet 😕
+  guestsUsed: 'Guest quota used: {amountCurrent} / {amountMaximum}'
   noFeedback: no response
 </i18n>
