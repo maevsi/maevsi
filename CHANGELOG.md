@@ -1,3 +1,13 @@
+## [8.0.0](https://github.com/maevsi/maevsi/compare/7.2.1...8.0.0) (2025-02-27)
+
+### ⚠ BREAKING CHANGES
+
+* **sqitch:** migrate to v5
+
+### Features
+
+* **sqitch:** migrate to v5 ([92ad052](https://github.com/maevsi/maevsi/commit/92ad05256857fc080e77052e715160b36632fe31))
+
 ## [7.2.1](https://github.com/maevsi/maevsi/compare/7.2.0...7.2.1) (2025-02-26)
 
 ### Performance Improvements
