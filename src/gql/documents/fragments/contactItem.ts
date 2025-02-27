@@ -9,7 +9,7 @@ export const ContactItem = graphql(`
       id
       username
     }
-    accountByAuthorAccountId {
+    accountByCreatedBy {
       id
       username
     }

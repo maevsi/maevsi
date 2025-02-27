@@ -11,7 +11,7 @@ export const useEventIsExistingQuery = (
   })
 
 export const eventIsExistingQuery = graphql(`
-  query eventIsExisting($authorAccountId: UUID!, $slug: String!) {
-    eventIsExisting(authorAccountId: $authorAccountId, slug: $slug)
+  query eventIsExisting($createdBy: UUID!, $slug: String!) {
+    eventIsExisting(createdBy: $createdBy, slug: $slug)
   }
 `)

@@ -8,6 +8,7 @@ import {
   momentFormatDate,
   momentFormatDuration,
 } from './dependencies/moments'
+import { EventVisibility } from '~~/gql/generated/graphql'
 
 const EVENT_DESCRIPTION_TRIM_LENGTH = 250
 
@@ -36,7 +37,7 @@ type MaevsiEvent = {
   authorUsername: string
   description: string | null
   end: string | null // Date
-  inviteeCountMaximum: number | null
+  guestCountMaximum: number | null
   isArchived: boolean
   isInPerson: boolean
   isRemote: boolean
@@ -44,7 +45,7 @@ type MaevsiEvent = {
   name: string
   slug: string
   start: string // Date
-  visibility: 'public' | 'private'
+  visibility: EventVisibility
 }
 
 type AccountPasswordResetRequestEvent = {
@@ -69,9 +70,9 @@ type EventInvitationEvent = {
     data: {
       emailAddress: string
       event: MaevsiEvent
-      invitationId: string
       eventAuthorProfilePictureUploadStorageKey: string
       eventAuthorUsername: string
+      guestId: string
     }
     template: Template
   }
@@ -106,6 +107,7 @@ const locales = {
       eventIsArchived: 'archiviert',
       eventVisibilityIsPrivate: 'private',
       eventVisibilityIsPublic: 'öffentliche',
+      eventVisibilityIsUnlisted: 'ungelistete',
       subject: (eventName: string) => `Einladung: ${eventName}`,
     },
     en: {
@@ -114,6 +116,7 @@ const locales = {
       eventIsArchived: 'archived',
       eventVisibilityIsPrivate: 'a private',
       eventVisibilityIsPublic: 'a public',
+      eventVisibilityIsUnlisted: 'an unlisted',
       subject: (eventName: string) => `Invitation: ${eventName}`,
     },
   },
@@ -251,7 +254,7 @@ export const sendEventInvitationMail = async ({
   const {
     emailAddress,
     event,
-    invitationId,
+    guestId,
     eventAuthorProfilePictureUploadStorageKey,
     eventAuthorUsername,
   } = payloadCamelCased.data
@@ -262,12 +265,12 @@ export const sendEventInvitationMail = async ({
         contact: { emailAddress },
         event: {
           ...event,
-          accountByAuthorAccountId: {
+          accountByCreatedBy: {
             username: eventAuthorUsername,
           },
         },
-        invitation: {
-          id: invitationId,
+        guest: {
+          id: guestId,
         },
       }),
       method: 'POST',
@@ -277,8 +280,8 @@ export const sendEventInvitationMail = async ({
     })
   ).text()
 
-  if (!invitationId) {
-    console.error(`Could not get invitation id ${invitationId}!`)
+  if (!guestId) {
+    console.error(`Could not get invitation id ${guestId}!`)
     return
   }
 
@@ -309,7 +312,7 @@ export const sendEventInvitationMail = async ({
       //   contact: { emailAddress },
       //   event,
       //   invitation: {
-      //     id: invitationId,
+      //     id: guestId,
       //   },
       // }),
     )
@@ -324,13 +327,15 @@ export const sendEventInvitationMail = async ({
 
   if (event.isArchived) {
     eventVisibility = t.eventIsArchived
-  } else if (event.visibility === 'public') {
+  } else if (event.visibility === EventVisibility.Public) {
     eventVisibility = t.eventVisibilityIsPublic
-  } else if (event.visibility === 'private') {
+  } else if (event.visibility === EventVisibility.Private) {
     eventVisibility = t.eventVisibilityIsPrivate
+  } else if (event.visibility === EventVisibility.Unlisted) {
+    eventVisibility = t.eventVisibilityIsUnlisted
   } else {
     throw new Error(
-      `Event is neither archived nor has it a visibility of public or private: ${event}`,
+      `Event is neither archived nor has it a visibility of public, unlisted or private: ${event}`,
     )
   }
 
@@ -369,7 +374,7 @@ export const sendEventInvitationMail = async ({
         payloadCamelCased.template.language !== LOCALE_DEFAULT
           ? '/' + payloadCamelCased.template.language
           : ''
-      }/invitation/unlock?ic=${invitationId}`,
+      }/guest/unlock?ic=${guestId}`,
       eventName: event.name,
       eventStart: momentFormatDate({
         input: event.start,

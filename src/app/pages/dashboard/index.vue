@@ -20,9 +20,9 @@
         </CardButton>
         <UnderConstruction>
           <CardButton
-            :description="t('invitationsDescription')"
-            :title="t('invitations')"
-            :to="localePath(`invitation`)"
+            :description="t('guestsDescription')"
+            :title="t('guests')"
+            :to="localePath(`guest`)"
           >
             <ISolarLetterLinear />
           </CardButton>
@@ -94,8 +94,8 @@ de:
   contactsDescription: Informationen zu all deinen Gästen
   events: Veranstaltungen
   eventsDescription: Organisiere deine eigenen Veranstaltungen
-  invitations: Einladungen
-  invitationsDescription: Sieh nach, wo du eingeladen bist
+  guests: Einladungen
+  guestsDescription: Sieh nach, wo du eingeladen bist
   news: Ereignisverlauf
   title: Dashboard
   uploads: Uploads
@@ -109,8 +109,8 @@ en:
   contactsDescription: Information on all your guests
   events: Events
   eventsDescription: Organize your own events
-  invitations: Invitations
-  invitationsDescription: See where you're invited
+  guests: Invitations
+  guestsDescription: See where you're invited
   news: Recent changes
   title: Dashboard
   uploads: Uploads

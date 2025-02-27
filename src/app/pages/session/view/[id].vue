@@ -42,10 +42,10 @@
                 </p>
                 <ul class="list-disc">
                   <li
-                    v-for="invitationId in store.jwtDecoded?.invitations"
-                    :key="invitationId"
+                    v-for="guestId in store.jwtDecoded?.guests"
+                    :key="guestId"
                   >
-                    {{ invitationId }}
+                    {{ guestId }}
                   </li>
                 </ul>
               </div>
