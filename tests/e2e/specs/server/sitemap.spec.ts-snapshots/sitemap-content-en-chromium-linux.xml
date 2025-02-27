@@ -37,10 +37,10 @@
         <xhtml:link rel="alternate" hreflang="x-default" href="http://localhost:3001/event" />
     </url>
     <url>
-        <loc>http://localhost:3001/invitation</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="http://localhost:3001/de/invitation" />
-        <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3001/invitation" />
-        <xhtml:link rel="alternate" hreflang="x-default" href="http://localhost:3001/invitation" />
+        <loc>http://localhost:3001/guest</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="http://localhost:3001/de/guest" />
+        <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3001/guest" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="http://localhost:3001/guest" />
     </url>
     <url>
         <loc>http://localhost:3001/legal-notice</loc>
@@ -97,10 +97,10 @@
         <xhtml:link rel="alternate" hreflang="x-default" href="http://localhost:3001/event/create" />
     </url>
     <url>
-        <loc>http://localhost:3001/invitation/unlock</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="http://localhost:3001/de/invitation/unlock" />
-        <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3001/invitation/unlock" />
-        <xhtml:link rel="alternate" hreflang="x-default" href="http://localhost:3001/invitation/unlock" />
+        <loc>http://localhost:3001/guest/unlock</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="http://localhost:3001/de/guest/unlock" />
+        <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3001/guest/unlock" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="http://localhost:3001/guest/unlock" />
     </url>
     <url>
         <loc>http://localhost:3001/session/create</loc>
