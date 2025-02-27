@@ -16,17 +16,17 @@ test('gets ical string', () => {
     getIcalString({
       event: {
         id: '1',
-        accountByAuthorAccountId: {
+        accountByCreatedBy: {
           id: 1,
           username: 'authorUsername',
         },
         description: '<p>description</p>',
         end: new Date(),
-        // inviteeCountMaximum: 0,
+        // guestCountMaximum: 0,
         // isArchived: false,
         // isInPerson: false,
         // isRemote: false,
-        location: 'location',
+        // location: 'location',
         name: 'name',
         slug: 'slug',
         start: new Date(),
@@ -46,7 +46,6 @@ DTSTAMP:19700101T000000Z\r
 DTSTART:19700101T000000Z\r
 DTEND:19700101T000000Z\r
 SUMMARY:name\r
-LOCATION:location\r
 DESCRIPTION:https://maevsi.test/event/view/authorUsername/slug\\n\\ndescript\r
  ion\r
 X-ALT-DESC;FMTTYPE=text/html:https://maevsi.test/event/view/authorUsername\r

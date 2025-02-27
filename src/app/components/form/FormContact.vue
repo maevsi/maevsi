@@ -93,7 +93,7 @@
       :form-input="v$.emailAddress"
       @input="form.emailAddress = $event"
     />
-    <FormInput
+    <!-- <FormInput
       id-label="input-address"
       :title="t('address')"
       type="textarea"
@@ -116,7 +116,7 @@
           {{ t('globalValidationLength') }}
         </FormInputStateError>
       </template>
-    </FormInput>
+    </FormInput> -->
     <FormInputPhoneNumber
       :form-input="v$.phoneNumber"
       @input="form.phoneNumber = $event"
@@ -136,7 +136,7 @@ export interface Props {
   contact?: Pick<
     ContactItemFragment,
     | 'accountByAccountId'
-    | 'address'
+    // | 'addressByAddressId'
     | 'emailAddress'
     | 'firstName'
     | 'id'
@@ -193,8 +193,8 @@ const submit = async () => {
       id: form.id,
       contactPatch: {
         accountId: account?.id || null,
-        address: form.address || null,
-        authorAccountId: store.signedInAccountId,
+        // address: form.address || null,
+        createdBy: store.signedInAccountId,
         emailAddress: form.emailAddress || null,
         firstName: form.firstName || null,
         lastName: form.lastName || null,
@@ -211,8 +211,8 @@ const submit = async () => {
     const result = await createContactMutation.executeMutation({
       contactInput: {
         accountId: account?.id || null,
-        address: form.address || null,
-        authorAccountId: store.signedInAccountId,
+        // address: form.address || null,
+        createdBy: store.signedInAccountId,
         emailAddress: form.emailAddress || null,
         firstName: form.firstName || null,
         lastName: form.lastName || null,
@@ -230,7 +230,7 @@ const updateForm = (
   data?: Pick<
     ContactItemFragment,
     | 'accountByAccountId'
-    | 'address'
+    // | 'addressByAddressId'
     | 'emailAddress'
     | 'firstName'
     | 'id'
@@ -242,7 +242,7 @@ const updateForm = (
   if (!data) return
 
   form.accountUsername = data.accountByAccountId?.username
-  form.address = data.address || undefined
+  // form.address = data.address || undefined
   form.emailAddress = data.emailAddress || undefined
   form.firstName = data.firstName || undefined
   form.id = data.id
@@ -279,7 +279,7 @@ updateForm(props.contact)
 <i18n lang="yaml">
 de:
   accountOverride: Falls angegeben, nutzt maevsi die folgenden Daten anstelle der Daten des oben genannten Kontos.
-  address: Adresse
+  # address: Adresse
   firstName: Vorname
   lastName: Nachname
   postgres23505: Ein Kontakt mit dieser Nutzernamen existiert bereits!
@@ -288,7 +288,7 @@ de:
   stateInfoUsernameDisabledLink: Einstellungen deines Kontos
 en:
   accountOverride: If given, maevsi will prefer to use the following data instead of the data given by the account above.
-  address: Address
+  # address: Address
   firstName: First name
   lastName: Last name
   postgres23505: A contact with this username already exists!

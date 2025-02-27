@@ -15,7 +15,7 @@
         :email-address-hash="contact.emailAddressHash"
         size="48"
       />
-      <InvitationFeedbackIcon
+      <GuestFeedbackIcon
         v-if="feedback"
         class="bg-background-bright dark:bg-background-dark absolute right-0 bottom-0 rounded-full"
         :feedback="feedback"
@@ -59,7 +59,7 @@ export interface Props {
     ContactItemFragment,
     | 'accountId'
     | 'accountByAccountId'
-    | 'accountByAuthorAccountId'
+    | 'accountByCreatedBy'
     | 'emailAddress'
     | 'emailAddressHash'
     | 'firstName'

@@ -10,9 +10,9 @@ test.describe('event username eventname page', () => {
   //     })
   //   })
   //
-  //   it('forbids access to a private event when not signed in', () => {
+  //   it('forbids access to a unlisted event when not signed in', () => {
   //     cy.request({
-  //       url: '/events/username-that-exists/private-event',
+  //       url: '/events/username-that-exists/unlisted-event',
   //       failOnStatusCode: false,
   //     }).then((resp) => {
   //       expect(resp.status).to.equal(403)
