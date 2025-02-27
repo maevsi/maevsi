@@ -281,7 +281,7 @@ export const sendEventInvitationMail = async ({
   ).text()
 
   if (!guestId) {
-    console.error(`Could not get invitation id ${guestId}!`)
+    console.error(`Could not get guest id ${guestId}!`)
     return
   }
 
@@ -327,11 +327,11 @@ export const sendEventInvitationMail = async ({
 
   if (event.isArchived) {
     eventVisibility = t.eventIsArchived
-  } else if (event.visibility === EventVisibility.Public) {
+  } else if (event.visibility === EventVisibility.Public.toLowerCase()) {
     eventVisibility = t.eventVisibilityIsPublic
-  } else if (event.visibility === EventVisibility.Private) {
+  } else if (event.visibility === EventVisibility.Private.toLowerCase()) {
     eventVisibility = t.eventVisibilityIsPrivate
-  } else if (event.visibility === EventVisibility.Unlisted) {
+  } else if (event.visibility === EventVisibility.Unlisted.toLowerCase()) {
     eventVisibility = t.eventVisibilityIsUnlisted
   } else {
     throw new Error(
