@@ -1,3 +1,9 @@
+## [8.0.1](https://github.com/maevsi/maevsi/compare/8.0.0...8.0.1) (2025-02-27)
+
+### Bug Fixes
+
+* **notification:** correct payload ([f4001d7](https://github.com/maevsi/maevsi/commit/f4001d79af4059d7fcd8881a7175a139021f9557))
+
 ## [8.0.0](https://github.com/maevsi/maevsi/compare/7.2.1...8.0.0) (2025-02-27)
 
 ### ⚠ BREAKING CHANGES
