@@ -1,6 +1,6 @@
 <template>
   <li
-    v-if="event && event.accountByAuthorAccountId?.username"
+    v-if="event && event.accountByCreatedBy?.username"
     :class="{
       'opacity-75': eventEnd.isValid()
         ? eventEnd.isBefore(now)
@@ -14,7 +14,7 @@
         localePath({
           name: 'event-view-username-event_name',
           params: {
-            username: event.accountByAuthorAccountId.username,
+            username: event.accountByCreatedBy.username,
             event_name: event.slug,
           },
         })
@@ -26,12 +26,12 @@
           class="absolute bottom-4 left-4 flex flex-col justify-between gap-4 md:flex-row"
         >
           <div
-            class="flex min-w-0 flex-col items-baseline text-text-bright md:flex-row md:gap-2"
+            class="text-text-bright flex min-w-0 flex-col items-baseline md:flex-row md:gap-2"
           >
             <h1 class="m-0 line-clamp-2">
               {{ event.name }}
             </h1>
-            <Owner :username="event.accountByAuthorAccountId.username" />
+            <Owner :username="event.accountByCreatedBy.username" />
           </div>
         </div>
       </div>
@@ -47,12 +47,12 @@
             {{ eventStart.format('lll') }}
           </div>
           <Tag
-            v-if="event.visibility === 'PRIVATE'"
+            v-if="event.visibility === EventVisibility.Unlisted"
             class="self-start text-sm font-medium"
           >
             <div class="flex items-center gap-1">
-              <IHeroiconsEyeSlash :title="t('private')" />
-              {{ t('private') }}
+              <IHeroiconsEyeSlash :title="t('unlisted')" />
+              {{ t('unlisted') }}
             </div>
           </Tag>
         </div>
@@ -60,7 +60,7 @@
           <div class="truncate text-xl font-bold">
             {{ event.name }}
           </div>
-          <Owner :username="event.accountByAuthorAccountId.username" />
+          <Owner :username="event.accountByCreatedBy.username" />
         </div> -->
         <p v-if="eventDescriptionTemplate" class="vio-line-clamp-2">
           {{ eventDescriptionTemplate }}
@@ -74,13 +74,16 @@
 import DOMPurify from 'isomorphic-dompurify'
 import mustache from 'mustache'
 
-import type { EventItemFragment } from '~~/gql/generated/graphql'
+import {
+  EventVisibility,
+  type EventItemFragment,
+} from '~~/gql/generated/graphql'
 
 export interface Props {
   event: Pick<
     EventItemFragment,
     | 'name'
-    | 'accountByAuthorAccountId'
+    | 'accountByCreatedBy'
     | 'start'
     | 'visibility'
     | 'slug'
@@ -115,7 +118,7 @@ const eventStart = computed(() => dateTime(props.event.start))
 
 <i18n lang="yaml">
 de:
-  private: privat
+  unlisted: ungelistet
 en:
-  private: private
+  unlisted: unlisted
 </i18n>

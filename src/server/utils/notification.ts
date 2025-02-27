@@ -8,6 +8,7 @@ import {
   momentFormatDate,
   momentFormatDuration,
 } from './dependencies/moments'
+import { EventVisibility } from '~~/gql/generated/graphql'
 
 const EVENT_DESCRIPTION_TRIM_LENGTH = 250
 
@@ -36,7 +37,7 @@ type MaevsiEvent = {
   authorUsername: string
   description: string | null
   end: string | null // Date
-  inviteeCountMaximum: number | null
+  guestCountMaximum: number | null
   isArchived: boolean
   isInPerson: boolean
   isRemote: boolean
@@ -44,7 +45,7 @@ type MaevsiEvent = {
   name: string
   slug: string
   start: string // Date
-  visibility: 'public' | 'private'
+  visibility: EventVisibility
 }
 
 type AccountPasswordResetRequestEvent = {
@@ -69,9 +70,9 @@ type EventInvitationEvent = {
     data: {
       emailAddress: string
       event: MaevsiEvent
-      invitationId: string
-      eventAuthorProfilePictureUploadStorageKey: string
-      eventAuthorUsername: string
+      eventCreatorProfilePictureUploadStorageKey: string
+      eventCreatorUsername: string
+      guestId: string
     }
     template: Template
   }
@@ -106,6 +107,7 @@ const locales = {
       eventIsArchived: 'archiviert',
       eventVisibilityIsPrivate: 'private',
       eventVisibilityIsPublic: 'öffentliche',
+      eventVisibilityIsUnlisted: 'ungelistete',
       subject: (eventName: string) => `Einladung: ${eventName}`,
     },
     en: {
@@ -114,6 +116,7 @@ const locales = {
       eventIsArchived: 'archived',
       eventVisibilityIsPrivate: 'a private',
       eventVisibilityIsPublic: 'a public',
+      eventVisibilityIsUnlisted: 'an unlisted',
       subject: (eventName: string) => `Invitation: ${eventName}`,
     },
   },
@@ -251,9 +254,9 @@ export const sendEventInvitationMail = async ({
   const {
     emailAddress,
     event,
-    invitationId,
-    eventAuthorProfilePictureUploadStorageKey,
-    eventAuthorUsername,
+    guestId,
+    eventCreatorProfilePictureUploadStorageKey,
+    eventCreatorUsername,
   } = payloadCamelCased.data
 
   const res = await (
@@ -262,12 +265,12 @@ export const sendEventInvitationMail = async ({
         contact: { emailAddress },
         event: {
           ...event,
-          accountByAuthorAccountId: {
-            username: eventAuthorUsername,
+          accountByCreatedBy: {
+            username: eventCreatorUsername,
           },
         },
-        invitation: {
-          id: invitationId,
+        guest: {
+          id: guestId,
         },
       }),
       method: 'POST',
@@ -277,8 +280,8 @@ export const sendEventInvitationMail = async ({
     })
   ).text()
 
-  if (!invitationId) {
-    console.error(`Could not get invitation id ${invitationId}!`)
+  if (!guestId) {
+    console.error(`Could not get guest id ${guestId}!`)
     return
   }
 
@@ -309,7 +312,7 @@ export const sendEventInvitationMail = async ({
       //   contact: { emailAddress },
       //   event,
       //   invitation: {
-      //     id: invitationId,
+      //     id: guestId,
       //   },
       // }),
     )
@@ -324,23 +327,25 @@ export const sendEventInvitationMail = async ({
 
   if (event.isArchived) {
     eventVisibility = t.eventIsArchived
-  } else if (event.visibility === 'public') {
+  } else if (event.visibility === EventVisibility.Public.toLowerCase()) {
     eventVisibility = t.eventVisibilityIsPublic
-  } else if (event.visibility === 'private') {
+  } else if (event.visibility === EventVisibility.Private.toLowerCase()) {
     eventVisibility = t.eventVisibilityIsPrivate
+  } else if (event.visibility === EventVisibility.Unlisted.toLowerCase()) {
+    eventVisibility = t.eventVisibilityIsUnlisted
   } else {
     throw new Error(
-      `Event is neither archived nor has it a visibility of public or private: ${event}`,
+      `Event is neither archived nor has it a visibility of public, unlisted or private: ${event}`,
     )
   }
 
   await sendEmail({
     limit24h,
     mailOptions: {
-      fromName: eventAuthorUsername,
+      fromName: eventCreatorUsername,
       icalEvent: {
         content: res,
-        filename: eventAuthorUsername + '_' + event.slug + '.ics',
+        filename: eventCreatorUsername + '_' + event.slug + '.ics',
         method: 'request',
       },
       subject: t.subject(event.name),
@@ -350,11 +355,11 @@ export const sendEventInvitationMail = async ({
     props: {
       emailAddress,
       eventAttendanceType,
-      eventAuthorProfileHref: `${siteUrl}/accounts/${eventAuthorUsername}`,
-      eventAuthorProfilePictureSrc: eventAuthorProfilePictureUploadStorageKey
-        ? tusdFilesUrl + eventAuthorProfilePictureUploadStorageKey
+      eventAuthorProfileHref: `${siteUrl}/accounts/${eventCreatorUsername}`,
+      eventAuthorProfilePictureSrc: eventCreatorProfilePictureUploadStorageKey
+        ? tusdFilesUrl + eventCreatorProfilePictureUploadStorageKey
         : 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCFET0NUWVBFIHN2ZyAgUFVCTElDICctLy9XM0MvL0RURCBTVkcgMS4xLy9FTicgICdodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQnPgo8c3ZnIHdpZHRoPSI0MDFweCIgaGVpZ2h0PSI0MDFweCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAzMTIuODA5IDAgNDAxIDQwMSIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIzMTIuODA5IDAgNDAxIDQwMSIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgdHJhbnNmb3JtPSJtYXRyaXgoMS4yMjMgMCAwIDEuMjIzIC00NjcuNSAtODQzLjQ0KSI+Cgk8cmVjdCB4PSI2MDEuNDUiIHk9IjY1My4wNyIgd2lkdGg9IjQwMSIgaGVpZ2h0PSI0MDEiIGZpbGw9IiNFNEU2RTciLz4KCTxwYXRoIGQ9Im04MDIuMzggOTA4LjA4Yy04NC41MTUgMC0xNTMuNTIgNDguMTg1LTE1Ny4zOCAxMDguNjJoMzE0Ljc5Yy0zLjg3LTYwLjQ0LTcyLjktMTA4LjYyLTE1Ny40MS0xMDguNjJ6IiBmaWxsPSIjQUVCNEI3Ii8+Cgk8cGF0aCBkPSJtODgxLjM3IDgxOC44NmMwIDQ2Ljc0Ni0zNS4xMDYgODQuNjQxLTc4LjQxIDg0LjY0MXMtNzguNDEtMzcuODk1LTc4LjQxLTg0LjY0MSAzNS4xMDYtODQuNjQxIDc4LjQxLTg0LjY0MWM0My4zMSAwIDc4LjQxIDM3LjkgNzguNDEgODQuNjR6IiBmaWxsPSIjQUVCNEI3Ii8+CjwvZz4KPC9zdmc+Cg==',
-      eventAuthorUsername: eventAuthorUsername,
+      eventAuthorUsername: eventCreatorUsername,
       eventDescription,
       eventDuration: event.end
         ? momentFormatDuration({
@@ -369,7 +374,7 @@ export const sendEventInvitationMail = async ({
         payloadCamelCased.template.language !== LOCALE_DEFAULT
           ? '/' + payloadCamelCased.template.language
           : ''
-      }/invitation/unlock?ic=${invitationId}`,
+      }/guest/unlock?ic=${guestId}`,
       eventName: event.name,
       eventStart: momentFormatDate({
         input: event.start,

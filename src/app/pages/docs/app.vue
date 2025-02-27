@@ -1,11 +1,9 @@
 <template>
   <div>
     <LayoutPageTitle :title="title" />
-    <div
-      class="flex flex-col gap-8 rounded-lg from-indigo-400/50 to-transparent p-8 text-center"
-    >
+    <div class="flex flex-col gap-8 rounded-lg p-8 text-center">
       <div class="flex flex-col gap-4">
-        <div class="text-4xl font-bold leading-tight tracking-tight">
+        <div class="text-4xl leading-tight font-bold tracking-tight">
           {{ t('descriptionTitle') }}
         </div>
         <div class="">

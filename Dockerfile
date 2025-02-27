@@ -4,7 +4,7 @@
 #############
 # Create base image.
 
-FROM node:22.13.1-alpine AS base-image
+FROM node:22.14.0-alpine AS base-image
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -20,12 +20,12 @@ RUN apk update \
     # TODO: remove (https://github.com/nodejs/corepack/issues/612)
     && corepack enable
 
+COPY ./docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+
 #############
 # Serve Nuxt in development mode.
 
 FROM base-image AS development
-
-COPY ./docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 
 VOLUME /srv/.pnpm-store
 VOLUME /srv/app
@@ -46,6 +46,9 @@ EXPOSE 3000
 FROM base-image AS prepare
 
 COPY ./pnpm-lock.yaml ./package.json ./
+
+## pnpm patches
+# COPY ./patches ./patches
 
 RUN pnpm fetch
 
@@ -221,8 +224,8 @@ RUN apk update \
 
 USER node
 
-ENTRYPOINT ["pnpm"]
-CMD ["run", "start:node"]
+ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["pnpm", "run", "start:node"]
 HEALTHCHECK --interval=10s CMD wget -O /dev/null http://localhost:3000/api/healthcheck || exit 1
 EXPOSE 3000
 LABEL org.opencontainers.image.source="https://github.com/maevsi/maevsi"

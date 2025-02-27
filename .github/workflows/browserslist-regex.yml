@@ -7,9 +7,11 @@ on:
 
 jobs:
   browserslist-regex:
-    uses: dargmuesli/github-actions/.github/workflows/browserslist-regex.yml@2.3.16
+    uses: dargmuesli/github-actions/.github/workflows/browserslist-regex.yml@2.5.3
     secrets:
       PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
     with:
       DIRECTORY: src/
       NODE_VERSION: 22
+      UBUNTU_DEPENDENCIES: mkcert
+      UBUNTU_REPOSITORIES: universe

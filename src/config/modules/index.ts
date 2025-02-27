@@ -1,9 +1,7 @@
-import { dirname, join } from 'node:path'
-import { fileURLToPath } from 'node:url'
 import type { DefineNuxtConfig } from 'nuxt/config'
 
-import { RELEASE_NAME } from '../../node'
-import { SITE_NAME, SITE_URL } from '../../shared/utils/constants'
+import { RELEASE_NAME, SITE_URL } from '../../node'
+import { SITE_NAME } from '../../shared/utils/constants'
 import { cookieControlConfig } from './cookieControl'
 import { i18nConfig } from './i18n'
 import { pwaConfig } from './pwa'
@@ -16,7 +14,6 @@ const ROBOTS_DISALLOW = [
   '/session/edit',
   '/session/view',
 ]
-const currentDir = dirname(fileURLToPath(import.meta.url))
 
 export const modulesConfig: ReturnType<DefineNuxtConfig> = {
   colorMode: {
@@ -86,8 +83,5 @@ export const modulesConfig: ReturnType<DefineNuxtConfig> = {
   sitemap: {
     credits: false,
     exclude: ROBOTS_DISALLOW,
-  },
-  tailwindcss: {
-    cssPath: join(currentDir, '../../app/assets/css/tailwind.css'),
   },
 }

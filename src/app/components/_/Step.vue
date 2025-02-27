@@ -1,7 +1,7 @@
 <template>
   <section class="relative flex-1 basis-1/2 p-8 xl:basis-auto">
     <div class="absolute left-1/2 z-0 -translate-x-1/2">
-      <span class="text-8xl font-extrabold leading-snug opacity-10">
+      <span class="text-8xl leading-snug font-extrabold opacity-10">
         {{ number }}
       </span>
     </div>

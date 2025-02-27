@@ -5,42 +5,36 @@ const uploadDeleteQuerySchema = z.object({
 })
 
 export default defineEventHandler(async (event) => {
-  const verifyAuth = await useVerifyAuth()
+  const { getJwtFromHeader, verifyJwt } = await useJsonWebToken()
 
-  await verifyAuth()
+  const jwtDecoded = await verifyJwt(getJwtFromHeader())
+  if (!(jwtDecoded.role === 'maevsi_account'))
+    return throwError({
+      code: 403,
+      message: 'This endpoint only available to registered users.',
+    })
 
   const query = await getQuerySafe({ event, schema: uploadDeleteQuerySchema })
   const uploadId = query.uploadId
 
   console.log('tusdDelete: ' + uploadId)
 
-  const queryResult = await pool
-    .query('SELECT * FROM maevsi.upload WHERE id = $1;', [uploadId])
-    .catch((err) => {
-      return throwError({
-        code: 500,
-        message: err.message,
-      })
-    })
+  const queryResult = await executeQuery(uploadSelect({ id: uploadId }))
 
-  if (!queryResult) return
-
-  if (!queryResult.rows.length) {
+  if (!queryResult.length) {
     return throwError({
       code: 500,
-      message: 'No result found for id "' + uploadId + '"!',
+      message: `No result found for id "${uploadId}"!`,
     })
   }
 
-  const storageKey = (
-    queryResult.rows[0] ? queryResult.rows[0].storage_key : undefined
-  ) as string | undefined
+  const storageKey = queryResult[0]?.storage_key
 
   if (!storageKey) {
     return await deleteUpload(event, uploadId)
   }
 
-  const response = await $fetch.raw('http://tusd:8080/files/' + storageKey, {
+  const response = await $fetch.raw(`http://tusd:8080/files/${storageKey}`, {
     headers: {
       'Tus-Resumable': '1.0.0',
     },

@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="transform-gpu flex-col overflow-y-auto bg-background-brighten p-8 transition-transform duration-500 dark:bg-background-darken"
+    class="bg-background-brighten dark:bg-background-darken transform-gpu flex-col overflow-y-auto p-8 transition-transform duration-500"
   >
     <div class="flex flex-col gap-4">
       <LayoutMenu />

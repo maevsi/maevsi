@@ -7,7 +7,7 @@ import { getTextFromHtml } from '../../shared/utils/text'
 import type {
   ContactItemFragment,
   EventItemFragment,
-  InvitationItemFragment,
+  GuestItemFragment,
 } from '../../gql/generated/graphql'
 
 export const getIcalString = ({
@@ -19,19 +19,19 @@ export const getIcalString = ({
   contact?: Pick<ContactItemFragment, 'firstName' | 'lastName'>
   event: Pick<
     EventItemFragment,
-    | 'accountByAuthorAccountId'
+    | 'accountByCreatedBy'
+    // | 'addressByAddressId' // TODO: update for address
     | 'description'
     | 'end'
     | 'id'
-    | 'location'
     | 'name'
     | 'slug'
     | 'start'
   >
-  invitation?: Pick<InvitationItemFragment, 'id'>
+  invitation?: Pick<GuestItemFragment, 'id'>
   siteUrl: string
 }) => {
-  const eventAuthorUsername = event.accountByAuthorAccountId?.username
+  const eventAuthorUsername = event.accountByCreatedBy?.username
   const userEventPath = `${eventAuthorUsername}/${event.slug}`
   const eventUrl = `${siteUrl}/event/view/${userEventPath}`
   const eventDescriptionHtml = mustache.render(
@@ -83,7 +83,7 @@ export const getIcalString = ({
           },
           // description: getTextFromHtml(DOMPurify.sanitize(eventDescriptionHtml)),
         }),
-        location: event.location,
+        // location: event.location, // TODO: update for address
         organizer: {
           name: eventAuthorUsername,
           email: eventAuthorUsername + '@' + hostname,

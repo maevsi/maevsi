@@ -1,7 +1,6 @@
 <template>
-  <!-- 2xl:prose-2xl -->
   <div
-    class="prose prose-sm m-auto dark:prose-invert sm:prose-base lg:prose-lg xl:prose-xl"
+    class="dark:prose-invert prose prose-sm sm:prose-base md:prose-lg lg:prose-xl xl:prose-2xl m-auto"
   >
     <slot />
   </div>

@@ -11,7 +11,7 @@
       <div class="flex">
         <Button
           :aria-label="t('callToAction')"
-          class="flex-none rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          class="flex-none rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-xs hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           is-external
           to="https://discord.gg/E3hD3wEUQ4"
         >
@@ -20,7 +20,7 @@
       </div>
       <svg
         viewBox="0 0 1024 1024"
-        class="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-x-1/2"
+        class="absolute top-1/2 left-1/2 -z-10 h-[64rem] w-[64rem] -translate-x-1/2"
         aria-hidden="true"
       >
         <circle

@@ -38,6 +38,7 @@ const invalidateCache = (
 export default defineNuxtPlugin(async (nuxtApp) => {
   const runtimeConfig = useRuntimeConfig()
   const getServiceHref = useGetServiceHref()
+  const store = useMaevsiStore()
 
   const ssrExchange = getSsrExchange({
     isClient: import.meta.client,
@@ -61,7 +62,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
       Query: {
         allContacts: relayPagination(),
         allEvents: relayPagination(),
-        allInvitations: relayPagination(),
+        allGuests: relayPagination(),
         allUploads: relayPagination(),
       },
     },
@@ -70,33 +71,33 @@ export default defineNuxtPlugin(async (nuxtApp) => {
         // create
         createContact: (_result, _args, cache, _info) =>
           invalidateCache(cache, 'allContacts'),
-        createInvitation: (_result, _args, cache, _info) =>
-          invalidateCache(cache, 'allInvitations'),
+        createGuest: (_result, _args, cache, _info) =>
+          invalidateCache(cache, 'allGuests'),
         // TODO: create manual updates that do not require invalidation (https://github.com/maevsi/maevsi/issues/720)
-        // createInvitation: (result, args, cache, info) => {
+        // createGuest: (result, args, cache, info) => {
         //   cache.updateQuery(
         //     {
-        //       query: allInvitationsQuery,
+        //       query: allGuestsQuery,
         //       variables: {
-        //         eventId: args.input.invitation.eventId,
+        //         eventId: args.input.guest.eventId,
         //         first: 10, // Replace with the appropriate value or keep this dynamic
         //         after: null, // Update accordingly, this could be the first page of results
         //       },
         //     },
         //     (data) => {
-        //       if (data?.allInvitations?.nodes) {
-        //         // Append the new invitation to the allInvitations array
+        //       if (data?.allGuests?.nodes) {
+        //         // Append the new guest to the allGuests array
         //         return {
         //           ...data,
-        //           allInvitations: {
-        //             ...data.allInvitations,
+        //           allGuests: {
+        //             ...data.allGuests,
         //             nodes: [
-        //               ...data.allInvitations.nodes,
-        //               ...(result.createInvitation?.invitation
-        //                 ? [result.createInvitation?.invitation]
+        //               ...data.allGuests.nodes,
+        //               ...(result.createGuest?.guest
+        //                 ? [result.createGuest?.guest]
         //                 : []),
         //             ],
-        //             totalCount: data.allInvitations.totalCount + 1,
+        //             totalCount: data.allGuests.totalCount + 1,
         //           },
         //         }
         //       } else {
@@ -113,8 +114,8 @@ export default defineNuxtPlugin(async (nuxtApp) => {
         // delete
         deleteContactById: (_result, args, cache, _info) =>
           invalidateCache(cache, 'Contact', args),
-        deleteInvitationById: (_result, args, cache, _info) =>
-          invalidateCache(cache, 'Invitation', args),
+        deleteGuestById: (_result, args, cache, _info) =>
+          invalidateCache(cache, 'Guest', args),
       },
     },
   }
@@ -130,7 +131,6 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   const clientOptions: ClientOptions = {
     requestPolicy: 'cache-and-network',
     fetchOptions: () => {
-      const store = useMaevsiStore()
       const headers = {} as Record<string, string>
 
       if (store.jwt) {
@@ -164,31 +164,6 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     const { $urql } = useNuxtApp()
     provideClient($urql)
   })
-
-  // Either authenticate anonymously or refresh token on page load.
-  if (nuxtApp.ssrContext) {
-    const store = useMaevsiStore()
-    const jwtFromCookie = getJwtFromCookie()
-
-    if (jwtFromCookie?.jwtDecoded?.id) {
-      await jwtRefresh({
-        $urqlReset: urqlReset,
-        client: client.value,
-        event: nuxtApp.ssrContext.event,
-        id: jwtFromCookie.jwtDecoded.id as string,
-        isInProduction: runtimeConfig.public.vio.isInProduction,
-        store,
-      })
-    } else {
-      await authenticationAnonymous({
-        $urqlReset: urqlReset,
-        client: client.value,
-        event: nuxtApp.ssrContext.event,
-        isInProduction: runtimeConfig.public.vio.isInProduction,
-        store,
-      })
-    }
-  }
 
   return {
     provide: {

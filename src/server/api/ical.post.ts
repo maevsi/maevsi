@@ -1,5 +1,7 @@
 import { z } from 'zod'
 
+import { SITE_URL } from '~~/node'
+
 const icalPostBodySchema = z.object({
   contact: z
     .object({
@@ -14,7 +16,7 @@ const icalPostBodySchema = z.object({
     location: z.string().optional().nullable(),
     name: z.string(),
     start: z.string(),
-    accountByAuthorAccountId: z.object({
+    accountByCreatedBy: z.object({
       id: z.string(),
       username: z.string(),
     }),
@@ -32,7 +34,7 @@ export default defineEventHandler(async (h3Event) => {
 
   const contact = body.contact
   const event = body.event
-  const eventAuthorUsername = body.event.accountByAuthorAccountId.username
+  const eventAuthorUsername = body.event.accountByCreatedBy.username
   const invitation = body.invitation
 
   setResponseHeaders(h3Event, {
