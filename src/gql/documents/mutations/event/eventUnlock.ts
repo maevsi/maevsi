@@ -4,10 +4,10 @@ import { graphql } from '~~/gql/generated'
 export const useEventUnlockMutation = () => useMutation(eventUnlockMutation)
 
 export const eventUnlockMutation = graphql(`
-  mutation eventUnlock($invitationId: UUID!) {
-    eventUnlock(input: { invitationId: $invitationId }) {
+  mutation eventUnlock($guestId: UUID!) {
+    eventUnlock(input: { guestId: $guestId }) {
       eventUnlockResponse {
-        authorAccountUsername
+        creatorUsername
         eventSlug
         jwt
       }

@@ -7,10 +7,19 @@
       />
     </span>
     <span v-if="event.isArchived" class="block">{{ t('archived') }}</span>
-    <span v-else-if="event.visibility === 'PUBLIC'" class="block">
+    <span v-else-if="event.visibility === EventVisibility.Public" class="block">
       {{ t('public') }}
     </span>
-    <span v-else-if="event.visibility === 'PRIVATE'" class="block">
+    <span
+      v-else-if="event.visibility === EventVisibility.Unlisted"
+      class="block"
+    >
+      {{ t('unlisted') }}
+    </span>
+    <span
+      v-else-if="event.visibility === EventVisibility.Private"
+      class="block"
+    >
       {{ t('private') }}
     </span>
     <span v-else class="block">{{ t('bug') }}</span>
@@ -18,7 +27,10 @@
 </template>
 
 <script setup lang="ts">
-import type { EventItemFragment } from '~~/gql/generated/graphql'
+import {
+  EventVisibility,
+  type EventItemFragment,
+} from '~~/gql/generated/graphql'
 
 export interface Props {
   event: Pick<EventItemFragment, 'isArchived' | 'visibility'>
@@ -34,9 +46,11 @@ de:
   bug: Bug
   private: privat
   public: öffentlich
+  unlisted: ungelistet
 en:
   archived: archived
   bug: bug
   private: private
   public: public
+  unlisted: unlisted
 </i18n>

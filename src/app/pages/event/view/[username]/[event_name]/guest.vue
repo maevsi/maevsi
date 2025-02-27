@@ -5,7 +5,7 @@
       class="flex flex-col gap-4"
     >
       <LayoutPageTitle :title="t('title')" />
-      <InvitationList :event="event" />
+      <GuestList :event="event" />
     </div>
     <Error v-else :status-code="403" />
   </Loader>
@@ -16,7 +16,7 @@ import type { RouteLocationNormalized } from 'vue-router'
 import type { RouteNamedMap } from 'vue-router/auto-routes'
 
 import { useAccountByUsernameQuery } from '~~/gql/documents/queries/account/accountByUsername'
-import { useEventByAuthorAccountIdAndSlugQuery } from '~~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
+import { useEventByCreatedByAndSlugQuery } from '~~/gql/documents/queries/event/eventByCreatedByAndSlug'
 import { getAccountItem } from '~~/gql/documents/fragments/accountItem'
 import { getEventItem } from '~~/gql/documents/fragments/eventItem'
 
@@ -47,13 +47,13 @@ const accountId = computed(
     getAccountItem(accountByUsernameQuery.data.value?.accountByUsername)?.id,
 )
 const eventQuery = await zalgo(
-  useEventByAuthorAccountIdAndSlugQuery({
-    authorAccountId: accountId,
+  useEventByCreatedByAndSlugQuery({
+    createdBy: accountId,
     slug: route.params.event_name,
   }),
 )
 const event = computed(() =>
-  getEventItem(eventQuery.data.value?.eventByAuthorAccountIdAndSlug),
+  getEventItem(eventQuery.data.value?.eventByCreatedByAndSlug),
 )
 const api = getApiData([accountByUsernameQuery, eventQuery])
 

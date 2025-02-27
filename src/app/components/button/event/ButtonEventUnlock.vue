@@ -2,7 +2,7 @@
   <ButtonColored
     :aria-label="t('eventUnlock')"
     :is-primary="isPrimary"
-    :to="localePath('invitation-unlock')"
+    :to="localePath('guest-unlock')"
     @click="emit('click')"
   >
     {{ t('eventUnlock') }}

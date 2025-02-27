@@ -23,13 +23,13 @@ import type { RouteNamedMap } from 'vue-router/auto-routes'
 import type {
   ContactItemFragment,
   EventItemFragment,
-  InvitationItemFragment,
+  GuestItemFragment,
 } from '~~/gql/generated/graphql'
 
 export interface Props {
   contact?: ContactItemFragment
   event: EventItemFragment
-  invitation?: InvitationItemFragment
+  invitation?: GuestItemFragment
 }
 const props = withDefaults(defineProps<Props>(), {
   contact: undefined,

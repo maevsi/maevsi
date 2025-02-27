@@ -12,9 +12,9 @@
     <td class="hidden xl:table-cell">
       {{ contact.emailAddress || '–' }}
     </td>
-    <td class="hidden xl:table-cell">
+    <!-- <td class="hidden xl:table-cell">
       {{ (contact.address || '').replace(/\n/g, ', ') || '–' }}
-    </td>
+    </td> -->
     <td class="hidden xl:table-cell">
       {{ contact.phoneNumber || '–' }}
     </td>
@@ -25,16 +25,13 @@
       <div class="flex items-center justify-evenly gap-2">
         <ButtonIcon
           :aria-label="
-            contact.authorAccountId !== store.signedInAccountId
+            contact.createdBy !== store.signedInAccountId
               ? t('disabledReasonCreatorNot', {
-                  authorAccountUsername:
-                    props.contact.accountByAuthorAccountId?.username,
+                  creatorUsername: props.contact.accountByCreatedBy?.username,
                 })
               : t('contactEdit')
           "
-          :disabled="
-            contact.authorAccountId !== store.signedInAccountId || isEditing
-          "
+          :disabled="contact.createdBy !== store.signedInAccountId || isEditing"
           @click="emit('edit')"
         >
           <IHeroiconsPencil />
@@ -62,13 +59,13 @@ export interface Props {
     | 'nodeId'
     | 'accountId'
     | 'accountByAccountId'
-    | 'accountByAuthorAccountId'
-    | 'authorAccountId'
+    | 'accountByCreatedBy'
+    // | 'addressByAddressId'
+    | 'createdBy'
     | 'emailAddress'
     | 'emailAddressHash'
     | 'firstName'
     | 'lastName'
-    | 'address'
     | 'phoneNumber'
     | 'url'
   >
@@ -93,9 +90,9 @@ const { t } = useI18n()
 de:
   contactEdit: Kontakt bearbeiten
   contactDelete: Kontakt löschen
-  disabledReasonCreatorNot: 'Dieser Kontakt wird von {authorAccountUsername} verwaltet.'
+  disabledReasonCreatorNot: 'Dieser Kontakt wird von {creatorUsername} verwaltet.'
 en:
   contactEdit: Edit contact
   contactDelete: Delete contact
-  disabledReasonCreatorNot: This contact is managed by {authorAccountUsername}.
+  disabledReasonCreatorNot: This contact is managed by {creatorUsername}.
 </i18n>

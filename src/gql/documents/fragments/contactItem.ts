@@ -9,12 +9,14 @@ export const ContactItem = graphql(`
       id
       username
     }
-    accountByAuthorAccountId {
+    accountByCreatedBy {
       id
       username
     }
-    authorAccountId
-    address
+    addressByAddressId {
+      ...AddressItem
+    }
+    createdBy
     emailAddress
     emailAddressHash
     firstName

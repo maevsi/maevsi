@@ -1,3 +1,57 @@
+## [8.0.2](https://github.com/maevsi/maevsi/compare/8.0.1...8.0.2) (2025-02-27)
+
+### Bug Fixes
+
+* **notification:** correct casing ([3c41d64](https://github.com/maevsi/maevsi/commit/3c41d64bf64863722a8024ab256a95232d0ee5f7))
+
+## [8.0.1](https://github.com/maevsi/maevsi/compare/8.0.0...8.0.1) (2025-02-27)
+
+### Bug Fixes
+
+* **notification:** correct payload ([f4001d7](https://github.com/maevsi/maevsi/commit/f4001d79af4059d7fcd8881a7175a139021f9557))
+
+## [8.0.0](https://github.com/maevsi/maevsi/compare/7.2.1...8.0.0) (2025-02-27)
+
+### ⚠ BREAKING CHANGES
+
+* **sqitch:** migrate to v5
+
+### Features
+
+* **sqitch:** migrate to v5 ([92ad052](https://github.com/maevsi/maevsi/commit/92ad05256857fc080e77052e715160b36632fe31))
+
+## [7.2.1](https://github.com/maevsi/maevsi/compare/7.2.0...7.2.1) (2025-02-26)
+
+### Performance Improvements
+
+* **postgres:** migrate from `pg` ([1e2dbba](https://github.com/maevsi/maevsi/commit/1e2dbba4a8cb7dd71e01744d7182870c6dc114b1))
+
+## [7.2.0](https://github.com/maevsi/maevsi/compare/7.1.0...7.2.0) (2025-02-25)
+
+### Features
+
+* change currency display ([dda325a](https://github.com/maevsi/maevsi/commit/dda325a2a921aca8c94c59b1913a82f074e9249a))
+* **event-ingest:** add ui ([c00836e](https://github.com/maevsi/maevsi/commit/c00836e75b0c9545bc48b07ccf68f6bfd1479696))
+* **event-ingest:** change authentication function ([b7f6926](https://github.com/maevsi/maevsi/commit/b7f6926b94b91578d64fba7e6f4955914cf6db94))
+* **event-ingest:** delete logging ([a934131](https://github.com/maevsi/maevsi/commit/a934131a9d818fc7d77dd5451c4177123d542747))
+* **event-ingest:** finish ui ([ee160ad](https://github.com/maevsi/maevsi/commit/ee160adad29507ae373662a49757e11ef7c01af5))
+* **event-ingestion:** add image processing barebone ([1590db0](https://github.com/maevsi/maevsi/commit/1590db040a94ce345f8d3981945c8d5f42ca068b))
+* **event-ingestion:** remove unnecessary return ([21058c1](https://github.com/maevsi/maevsi/commit/21058c1f68112c0bac891fb17a06a92fa4fea5ec))
+* **event-ingestion:** update src/server/api/event/ingest/image.post.ts ([6631c85](https://github.com/maevsi/maevsi/commit/6631c85a913f60a4d7eb5462ef40f6a986209fa0))
+* **event-ingest:** readd authentication ([798d9d1](https://github.com/maevsi/maevsi/commit/798d9d1366ee97361d3656ab2b4d6d3d72ad6380))
+* **event-ingest:** update prompt ([4f7ed6c](https://github.com/maevsi/maevsi/commit/4f7ed6c3221e13f2025496a67a86ee5efeb6bc02))
+* **event-ingest:** use sharp to resize image ([8dcb97b](https://github.com/maevsi/maevsi/commit/8dcb97bf451837e987bc1b00452308c0457649eb))
+* **event-intgest:** add NSFW filter ([ba5e9d1](https://github.com/maevsi/maevsi/commit/ba5e9d199e8da93b6e95e8c847c76636bfc6b565))
+* **image-ingest:** remove duplicated function calls ([d2626e7](https://github.com/maevsi/maevsi/commit/d2626e7f77c9d2ae6f1d27f4b8bb18cc0318e7e0))
+* **prompt:** improve specificity ([bf0825b](https://github.com/maevsi/maevsi/commit/bf0825bdd688b65940a12382456868466342be48))
+* remove unnecessary references ([acf50b0](https://github.com/maevsi/maevsi/commit/acf50b0cd7e697295971d61f31d69a43a126b563))
+* resolve type ambiguity ([2912c83](https://github.com/maevsi/maevsi/commit/2912c83b5784b5073906758cce04f9a6b086e545))
+
+### Bug Fixes
+
+* **event:** correct types on image ingestion ([2212df8](https://github.com/maevsi/maevsi/commit/2212df87debf3716420937ca343e053e4834795d))
+* **event:** update authorization on image ingestion ([fb442c4](https://github.com/maevsi/maevsi/commit/fb442c437d3929aa4650b9ce6a1c5a40245afc22))
+
 ## [7.1.0](https://github.com/maevsi/maevsi/compare/7.0.0...7.1.0) (2025-02-20)
 
 ### Features

@@ -63,15 +63,15 @@
         :key="contact.id"
         :aria-label="t('buttonContact')"
         class="flex w-full items-center gap-4 rounded-sm border-2 border-neutral-300 px-4 py-2 dark:border-neutral-600"
-        :disabled="invitationContactIdsExisting?.includes(contact.id)"
+        :disabled="guestContactIdsExisting?.includes(contact.id)"
         type="button"
         @click="selectToggle(contact.id)"
       >
         <ContactPreview :contact="contact" :is-username-linked="false" />
         <FormCheckbox
-          :is-disabled="invitationContactIdsExisting?.includes(contact.id)"
+          :is-disabled="guestContactIdsExisting?.includes(contact.id)"
           :value="
-            invitationContactIdsExisting?.includes(contact.id) ||
+            guestContactIdsExisting?.includes(contact.id) ||
             contactIdsComputed.includes(contact.id)
           "
         />
@@ -85,7 +85,7 @@
 import { useVuelidate } from '@vuelidate/core'
 import { minLength, minValue, required } from '@vuelidate/validators'
 
-import { useCreateInvitationMutation } from '~~/gql/documents/mutations/invitation/invitationCreate'
+import { useCreateGuestMutation } from '~~/gql/documents/mutations/guest/guestCreate'
 import { useAllContactsQuery } from '~~/gql/documents/queries/contact/contactsAll'
 import type { EventItemFragment } from '~~/gql/generated/graphql'
 import { getContactItem } from '~~/gql/documents/fragments/contactItem'
@@ -94,10 +94,10 @@ import { getContactItem } from '~~/gql/documents/fragments/contactItem'
 
 export interface Props {
   event: Pick<EventItemFragment, 'id'>
-  invitationContactIdsExisting?: number[]
+  guestContactIdsExisting?: number[]
 }
 const props = withDefaults(defineProps<Props>(), {
-  invitationContactIdsExisting: undefined,
+  guestContactIdsExisting: undefined,
 })
 
 const emit = defineEmits<{
@@ -115,11 +115,11 @@ const after = ref<string>()
 // api data
 const allContactsQuery = await useAllContactsQuery({
   after,
-  authorAccountId: store.signedInAccountId,
+  createdBy: store.signedInAccountId,
   first: ITEMS_PER_PAGE_LARGE,
 })
-const createInvitationMutation = useCreateInvitationMutation()
-const api = getApiData([allContactsQuery, createInvitationMutation])
+const createGuestMutation = useCreateGuestMutation()
+const api = getApiData([allContactsQuery, createGuestMutation])
 const contacts = computed(
   () =>
     allContactsQuery.data.value?.allContacts?.nodes
@@ -151,8 +151,8 @@ const submit = async () => {
 
   try {
     for (const contactId of form.contactIds) {
-      const result = await createInvitationMutation.executeMutation({
-        invitationInput: {
+      const result = await createGuestMutation.executeMutation({
+        guestInput: {
           contactId: contactId || null,
           eventId: props.event.id,
         },

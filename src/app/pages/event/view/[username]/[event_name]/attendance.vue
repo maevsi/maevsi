@@ -17,13 +17,13 @@
             <IHeroiconsQrCode />
           </template>
         </ButtonColored>
-        <FormInputStateInfo v-if="!invitationId">
+        <FormInputStateInfo v-if="!guestId">
           {{ t('qrHint') }}
         </FormInputStateInfo>
-        <CardStateInfo v-if="invitationId">
-          {{ t('scanned', { scanResult: invitationId }) }}
+        <CardStateInfo v-if="guestId">
+          {{ t('scanned', { scanResult: guestId }) }}
         </CardStateInfo>
-        <div v-if="invitationId" class="flex flex-col items-center gap-2">
+        <div v-if="guestId" class="flex flex-col items-center gap-2">
           <ButtonColored
             :aria-label="t('nfcWrite')"
             :disabled="isNfcError"
@@ -69,7 +69,7 @@ import {
 import type { RouteLocationNormalized } from 'vue-router'
 import type { RouteNamedMap } from 'vue-router/auto-routes'
 
-import { useEventByAuthorAccountIdAndSlugQuery } from '~~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
+import { useEventByCreatedByAndSlugQuery } from '~~/gql/documents/queries/event/eventByCreatedByAndSlug'
 import { getEventItem } from '~~/gql/documents/fragments/eventItem'
 import { useAccountByUsernameQuery } from '~~/gql/documents/queries/account/accountByUsername'
 import { getAccountItem } from '~~/gql/documents/fragments/accountItem'
@@ -120,18 +120,18 @@ const accountId = computed(
     getAccountItem(accountByUsernameQuery.data.value?.accountByUsername)?.id,
 )
 const eventQuery = await zalgo(
-  useEventByAuthorAccountIdAndSlugQuery({
-    authorAccountId: accountId,
+  useEventByCreatedByAndSlugQuery({
+    createdBy: accountId,
     slug: route.params.event_name,
   }),
 )
 const event = computed(() =>
-  getEventItem(eventQuery.data.value?.eventByAuthorAccountIdAndSlug),
+  getEventItem(eventQuery.data.value?.eventByCreatedByAndSlug),
 )
 const api = getApiData([accountByUsernameQuery, eventQuery])
 
 // data
-const invitationId = ref<string>()
+const guestId = ref<string>()
 const isNfcWritableErrorMessage = ref<string>()
 const loading = ref(true)
 
@@ -182,12 +182,12 @@ const onError = async (error: Error) => {
   consola.error(errorMessage)
 }
 const onClick = async () => {
-  if (!invitationId.value) return
-  await writeTag(invitationId.value)
+  if (!guestId.value) return
+  await writeTag(guestId.value)
 }
 const onDetect = async (detectedBarcodes: DetectedBarcode[]) => {
   if (!detectedBarcodes.length || !detectedBarcodes[0]) return
-  invitationId.value = detectedBarcodes[0].rawValue
+  guestId.value = detectedBarcodes[0].rawValue
   await fireAlert({ level: 'success' })
   store.modalRemove('ModalAttendanceScanQrCode')
 }

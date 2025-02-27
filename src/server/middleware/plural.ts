@@ -52,7 +52,7 @@ export default defineEventHandler((event) => {
       event,
       requestPath.replace(
         /^\/(de\/)?task\/events\/unlock/,
-        (_a, b) => `/${b || ''}invitation/unlock`,
+        (_a, b) => `/${b || ''}guest/unlock`,
       ),
       302,
     )
