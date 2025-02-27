@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, expect, test, vi } from 'vitest'
 
 import { getIcalString } from '#src/server/utils/ical'
+import { EventVisibility } from '~/gql/generated/graphql'
 
 beforeEach(() => {
   vi.useFakeTimers()
@@ -30,7 +31,7 @@ test('gets ical string', () => {
         name: 'name',
         slug: 'slug',
         start: new Date(),
-        // visibility: EventVisibility.Public,
+        visibility: EventVisibility.Private,
       },
       siteUrl: 'https://maevsi.test',
     }),
@@ -53,6 +54,7 @@ X-ALT-DESC;FMTTYPE=text/html:https://maevsi.test/event/view/authorUsername\r
 ORGANIZER;CN="authorUsername":mailto:authorUsername@maevsi.test\r
 URL;VALUE=URI:https://maevsi.test/event/view/authorUsername/slug\r
 STATUS:CONFIRMED\r
+CLASS:PRIVATE\r
 END:VEVENT\r
 END:VCALENDAR`,
   )
