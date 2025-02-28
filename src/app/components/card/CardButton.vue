@@ -14,7 +14,7 @@
           <slot />
         </div>
         <div class="flex flex-1 flex-col">
-          <span :class="['font-bold', textWhite ? 'text-white' : 'text-black']">
+          <span class="font-bold">
             {{ title }}
           </span>
           <span v-if="description" class="opacity-60">
@@ -46,31 +46,22 @@
 
 <script setup lang="ts">
 import type { RouteLocationRaw } from 'vue-router'
-import type { Component } from 'vue'
 import arrowForwardIcon from '~/assets/icons/arrow_forward.svg'
 
 export interface Props {
+  backgroundColor?: string
   description?: string
   isDisabled?: boolean
   isExternal?: boolean
   title: string
   to?: RouteLocationRaw
-  backgroundColor?: string
-  secondaryIcon?: string | Component
-  src?: string
-  alt?: string
-  textWhite?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
+  backgroundColor: undefined,
   description: undefined,
   isDisabled: undefined,
   isExternal: undefined,
   to: undefined,
-  backgroundColor: undefined,
-  secondaryIcon: undefined,
-  src: undefined,
-  alt: undefined,
-  textWhite: false,
 })
 </script>

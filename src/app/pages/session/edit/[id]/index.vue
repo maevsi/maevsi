@@ -36,11 +36,8 @@
           <UnderConstruction>
             <CardButton
               background-color="bg-accent-fancy"
-              :text-white="true"
+              class="text-base-white"
               :title="t('resetAISetup')"
-              secondary-icon="img"
-              src="~/assets/icons/restart_alt.svg"
-              alt="Reset icon"
               :to="
                 localePath({
                   name: 'account-edit-username',
@@ -62,8 +59,6 @@
             <CardButton
               background-color="bg-warning-strong"
               :title="t('stopEarlyBird')"
-              secondary-Icon="img"
-              src="~/assets/icons/close.svg"
               :to="
                 localePath({
                   name: 'account-edit-username',
@@ -169,10 +164,8 @@
           </CardButton>
 
           <CardButton
-            class="mt-6"
-            :text-white="true"
+            class="text-base-white mt-6"
             background-color="bg-critic-text"
-            src="none"
             :title="t('logout')"
             @click="signOut"
           >

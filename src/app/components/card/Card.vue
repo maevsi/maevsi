@@ -15,7 +15,7 @@ export interface Props {
 
 withDefaults(defineProps<Props>(), {
   backgroundColor:
-    'bg-background-card-bright border border-[0.1px] border-accent-line shadow-[var(--color-shadow-card)] dark:bg-background-darken',
+    'bg-base-white border border-faint-line shadow-xs dark:bg-background-darken',
 })
 </script>
 

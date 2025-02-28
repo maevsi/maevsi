@@ -62,7 +62,6 @@
     --color-zinc-200
   ); /* TODO: replace with new design variables */
 
-  --color-background-card-bright: #fafafc;
   --color-background-dark: var(
     --color-zinc-800
   ); /* TODO: replace with new design variables */
@@ -71,8 +70,10 @@
     --color-zinc-700
   ); /* TODO: replace with new design variables */
 
+  --color-base-white: #fafafc;
   --color-border-accent-line: #e2e1f4;
   --color-critic-text: #8c1818;
+  --color-faint-line: #f2f2f2;
   --color-link-bright: var(
     --color-blue-400
   ); /* TODO: replace with new design variables */
@@ -81,7 +82,6 @@
     --color-blue-600
   ); /* TODO: replace with new design variables */
 
-  --color-shadow-card: 0 1px 2px 0 rgb(0 0 0 / 5%);
   --color-text-bright: var(
     --color-zinc-50
   ); /* TODO: replace with new design variables */
