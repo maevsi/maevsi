@@ -4,12 +4,12 @@ import { defu } from 'defu'
 import type { Nuxt, ModuleOptions } from 'nuxt/schema'
 import IconsResolver from 'unplugin-icons/resolver'
 import Icons from 'unplugin-icons/vite'
-import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 import Components from 'unplugin-vue-components/vite'
 
 import { modulesConfig } from '../config/modules'
 import { environmentsConfig } from '../config/environments'
 import {
+  iconCollectionOptimization,
   IS_NITRO_OPENAPI_ENABLED,
   NUXT_PUBLIC_VIO_ENVIRONMENT,
   RELEASE_NAME,
@@ -252,11 +252,16 @@ export default defineNuxtConfig({
     plugins: [
       Components({
         dts: '../.nuxt/components-icons.d.ts',
-        resolvers: [IconsResolver({ customCollections: ['maevsi'] })],
+        resolvers: [
+          IconsResolver({ customCollections: ['maevsi', 'maevsi-colored'] }),
+        ],
       }),
       Icons({
         customCollections: {
-          maevsi: FileSystemIconLoader('./app/assets/icons'),
+          maevsi: iconCollectionOptimization({}),
+          'maevsi-colored': iconCollectionOptimization({
+            isColored: true,
+          }),
         },
         scale: 1.5,
       }),

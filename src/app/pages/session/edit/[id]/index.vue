@@ -64,7 +64,7 @@
                 })
               "
             >
-              <IMaevsiEarlyBird class="h-5 w-5" alt="ai" />
+              <IMaevsiColoredEarlyBird class="h-5 w-5" alt="ai" />
               <template #iconSecondary>
                 <IMaevsiClose />
               </template>
