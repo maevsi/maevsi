@@ -4,6 +4,7 @@ import { defu } from 'defu'
 import type { Nuxt, ModuleOptions } from 'nuxt/schema'
 import IconsResolver from 'unplugin-icons/resolver'
 import Icons from 'unplugin-icons/vite'
+import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 import Components from 'unplugin-vue-components/vite'
 
 import { modulesConfig } from '../config/modules'
@@ -100,10 +101,6 @@ export default defineNuxtConfig({
   shadcn: {
     prefix: '',
     componentDir: 'app/components/scn',
-  },
-  image: {
-    dir: 'assets',
-    provider: 'ipx',
   },
   nitro: {
     compressPublicAssets: true,
@@ -254,10 +251,13 @@ export default defineNuxtConfig({
     },
     plugins: [
       Components({
-        dts: '.nuxt/components-icons.d.ts',
-        resolvers: [IconsResolver()],
+        dts: '../.nuxt/components-icons.d.ts',
+        resolvers: [IconsResolver({ customCollections: ['maevsi'] })],
       }),
       Icons({
+        customCollections: {
+          maevsi: FileSystemIconLoader('./app/assets/icons'),
+        },
         scale: 1.5,
       }),
       tailwindcss(),

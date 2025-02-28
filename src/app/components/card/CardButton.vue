@@ -23,21 +23,7 @@
         </div>
         <div class="opacity-60">
           <slot v-if="$slots.iconSecondary" name="iconSecondary" />
-          <div v-else-if="!$slots.iconSecondary">
-            <NuxtImg
-              v-if="secondaryIcon === 'img' && src !== 'none'"
-              :src="`/icons/${src.split('/').pop()}`"
-              :alt="alt || 'Icon'"
-              class="h-5 w-5"
-            />
-
-            <NuxtImg
-              v-else-if="src !== 'none'"
-              :src="arrowForwardIcon"
-              alt="arrow forward"
-              class="h-4 w-4"
-            />
-          </div>
+          <IMaevsiArrowForward v-else alt="arrow forward" class="h-4 w-4" />
         </div>
       </div>
     </Card>
@@ -46,7 +32,6 @@
 
 <script setup lang="ts">
 import type { RouteLocationRaw } from 'vue-router'
-import arrowForwardIcon from '~/assets/icons/arrow_forward.svg'
 
 export interface Props {
   backgroundColor?: string
