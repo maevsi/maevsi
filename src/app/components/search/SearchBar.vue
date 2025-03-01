@@ -1,33 +1,41 @@
 <template>
-  <UnderConstruction>
-    <div class="flex">
-      <label class="hidden" for="search">{{ t('search') }}</label>
-      <input
-        id="search"
-        class="form-input cursor-pointer rounded-r-none dark:border-gray-500 dark:bg-gray-700 dark:placeholder:text-gray-300"
-        :placeholder="t('search')"
-        readonly
-        type="text"
-        @click="navigateToSearch"
-      />
-      <span
-        class="inline-flex cursor-pointer items-center rounded-r-md border border-l-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500 dark:border-gray-500 dark:bg-gray-700 dark:text-gray-300"
-        @click="navigateToSearch"
-      >
-        <IHeroiconsMagnifyingGlass />
-      </span>
+  <div class="flex w-full items-center rounded-xl bg-white p-2 px-4 shadow">
+    <div class="mr-4 flex-shrink-0 text-green-800">
+      <IHeroiconsMagnifyingGlass class="h-8 w-8" />
     </div>
-  </UnderConstruction>
+    <input
+      id="search"
+      class="w-full border-none bg-transparent text-xl text-gray-600 placeholder-gray-400 outline-none focus:ring-0 focus:outline-none"
+      :placeholder="t('search')"
+      v-model="localValue"
+      type="text"
+    />
+    <IHeroiconsArrowPath
+      v-if="isSearching"
+      class="h-5 w-5 animate-spin text-gray-400"
+    />
+  </div>
 </template>
 
 <script setup lang="ts">
-const localePath = useLocalePath()
+import { useI18n } from 'vue-i18n'
+import { computed } from 'vue'
+
 const { t } = useI18n()
 
-// methods
-const navigateToSearch = () => {
-  navigateTo(localePath({ path: `/search`, query: { q: 'search phrase' } }))
-}
+const props = defineProps<{
+  modelValue: string
+  isSearching: boolean
+}>()
+
+const emit = defineEmits<{
+  (e: 'update:modelValue', value: string): void
+}>()
+
+const localValue = computed({
+  get: () => props.modelValue,
+  set: (value) => emit('update:modelValue', value),
+})
 </script>
 
 <i18n lang="yaml">
