@@ -16,9 +16,8 @@
               })
             "
           >
-            <NuxtImg :src="personIcon" class="h-5 w-5" alt="ai" />
+            <IMaevsiPerson class="h-5 w-5" alt="ai" />
           </CardButton>
-
           <CardButton
             :title="t('contactBook')"
             :to="
@@ -30,9 +29,8 @@
               })
             "
           >
-            <NuxtImg :src="contactsIcon" class="h-5 w-5" alt="contacts" />
+            <IMaevsiContacts class="h-5 w-5" alt="contacts" />
           </CardButton>
-
           <UnderConstruction>
             <CardButton
               background-color="bg-accent-fancy"
@@ -47,14 +45,12 @@
                 })
               "
             >
-              <NuxtImg
-                :src="networkIntelligenceIcon"
-                class="h-5 w-5"
-                alt="ai"
-              />
+              <IMaevsiNetworkIntelligence class="h-5 w-5" alt="ai" />
+              <template #iconSecondary>
+                <IMaevsiRestartAlt alt="Reset icon" />
+              </template>
             </CardButton>
           </UnderConstruction>
-
           <UnderConstruction>
             <CardButton
               background-color="bg-warning-strong"
@@ -68,7 +64,10 @@
                 })
               "
             >
-              <NuxtImg :src="earlyBirdIcon" class="h-5 w-5" alt="ai" />
+              <IMaevsiColoredEarlyBird class="h-5 w-5" alt="ai" />
+              <template #iconSecondary>
+                <IMaevsiClose />
+              </template>
             </CardButton>
           </UnderConstruction>
         </div>
@@ -130,10 +129,10 @@
           </CardButton>
         </div>
       </section>
-
       <section class="flex flex-col gap-4">
-        <span class="text-xl font-bold">{{ t('legal') }}</span>
-
+        <span class="text-xl font-bold">
+          {{ t('legal') }}
+        </span>
         <div class="flex flex-col gap-2">
           <UnderConstruction>
             <CardButton
@@ -162,14 +161,13 @@
           >
             <IHeroiconsShieldCheck />
           </CardButton>
-
           <CardButton
             class="text-base-white mt-6"
             background-color="bg-critic-text"
             :title="t('logout')"
             @click="signOut"
           >
-            <NuxtImg :src="logoutIcon" class="h-5 w-5" alt="logout" />
+            <IMaevsiLogout class="h-5 w-5" alt="logout" />
           </CardButton>
         </div>
       </section>
@@ -179,12 +177,6 @@
 
 <script setup lang="ts">
 import type { RouteNamedMap } from 'vue-router/auto-routes'
-
-import logoutIcon from '~/assets/icons/logout.svg'
-import earlyBirdIcon from '~/assets/icons/early_bird.svg'
-import personIcon from '~/assets/icons/person.svg'
-import contactsIcon from '~/assets/icons/contacts.svg'
-import networkIntelligenceIcon from '~/assets/icons/network_intelligence.svg'
 
 const ROUTE_NAME: keyof RouteNamedMap = 'session-edit-id___en'
 

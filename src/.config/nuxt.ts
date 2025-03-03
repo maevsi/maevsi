@@ -9,6 +9,7 @@ import Components from 'unplugin-vue-components/vite'
 import { modulesConfig } from '../config/modules'
 import { environmentsConfig } from '../config/environments'
 import {
+  iconCollectionOptimization,
   IS_NITRO_OPENAPI_ENABLED,
   NUXT_PUBLIC_VIO_ENVIRONMENT,
   RELEASE_NAME,
@@ -100,10 +101,6 @@ export default defineNuxtConfig({
   shadcn: {
     prefix: '',
     componentDir: 'app/components/scn',
-  },
-  image: {
-    dir: 'assets',
-    provider: 'ipx',
   },
   nitro: {
     compressPublicAssets: true,
@@ -254,10 +251,18 @@ export default defineNuxtConfig({
     },
     plugins: [
       Components({
-        dts: '.nuxt/components-icons.d.ts',
-        resolvers: [IconsResolver()],
+        dts: '../.nuxt/components-icons.d.ts',
+        resolvers: [
+          IconsResolver({ customCollections: ['maevsi', 'maevsi-colored'] }),
+        ],
       }),
       Icons({
+        customCollections: {
+          maevsi: iconCollectionOptimization({}),
+          'maevsi-colored': iconCollectionOptimization({
+            isColored: true,
+          }),
+        },
         scale: 1.5,
       }),
       tailwindcss(),
