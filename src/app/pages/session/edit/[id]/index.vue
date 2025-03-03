@@ -29,7 +29,7 @@
               })
             "
           >
-            <IMaevsiMail class="h-5 w-5" :alt="t('iconAltContactBook')" />
+            <IMaevsiContacts class="h-5 w-5" :alt="t('iconAltContactBook')" />
           </CardButton>
           <UnderConstruction>
             <CardButton
@@ -183,6 +183,7 @@
             :title="t('logout')"
             @click="signOut"
           >
+            <template #iconSecondary> </template>
             <IMaevsiLogout class="h-5 w-5" :alt="t('iconAltLogout')" />
           </CardButton>
         </div>
