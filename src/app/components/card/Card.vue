@@ -1,8 +1,8 @@
 <template>
   <!-- TODO: hide or show overflow completely -->
   <div
-    class="overflow-x-hidden rounded-xl"
-    :class="[backgroundColor, ...['p-4']]"
+    class="overflow-x-hidden rounded-xl p-4"
+    :class="[backgroundColor, borderColor]"
   >
     <slot />
   </div>
@@ -11,11 +11,12 @@
 <script setup lang="ts">
 export interface Props {
   backgroundColor?: string
+  borderColor?: string
 }
 
 withDefaults(defineProps<Props>(), {
-  backgroundColor:
-    'bg-base-white border border-faint-line shadow-xs dark:bg-background-darken',
+  backgroundColor: 'bg-base-white shadow-xs dark:bg-background-darken',
+  borderColor: 'border border-faint-line',
 })
 </script>
 
