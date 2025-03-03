@@ -98,7 +98,7 @@
     "openai": "4.86.1",
     "pinia": "3.0.1",
     "postgres": "3.4.5",
-    "prettier": "3.5.2",
+    "prettier": "3.5.3",
     "prettier-plugin-tailwindcss": "0.6.11",
     "pretty-bytes": "6.1.1",
     "prntr": "2.0.18",
