@@ -127,6 +127,12 @@
           >
             <ISolarLetterLinear />
           </CardButton>
+          <CardButton
+            :title="t('developerInformation')"
+            :to="`/session/view/${route.params.id}`"
+          >
+            <IHeroiconsWrench />
+          </CardButton>
         </div>
       </section>
       <section class="flex flex-col gap-4">
@@ -201,6 +207,7 @@ de:
   contact: Kontakt
   contactBook: Kontaktbuch
   cookies: Cookies
+  developerInformation: Entwicklerinformationen
   display: Anzeige
   featureSuggestion: Idee
   generalTermsAndConditions: Allgemeine Geschäftsbedingungen
@@ -221,6 +228,7 @@ en:
   contact: Contact
   contactBook: Contact Book
   cookies: Cookies
+  developerInformation: Developer information
   display: Display
   featureSuggestion: Idea
   generalTermsAndConditions: General Terms and Conditions
