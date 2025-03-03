@@ -16,7 +16,7 @@
               })
             "
           >
-            <IMaevsiPerson class="h-5 w-5" alt="ai" />
+            <IMaevsiPerson class="h-5 w-5" :alt="t('iconAltPerson')" />
           </CardButton>
           <CardButton
             :title="t('contactBook')"
@@ -29,7 +29,7 @@
               })
             "
           >
-            <IMaevsiContacts class="h-5 w-5" alt="contacts" />
+            <IMaevsiMail class="h-5 w-5" :alt="t('iconAltContactBook')" />
           </CardButton>
           <UnderConstruction>
             <CardButton
@@ -45,9 +45,12 @@
                 })
               "
             >
-              <IMaevsiNetworkIntelligence class="h-5 w-5" alt="ai" />
+              <IMaevsiNetworkIntelligence
+                class="h-5 w-5"
+                :alt="t('iconAltAI')"
+              />
               <template #iconSecondary>
-                <IMaevsiRestartAlt alt="Reset icon" />
+                <IMaevsiRestartAlt :alt="t('iconAltReset')" />
               </template>
             </CardButton>
           </UnderConstruction>
@@ -64,9 +67,12 @@
                 })
               "
             >
-              <IMaevsiColoredEarlyBird class="h-5 w-5" alt="ai" />
+              <IMaevsiColoredEarlyBird
+                class="h-5 w-5"
+                :alt="t('iconAltEarlyBird')"
+              />
               <template #iconSecondary>
-                <IMaevsiClose />
+                <IMaevsiClose :alt="t('iconAltClose')" />
               </template>
             </CardButton>
           </UnderConstruction>
@@ -86,7 +92,7 @@
               })
             "
           >
-            <IHeroiconsSun />
+            <IMaevsiSun class="h-5 w-5" :alt="t('iconAltColorScheme')" />
           </CardButton>
           <CardButton
             :title="t('language')"
@@ -99,7 +105,7 @@
               })
             "
           >
-            <IHeroiconsGlobeAlt />
+            <IMaevsiLanguage class="h-5 w-5" :alt="t('iconAltLanguage')" />
           </CardButton>
         </div>
       </section>
@@ -111,27 +117,27 @@
             :title="t('featureSuggestion')"
             to="https://forms.monday.com/forms/f3ef56d13c8383e6ececb2875d7fb4b2?r=euc1"
           >
-            <IHeroiconsLightBulb />
+            <IMaevsiIdea class="h-5 w-5" :alt="t('iconAltIdea')" />
           </CardButton>
           <CardButton
             :is-external="true"
             :title="t('bugReport')"
             to="https://forms.monday.com/forms/55b8fc2281c2be1647a69e6a4ffe156e?r=euc1"
           >
-            <IHeroiconsExclamationTriangle />
+            <IMaevsiBug class="h-5 w-5" :alt="t('iconAltBug')" />
           </CardButton>
           <CardButton
             :is-external="true"
             :title="t('contact')"
             to="https://forms.monday.com/forms/74204ae8168ecb1dd44c15b502854a5a?r=euc1"
           >
-            <ISolarLetterLinear />
+            <IMaevsiMail class="h-5 w-5" :alt="t('iconAltContact')" />
           </CardButton>
           <CardButton
             :title="t('developerInformation')"
             :to="`/session/view/${route.params.id}`"
           >
-            <IHeroiconsWrench />
+            <IHeroiconsWrench class="h-5 w-5" :alt="t('iconAltDeveloper')" />
           </CardButton>
         </div>
       </section>
@@ -145,7 +151,7 @@
               :title="t('generalTermsAndConditions')"
               :to="localePath('privacy-policy')"
             >
-              <IHeroiconsShieldCheck />
+              <IMaevsiContract class="h-5 w-5" :alt="t('iconAltTerms')" />
             </CardButton>
           </UnderConstruction>
 
@@ -153,19 +159,22 @@
             :title="t('cookies')"
             @click="cookieControl.isModalActive.value = true"
           >
-            <IMaterialSymbolsCookieOutline />
+            <IMaterialSymbolsCookieOutline
+              class="h-5 w-5"
+              :alt="t('iconAltCookies')"
+            />
           </CardButton>
           <CardButton
             :title="t('legalNotice')"
             :to="localePath('legal-notice')"
           >
-            <IHeroiconsScale />
+            <IMaevsiLegal class="h-5 w-5" :alt="t('iconAltLegal')" />
           </CardButton>
           <CardButton
             :title="t('privacyPolicy')"
             :to="localePath('privacy-policy')"
           >
-            <IHeroiconsShieldCheck />
+            <IMaevsiVerifiedUser class="h-5 w-5" :alt="t('iconAltPrivacy')" />
           </CardButton>
           <CardButton
             class="text-base-white mt-6"
@@ -173,7 +182,7 @@
             :title="t('logout')"
             @click="signOut"
           >
-            <IMaevsiLogout class="h-5 w-5" alt="logout" />
+            <IMaevsiLogout class="h-5 w-5" :alt="t('iconAltLogout')" />
           </CardButton>
         </div>
       </section>
@@ -211,6 +220,23 @@ de:
   display: Anzeige
   featureSuggestion: Idee
   generalTermsAndConditions: Allgemeine Geschäftsbedingungen
+  iconAltAI: KI
+  iconAltBug: Fehler-Symbol
+  iconAltClose: Schließen-Symbol
+  iconAltColorScheme: Farbschema-Symbol
+  iconAltContact: Kontakt-Symbol
+  iconAltContactBook: Kontaktbuch-Symbol
+  iconAltCookies: Cookies-Symbol
+  iconAltDeveloper: Entwickler-Symbol
+  iconAltEarlyBird: Early-Bird-Symbol
+  iconAltIdea: Ideen-Symbol
+  iconAltLanguage: Sprach-Symbol
+  iconAltLegal: Rechtliches-Symbol
+  iconAltLogout: Abmelden-Symbol
+  iconAltPerson: Personen-Symbol
+  iconAltPrivacy: Datenschutz-Symbol
+  iconAltReset: Zurücksetzen-Symbol
+  iconAltTerms: AGB-Symbol
   language: Sprache
   legal: Rechtliches
   legalNotice: Impressum
@@ -232,6 +258,23 @@ en:
   display: Display
   featureSuggestion: Idea
   generalTermsAndConditions: General Terms and Conditions
+  iconAltAI: AI icon
+  iconAltBug: Bug icon
+  iconAltClose: Close icon
+  iconAltColorScheme: Color scheme icon
+  iconAltContact: Contact icon
+  iconAltContactBook: Contact book icon
+  iconAltCookies: Cookies icon
+  iconAltDeveloper: Developer icon
+  iconAltEarlyBird: Early bird icon
+  iconAltIdea: Idea icon
+  iconAltLanguage: Language icon
+  iconAltLegal: Legal icon
+  iconAltLogout: Logout icon
+  iconAltPerson: Person icon
+  iconAltPrivacy: Privacy icon
+  iconAltReset: Reset icon
+  iconAltTerms: Terms icon
   language: Language
   legal: Legal
   legalNotice: Legal Notice
