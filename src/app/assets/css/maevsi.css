@@ -91,6 +91,7 @@
   ); /* TODO: replace with new design variables */
 
   --color-warning-strong: #f7a650;
+  --color-warning-weak: #fdebd8;
   --text-3xl--line-height: calc(2.5 / 1.875);
   --text-4xl--line-height: calc(3 / 2.25);
   --text-5xl--line-height: calc(4 / 3);
