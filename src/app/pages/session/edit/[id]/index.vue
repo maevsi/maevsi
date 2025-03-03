@@ -56,7 +56,8 @@
           </UnderConstruction>
           <UnderConstruction>
             <CardButton
-              background-color="bg-warning-strong"
+              background-color="bg-warning-weak"
+              border-color="border-1 border-warning-strong"
               :title="t('stopEarlyBird')"
               :to="
                 localePath({
