@@ -3,7 +3,7 @@
     <LayoutPageTitle :title="title" />
     <div class="flex flex-col gap-8">
       <section v-if="store.signedInUsername" class="flex flex-col gap-4">
-        <span class="text-xl font-bold">{{ t('profile') }}</span>
+        <span class="text-lg font-bold">{{ t('profile') }}</span>
         <div class="flex flex-col gap-2">
           <CardButton
             :title="t('personalInformation')"
@@ -80,7 +80,7 @@
         </div>
       </section>
       <section class="flex flex-col gap-4">
-        <span class="text-xl font-bold">{{ t('display') }}</span>
+        <span class="text-lg font-bold">{{ t('display') }}</span>
         <div class="flex flex-col gap-2">
           <CardButton
             :title="t('colorScheme')"
@@ -111,7 +111,7 @@
         </div>
       </section>
       <section class="flex flex-col gap-4">
-        <span class="text-xl font-bold">{{ t('support') }}</span>
+        <span class="text-lg font-bold">{{ t('support') }}</span>
         <div class="flex flex-col gap-2">
           <CardButton
             :is-external="true"
@@ -143,7 +143,7 @@
         </div>
       </section>
       <section class="flex flex-col gap-4">
-        <span class="text-xl font-bold">
+        <span class="text-lg font-bold">
           {{ t('legal') }}
         </span>
         <div class="flex flex-col gap-2">
