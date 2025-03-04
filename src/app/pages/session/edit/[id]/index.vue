@@ -16,7 +16,7 @@
               })
             "
           >
-            <IMaevsiPerson class="h-5 w-5" :alt="t('iconAltPerson')" />
+            <IMaevsiPerson class="h-6 w-6" :alt="t('iconAltPerson')" />
           </CardButton>
           <CardButton
             :title="t('contactBook')"
@@ -29,7 +29,7 @@
               })
             "
           >
-            <IMaevsiContacts class="h-5 w-5" :alt="t('iconAltContactBook')" />
+            <IMaevsiContacts class="h-6 w-6" :alt="t('iconAltContactBook')" />
           </CardButton>
           <UnderConstruction>
             <CardButton
@@ -46,7 +46,7 @@
               "
             >
               <IMaevsiNetworkIntelligence
-                class="h-5 w-5"
+                class="h-6 w-6"
                 :alt="t('iconAltAI')"
               />
               <template #iconSecondary>
@@ -69,7 +69,7 @@
               "
             >
               <IMaevsiColoredEarlyBird
-                class="h-5 w-5"
+                class="h-6 w-6"
                 :alt="t('iconAltEarlyBird')"
               />
               <template #iconSecondary>
@@ -93,7 +93,7 @@
               })
             "
           >
-            <IMaevsiSun class="h-5 w-5" :alt="t('iconAltColorScheme')" />
+            <IMaevsiSun class="h-6 w-6" :alt="t('iconAltColorScheme')" />
           </CardButton>
           <CardButton
             :title="t('language')"
@@ -106,7 +106,7 @@
               })
             "
           >
-            <IMaevsiLanguage class="h-5 w-5" :alt="t('iconAltLanguage')" />
+            <IMaevsiLanguage class="h-6 w-6" :alt="t('iconAltLanguage')" />
           </CardButton>
         </div>
       </section>
@@ -118,27 +118,27 @@
             :title="t('featureSuggestion')"
             to="https://forms.monday.com/forms/f3ef56d13c8383e6ececb2875d7fb4b2?r=euc1"
           >
-            <IMaevsiIdea class="h-5 w-5" :alt="t('iconAltIdea')" />
+            <IMaevsiIdea class="h-6 w-6" :alt="t('iconAltIdea')" />
           </CardButton>
           <CardButton
             :is-external="true"
             :title="t('bugReport')"
             to="https://forms.monday.com/forms/55b8fc2281c2be1647a69e6a4ffe156e?r=euc1"
           >
-            <IMaevsiBug class="h-5 w-5" :alt="t('iconAltBug')" />
+            <IMaevsiBug class="h-6 w-6" :alt="t('iconAltBug')" />
           </CardButton>
           <CardButton
             :is-external="true"
             :title="t('contact')"
             to="https://forms.monday.com/forms/74204ae8168ecb1dd44c15b502854a5a?r=euc1"
           >
-            <IMaevsiMail class="h-5 w-5" :alt="t('iconAltContact')" />
+            <IMaevsiMail class="h-6 w-6" :alt="t('iconAltContact')" />
           </CardButton>
           <CardButton
             :title="t('developerInformation')"
             :to="`/session/view/${route.params.id}`"
           >
-            <IHeroiconsWrench class="h-5 w-5" :alt="t('iconAltDeveloper')" />
+            <IHeroiconsWrench class="h-6 w-6" :alt="t('iconAltDeveloper')" />
           </CardButton>
         </div>
       </section>
@@ -152,16 +152,15 @@
               :title="t('generalTermsAndConditions')"
               :to="localePath('privacy-policy')"
             >
-              <IMaevsiContract class="h-5 w-5" :alt="t('iconAltTerms')" />
+              <IMaevsiContract class="h-6 w-6" :alt="t('iconAltTerms')" />
             </CardButton>
           </UnderConstruction>
-
           <CardButton
             :title="t('cookies')"
             @click="cookieControl.isModalActive.value = true"
           >
             <IMaterialSymbolsCookieOutline
-              class="h-5 w-5"
+              class="h-6 w-6"
               :alt="t('iconAltCookies')"
             />
           </CardButton>
@@ -169,13 +168,13 @@
             :title="t('legalNotice')"
             :to="localePath('legal-notice')"
           >
-            <IMaevsiLegal class="h-5 w-5" :alt="t('iconAltLegal')" />
+            <IMaevsiLegal class="h-6 w-6" :alt="t('iconAltLegal')" />
           </CardButton>
           <CardButton
             :title="t('privacyPolicy')"
             :to="localePath('privacy-policy')"
           >
-            <IMaevsiVerifiedUser class="h-5 w-5" :alt="t('iconAltPrivacy')" />
+            <IMaevsiVerifiedUser class="h-6 w-6" :alt="t('iconAltPrivacy')" />
           </CardButton>
           <CardButton
             class="text-base-white mt-6"
@@ -184,7 +183,7 @@
             @click="signOut"
           >
             <template #iconSecondary />
-            <IMaevsiLogout class="h-5 w-5" :alt="t('iconAltLogout')" />
+            <IMaevsiLogout class="h-6 w-6" :alt="t('iconAltLogout')" />
           </CardButton>
         </div>
       </section>
