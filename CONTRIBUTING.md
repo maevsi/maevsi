@@ -41,18 +41,17 @@ If you find yourself adding empty lines to a Vue component's template to add str
 
 ### Playwright
 
-We use Playwright for end-to-end testing.
+We use [Playwright](https://playwright.dev/docs/intro) for end-to-end testing.
 If your CI pipeline is failing because of incorrect test snapshots, `pnpm build` the application, update the snapshots using `pnpm test:e2e:docker:server:node:update` and commit the resulting changes if they match your expectation.
 
 ### Tailwind CSS
 
-1. Use `flex` as spacing strategy, not `space-*` or `m-*` (except where it really doesn't make sense)
-1. Use calculated utitily values like `border-2` or variable values over hardcoded values as in `border-[0.1px]` (except where it really doesn't make sense)
+1. Follow [Tailwind's core concepts](https://tailwindcss.com/docs)
+1. Use `flex` as spacing strategy, not `space-*` or `m-*` (except where this really doesn't make sense)
 
 ### TypeScript
 
-1. Use `const` to define variables, not `let` (except where it really doesn't make sense)
-
+1. Use `const` to define variables, not `let` (except where this really doesn't make sense)
 
 ### dargstack
 
