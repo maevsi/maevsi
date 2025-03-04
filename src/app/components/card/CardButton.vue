@@ -42,7 +42,6 @@ export interface Props {
   title: string
   to?: RouteLocationRaw
 }
-
 const props = withDefaults(defineProps<Props>(), {
   backgroundColor: undefined,
   borderColor: undefined,

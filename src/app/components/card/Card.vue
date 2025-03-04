@@ -13,7 +13,6 @@ export interface Props {
   backgroundColor?: string
   borderColor?: string
 }
-
 withDefaults(defineProps<Props>(), {
   backgroundColor: 'bg-base-white shadow-xs dark:bg-background-darken',
   borderColor: 'border border-faint-line',
