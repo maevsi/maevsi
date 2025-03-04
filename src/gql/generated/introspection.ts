@@ -2978,11 +2978,8 @@ export default {
           {
             name: 'city',
             type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
+              kind: 'SCALAR',
+              name: 'Any',
             },
             args: [],
           },
@@ -3057,11 +3054,8 @@ export default {
           {
             name: 'country',
             type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
+              kind: 'SCALAR',
+              name: 'Any',
             },
             args: [],
           },
@@ -3169,11 +3163,8 @@ export default {
           {
             name: 'line1',
             type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
+              kind: 'SCALAR',
+              name: 'Any',
             },
             args: [],
           },
@@ -3219,22 +3210,16 @@ export default {
           {
             name: 'postalCode',
             type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
+              kind: 'SCALAR',
+              name: 'Any',
             },
             args: [],
           },
           {
             name: 'region',
             type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
+              kind: 'SCALAR',
+              name: 'Any',
             },
             args: [],
           },
@@ -3249,11 +3234,8 @@ export default {
           {
             name: 'updatedBy',
             type: {
-              kind: 'NON_NULL',
-              ofType: {
-                kind: 'SCALAR',
-                name: 'Any',
-              },
+              kind: 'SCALAR',
+              name: 'Any',
             },
             args: [],
           },

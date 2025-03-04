@@ -1,3 +1,9 @@
+## [8.1.0](https://github.com/maevsi/maevsi/compare/8.0.2...8.1.0) (2025-02-27)
+
+### Features
+
+* **ical:** set class ([1890dfc](https://github.com/maevsi/maevsi/commit/1890dfc16b8d01f5bfa3869727b979174e87c0aa))
+
 ## [8.0.2](https://github.com/maevsi/maevsi/compare/8.0.1...8.0.2) (2025-02-27)
 
 ### Bug Fixes
