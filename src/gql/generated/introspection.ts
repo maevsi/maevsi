@@ -1,4 +1,4 @@
-import { IntrospectionQuery } from 'graphql'
+import type { IntrospectionQuery } from 'graphql'
 export default {
   __schema: {
     queryType: {
@@ -2978,8 +2978,11 @@ export default {
           {
             name: 'city',
             type: {
-              kind: 'SCALAR',
-              name: 'Any',
+              kind: 'NON_NULL',
+              ofType: {
+                kind: 'SCALAR',
+                name: 'Any',
+              },
             },
             args: [],
           },
@@ -3054,8 +3057,11 @@ export default {
           {
             name: 'country',
             type: {
-              kind: 'SCALAR',
-              name: 'Any',
+              kind: 'NON_NULL',
+              ofType: {
+                kind: 'SCALAR',
+                name: 'Any',
+              },
             },
             args: [],
           },
@@ -3163,8 +3169,11 @@ export default {
           {
             name: 'line1',
             type: {
-              kind: 'SCALAR',
-              name: 'Any',
+              kind: 'NON_NULL',
+              ofType: {
+                kind: 'SCALAR',
+                name: 'Any',
+              },
             },
             args: [],
           },
@@ -3173,15 +3182,6 @@ export default {
             type: {
               kind: 'SCALAR',
               name: 'Any',
-            },
-            args: [],
-          },
-          {
-            name: 'location',
-            type: {
-              kind: 'OBJECT',
-              name: 'GeographyPoint',
-              ofType: null,
             },
             args: [],
           },
@@ -3210,16 +3210,22 @@ export default {
           {
             name: 'postalCode',
             type: {
-              kind: 'SCALAR',
-              name: 'Any',
+              kind: 'NON_NULL',
+              ofType: {
+                kind: 'SCALAR',
+                name: 'Any',
+              },
             },
             args: [],
           },
           {
             name: 'region',
             type: {
-              kind: 'SCALAR',
-              name: 'Any',
+              kind: 'NON_NULL',
+              ofType: {
+                kind: 'SCALAR',
+                name: 'Any',
+              },
             },
             args: [],
           },
@@ -3234,8 +3240,11 @@ export default {
           {
             name: 'updatedBy',
             type: {
-              kind: 'SCALAR',
-              name: 'Any',
+              kind: 'NON_NULL',
+              ofType: {
+                kind: 'SCALAR',
+                name: 'Any',
+              },
             },
             args: [],
           },
@@ -7868,6 +7877,23 @@ export default {
             args: [],
           },
           {
+            name: 'location',
+            type: {
+              kind: 'SCALAR',
+              name: 'Any',
+            },
+            args: [],
+          },
+          {
+            name: 'locationGeography',
+            type: {
+              kind: 'OBJECT',
+              name: 'GeographyPoint',
+              ofType: null,
+            },
+            args: [],
+          },
+          {
             name: 'name',
             type: {
               kind: 'NON_NULL',
@@ -10324,14 +10350,6 @@ export default {
             args: [],
           },
           {
-            name: 'eventAddressId',
-            type: {
-              kind: 'SCALAR',
-              name: 'Any',
-            },
-            args: [],
-          },
-          {
             name: 'eventCreatedBy',
             type: {
               kind: 'SCALAR',
@@ -10389,6 +10407,14 @@ export default {
           },
           {
             name: 'eventIsRemote',
+            type: {
+              kind: 'SCALAR',
+              name: 'Any',
+            },
+            args: [],
+          },
+          {
+            name: 'eventLocation',
             type: {
               kind: 'SCALAR',
               name: 'Any',
