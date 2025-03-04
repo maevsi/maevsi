@@ -1,14 +1,24 @@
 import DOMPurify from 'isomorphic-dompurify'
-import ical, { ICalCalendarMethod, ICalEventStatus } from 'ical-generator'
+import ical, {
+  ICalCalendarMethod,
+  ICalEventClass,
+  ICalEventStatus,
+} from 'ical-generator'
 import mustache from 'mustache'
 
 import { getTextFromHtml } from '../../shared/utils/text'
-
-import type {
-  ContactItemFragment,
-  EventItemFragment,
-  GuestItemFragment,
+import {
+  EventVisibility,
+  type ContactItemFragment,
+  type EventItemFragment,
+  type GuestItemFragment,
 } from '../../gql/generated/graphql'
+
+const visibilityToClass = {
+  [EventVisibility.Public]: ICalEventClass.PUBLIC,
+  [EventVisibility.Unlisted]: ICalEventClass.CONFIDENTIAL,
+  [EventVisibility.Private]: ICalEventClass.PRIVATE,
+}
 
 export const getIcalString = ({
   contact,
@@ -27,6 +37,7 @@ export const getIcalString = ({
     | 'name'
     | 'slug'
     | 'start'
+    | 'visibility'
   >
   invitation?: Pick<GuestItemFragment, 'id'>
   siteUrl: string
@@ -54,6 +65,7 @@ export const getIcalString = ({
     // `ttl` ... I don't think that's needed?
     events: [
       {
+        class: visibilityToClass[event.visibility] || ICalEventClass.PRIVATE,
         id: event.id,
         // sequence: ,
         start: event.start, // Appointment date of beginning, required.

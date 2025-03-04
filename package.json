@@ -19,6 +19,7 @@
   "packageManager": "pnpm@10.5.2",
   "pnpm": {
     "ignoredBuiltDependencies": [
+      "@firebase/util",
       "@intlify/vue-i18n-bridge",
       "@intlify/vue-router-bridge",
       "@parcel/watcher",
