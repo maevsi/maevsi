@@ -134,7 +134,14 @@
           </CardButton>
           <CardButton
             :title="t('developerInformation')"
-            :to="`/session/view/${route.params.id}`"
+            :to="
+              localePath({
+                name: 'session-view-id',
+                params: {
+                  id: route.params.id,
+                },
+              })
+            "
           >
             <IHeroiconsWrench class="h-6 w-6" :alt="t('iconAltDeveloper')" />
           </CardButton>
