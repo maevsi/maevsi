@@ -9489,7 +9489,7 @@ export type EventIsExistingQuery = {
 
 export type EventSearchQueryVariables = Exact<{
   query: Scalars['String']['input']
-  language: Language
+  language?: InputMaybe<Language>
 }>
 
 export type EventSearchQuery = {
@@ -13361,11 +13361,8 @@ export const EventSearchDocument = {
             name: { kind: 'Name', value: 'language' },
           },
           type: {
-            kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'Language' },
-            },
+            kind: 'NamedType',
+            name: { kind: 'Name', value: 'Language' },
           },
         },
       ],

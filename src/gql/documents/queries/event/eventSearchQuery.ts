@@ -16,7 +16,7 @@ export const useEventSearchQuery = (
 }
 
 export const eventSearchQuery = graphql(`
-  query eventSearch($query: String!, $language: Language!) {
+  query eventSearch($query: String!, $language: Language) {
     eventSearch(query: $query, language: $language) {
       nodes {
         ...EventItem
