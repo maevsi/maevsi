@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="mb-4">
+  <div class="flex flex-col gap-4">
+    <div>
       <SearchBar v-model="searchQuery" :is-searching="isSearching" />
     </div>
     <Loader :api="api">
@@ -45,15 +45,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue'
 import { useAllEventsQuery } from '~~/gql/documents/queries/event/eventsAll'
 import { useEventSearchQuery } from '~~/gql/documents/queries/event/eventSearchQuery'
 import { getEventItem } from '~~/gql/documents/fragments/eventItem'
-import { Language, type EventSearchQuery } from '~~/gql/generated/graphql'
+import type { EventSearchQuery } from '~~/gql/generated/graphql'
 import { useDebounce } from '@vueuse/core'
-import { useI18n } from 'vue-i18n'
 
-const { t, locale } = useI18n()
+const { t } = useI18n()
 
 // refs
 const after = ref<string>()
@@ -77,10 +75,6 @@ const eventsQuery = await zalgo(
 
 const debouncedSearchQuery = useDebounce(searchQuery, 300)
 
-const searchLanguage = computed(() =>
-  locale.value === 'de' ? Language.De : Language.En,
-)
-
 const computedSearchVars = computed(() => {
   const trimmed = debouncedSearchQuery.value.trim()
   if (trimmed.length < 2) return null
@@ -89,11 +83,13 @@ const computedSearchVars = computed(() => {
   const wordsArray: string[] = trimmed.split(' ').filter(Boolean)
   if (wordsArray.length === 1 && wordsArray[0] && wordsArray[0].length < 5) {
     searchTerm = `${wordsArray[0]}* ${wordsArray[0]}`
+  } else if (wordsArray.length > 1) {
+    searchTerm = wordsArray.join(' OR ')
   }
-  return { query: searchTerm, language: searchLanguage.value }
+  return { query: searchTerm }
 })
 
-const searchVars = ref<{ query: string; language: Language } | null>(null)
+const searchVars = ref<{ query: string } | null>(null)
 watch(
   computedSearchVars,
   (newVars) => {
@@ -105,7 +101,6 @@ watch(
 const searchResultsQuery = useEventSearchQuery(
   () => ({
     query: searchVars.value?.query || '',
-    language: searchVars.value?.language || searchLanguage.value,
   }),
   { pause: computed(() => searchVars.value === null) },
 )
