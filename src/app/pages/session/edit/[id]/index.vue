@@ -33,8 +33,7 @@
           </CardButton>
           <UnderConstruction>
             <CardButton
-              background-color="bg-accent-fancy"
-              class="text-base-white"
+              class-card="bg-accent-fancy text-base-white"
               :title="t('resetAISetup')"
               :to="
                 localePath({
@@ -56,8 +55,7 @@
           </UnderConstruction>
           <UnderConstruction>
             <CardButton
-              background-color="bg-warning-weak"
-              border-color="border-1 border-warning-strong"
+              class-card="bg-warning-weak border-1 border-warning-strong"
               :title="t('stopEarlyBird')"
               :to="
                 localePath({
@@ -178,7 +176,7 @@
           </CardButton>
           <CardButton
             class="text-base-white mt-6"
-            background-color="bg-critic-text"
+            class-card="bg-critic-text"
             :title="t('logout')"
             @click="signOut"
           >

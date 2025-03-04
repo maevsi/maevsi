@@ -8,7 +8,7 @@
     is-external-icon-disabled
     :to="props.to"
   >
-    <Card :background-color="backgroundColor" :border-color="borderColor">
+    <Card :class="classCard">
       <div class="flex items-center gap-4">
         <div class="flex items-center px-2">
           <slot />
@@ -34,8 +34,7 @@
 import type { RouteLocationRaw } from 'vue-router'
 
 export interface Props {
-  backgroundColor?: string
-  borderColor?: string
+  classCard?: string
   description?: string
   isDisabled?: boolean
   isExternal?: boolean
@@ -43,8 +42,7 @@ export interface Props {
   to?: RouteLocationRaw
 }
 const props = withDefaults(defineProps<Props>(), {
-  backgroundColor: undefined,
-  borderColor: undefined,
+  classCard: undefined,
   description: undefined,
   isDisabled: undefined,
   isExternal: undefined,

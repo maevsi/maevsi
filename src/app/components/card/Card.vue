@@ -1,21 +1,32 @@
 <template>
   <!-- TODO: hide or show overflow completely -->
   <div
-    class="overflow-x-hidden rounded-xl p-4"
-    :class="[backgroundColor, borderColor]"
+    v-bind="delegatedProps"
+    :class="
+      cn(
+        'bg-base-white dark:bg-background-darken border-faint-line overflow-x-hidden rounded-xl border p-4 shadow-xs',
+        props.class,
+      )
+    "
   >
     <slot />
   </div>
 </template>
 
 <script setup lang="ts">
-export interface Props {
-  backgroundColor?: string
-  borderColor?: string
-}
-withDefaults(defineProps<Props>(), {
-  backgroundColor: 'bg-base-white shadow-xs dark:bg-background-darken',
-  borderColor: 'border border-faint-line',
+import { cn } from '@/utils/shadcn'
+import type { HtmlHTMLAttributes } from 'vue'
+
+const props = withDefaults(
+  defineProps<{ class?: HtmlHTMLAttributes['class'] }>(),
+  {
+    class: undefined,
+  },
+)
+const delegatedProps = computed(() => {
+  const { class: _class, ...delegated } = props
+
+  return delegated
 })
 </script>
 
