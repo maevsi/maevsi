@@ -3,7 +3,6 @@
     <div class="mb-4">
       <SearchBar v-model="searchQuery" :is-searching="isSearching" />
     </div>
-
     <Loader :api="api">
       <div v-if="events?.length" class="flex flex-col items-center gap-4">
         <ul class="flex w-full flex-col gap-4">
