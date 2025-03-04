@@ -26,9 +26,6 @@ importers:
       '@semantic-release/release-notes-generator':
         specifier: 14.0.3
         version: 14.0.3(semantic-release@24.2.3(typescript@5.8.2))
-      '@vueuse/core':
-        specifier: ^12.7.0
-        version: 12.7.0(typescript@5.8.2)
       conventional-changelog-conventionalcommits:
         specifier: 8.0.0
         version: 8.0.0
@@ -41,9 +38,6 @@ importers:
       lint-staged:
         specifier: 15.4.3
         version: 15.4.3
-      semantic-release:
-        specifier: 24.2.3
-        version: 24.2.3(typescript@5.8.2)
 
   src:
     devDependencies:
@@ -236,6 +230,9 @@ importers:
       '@vuelidate/validators':
         specifier: 2.0.4
         version: 2.0.4(vue@3.5.13(typescript@5.8.2))
+      '@vueuse/core':
+        specifier: ^12.7.0
+        version: 12.7.0(typescript@5.8.2)
       browserslist-useragent-regexp:
         specifier: 4.1.3
         version: 4.1.3(browserslist@4.24.4)
@@ -389,6 +386,9 @@ importers:
       seedrandom:
         specifier: 3.0.5
         version: 3.0.5
+      semantic-release:
+        specifier: 24.2.3
+        version: 24.2.3(typescript@5.8.2)
       shadcn-nuxt:
         specifier: 1.0.2
         version: 1.0.2(magicast@0.3.5)
@@ -431,9 +431,6 @@ importers:
       unplugin-vue-router:
         specifier: 0.11.2
         version: 0.11.2(rollup@4.34.9)(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
-      use-debounce:
-        specifier: ^10.0.4
-        version: 10.0.4(react@19.0.0)
       v-calendar:
         specifier: 3.1.2
         version: 3.1.2(@popperjs/core@2.11.8)(vue@3.5.13(typescript@5.8.2))
@@ -9620,10 +9617,6 @@ packages:
     resolution: {integrity: sha512-y3bGgqKj3QBdxLbLkomlohkvsA8gdAiUQlSBJnBhfn+BPxg4bc62d8TcBW15wavDfgexCgccckhcZvywyQYPOw==}
     hasBin: true
 
-  react@19.0.0:
-    resolution: {integrity: sha512-V8AVnmPIICiWpGfm6GLzCR/W5FXLchHop40W4nXBmdlEceh16rCN8O8LNWm5bh5XUX91fh7KpA+W0TgMKmgTpQ==}
-    engines: {node: '>=0.10.0'}
-
   read-package-up@11.0.0:
     resolution: {integrity: sha512-MbgfoNPANMdb4oRBNg5eqLbB2t2r+o5Ua1pNt8BqGp4I0FJZhuVSOj3PaBPni4azWuSzEdNn2evevzVmEk1ohQ==}
     engines: {node: '>=18'}
@@ -10996,12 +10989,6 @@ packages:
 
   urlpattern-polyfill@8.0.2:
     resolution: {integrity: sha512-Qp95D4TPJl1kC9SKigDcqgyM2VDVO4RiJc2d4qe5GrYm+zbIQCWWKAFaJNQ4BhdFeDGwBmAxqJBwWSJDb9T3BQ==}
-
-  use-debounce@10.0.4:
-    resolution: {integrity: sha512-6Cf7Yr7Wk7Kdv77nnJMf6de4HuDE4dTxKij+RqE9rufDsI6zsbjyAxcH5y2ueJCQAnfgKbzXbZHYlkFwmBlWkw==}
-    engines: {node: '>= 16.0.0'}
-    peerDependencies:
-      react: '*'
 
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
@@ -23244,8 +23231,6 @@ snapshots:
       minimist: 1.2.8
       strip-json-comments: 2.0.1
 
-  react@19.0.0: {}
-
   read-package-up@11.0.0:
     dependencies:
       find-up-simple: 1.0.1
@@ -24925,10 +24910,6 @@ snapshots:
   urlpattern-polyfill@10.0.0: {}
 
   urlpattern-polyfill@8.0.2: {}
-
-  use-debounce@10.0.4(react@19.0.0):
-    dependencies:
-      react: 19.0.0
 
   util-deprecate@1.0.2: {}
 

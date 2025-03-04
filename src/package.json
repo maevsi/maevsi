@@ -129,7 +129,6 @@
     "unplugin-icons": "22.1.0",
     "unplugin-vue-components": "28.4.1",
     "unplugin-vue-router": "0.11.2",
-    "use-debounce": "^10.0.4",
     "v-calendar": "3.1.2",
     "vaul-vue": "0.3.0",
     "vue": "3.5.13",
@@ -141,7 +140,9 @@
     "vue-router": "4.5.0",
     "vue-tsc": "2.2.8",
     "workbox-precaching": "7.3.0",
-    "zod": "3.24.2"
+    "zod": "3.24.2",
+    "semantic-release": "24.2.3",
+    "@vueuse/core": "^12.7.0"
   },
   "engines": {
     "node": "22"
