@@ -4,7 +4,7 @@ import type { Language } from '~~/gql/generated/graphql'
 import { computed } from 'vue'
 
 export const useEventSearchQuery = (
-  variablesFn: () => { query: string; language: Language },
+  variablesFn: () => { query: string; language?: Language },
   options?: { pause: globalThis.ComputedRef<boolean> },
 ) => {
   const variables = computed(() => variablesFn())
