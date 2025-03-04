@@ -5,9 +5,9 @@
     </div>
     <input
       id="search"
+      v-model="localValue"
       class="w-full border-none bg-transparent text-xl text-gray-600 placeholder-gray-400 outline-none focus:ring-0 focus:outline-none"
       :placeholder="t('search')"
-      v-model="localValue"
       type="text"
     />
     <IHeroiconsArrowPath
@@ -23,10 +23,14 @@ import { computed } from 'vue'
 
 const { t } = useI18n()
 
-const props = defineProps<{
+export interface Props {
   modelValue: string
   isSearching: boolean
-}>()
+}
+const props = withDefaults(defineProps<Props>(), {
+  modelValue: '',
+  isSearching: false,
+})
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: string): void
