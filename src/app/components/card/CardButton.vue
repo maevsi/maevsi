@@ -23,7 +23,9 @@
         </div>
         <div class="opacity-60">
           <slot v-if="$slots.iconSecondary" name="iconSecondary" />
-          <IMaevsiArrowForward v-else alt="arrow forward" class="h-4 w-4" />
+          <div v-else-if="props.to">
+            <IMaevsiArrowForward alt="arrow forward" class="h-6 w-6" />
+          </div>
         </div>
       </div>
     </Card>
