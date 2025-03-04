@@ -50,3 +50,12 @@ If your CI pipeline is failing because of incorrect test snapshots, `pnpm build`
 ### TypeScript
 
 1. Use `const` to define variables, not `let` (except where it really doesn't make sense)
+
+
+### dargstack
+
+Always do either frontend-only development using `pnpm dev` or fullstack development running [`maevsi/maevsi_stack`](https://github.com/maevsi/maevsi_stack).
+You cannot run both at the same time as each development server writes different content to the `node_modules` directory.
+
+When switching back from fullstack development to frontend-only development, `pnpm` will ask for permission to take back control of the dependency linking.
+You can allow that.
