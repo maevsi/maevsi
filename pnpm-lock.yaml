@@ -17278,11 +17278,6 @@ snapshots:
     dependencies:
       '@types/node': 22.13.5
 
-  '@types/yauzl@2.10.3':
-    dependencies:
-      '@types/node': 22.13.5
-    optional: true
-
   '@typescript-eslint/eslint-plugin@8.25.0(@typescript-eslint/parser@8.25.0(eslint@9.21.0(jiti@2.4.2))(typescript@5.7.3))(eslint@9.21.0(jiti@2.4.2))(typescript@5.7.3)':
     dependencies:
       '@eslint-community/regexpp': 4.12.1
