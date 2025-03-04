@@ -181,7 +181,9 @@
           >
             <IMaevsiVerifiedUser class="h-6 w-6" :alt="t('iconAltPrivacy')" />
           </CardButton>
+
           <CardButton
+            v-if="store.signedInUsername"
             class="text-base-white mt-6"
             class-card="bg-critic-text"
             :title="t('logout')"
