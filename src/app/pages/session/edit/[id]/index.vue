@@ -23,9 +23,6 @@
             :to="
               localePath({
                 name: 'contact',
-                params: {
-                  username: store.signedInUsername,
-                },
               })
             "
           >
@@ -48,6 +45,7 @@
                 class="h-6 w-6"
                 :alt="t('iconAltAI')"
               />
+
               <template #iconSecondary>
                 <IMaevsiRestartAlt class="h-6 w-6" :alt="t('iconAltReset')" />
               </template>
