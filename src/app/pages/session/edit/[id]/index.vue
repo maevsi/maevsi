@@ -49,7 +49,7 @@
                 :alt="t('iconAltAI')"
               />
               <template #iconSecondary>
-                <IMaevsiRestartAlt :alt="t('iconAltReset')" />
+                <IMaevsiRestartAlt class="h-6 w-6" :alt="t('iconAltReset')" />
               </template>
             </CardButton>
           </UnderConstruction>
@@ -71,7 +71,7 @@
                 :alt="t('iconAltEarlyBird')"
               />
               <template #iconSecondary>
-                <IMaevsiClose :alt="t('iconAltClose')" />
+                <IMaevsiClose class="h-6 w-6" :alt="t('iconAltClose')" />
               </template>
             </CardButton>
           </UnderConstruction>
