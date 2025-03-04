@@ -183,7 +183,7 @@
             :title="t('logout')"
             @click="signOut"
           >
-            <template #iconSecondary> </template>
+            <template #iconSecondary />
             <IMaevsiLogout class="h-5 w-5" :alt="t('iconAltLogout')" />
           </CardButton>
         </div>
