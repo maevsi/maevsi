@@ -1079,6 +1079,8 @@ export type Address = Node & {
   line1?: Maybe<Scalars['String']['output']>
   /** Second line of the address, if needed. Must be between 1 and 300 characters. */
   line2?: Maybe<Scalars['String']['output']>
+  /** The geographic location of the address. */
+  location?: Maybe<GeographyPoint>
   /** Person or company name. Must be between 1 and 300 characters. */
   name: Scalars['String']['output']
   /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
@@ -1131,6 +1133,8 @@ export type AddressCondition = {
   line1?: InputMaybe<Scalars['String']['input']>
   /** Checks for equality with the object’s `line2` field. */
   line2?: InputMaybe<Scalars['String']['input']>
+  /** Checks for equality with the object’s `location` field. */
+  location?: InputMaybe<Scalars['GeoJSON']['input']>
   /** Checks for equality with the object’s `name` field. */
   name?: InputMaybe<Scalars['String']['input']>
   /** Checks for equality with the object’s `postalCode` field. */
@@ -1155,6 +1159,8 @@ export type AddressInput = {
   line1?: InputMaybe<Scalars['String']['input']>
   /** Second line of the address, if needed. Must be between 1 and 300 characters. */
   line2?: InputMaybe<Scalars['String']['input']>
+  /** The geographic location of the address. */
+  location?: InputMaybe<Scalars['GeoJSON']['input']>
   /** Person or company name. Must be between 1 and 300 characters. */
   name: Scalars['String']['input']
   /** Postal or ZIP code for the address. Must be between 1 and 20 characters. */
@@ -1173,6 +1179,8 @@ export type AddressPatch = {
   line1?: InputMaybe<Scalars['String']['input']>
   /** Second line of the address, if needed. Must be between 1 and 300 characters. */
   line2?: InputMaybe<Scalars['String']['input']>
+  /** The geographic location of the address. */
+  location?: InputMaybe<Scalars['GeoJSON']['input']>
   /** Person or company name. Must be between 1 and 300 characters. */
   name?: InputMaybe<Scalars['String']['input']>
   /** Postal or ZIP code for the address. Must be between 1 and 20 characters. */
@@ -1219,6 +1227,8 @@ export enum AddressesOrderBy {
   Line_1Desc = 'LINE_1_DESC',
   Line_2Asc = 'LINE_2_ASC',
   Line_2Desc = 'LINE_2_DESC',
+  LocationAsc = 'LOCATION_ASC',
+  LocationDesc = 'LOCATION_DESC',
   NameAsc = 'NAME_ASC',
   NameDesc = 'NAME_DESC',
   Natural = 'NATURAL',
@@ -3652,10 +3662,6 @@ export type Event = Node & {
   /** Indicates whether the event takes place remotely. */
   isRemote?: Maybe<Scalars['Boolean']['output']>
   language?: Maybe<Language>
-  /** The event's location as it can be shown on a map. */
-  location?: Maybe<Scalars['String']['output']>
-  /** The event's geographic location. */
-  locationGeography?: Maybe<GeographyPoint>
   /** The event's name. */
   name: Scalars['String']['output']
   /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
@@ -3935,10 +3941,6 @@ export type EventCondition = {
   isRemote?: InputMaybe<Scalars['Boolean']['input']>
   /** Checks for equality with the object’s `language` field. */
   language?: InputMaybe<Language>
-  /** Checks for equality with the object’s `location` field. */
-  location?: InputMaybe<Scalars['String']['input']>
-  /** Checks for equality with the object’s `locationGeography` field. */
-  locationGeography?: InputMaybe<Scalars['GeoJSON']['input']>
   /** Checks for equality with the object’s `name` field. */
   name?: InputMaybe<Scalars['String']['input']>
   /** Checks for equality with the object’s `slug` field. */
@@ -4293,10 +4295,6 @@ export type EventInput = {
   /** Indicates whether the event takes place remotely. */
   isRemote?: InputMaybe<Scalars['Boolean']['input']>
   language?: InputMaybe<Language>
-  /** The event's location as it can be shown on a map. */
-  location?: InputMaybe<Scalars['String']['input']>
-  /** The event's geographic location. */
-  locationGeography?: InputMaybe<Scalars['GeoJSON']['input']>
   /** The event's name. */
   name: Scalars['String']['input']
   /** The event's name, slugified. */
@@ -4328,10 +4326,6 @@ export type EventPatch = {
   /** Indicates whether the event takes place remotely. */
   isRemote?: InputMaybe<Scalars['Boolean']['input']>
   language?: InputMaybe<Language>
-  /** The event's location as it can be shown on a map. */
-  location?: InputMaybe<Scalars['String']['input']>
-  /** The event's geographic location. */
-  locationGeography?: InputMaybe<Scalars['GeoJSON']['input']>
   /** The event's name. */
   name?: InputMaybe<Scalars['String']['input']>
   /** The event's name, slugified. */
@@ -4617,10 +4611,6 @@ export enum EventsOrderBy {
   IsRemoteDesc = 'IS_REMOTE_DESC',
   LanguageAsc = 'LANGUAGE_ASC',
   LanguageDesc = 'LANGUAGE_DESC',
-  LocationAsc = 'LOCATION_ASC',
-  LocationDesc = 'LOCATION_DESC',
-  LocationGeographyAsc = 'LOCATION_GEOGRAPHY_ASC',
-  LocationGeographyDesc = 'LOCATION_GEOGRAPHY_DESC',
   NameAsc = 'NAME_ASC',
   NameDesc = 'NAME_DESC',
   Natural = 'NATURAL',
@@ -4887,6 +4877,7 @@ export type GuestFlat = {
   contactLastName?: Maybe<Scalars['String']['output']>
   contactPhoneNumber?: Maybe<Scalars['String']['output']>
   contactUrl?: Maybe<Scalars['String']['output']>
+  eventAddressId?: Maybe<Scalars['UUID']['output']>
   eventCreatedBy?: Maybe<Scalars['UUID']['output']>
   eventDescription?: Maybe<Scalars['String']['output']>
   eventEnd?: Maybe<Scalars['Datetime']['output']>
@@ -4895,7 +4886,6 @@ export type GuestFlat = {
   eventIsArchived?: Maybe<Scalars['Boolean']['output']>
   eventIsInPerson?: Maybe<Scalars['Boolean']['output']>
   eventIsRemote?: Maybe<Scalars['Boolean']['output']>
-  eventLocation?: Maybe<Scalars['String']['output']>
   eventName?: Maybe<Scalars['String']['output']>
   eventSlug?: Maybe<Scalars['String']['output']>
   eventStart?: Maybe<Scalars['Datetime']['output']>
@@ -4933,6 +4923,8 @@ export type GuestFlatCondition = {
   contactPhoneNumber?: InputMaybe<Scalars['String']['input']>
   /** Checks for equality with the object’s `contactUrl` field. */
   contactUrl?: InputMaybe<Scalars['String']['input']>
+  /** Checks for equality with the object’s `eventAddressId` field. */
+  eventAddressId?: InputMaybe<Scalars['UUID']['input']>
   /** Checks for equality with the object’s `eventCreatedBy` field. */
   eventCreatedBy?: InputMaybe<Scalars['UUID']['input']>
   /** Checks for equality with the object’s `eventDescription` field. */
@@ -4949,8 +4941,6 @@ export type GuestFlatCondition = {
   eventIsInPerson?: InputMaybe<Scalars['Boolean']['input']>
   /** Checks for equality with the object’s `eventIsRemote` field. */
   eventIsRemote?: InputMaybe<Scalars['Boolean']['input']>
-  /** Checks for equality with the object’s `eventLocation` field. */
-  eventLocation?: InputMaybe<Scalars['String']['input']>
   /** Checks for equality with the object’s `eventName` field. */
   eventName?: InputMaybe<Scalars['String']['input']>
   /** Checks for equality with the object’s `eventSlug` field. */
@@ -5017,6 +5007,8 @@ export enum GuestFlatsOrderBy {
   ContactPhoneNumberDesc = 'CONTACT_PHONE_NUMBER_DESC',
   ContactUrlAsc = 'CONTACT_URL_ASC',
   ContactUrlDesc = 'CONTACT_URL_DESC',
+  EventAddressIdAsc = 'EVENT_ADDRESS_ID_ASC',
+  EventAddressIdDesc = 'EVENT_ADDRESS_ID_DESC',
   EventCreatedByAsc = 'EVENT_CREATED_BY_ASC',
   EventCreatedByDesc = 'EVENT_CREATED_BY_DESC',
   EventDescriptionAsc = 'EVENT_DESCRIPTION_ASC',
@@ -5033,8 +5025,6 @@ export enum GuestFlatsOrderBy {
   EventIsInPersonDesc = 'EVENT_IS_IN_PERSON_DESC',
   EventIsRemoteAsc = 'EVENT_IS_REMOTE_ASC',
   EventIsRemoteDesc = 'EVENT_IS_REMOTE_DESC',
-  EventLocationAsc = 'EVENT_LOCATION_ASC',
-  EventLocationDesc = 'EVENT_LOCATION_DESC',
   EventNameAsc = 'EVENT_NAME_ASC',
   EventNameDesc = 'EVENT_NAME_DESC',
   EventSlugAsc = 'EVENT_SLUG_ASC',
@@ -10496,6 +10486,11 @@ export type GraphCacheResolvers = {
       Record<string, never>,
       Scalars['String'] | string
     >
+    location?: GraphCacheResolver<
+      WithTypename<Address>,
+      Record<string, never>,
+      WithTypename<GeographyPoint> | string
+    >
     name?: GraphCacheResolver<
       WithTypename<Address>,
       Record<string, never>,
@@ -12401,16 +12396,6 @@ export type GraphCacheResolvers = {
       Record<string, never>,
       Language | string
     >
-    location?: GraphCacheResolver<
-      WithTypename<Event>,
-      Record<string, never>,
-      Scalars['String'] | string
-    >
-    locationGeography?: GraphCacheResolver<
-      WithTypename<Event>,
-      Record<string, never>,
-      WithTypename<GeographyPoint> | string
-    >
     name?: GraphCacheResolver<
       WithTypename<Event>,
       Record<string, never>,
@@ -13323,6 +13308,11 @@ export type GraphCacheResolvers = {
       Record<string, never>,
       Scalars['String'] | string
     >
+    eventAddressId?: GraphCacheResolver<
+      WithTypename<GuestFlat>,
+      Record<string, never>,
+      Scalars['UUID'] | string
+    >
     eventCreatedBy?: GraphCacheResolver<
       WithTypename<GuestFlat>,
       Record<string, never>,
@@ -13362,11 +13352,6 @@ export type GraphCacheResolvers = {
       WithTypename<GuestFlat>,
       Record<string, never>,
       Scalars['Boolean'] | string
-    >
-    eventLocation?: GraphCacheResolver<
-      WithTypename<GuestFlat>,
-      Record<string, never>,
-      Scalars['String'] | string
     >
     eventName?: GraphCacheResolver<
       WithTypename<GuestFlat>,
@@ -17102,6 +17087,10 @@ export type GraphCacheUpdaters = {
       Maybe<WithTypename<Address>>,
       Record<string, never>
     >
+    location?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Address>>,
+      Record<string, never>
+    >
     name?: GraphCacheUpdateResolver<
       Maybe<WithTypename<Address>>,
       Record<string, never>
@@ -18648,14 +18637,6 @@ export type GraphCacheUpdaters = {
       Maybe<WithTypename<Event>>,
       Record<string, never>
     >
-    location?: GraphCacheUpdateResolver<
-      Maybe<WithTypename<Event>>,
-      Record<string, never>
-    >
-    locationGeography?: GraphCacheUpdateResolver<
-      Maybe<WithTypename<Event>>,
-      Record<string, never>
-    >
     name?: GraphCacheUpdateResolver<
       Maybe<WithTypename<Event>>,
       Record<string, never>
@@ -19400,6 +19381,10 @@ export type GraphCacheUpdaters = {
       Maybe<WithTypename<GuestFlat>>,
       Record<string, never>
     >
+    eventAddressId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<GuestFlat>>,
+      Record<string, never>
+    >
     eventCreatedBy?: GraphCacheUpdateResolver<
       Maybe<WithTypename<GuestFlat>>,
       Record<string, never>
@@ -19429,10 +19414,6 @@ export type GraphCacheUpdaters = {
       Record<string, never>
     >
     eventIsRemote?: GraphCacheUpdateResolver<
-      Maybe<WithTypename<GuestFlat>>,
-      Record<string, never>
-    >
-    eventLocation?: GraphCacheUpdateResolver<
       Maybe<WithTypename<GuestFlat>>,
       Record<string, never>
     >
