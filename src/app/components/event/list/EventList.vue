@@ -48,8 +48,8 @@
 import { useAllEventsQuery } from '~~/gql/documents/queries/event/eventsAll'
 import { useEventSearchQuery } from '~~/gql/documents/queries/event/eventSearchQuery'
 import { getEventItem } from '~~/gql/documents/fragments/eventItem'
-import type { EventSearchQuery } from '~~/gql/generated/graphql'
 import { useDebounce } from '@vueuse/core'
+import type { EventSearchQuery } from '~~/gql/generated/graphql'
 
 const { t } = useI18n()
 
