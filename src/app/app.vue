@@ -45,7 +45,7 @@
 
 <script setup lang="ts">
 import type { Locale } from '@dargmuesli/nuxt-cookie-control/runtime/types'
-import '@fontsource-variable/manrope'
+import '@fontsource-variable/raleway'
 import type { WritableComputedRef } from 'vue'
 
 import supportedBrowsers from '~/supportedBrowsers'

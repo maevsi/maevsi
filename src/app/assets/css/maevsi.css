@@ -49,9 +49,9 @@
     }
   }
 
-  --default-font-family: var(--font-manrope);
-  --font-manrope:
-    'Manrope Variable', ui-sans-serif, system-ui, sans-serif,
+  --default-font-family: var(--font-raleway);
+  --font-raleway:
+    'Raleway Variable', ui-sans-serif, system-ui, sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   --color-accent-fancy: #4743b1;
   --color-background-bright: var(

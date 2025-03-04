@@ -56,9 +56,9 @@ importers:
       '@dargmuesli/nuxt-vio':
         specifier: 17.0.2
         version: 17.0.2(16510ca5af442819edeca9113fc82a85)
-      '@fontsource-variable/manrope':
-        specifier: 5.1.1
-        version: 5.1.1
+      '@fontsource-variable/raleway':
+        specifier: 5.2.5
+        version: 5.2.5
       '@graphql-codegen/add':
         specifier: 5.0.3
         version: 5.0.3(graphql@16.10.0)
@@ -1773,8 +1773,8 @@ packages:
   '@floating-ui/vue@1.1.6':
     resolution: {integrity: sha512-XFlUzGHGv12zbgHNk5FN2mUB7ROul3oG2ENdTpWdE+qMFxyNxWSRmsoyhiEnpmabNm6WnUvR1OvJfUfN4ojC1A==}
 
-  '@fontsource-variable/manrope@5.1.1':
-    resolution: {integrity: sha512-bJTED5u+nlztikeRJwCgK3ij3qMVsivP4xTxpcrfQ15crvZuW9hjM5f61CgYF3ryL0rJwkjzOpZjB4CwL/pnBw==}
+  '@fontsource-variable/raleway@5.2.5':
+    resolution: {integrity: sha512-+7xYA98t16DzKWvbkPf3lSkieQKaKbZKpZFug4oOHCogIvGQ5qBsyGV/F8JNXzuSfqq9qn0hDx5wsHxUsxFB5w==}
 
   '@google-cloud/firestore@7.11.0':
     resolution: {integrity: sha512-88uZ+jLsp1aVMj7gh3EKYH1aulTAMFAp8sH/v5a9w8q8iqSG27RiWLoxSAFr/XocZ9hGiWH1kEnBw+zl3xAgNA==}
@@ -13353,7 +13353,7 @@ snapshots:
       - '@vue/composition-api'
       - vue
 
-  '@fontsource-variable/manrope@5.1.1': {}
+  '@fontsource-variable/raleway@5.2.5': {}
 
   '@google-cloud/firestore@7.11.0':
     dependencies:
