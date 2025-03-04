@@ -11,6 +11,8 @@ We put continuous effort into making the contribution process as simple as possi
 
 To get started with open-source contributions and to ensure a structured approach, check out [@dargmuesli's Contributing Guidelines](https://gist.github.com/dargmuesli/430b7d902a22df02d88d1969a22a81b5#contribution-workflow).
 
+Whenever switching branches, it makes sense to run `pnpm install` while the development server is stopped. This prevents issues with dependencies as they tend to differ between all branches.
+
 ### Semantic Versioning
 
 Read [@dargmuesli's guide on Semantic Versioning](https://gist.github.com/dargmuesli/430b7d902a22df02d88d1969a22a81b5#file-semantic-versioning-md) to find out how to correctly format pull request, issue and commit titles and how this necessity speeds up our development.
