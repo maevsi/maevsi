@@ -3,7 +3,7 @@
     <LazyClientOnly>
       <CardStateInfo
         v-if="!isBrowserSupported && !runtimeConfig.public.vio.isTesting"
-        is-edgy
+        class="rounded-none"
       >
         <i18n-t keypath="browserUnsupported">
           <template #link>

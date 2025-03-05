@@ -70,6 +70,7 @@
     --color-zinc-700
   ); /* TODO: replace with new design variables */
 
+  --color-base-text-primary: #191911;
   --color-base-white: #fafafc;
   --color-border-accent-line: #e2e1f4;
   --color-critic-text: #8c1818;
