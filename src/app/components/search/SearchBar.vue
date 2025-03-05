@@ -1,11 +1,13 @@
 <template>
-  <div class="flex w-full items-center rounded-xl bg-white p-2 px-4 shadow">
-    <div class="mr-4 flex-shrink-0 text-green-800">
+  <div
+    class="flex w-full items-center gap-4 rounded-lg bg-white px-4 py-3 shadow"
+  >
+    <div class="flex-shrink-0 text-green-800">
       <IHeroiconsMagnifyingGlass class="h-8 w-8" />
     </div>
     <input
       id="search"
-      v-model="localValue"
+      v-model="model"
       class="w-full border-none bg-transparent text-xl text-gray-600 placeholder-gray-400 outline-none focus:ring-0 focus:outline-none"
       :placeholder="t('search')"
       type="text"
@@ -21,22 +23,13 @@
 const { t } = useI18n()
 
 export interface Props {
-  modelValue: string
-  isSearching: boolean
+  isSearching?: boolean
 }
-const props = withDefaults(defineProps<Props>(), {
-  modelValue: '',
-  isSearching: false,
+withDefaults(defineProps<Props>(), {
+  isSearching: undefined,
 })
 
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: string): void
-}>()
-
-const localValue = computed({
-  get: () => props.modelValue,
-  set: (value) => emit('update:modelValue', value),
-})
+const model = defineModel<string | undefined>({ required: true })
 </script>
 
 <i18n lang="yaml">
