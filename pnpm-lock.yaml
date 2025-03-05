@@ -43,6 +43,13 @@ importers:
         version: 24.2.3(typescript@5.8.2)
 
   src:
+    dependencies:
+      '@iconify/utils':
+        specifier: ^2.3.0
+        version: 2.3.0
+      colors:
+        specifier: link:@iconify/utils/lib/colors
+        version: link:@iconify/utils/lib/colors
     devDependencies:
       '@aws-sdk/client-ses':
         specifier: 3.758.0
@@ -14403,7 +14410,7 @@ snapshots:
       debug: 4.4.0(supports-color@9.4.0)
       globals: 15.15.0
       kolorist: 1.8.0
-      local-pkg: 1.1.0
+      local-pkg: 1.1.1
       mlly: 1.7.4
     transitivePeerDependencies:
       - supports-color
@@ -24794,7 +24801,7 @@ snapshots:
       escape-string-regexp: 5.0.0
       estree-walker: 3.0.3
       fast-glob: 3.3.3
-      local-pkg: 1.1.0
+      local-pkg: 1.1.1
       magic-string: 0.30.17
       mlly: 1.7.4
       pathe: 2.0.3

@@ -22,6 +22,7 @@
     "@iconify-json/heroicons-outline": "1.2.1",
     "@iconify-json/material-symbols": "1.2.15",
     "@iconify-json/solar": "1.2.2",
+    "@iconify/tools": "^4.1.1",
     "@nuxt/devtools": "2.2.1",
     "@nuxt/image": "1.9.0",
     "@nuxt/schema": "3.15.4",
@@ -140,8 +141,7 @@
     "vue-router": "4.5.0",
     "vue-tsc": "2.2.8",
     "workbox-precaching": "7.3.0",
-    "zod": "3.24.2",
-    "@iconify/tools": "^4.1.1"
+    "zod": "3.24.2"
   },
   "engines": {
     "node": "22"
@@ -170,5 +170,9 @@
     "supportedBrowsers": "echo \"export default $(browserslist-useragent-regexp --allowHigherVersions);\" > supportedBrowsers.js"
   },
   "type": "module",
-  "version": "8.1.2"
+  "version": "8.1.2",
+  "dependencies": {
+    "@iconify/utils": "^2.3.0",
+    "colors": "link:@iconify/utils/lib/colors"
+  }
 }
