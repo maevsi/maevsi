@@ -1,3 +1,9 @@
+## [8.1.1](https://github.com/maevsi/maevsi/compare/8.1.0...8.1.1) (2025-03-05)
+
+### Performance Improvements
+
+* **bundle:** extract sweetalert from client entrypoint ([53f78da](https://github.com/maevsi/maevsi/commit/53f78da5766585c819b998a76c908d89164afce5))
+
 ## [8.1.0](https://github.com/maevsi/maevsi/compare/8.0.2...8.1.0) (2025-02-27)
 
 ### Features
