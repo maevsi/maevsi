@@ -30,7 +30,7 @@
           </CardButton>
           <UnderConstruction>
             <CardButton
-              class-card="bg-accent-fancy text-base-white"
+              class="bg-accent-fancy dark:bg-accent-fancy text-base-white"
               :title="t('resetAISetup')"
               :to="
                 localePath({
@@ -53,7 +53,7 @@
           </UnderConstruction>
           <UnderConstruction>
             <CardButton
-              class-card="bg-warning-weak border-1 border-warning-strong"
+              class="bg-warning-weak dark:bg-warning-strong border-warning-strong"
               :title="t('stopEarlyBird')"
               :to="
                 localePath({
@@ -179,18 +179,18 @@
           >
             <IMaevsiVerifiedUser class="h-6 w-6" :alt="t('iconAltPrivacy')" />
           </CardButton>
-
-          <CardButton
-            v-if="store.signedInUsername"
-            class="text-base-white mt-6"
-            class-card="bg-critic-text"
-            :title="t('logout')"
-            @click="signOut"
-          >
-            <template #iconSecondary />
-            <IMaevsiLogout class="h-6 w-6" :alt="t('iconAltLogout')" />
-          </CardButton>
         </div>
+      </section>
+      <section class="flex flex-col">
+        <CardButton
+          v-if="store.signedInUsername"
+          class="bg-critic-text dark:bg-critic-text text-base-white"
+          :title="t('logout')"
+          @click="signOut"
+        >
+          <template #iconSecondary />
+          <IMaevsiLogout class="h-6 w-6" :alt="t('iconAltLogout')" />
+        </CardButton>
       </section>
     </div>
   </div>
