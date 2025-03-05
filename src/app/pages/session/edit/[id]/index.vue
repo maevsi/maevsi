@@ -41,13 +41,16 @@
                 })
               "
             >
-              <IMaevsiNetworkIntelligence
+              <IMaevsiColoredNetworkIntelligence
                 class="h-6 w-6"
                 :alt="t('iconAltAI')"
               />
 
               <template #iconSecondary>
-                <IMaevsiRestartAlt class="h-6 w-6" :alt="t('iconAltReset')" />
+                <IMaevsiColoredRestartAlt
+                  class="h-6 w-6"
+                  :alt="t('iconAltReset')"
+                />
               </template>
             </CardButton>
           </UnderConstruction>
@@ -69,7 +72,7 @@
                 :alt="t('iconAltEarlyBird')"
               />
               <template #iconSecondary>
-                <IMaevsiClose class="h-6 w-6" :alt="t('iconAltClose')" />
+                <IMaevsiColoredClose class="h-6 w-6" :alt="t('iconAltClose')" />
               </template>
             </CardButton>
           </UnderConstruction>
