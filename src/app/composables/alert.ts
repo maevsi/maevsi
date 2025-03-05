@@ -1,15 +1,16 @@
 import { consola } from 'consola'
-import Swal, { type SweetAlertIcon, type SweetAlertOptions } from 'sweetalert2'
+import type { SweetAlertIcon, SweetAlertOptions } from 'sweetalert2'
 
 export const useFireAlert = () => {
   const { t } = useI18n()
 
-  return (
+  return async (
     options: SweetAlertOptions & {
       error?: unknown
       level: SweetAlertIcon
     },
   ) => {
+    const Swal = (await import('sweetalert2')).default
     const { error, title, level } = options
 
     if (error) {

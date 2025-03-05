@@ -1,7 +1,7 @@
-import Swal, { type SweetAlertIcon } from 'sweetalert2'
+import type { SweetAlertIcon } from 'sweetalert2'
 import colors from 'tailwindcss/colors'
 
-export const showToast = ({
+export const showToast = async ({
   confirmButtonText,
   icon = 'success',
   showCancelButton = false,
@@ -17,8 +17,10 @@ export const showToast = ({
   timer?: number
   text?: string
   title: string
-}) =>
-  Swal.fire({
+}) => {
+  const Swal = (await import('sweetalert2')).default
+
+  return Swal.fire({
     confirmButtonText,
     confirmButtonColor: colors.gray['800'],
     didOpen: (toast) => {
@@ -35,3 +37,4 @@ export const showToast = ({
     title,
     toast: true,
   })
+}
