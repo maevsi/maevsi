@@ -172,7 +172,6 @@ export const validateAccountExistence = async ({
     throw createError({
       statusCode: 404,
     })
-    // return abortNavigation({ statusCode: 404 })
   }
 
   if (
@@ -182,7 +181,6 @@ export const validateAccountExistence = async ({
     throw createError({
       statusCode: 403,
     })
-    // return abortNavigation({ statusCode: 403 })
   }
 
   return true
@@ -252,7 +250,6 @@ export const validateEventExistence = async (
     throw createError({
       statusCode: 404,
     })
-    // return abortNavigation({ statusCode: 404 })
   }
 
   if (
@@ -262,7 +259,6 @@ export const validateEventExistence = async (
     throw createError({
       statusCode: 500,
     })
-    // return abortNavigation({ statusCode: 500 })
   }
 
   const eventIsExisting = await $urql.value
@@ -280,7 +276,6 @@ export const validateEventExistence = async (
     throw createError({
       statusCode: 404,
     })
-    // return abortNavigation({ statusCode: 404 })
   }
 
   return true
