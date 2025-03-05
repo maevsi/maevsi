@@ -110,21 +110,21 @@
         <span class="text-lg font-bold">{{ t('support') }}</span>
         <div class="flex flex-col gap-2">
           <CardButton
-            :is-external="true"
+            is-external
             :title="t('featureSuggestion')"
             to="https://forms.monday.com/forms/f3ef56d13c8383e6ececb2875d7fb4b2?r=euc1"
           >
             <IMaevsiIdea class="h-6 w-6" :alt="t('iconAltIdea')" />
           </CardButton>
           <CardButton
-            :is-external="true"
+            is-external
             :title="t('bugReport')"
             to="https://forms.monday.com/forms/55b8fc2281c2be1647a69e6a4ffe156e?r=euc1"
           >
             <IMaevsiBug class="h-6 w-6" :alt="t('iconAltBug')" />
           </CardButton>
           <CardButton
-            :is-external="true"
+            is-external
             :title="t('contact')"
             to="https://forms.monday.com/forms/74204ae8168ecb1dd44c15b502854a5a?r=euc1"
           >
