@@ -368,7 +368,7 @@ const submit = async () => {
 
     if (result.error || !result.data) return
 
-    showToast({ title: t('updated') })
+    await showToast({ title: t('updated') })
   } else {
     // Add
     const result = await createEventMutation.executeMutation({
@@ -394,7 +394,7 @@ const submit = async () => {
 
     if (result.error || !result.data) return
 
-    showToast({ title: t('eventCreateSuccess') })
+    await showToast({ title: t('eventCreateSuccess') })
 
     if (!store.signedInUsername || !form.slug)
       throw new Error(
