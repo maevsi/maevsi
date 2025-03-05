@@ -1,152 +1,41 @@
 <template>
-  <div class="flex flex-col gap-4">
-    <div>
-      <SearchBar v-model="searchQuery" :is-searching="isSearching" />
-    </div>
-    <Loader :api="api">
-      <div v-if="events?.length" class="flex flex-col items-center gap-4">
-        <ul class="flex w-full flex-col gap-4">
-          <EventListItem
-            v-for="event in events"
-            :key="event.id"
-            :event="event"
-          />
-        </ul>
-        <div
-          v-if="
-            (searchQuery.trim().length < 2 &&
-              api.data.allEvents?.pageInfo.hasNextPage) ||
-            (searchQuery.trim().length >= 2 &&
-              api.data.eventSearch?.pageInfo.hasNextPage)
-          "
-        >
-          <ButtonColored
-            :aria-label="t('globalShowMore')"
-            @click="
-              after =
-                searchQuery.trim().length < 2
-                  ? api.data.allEvents?.pageInfo.endCursor
-                  : api.data.eventSearch?.pageInfo.endCursor
-            "
-          >
-            {{ t('globalShowMore') }}
-          </ButtonColored>
-        </div>
-      </div>
-      <p v-else-if="!isSearching" class="text-center">
-        {{
-          searchQuery.trim().length >= 2
-            ? t('noSearchResults', { term: searchQuery.trim() })
-            : t('noEvents')
-        }}
-      </p>
-    </Loader>
+  <div v-if="events?.length" class="flex flex-col items-center gap-4">
+    <ul class="flex w-full flex-col gap-4">
+      <EventListItem v-for="event in events" :key="event.id" :event="event" />
+    </ul>
+    <ButtonColored
+      v-if="hasNextPage"
+      :aria-label="t('globalShowMore')"
+      @click="emit('loadMore')"
+    >
+      {{ t('globalShowMore') }}
+    </ButtonColored>
   </div>
+  <p v-else class="text-center">{{ t('noEvents') }}</p>
 </template>
 
 <script setup lang="ts">
-import { useAllEventsQuery } from '~~/gql/documents/queries/event/eventsAll'
-import { useEventSearchQuery } from '~~/gql/documents/queries/event/eventSearchQuery'
-import { getEventItem } from '~~/gql/documents/fragments/eventItem'
-import { useDebounce } from '@vueuse/core'
-import type { EventSearchQuery } from '~~/gql/generated/graphql'
-
-const { t } = useI18n()
-
-// refs
-const after = ref<string>()
-const searchQuery = ref<string>('')
-const isSearching = ref(false)
+import type { EventItemFragment } from '~~/gql/generated/graphql'
 
 export interface Props {
-  accountId?: string
+  events?: EventItemFragment[]
+  hasNextPage?: boolean
 }
-const props = withDefaults(defineProps<Props>(), {
-  accountId: undefined,
+withDefaults(defineProps<Props>(), {
+  events: undefined,
+  hasNextPage: undefined,
 })
 
-const eventsQuery = await zalgo(
-  useAllEventsQuery({
-    after,
-    createdBy: props.accountId,
-    first: ITEMS_PER_PAGE,
-  }),
-)
+const emit = defineEmits<{
+  loadMore: []
+}>()
 
-const debouncedSearchQuery = useDebounce(searchQuery, 300)
-
-const computedSearchVars = computed(() => {
-  const trimmed = debouncedSearchQuery.value.trim()
-  if (trimmed.length < 2) return null
-
-  let searchTerm = trimmed
-  const wordsArray: string[] = trimmed.split(' ').filter(Boolean)
-  if (wordsArray.length === 1 && wordsArray[0] && wordsArray[0].length < 5) {
-    searchTerm = `${wordsArray[0]}* ${wordsArray[0]}`
-  } else if (wordsArray.length > 1) {
-    searchTerm = wordsArray.join(' OR ')
-  }
-  return { query: searchTerm }
-})
-
-const searchVars = ref<{ query: string } | null>(null)
-watch(
-  computedSearchVars,
-  (newVars) => {
-    searchVars.value = newVars
-  },
-  { immediate: true },
-)
-
-const searchResultsQuery = useEventSearchQuery(
-  () => ({
-    query: searchVars.value?.query || '',
-  }),
-  { pause: computed(() => searchVars.value === null) },
-)
-
-const activeQuery = computed(() =>
-  debouncedSearchQuery.value.trim().length < 2
-    ? eventsQuery
-    : searchResultsQuery,
-)
-
-const api = computed(() => getApiData([activeQuery.value]).value)
-
-const events = computed(() => {
-  const trimmed = searchQuery.value.trim()
-  if (trimmed.length < 2) {
-    return (
-      eventsQuery.data.value?.allEvents?.nodes
-        ?.map(getEventItem)
-        .filter(isNeitherNullNorUndefined) || []
-    )
-  }
-  if (activeQuery.value?.data.value) {
-    const searchData = activeQuery.value.data.value as EventSearchQuery
-    return (
-      searchData.eventSearch?.nodes
-        ?.map(getEventItem)
-        .filter(isNeitherNullNorUndefined) || []
-    )
-  }
-  return (
-    eventsQuery.data.value?.allEvents?.nodes
-      ?.map(getEventItem)
-      .filter(isNeitherNullNorUndefined) || []
-  )
-})
-
-watch(debouncedSearchQuery, () => {
-  after.value = undefined
-})
+const { t } = useI18n()
 </script>
 
 <i18n lang="yaml">
 de:
-  noEvents: Aktuell gibt es keine Veranstaltungen 😕
-  noSearchResults: 'Keine Ergebnisse für "{term}" gefunden 😕'
+  noEvents: Keine Veranstaltungen verfügbar 😕
 en:
-  noEvents: There are currently no events 😕
-  noSearchResults: 'No results found for "{term}" 😕'
+  noEvents: No events available 😕
 </i18n>

@@ -1,23 +1,30 @@
-import { useQuery } from '@urql/vue'
+import { useQuery, type UseQueryArgs } from '@urql/vue'
 import { graphql } from '~~/gql/generated'
-import type { Language } from '~~/gql/generated/graphql'
-import { computed } from 'vue'
+import type { EventSearchQueryVariables } from '~~/gql/generated/graphql'
 
 export const useEventSearchQuery = (
-  variablesFn: () => { query: string; language?: Language },
-  options?: { pause: globalThis.ComputedRef<boolean> },
-) => {
-  const variables = computed(() => variablesFn())
-  return useQuery({
+  variables: MaybeRefObj<EventSearchQueryVariables>,
+  args?: Partial<UseQueryArgs>,
+) =>
+  useQuery({
     query: eventSearchQuery,
     variables,
-    pause: options?.pause,
+    ...args,
   })
-}
 
 export const eventSearchQuery = graphql(`
-  query eventSearch($query: String!, $language: Language) {
-    eventSearch(query: $query, language: $language) {
+  query eventSearch(
+    $after: Cursor
+    $first: Int!
+    $language: Language
+    $query: String
+  ) {
+    eventSearch(
+      after: $after
+      first: $first
+      language: $language
+      query: $query
+    ) {
       nodes {
         ...EventItem
       }

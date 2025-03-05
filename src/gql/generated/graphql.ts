@@ -9488,8 +9488,10 @@ export type EventIsExistingQuery = {
 }
 
 export type EventSearchQueryVariables = Exact<{
-  query: Scalars['String']['input']
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  first: Scalars['Int']['input']
   language?: InputMaybe<Language>
+  query?: InputMaybe<Scalars['String']['input']>
 }>
 
 export type EventSearchQuery = {
@@ -13344,14 +13346,19 @@ export const EventSearchDocument = {
           kind: 'VariableDefinition',
           variable: {
             kind: 'Variable',
-            name: { kind: 'Name', value: 'query' },
+            name: { kind: 'Name', value: 'after' },
+          },
+          type: { kind: 'NamedType', name: { kind: 'Name', value: 'Cursor' } },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'first' },
           },
           type: {
             kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'String' },
-            },
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'Int' } },
           },
         },
         {
@@ -13365,6 +13372,14 @@ export const EventSearchDocument = {
             name: { kind: 'Name', value: 'Language' },
           },
         },
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'query' },
+          },
+          type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
+        },
       ],
       selectionSet: {
         kind: 'SelectionSet',
@@ -13375,10 +13390,18 @@ export const EventSearchDocument = {
             arguments: [
               {
                 kind: 'Argument',
-                name: { kind: 'Name', value: 'query' },
+                name: { kind: 'Name', value: 'after' },
                 value: {
                   kind: 'Variable',
-                  name: { kind: 'Name', value: 'query' },
+                  name: { kind: 'Name', value: 'after' },
+                },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'first' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'first' },
                 },
               },
               {
@@ -13387,6 +13410,14 @@ export const EventSearchDocument = {
                 value: {
                   kind: 'Variable',
                   name: { kind: 'Name', value: 'language' },
+                },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'query' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'query' },
                 },
               },
             ],

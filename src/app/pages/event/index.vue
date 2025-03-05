@@ -3,7 +3,7 @@
     <h1>
       {{ title }}
     </h1>
-    <EventList />
+    <EventSearch />
   </div>
 </template>
 

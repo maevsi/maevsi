@@ -12,6 +12,13 @@ export type LastOf<T> =
     ? R
     : never
 
+export type MaybeRef<T> = T | (() => T) | Ref<T>
+export type MaybeRefObj<T> = T extends object
+  ? {
+      [K in keyof T]: MaybeRef<T[K]>
+    }
+  : T
+
 type Push<T extends unknown[], V> = [...T, V]
 
 export type UnionToTuple<
