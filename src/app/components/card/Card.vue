@@ -3,7 +3,7 @@
   <div
     :class="
       cn(
-        'bg-base-white dark:bg-background-darken border-faint-line overflow-x-hidden rounded-xl border p-4 shadow-xs dark:border-none',
+        'bg-base-white dark:bg-background-darken border-faint-line overflow-x-hidden rounded-xl border p-2 shadow-xs dark:border-none',
         props.class,
       )
     "
