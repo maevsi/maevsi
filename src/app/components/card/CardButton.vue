@@ -22,7 +22,7 @@
         {{ description }}
       </span>
     </div>
-    <div class="p-2 opacity-60">
+    <div class="p-2">
       <slot v-if="$slots.iconSecondary" name="iconSecondary" />
       <div v-else-if="props.to">
         <IMaevsiArrowForward alt="arrow forward" class="h-6 w-6" />

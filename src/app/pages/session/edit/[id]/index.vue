@@ -1,10 +1,10 @@
 <template>
   <div>
     <LayoutPageTitle :title="title" />
-    <div class="flex flex-col gap-8">
+    <div class="flex flex-col gap-6">
       <section v-if="store.signedInUsername" class="flex flex-col gap-4">
         <span class="text-lg font-bold">{{ t('profile') }}</span>
-        <div class="flex flex-col gap-2">
+        <div class="flex flex-col gap-3">
           <CardButton
             :title="t('personalInformation')"
             :to="
@@ -30,7 +30,7 @@
           </CardButton>
           <UnderConstruction>
             <CardButton
-              class="bg-accent-fancy dark:bg-accent-fancy text-base-white"
+              class="bg-(--accent-strong) text-(--semantic-base-primary-button-text)"
               :title="t('resetAISetup')"
               :to="
                 localePath({
@@ -53,7 +53,7 @@
           </UnderConstruction>
           <UnderConstruction>
             <CardButton
-              class="bg-warning-weak dark:bg-warning-strong border-warning-strong"
+              class="border-(--warning-strong) bg-(--warning-weak) text-(--warning-text)"
               :title="t('stopEarlyBird')"
               :to="
                 localePath({
@@ -77,7 +77,7 @@
       </section>
       <section class="flex flex-col gap-4">
         <span class="text-lg font-bold">{{ t('display') }}</span>
-        <div class="flex flex-col gap-2">
+        <div class="flex flex-col gap-3">
           <CardButton
             :title="t('colorScheme')"
             :to="
@@ -108,7 +108,7 @@
       </section>
       <section class="flex flex-col gap-4">
         <span class="text-lg font-bold">{{ t('support') }}</span>
-        <div class="flex flex-col gap-2">
+        <div class="flex flex-col gap-3">
           <CardButton
             is-external
             :title="t('featureSuggestion')"
@@ -149,7 +149,7 @@
         <span class="text-lg font-bold">
           {{ t('legal') }}
         </span>
-        <div class="flex flex-col gap-2">
+        <div class="flex flex-col gap-3">
           <UnderConstruction>
             <CardButton
               :title="t('generalTermsAndConditions')"
@@ -184,7 +184,7 @@
       <section class="flex flex-col">
         <CardButton
           v-if="store.signedInUsername"
-          class="bg-critic-text dark:bg-critic-text text-base-white"
+          class="bg-(--critic-string) text-(--semantic-base-light-text-on-dark)"
           :title="t('logout')"
           @click="signOut"
         >

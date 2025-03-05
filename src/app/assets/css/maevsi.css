@@ -53,7 +53,6 @@
   --font-raleway:
     'Raleway Variable', ui-sans-serif, system-ui, sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  --color-accent-fancy: #4743b1;
   --color-background-bright: var(
     --color-white
   ); /* TODO: replace with new design variables */
@@ -70,11 +69,6 @@
     --color-zinc-700
   ); /* TODO: replace with new design variables */
 
-  --color-base-text-primary: #191911;
-  --color-base-white: #fafafc;
-  --color-border-accent-line: #e2e1f4;
-  --color-critic-text: #8c1818;
-  --color-faint-line: #f2f2f2;
   --color-link-bright: var(
     --color-blue-400
   ); /* TODO: replace with new design variables */
@@ -91,8 +85,6 @@
     --color-zinc-900
   ); /* TODO: replace with new design variables */
 
-  --color-warning-strong: #f7a650;
-  --color-warning-weak: #fdebd8;
   --text-3xl--line-height: calc(2.5 / 1.875);
   --text-4xl--line-height: calc(3 / 2.25);
   --text-5xl--line-height: calc(4 / 3);
@@ -124,6 +116,19 @@
     --destructive-foreground: 210 40% 98%;
     --ring: 222.2 84% 4.9%;
     --radius: 0.5rem;
+
+    /* tailwind */
+    --accent-strong: #36db83;
+    --critic-string: #e00000;
+    --surface: #fafafc;
+    --faint-line: #f2f2f2;
+    --semantic-base-background: #fff;
+    --semantic-base-light-text-on-dark: #fafafc;
+    --semantic-base-primary-button-text: #191911;
+    --semantic-base-text-primary: #191911;
+    --warning-strong: #f9ae25;
+    --warning-text: #9c5407;
+    --warning-weak: #fdebd8;
   }
 
   .dark {
@@ -146,6 +151,12 @@
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
     --ring: 212.7 26.8% 83.9%;
+
+    /* tailwind */
+    --surface: #3e3e38;
+    --faint-line: #2d2d2c;
+    --semantic-base-background: #191911;
+    --semantic-base-text-primary: #e4e4eb;
   }
 
   ::placeholder {
