@@ -31,7 +31,7 @@ export const GET_CSP = ({
         `https://postgraphile.${domainTldPort}`, // backend requests
         `https://tusd.${domainTldPort}`, // image upload requests
       ],
-      'font-src': ["'self'", 'data:'], // @fontsource/manrope
+      'font-src': ["'self'", 'data:'], // @fontsource/raleway
       'form-action': ["'self'"], // forms
       'img-src': [
         'blob:',

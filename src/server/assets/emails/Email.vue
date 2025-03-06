@@ -28,6 +28,7 @@ export default {
         {{ title }}
       </title>
       <!-- TODO: fix style inclusion for fonts -->
+      <!-- TODO: update font to Raleway -->
       <Font
         font-family="Manrope"
         :fallback-font-family="['Helvetica', 'Arial', 'sans-serif']"
