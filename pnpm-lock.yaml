@@ -43,13 +43,6 @@ importers:
         version: 24.2.3(typescript@5.8.2)
 
   src:
-    dependencies:
-      '@iconify/utils':
-        specifier: ^2.3.0
-        version: 2.3.0
-      colors:
-        specifier: link:@iconify/utils/lib/colors
-        version: link:@iconify/utils/lib/colors
     devDependencies:
       '@aws-sdk/client-ses':
         specifier: 3.758.0
@@ -115,8 +108,11 @@ importers:
         specifier: 1.2.2
         version: 1.2.2
       '@iconify/tools':
-        specifier: ^4.1.1
+        specifier: 4.1.1
         version: 4.1.1
+      '@iconify/utils':
+        specifier: 2.3.0
+        version: 2.3.0
       '@nuxt/devtools':
         specifier: 2.2.1
         version: 2.2.1(vite@6.2.0(@types/node@22.13.9)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.39.0)(yaml@2.7.0))(vue@3.5.13(typescript@5.8.2))
