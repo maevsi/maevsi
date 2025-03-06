@@ -8,7 +8,7 @@ export const useAppLayout = () => {
     ...useLocaleHead().value,
     bodyAttrs: {
       class:
-        'bg-background-bright dark:bg-background-dark text-text-dark dark:text-text-bright',
+        'bg-(--semantic-base-background) text-(--semantic-base-text-primary)',
     },
   })
 
