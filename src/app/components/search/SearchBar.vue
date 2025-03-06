@@ -1,42 +1,42 @@
 <template>
   <div
-    :class="[
-      'hover:bg-faint-weak flex w-full items-center gap-4 rounded-lg px-4 py-3 shadow',
-      { 'ring-accent-line bg-white ring-1': isInputFocused },
-    ]"
+    class="flex items-center gap-4 rounded-lg border-1 border-(--faint-line) bg-(--semantic-base-input-field-fill) px-4 py-3 shadow hover:bg-(--faint-weak) has-focus:border-(--accent-line) has-focus:bg-(--semantic-base-input-field-fill) dark:border-(--semantic-base-line) dark:has-focus:border-(--semantic-base-line)"
   >
-    <div class="flex-shrink-0 text-green-800">
-      <IHeroiconsMagnifyingGlass class="h-8 w-8" />
+    <div class="flex-shrink-0 text-(--semantic-accent-accent-icon)">
+      <IHeroiconsMagnifyingGlass :alt="t('iconSearch')" class="h-6 w-6" />
     </div>
+    <!-- TODO: extract input component, e.g. to set placeholder color in one place only -->
     <input
       id="search"
       v-model="model"
-      class="w-full border-none bg-transparent text-xl text-gray-600 placeholder-gray-400 outline-none focus:ring-0 focus:outline-none"
+      class="peer flex-grow border-none bg-transparent placeholder-(--semantic-base-text-secondary) ring-0"
       :placeholder="t('search')"
       type="text"
-      @focus="isInputFocused = true"
-      @blur="isInputFocused = false"
     />
-    <IMaevsiColoredCloseIcon
-      v-if="model && model.length > 0"
-      class="h-6 w-6"
-      :alt="t('iconAltClose')"
+    <ButtonIcon
+      :aria-label="t('close')"
+      class="hidden flex-shrink-0 text-(--semantic-accent-accent-icon) peer-not-placeholder-shown:block"
       @click="model = ''"
-    />
+    >
+      <IMaevsiClose :alt="t('iconClose')" class="h-6 w-6" />
+    </ButtonIcon>
   </div>
 </template>
 
 <script setup lang="ts">
 const { t } = useI18n()
-const isInputFocused = ref(false)
 const model = defineModel<string | undefined>({ required: true })
 </script>
 
 <i18n lang="yaml">
 de:
-  iconAltClose: Schließen-Symbol
+  close: Eingabe zurücksetzen
+  iconClose: Schließen-Symbol
+  iconSearch: Such-Icon
   search: Suche
 en:
-  iconAltClose: Close icon
+  close: Reset input
+  iconClose: Close icon
+  iconSearch: Search icon
   search: Search
 </i18n>
