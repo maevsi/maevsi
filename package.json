@@ -1,44 +1,54 @@
 {
-  "private": true,
-  "engines": {
-    "node": "22"
-  },
-  "packageManager": "pnpm@9.15.1",
-  "scripts": {
-    "build": "pnpm --dir src run build:node",
-    "build:node": "nuxt --dir src run build",
-    "build:static": "nuxt --dir src run generate",
-    "dev": "pnpm --dir src run start:dev",
-    "generate": "pnpm --dir src run build:static",
-    "lint": "pnpm -r lint",
-    "prepare": "husky",
-    "start:dev": "pnpm --dir src exec nuxt dev",
-    "start:node": "node src/.output/server/index.mjs",
-    "start:static": "pnpm --dir src exec serve .output/public",
-    "test:e2e:docker:server:dev:update": "pnpm --dir tests run test:e2e:docker:server:dev:update",
-    "test:e2e:docker:server:dev": "pnpm --dir tests run test:e2e:docker:server:dev",
-    "test:e2e:docker:server:node:update": "pnpm --dir tests run test:e2e:docker:server:node:update",
-    "test:e2e:docker:server:node": "pnpm --dir tests run test:e2e:docker:server:node",
-    "test:e2e:docker:server:static:update": "pnpm --dir tests run test:e2e:docker:server:static:update",
-    "test:e2e:docker:server:static": "pnpm --dir tests run test:e2e:docker:server:static"
-  },
   "devDependencies": {
     "@semantic-release/changelog": "6.0.3",
-    "@semantic-release/commit-analyzer": "13.0.0",
+    "@semantic-release/commit-analyzer": "13.0.1",
     "@semantic-release/git": "10.0.1",
     "@semantic-release/github": "11.0.1",
     "@semantic-release/npm": "12.0.1",
-    "@semantic-release/release-notes-generator": "14.0.2",
+    "@semantic-release/release-notes-generator": "14.0.3",
     "conventional-changelog-conventionalcommits": "8.0.0",
     "husky": "9.1.7",
     "jiti": "2.4.2",
-    "lint-staged": "15.2.11",
-    "semantic-release": "24.2.0"
+    "lint-staged": "15.4.3",
+    "semantic-release": "24.2.3"
   },
+  "engines": {
+    "node": "22"
+  },
+  "packageManager": "pnpm@10.5.2",
   "pnpm": {
-    "overrides": {
-      "typescript": "5.6.3"
-    }
+    "ignoredBuiltDependencies": [
+      "@firebase/util",
+      "@intlify/vue-i18n-bridge",
+      "@intlify/vue-router-bridge",
+      "@parcel/watcher",
+      "@sentry-internal/node-cpu-profiler",
+      "@sentry/cli",
+      "esbuild",
+      "protobufjs",
+      "sharp",
+      "vue-demi"
+    ]
+  },
+  "private": true,
+  "scripts": {
+    "build": "pnpm --dir src run build",
+    "build:node": "nuxt --dir src run build:node",
+    "build:static": "nuxt --dir src run build:static",
+    "dev": "pnpm --dir src run start:dev",
+    "generate": "pnpm --dir src run generate",
+    "lint": "pnpm -r lint",
+    "prepare": "husky",
+    "start": "pnpm --dir src run start",
+    "start:dev": "pnpm --dir src run start:dev",
+    "start:node": "pnpm --dir src run start:node",
+    "start:static": "pnpm --dir src run start:static",
+    "test:e2e:docker:server:dev": "pnpm --dir tests run test:e2e:docker:server:dev",
+    "test:e2e:docker:server:dev:update": "pnpm --dir tests run test:e2e:docker:server:dev:update",
+    "test:e2e:docker:server:node": "pnpm --dir tests run test:e2e:docker:server:node",
+    "test:e2e:docker:server:node:update": "pnpm --dir tests run test:e2e:docker:server:node:update",
+    "test:e2e:docker:server:static": "pnpm --dir tests run test:e2e:docker:server:static",
+    "test:e2e:docker:server:static:update": "pnpm --dir tests run test:e2e:docker:server:static:update"
   },
   "type": "module"
 }

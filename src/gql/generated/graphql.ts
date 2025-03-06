@@ -40,11 +40,15 @@ export type Scalars = {
    * 8601](https://en.wikipedia.org/wiki/ISO_8601) standard. May or may not include a timezone.
    */
   Datetime: { input: any; output: any }
+  /** The `GeoJSON` scalar type represents GeoJSON values as specified by[RFC 7946](https://tools.ietf.org/html/rfc7946). */
+  GeoJSON: { input: any; output: any }
   /**
    * A JSON Web Token defined by [RFC 7519](https://tools.ietf.org/html/rfc7519)
    * which securely represents claims between two parties.
    */
   Jwt: { input: any; output: any }
+  /** A builtin object identifier type for a text search configuration */
+  RegConfig: { input: any; output: any }
   /** A universally unique identifier as defined by [RFC 4122](https://tools.ietf.org/html/rfc4122). */
   UUID: { input: any; output: any }
 }
@@ -52,20 +56,44 @@ export type Scalars = {
 /** Public account data. */
 export type Account = Node & {
   __typename?: 'Account'
-  /** Reads and enables pagination through a set of `AccountBlock`. */
-  accountBlocksByAuthorAccountId: AccountBlocksConnection
-  /** Reads and enables pagination through a set of `AccountBlock`. */
-  accountBlocksByBlockedAccountId: AccountBlocksConnection
+  /** Reads and enables pagination through a set of `AccountInterest`. */
+  accountInterestsByAccountId: AccountInterestsConnection
+  /** Reads and enables pagination through a set of `AccountPreferenceEventSize`. */
+  accountPreferenceEventSizesByAccountId: AccountPreferenceEventSizesConnection
+  /** Reads and enables pagination through a set of `AccountSocialNetwork`. */
+  accountSocialNetworksByAccountId: AccountSocialNetworksConnection
   /** Reads and enables pagination through a set of `Achievement`. */
   achievementsByAccountId: AchievementsConnection
+  /** Reads and enables pagination through a set of `Address`. */
+  addressesByCreatedBy: AddressesConnection
+  /** Reads and enables pagination through a set of `Address`. */
+  addressesByUpdatedBy: AddressesConnection
   /** Reads and enables pagination through a set of `Contact`. */
   contactsByAccountId: ContactsConnection
   /** Reads and enables pagination through a set of `Contact`. */
-  contactsByAuthorAccountId: ContactsConnection
+  contactsByCreatedBy: ContactsConnection
+  /** Reads and enables pagination through a set of `Device`. */
+  devicesByCreatedBy: DevicesConnection
+  /** Reads and enables pagination through a set of `Device`. */
+  devicesByUpdatedBy: DevicesConnection
+  /** Reads and enables pagination through a set of `EventFavorite`. */
+  eventFavoritesByCreatedBy: EventFavoritesConnection
   /** Reads and enables pagination through a set of `EventGroup`. */
   eventGroupsByAuthorAccountId: EventGroupsConnection
+  /** Reads and enables pagination through a set of `EventRecommendation`. */
+  eventRecommendationsByAccountId: EventRecommendationsConnection
   /** Reads and enables pagination through a set of `Event`. */
-  eventsByAuthorAccountId: EventsConnection
+  eventsByCreatedBy: EventsConnection
+  /** Reads and enables pagination through a set of `Friendship`. */
+  friendshipsByAAccountId: FriendshipsConnection
+  /** Reads and enables pagination through a set of `Friendship`. */
+  friendshipsByBAccountId: FriendshipsConnection
+  /** Reads and enables pagination through a set of `Friendship`. */
+  friendshipsByCreatedBy: FriendshipsConnection
+  /** Reads and enables pagination through a set of `Friendship`. */
+  friendshipsByUpdatedBy: FriendshipsConnection
+  /** Reads and enables pagination through a set of `Guest`. */
+  guestsByUpdatedBy: GuestsConnection
   /** The account's internal id. */
   id: Scalars['UUID']['output']
   /** Reads and enables pagination through a set of `LegalTermAcceptance`. */
@@ -80,13 +108,35 @@ export type Account = Node & {
    */
   profilePicturesByAccountId: ProfilePicturesConnection
   /** Reads and enables pagination through a set of `Report`. */
-  reportsByAuthorAccountId: ReportsConnection
+  reportsByCreatedBy: ReportsConnection
   /** Reads and enables pagination through a set of `Report`. */
   reportsByTargetAccountId: ReportsConnection
   /** Reads and enables pagination through a set of `Upload`. */
   uploadsByAccountId: UploadsConnection
   /** The account's username. */
   username: Scalars['String']['output']
+}
+
+/** Public account data. */
+export type AccountAccountBlocksByBlockedAccountIdArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
+  condition?: InputMaybe<AccountBlockCondition>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  orderBy?: InputMaybe<Array<AccountBlocksOrderBy>>
+}
+
+/** Public account data. */
+export type AccountAccountBlocksByCreatedByArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
+  condition?: InputMaybe<AccountBlockCondition>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  orderBy?: InputMaybe<Array<AccountBlocksOrderBy>>
 }
 
 /** Public account data. */
@@ -123,6 +173,28 @@ export type AccountAchievementsByAccountIdArgs = {
 }
 
 /** Public account data. */
+export type AccountAddressesByCreatedByArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
+  condition?: InputMaybe<AddressCondition>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  orderBy?: InputMaybe<Array<AddressesOrderBy>>
+}
+
+/** Public account data. */
+export type AccountAddressesByUpdatedByArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
+  condition?: InputMaybe<AddressCondition>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  orderBy?: InputMaybe<Array<AddressesOrderBy>>
+}
+
+/** Public account data. */
 export type AccountContactsByAccountIdArgs = {
   after?: InputMaybe<Scalars['Cursor']['input']>
   before?: InputMaybe<Scalars['Cursor']['input']>
@@ -134,7 +206,7 @@ export type AccountContactsByAccountIdArgs = {
 }
 
 /** Public account data. */
-export type AccountContactsByAuthorAccountIdArgs = {
+export type AccountContactsByCreatedByArgs = {
   after?: InputMaybe<Scalars['Cursor']['input']>
   before?: InputMaybe<Scalars['Cursor']['input']>
   condition?: InputMaybe<ContactCondition>
@@ -145,7 +217,40 @@ export type AccountContactsByAuthorAccountIdArgs = {
 }
 
 /** Public account data. */
-export type AccountEventGroupsByAuthorAccountIdArgs = {
+export type AccountDevicesByCreatedByArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
+  condition?: InputMaybe<DeviceCondition>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  orderBy?: InputMaybe<Array<DevicesOrderBy>>
+}
+
+/** Public account data. */
+export type AccountDevicesByUpdatedByArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
+  condition?: InputMaybe<DeviceCondition>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  orderBy?: InputMaybe<Array<DevicesOrderBy>>
+}
+
+/** Public account data. */
+export type AccountEventFavoritesByCreatedByArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
+  condition?: InputMaybe<EventFavoriteCondition>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  orderBy?: InputMaybe<Array<EventFavoritesOrderBy>>
+}
+
+/** Public account data. */
+export type AccountEventGroupsByCreatedByArgs = {
   after?: InputMaybe<Scalars['Cursor']['input']>
   before?: InputMaybe<Scalars['Cursor']['input']>
   condition?: InputMaybe<EventGroupCondition>
@@ -156,7 +261,7 @@ export type AccountEventGroupsByAuthorAccountIdArgs = {
 }
 
 /** Public account data. */
-export type AccountEventsByAuthorAccountIdArgs = {
+export type AccountEventsByCreatedByArgs = {
   after?: InputMaybe<Scalars['Cursor']['input']>
   before?: InputMaybe<Scalars['Cursor']['input']>
   condition?: InputMaybe<EventCondition>
@@ -164,6 +269,17 @@ export type AccountEventsByAuthorAccountIdArgs = {
   last?: InputMaybe<Scalars['Int']['input']>
   offset?: InputMaybe<Scalars['Int']['input']>
   orderBy?: InputMaybe<Array<EventsOrderBy>>
+}
+
+/** Public account data. */
+export type AccountInvitationsByUpdatedByArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
+  condition?: InputMaybe<InvitationCondition>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  orderBy?: InputMaybe<Array<InvitationsOrderBy>>
 }
 
 /** Public account data. */
@@ -189,7 +305,7 @@ export type AccountProfilePicturesByAccountIdArgs = {
 }
 
 /** Public account data. */
-export type AccountReportsByAuthorAccountIdArgs = {
+export type AccountReportsByCreatedByArgs = {
   after?: InputMaybe<Scalars['Cursor']['input']>
   before?: InputMaybe<Scalars['Cursor']['input']>
   condition?: InputMaybe<ReportCondition>
@@ -219,85 +335,6 @@ export type AccountUploadsByAccountIdArgs = {
   last?: InputMaybe<Scalars['Int']['input']>
   offset?: InputMaybe<Scalars['Int']['input']>
   orderBy?: InputMaybe<Array<UploadsOrderBy>>
-}
-
-/** Blocking of an account by another account. */
-export type AccountBlock = Node & {
-  __typename?: 'AccountBlock'
-  /** Reads a single `Account` that is related to this `AccountBlock`. */
-  accountByAuthorAccountId?: Maybe<Account>
-  /** Reads a single `Account` that is related to this `AccountBlock`. */
-  accountByBlockedAccountId?: Maybe<Account>
-  /** The id of the user who created the blocking. */
-  authorAccountId: Scalars['UUID']['output']
-  /** The id of the account to be blocked. */
-  blockedAccountId: Scalars['UUID']['output']
-  /** The timestamp when the blocking was created. */
-  createdAt: Scalars['Datetime']['output']
-  id: Scalars['UUID']['output']
-  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
-  nodeId: Scalars['ID']['output']
-}
-
-/**
- * A condition to be used against `AccountBlock` object types. All fields are
- * tested for equality and combined with a logical ‘and.’
- */
-export type AccountBlockCondition = {
-  /** Checks for equality with the object’s `authorAccountId` field. */
-  authorAccountId?: InputMaybe<Scalars['UUID']['input']>
-  /** Checks for equality with the object’s `blockedAccountId` field. */
-  blockedAccountId?: InputMaybe<Scalars['UUID']['input']>
-  /** Checks for equality with the object’s `createdAt` field. */
-  createdAt?: InputMaybe<Scalars['Datetime']['input']>
-  /** Checks for equality with the object’s `id` field. */
-  id?: InputMaybe<Scalars['UUID']['input']>
-}
-
-/** An input for mutations affecting `AccountBlock` */
-export type AccountBlockInput = {
-  /** The id of the user who created the blocking. */
-  authorAccountId: Scalars['UUID']['input']
-  /** The id of the account to be blocked. */
-  blockedAccountId: Scalars['UUID']['input']
-  id?: InputMaybe<Scalars['UUID']['input']>
-}
-
-/** A connection to a list of `AccountBlock` values. */
-export type AccountBlocksConnection = {
-  __typename?: 'AccountBlocksConnection'
-  /** A list of edges which contains the `AccountBlock` and cursor to aid in pagination. */
-  edges: Array<AccountBlocksEdge>
-  /** A list of `AccountBlock` objects. */
-  nodes: Array<AccountBlock>
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo
-  /** The count of *all* `AccountBlock` you could get from the connection. */
-  totalCount: Scalars['Int']['output']
-}
-
-/** A `AccountBlock` edge in the connection. */
-export type AccountBlocksEdge = {
-  __typename?: 'AccountBlocksEdge'
-  /** A cursor for use in pagination. */
-  cursor?: Maybe<Scalars['Cursor']['output']>
-  /** The `AccountBlock` at the end of the edge. */
-  node: AccountBlock
-}
-
-/** Methods to use when ordering `AccountBlock`. */
-export enum AccountBlocksOrderBy {
-  AuthorAccountIdAsc = 'AUTHOR_ACCOUNT_ID_ASC',
-  AuthorAccountIdDesc = 'AUTHOR_ACCOUNT_ID_DESC',
-  BlockedAccountIdAsc = 'BLOCKED_ACCOUNT_ID_ASC',
-  BlockedAccountIdDesc = 'BLOCKED_ACCOUNT_ID_DESC',
-  CreatedAtAsc = 'CREATED_AT_ASC',
-  CreatedAtDesc = 'CREATED_AT_DESC',
-  IdAsc = 'ID_ASC',
-  IdDesc = 'ID_DESC',
-  Natural = 'NATURAL',
-  PrimaryKeyAsc = 'PRIMARY_KEY_ASC',
-  PrimaryKeyDesc = 'PRIMARY_KEY_DESC',
 }
 
 /** A condition to be used against `Account` object types. All fields are tested for equality and combined with a logical ‘and.’ */
@@ -577,6 +614,7 @@ export type AchievementPatch = {
 
 /** Achievements that can be unlocked by users. */
 export enum AchievementType {
+  EarlyBird = 'EARLY_BIRD',
   MeetTheTeam = 'MEET_THE_TEAM',
 }
 
@@ -641,6 +679,196 @@ export enum AchievementsOrderBy {
   PrimaryKeyDesc = 'PRIMARY_KEY_DESC',
 }
 
+/** Stores detailed address information, including lines, city, state, country, and metadata. */
+export type Address = Node & {
+  __typename?: 'Address'
+  /** Reads a single `Account` that is related to this `Address`. */
+  accountByCreatedBy?: Maybe<Account>
+  /** Reads a single `Account` that is related to this `Address`. */
+  accountByUpdatedBy?: Maybe<Account>
+  /** City of the address. Must be between 1 and 300 characters. */
+  city?: Maybe<Scalars['String']['output']>
+  /** Reads and enables pagination through a set of `Contact`. */
+  contactsByAddressId: ContactsConnection
+  /** Country of the address. Must be between 1 and 300 characters. */
+  country?: Maybe<Scalars['String']['output']>
+  /** Timestamp when the address was created. Defaults to the current timestamp. */
+  createdAt: Scalars['Datetime']['output']
+  /** Reference to the account that created the address. */
+  createdBy: Scalars['UUID']['output']
+  /** Reads and enables pagination through a set of `Event`. */
+  eventsByAddressId: EventsConnection
+  /** Primary key, uniquely identifies each address. */
+  id: Scalars['UUID']['output']
+  /** First line of the address (e.g., street address). Must be between 1 and 300 characters. */
+  line1?: Maybe<Scalars['String']['output']>
+  /** Second line of the address, if needed. Must be between 1 and 300 characters. */
+  line2?: Maybe<Scalars['String']['output']>
+  /** The geographic location of the address. */
+  location?: Maybe<GeographyPoint>
+  /** Person or company name. Must be between 1 and 300 characters. */
+  name: Scalars['String']['output']
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars['ID']['output']
+  /** Postal or ZIP code for the address. Must be between 1 and 20 characters. */
+  postalCode?: Maybe<Scalars['String']['output']>
+  /** Region of the address (e.g., state, province, county, department or territory). Must be between 1 and 300 characters. */
+  region?: Maybe<Scalars['String']['output']>
+  /** Timestamp when the address was last updated. */
+  updatedAt?: Maybe<Scalars['Datetime']['output']>
+  /** Reference to the account that last updated the address. */
+  updatedBy?: Maybe<Scalars['UUID']['output']>
+}
+
+/** Stores detailed address information, including lines, city, state, country, and metadata. */
+export type AddressContactsByAddressIdArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
+  condition?: InputMaybe<ContactCondition>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  orderBy?: InputMaybe<Array<ContactsOrderBy>>
+}
+
+/** Stores detailed address information, including lines, city, state, country, and metadata. */
+export type AddressEventsByAddressIdArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
+  condition?: InputMaybe<EventCondition>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  orderBy?: InputMaybe<Array<EventsOrderBy>>
+}
+
+/** A condition to be used against `Address` object types. All fields are tested for equality and combined with a logical ‘and.’ */
+export type AddressCondition = {
+  /** Checks for equality with the object’s `city` field. */
+  city?: InputMaybe<Scalars['String']['input']>
+  /** Checks for equality with the object’s `country` field. */
+  country?: InputMaybe<Scalars['String']['input']>
+  /** Checks for equality with the object’s `createdAt` field. */
+  createdAt?: InputMaybe<Scalars['Datetime']['input']>
+  /** Checks for equality with the object’s `createdBy` field. */
+  createdBy?: InputMaybe<Scalars['UUID']['input']>
+  /** Checks for equality with the object’s `id` field. */
+  id?: InputMaybe<Scalars['UUID']['input']>
+  /** Checks for equality with the object’s `line1` field. */
+  line1?: InputMaybe<Scalars['String']['input']>
+  /** Checks for equality with the object’s `line2` field. */
+  line2?: InputMaybe<Scalars['String']['input']>
+  /** Checks for equality with the object’s `location` field. */
+  location?: InputMaybe<Scalars['GeoJSON']['input']>
+  /** Checks for equality with the object’s `name` field. */
+  name?: InputMaybe<Scalars['String']['input']>
+  /** Checks for equality with the object’s `postalCode` field. */
+  postalCode?: InputMaybe<Scalars['String']['input']>
+  /** Checks for equality with the object’s `region` field. */
+  region?: InputMaybe<Scalars['String']['input']>
+  /** Checks for equality with the object’s `updatedAt` field. */
+  updatedAt?: InputMaybe<Scalars['Datetime']['input']>
+  /** Checks for equality with the object’s `updatedBy` field. */
+  updatedBy?: InputMaybe<Scalars['UUID']['input']>
+}
+
+/** An input for mutations affecting `Address` */
+export type AddressInput = {
+  /** City of the address. Must be between 1 and 300 characters. */
+  city?: InputMaybe<Scalars['String']['input']>
+  /** Country of the address. Must be between 1 and 300 characters. */
+  country?: InputMaybe<Scalars['String']['input']>
+  /** Reference to the account that created the address. */
+  createdBy: Scalars['UUID']['input']
+  /** First line of the address (e.g., street address). Must be between 1 and 300 characters. */
+  line1?: InputMaybe<Scalars['String']['input']>
+  /** Second line of the address, if needed. Must be between 1 and 300 characters. */
+  line2?: InputMaybe<Scalars['String']['input']>
+  /** The geographic location of the address. */
+  location?: InputMaybe<Scalars['GeoJSON']['input']>
+  /** Person or company name. Must be between 1 and 300 characters. */
+  name: Scalars['String']['input']
+  /** Postal or ZIP code for the address. Must be between 1 and 20 characters. */
+  postalCode?: InputMaybe<Scalars['String']['input']>
+  /** Region of the address (e.g., state, province, county, department or territory). Must be between 1 and 300 characters. */
+  region?: InputMaybe<Scalars['String']['input']>
+}
+
+/** Represents an update to a `Address`. Fields that are set will be updated. */
+export type AddressPatch = {
+  /** City of the address. Must be between 1 and 300 characters. */
+  city?: InputMaybe<Scalars['String']['input']>
+  /** Country of the address. Must be between 1 and 300 characters. */
+  country?: InputMaybe<Scalars['String']['input']>
+  /** First line of the address (e.g., street address). Must be between 1 and 300 characters. */
+  line1?: InputMaybe<Scalars['String']['input']>
+  /** Second line of the address, if needed. Must be between 1 and 300 characters. */
+  line2?: InputMaybe<Scalars['String']['input']>
+  /** The geographic location of the address. */
+  location?: InputMaybe<Scalars['GeoJSON']['input']>
+  /** Person or company name. Must be between 1 and 300 characters. */
+  name?: InputMaybe<Scalars['String']['input']>
+  /** Postal or ZIP code for the address. Must be between 1 and 20 characters. */
+  postalCode?: InputMaybe<Scalars['String']['input']>
+  /** Region of the address (e.g., state, province, county, department or territory). Must be between 1 and 300 characters. */
+  region?: InputMaybe<Scalars['String']['input']>
+}
+
+/** A connection to a list of `Address` values. */
+export type AddressesConnection = {
+  __typename?: 'AddressesConnection'
+  /** A list of edges which contains the `Address` and cursor to aid in pagination. */
+  edges: Array<AddressesEdge>
+  /** A list of `Address` objects. */
+  nodes: Array<Address>
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo
+  /** The count of *all* `Address` you could get from the connection. */
+  totalCount: Scalars['Int']['output']
+}
+
+/** A `Address` edge in the connection. */
+export type AddressesEdge = {
+  __typename?: 'AddressesEdge'
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']['output']>
+  /** The `Address` at the end of the edge. */
+  node: Address
+}
+
+/** Methods to use when ordering `Address`. */
+export enum AddressesOrderBy {
+  CityAsc = 'CITY_ASC',
+  CityDesc = 'CITY_DESC',
+  CountryAsc = 'COUNTRY_ASC',
+  CountryDesc = 'COUNTRY_DESC',
+  CreatedAtAsc = 'CREATED_AT_ASC',
+  CreatedAtDesc = 'CREATED_AT_DESC',
+  CreatedByAsc = 'CREATED_BY_ASC',
+  CreatedByDesc = 'CREATED_BY_DESC',
+  IdAsc = 'ID_ASC',
+  IdDesc = 'ID_DESC',
+  Line_1Asc = 'LINE_1_ASC',
+  Line_1Desc = 'LINE_1_DESC',
+  Line_2Asc = 'LINE_2_ASC',
+  Line_2Desc = 'LINE_2_DESC',
+  LocationAsc = 'LOCATION_ASC',
+  LocationDesc = 'LOCATION_DESC',
+  NameAsc = 'NAME_ASC',
+  NameDesc = 'NAME_DESC',
+  Natural = 'NATURAL',
+  PostalCodeAsc = 'POSTAL_CODE_ASC',
+  PostalCodeDesc = 'POSTAL_CODE_DESC',
+  PrimaryKeyAsc = 'PRIMARY_KEY_ASC',
+  PrimaryKeyDesc = 'PRIMARY_KEY_DESC',
+  RegionAsc = 'REGION_ASC',
+  RegionDesc = 'REGION_DESC',
+  UpdatedAtAsc = 'UPDATED_AT_ASC',
+  UpdatedAtDesc = 'UPDATED_AT_DESC',
+  UpdatedByAsc = 'UPDATED_BY_ASC',
+  UpdatedByDesc = 'UPDATED_BY_DESC',
+}
+
 /** All input for the `authenticate` mutation. */
 export type AuthenticateInput = {
   /**
@@ -665,48 +893,58 @@ export type AuthenticatePayload = {
   query?: Maybe<Query>
 }
 
-/** Contact data. */
+/** Stores contact information related to accounts, including personal details, communication preferences, and metadata. */
 export type Contact = Node & {
   __typename?: 'Contact'
   /** Reads a single `Account` that is related to this `Contact`. */
   accountByAccountId?: Maybe<Account>
   /** Reads a single `Account` that is related to this `Contact`. */
-  accountByAuthorAccountId?: Maybe<Account>
-  /** The contact account's id. */
+  accountByCreatedBy?: Maybe<Account>
+  /** Optional reference to an associated account. */
   accountId?: Maybe<Scalars['UUID']['output']>
   /** The contact's physical address. */
   address?: Maybe<Scalars['String']['output']>
   /** The contact author's id. */
   authorAccountId: Scalars['UUID']['output']
+  /** Timestamp of when the contact was created, defaults to the current timestamp. */
+  createdAt: Scalars['Datetime']['output']
   /** The contact's email address. */
   emailAddress?: Maybe<Scalars['String']['output']>
-  /** The contact's email address's md5 hash. */
+  /** Hash of the email address, generated using md5 on the lowercased trimmed version of the email. Useful to display a profile picture from Gravatar. */
   emailAddressHash?: Maybe<Scalars['String']['output']>
-  /** The contact's first name. */
+  /** First name of the contact. Must be between 1 and 100 characters. */
   firstName?: Maybe<Scalars['String']['output']>
-  /** The contact's internal id. */
+  /** Reads and enables pagination through a set of `Guest`. */
+  guestsByContactId: GuestsConnection
+  /** Primary key, uniquely identifies each contact. */
   id: Scalars['UUID']['output']
   /** Reads and enables pagination through a set of `Invitation`. */
   invitationsByContactId: InvitationsConnection
+  /** The contact's language. */
+  language?: Maybe<Language>
   /** The contact's last name. */
   lastName?: Maybe<Scalars['String']['output']>
+  /** The contact's nickname. */
+  nickname?: Maybe<Scalars['String']['output']>
   /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
   nodeId: Scalars['ID']['output']
-  /** The contact's international phone number. */
+  /** The contact's international phone number in E.164 format (https://wikipedia.org/wiki/E.164). */
   phoneNumber?: Maybe<Scalars['String']['output']>
+  /** The contact's ISO 8601 timezone, e.g. `+02:00`, `-05:30` or `Z`. */
+  timezone?: Maybe<Scalars['String']['output']>
   /** The contact's website url. */
   url?: Maybe<Scalars['String']['output']>
 }
 
-/** Contact data. */
-export type ContactInvitationsByContactIdArgs = {
+/** Stores contact information related to accounts, including personal details, communication preferences, and metadata. */
+export type ContactGuestsByContactIdArgs = {
   after?: InputMaybe<Scalars['Cursor']['input']>
   before?: InputMaybe<Scalars['Cursor']['input']>
-  condition?: InputMaybe<InvitationCondition>
+  condition?: InputMaybe<GuestCondition>
   first?: InputMaybe<Scalars['Int']['input']>
   last?: InputMaybe<Scalars['Int']['input']>
   offset?: InputMaybe<Scalars['Int']['input']>
-  orderBy?: InputMaybe<Array<InvitationsOrderBy>>
+  orderBy?: InputMaybe<Array<GuestsOrderBy>>
 }
 
 /** A condition to be used against `Contact` object types. All fields are tested for equality and combined with a logical ‘and.’ */
@@ -717,6 +955,8 @@ export type ContactCondition = {
   address?: InputMaybe<Scalars['String']['input']>
   /** Checks for equality with the object’s `authorAccountId` field. */
   authorAccountId?: InputMaybe<Scalars['UUID']['input']>
+  /** Checks for equality with the object’s `createdAt` field. */
+  createdAt?: InputMaybe<Scalars['Datetime']['input']>
   /** Checks for equality with the object’s `emailAddress` field. */
   emailAddress?: InputMaybe<Scalars['String']['input']>
   /** Checks for equality with the object’s `emailAddressHash` field. */
@@ -727,6 +967,8 @@ export type ContactCondition = {
   id?: InputMaybe<Scalars['UUID']['input']>
   /** Checks for equality with the object’s `lastName` field. */
   lastName?: InputMaybe<Scalars['String']['input']>
+  /** Checks for equality with the object’s `nickname` field. */
+  nickname?: InputMaybe<Scalars['String']['input']>
   /** Checks for equality with the object’s `phoneNumber` field. */
   phoneNumber?: InputMaybe<Scalars['String']['input']>
   /** Checks for equality with the object’s `url` field. */
@@ -735,40 +977,52 @@ export type ContactCondition = {
 
 /** An input for mutations affecting `Contact` */
 export type ContactInput = {
-  /** The contact account's id. */
+  /** Optional reference to an associated account. */
   accountId?: InputMaybe<Scalars['UUID']['input']>
-  /** The contact's physical address. */
-  address?: InputMaybe<Scalars['String']['input']>
-  /** The contact author's id. */
-  authorAccountId: Scalars['UUID']['input']
-  /** The contact's email address. */
+  /** Optional reference to the physical address of the contact. */
+  addressId?: InputMaybe<Scalars['UUID']['input']>
+  /** Reference to the account that created this contact. Enforces cascading deletion. */
+  createdBy: Scalars['UUID']['input']
+  /** Email address of the contact. Must be shorter than 256 characters. */
   emailAddress?: InputMaybe<Scalars['String']['input']>
-  /** The contact's first name. */
+  /** First name of the contact. Must be between 1 and 100 characters. */
   firstName?: InputMaybe<Scalars['String']['input']>
+  /** The contact's language. */
+  language?: InputMaybe<Language>
   /** The contact's last name. */
   lastName?: InputMaybe<Scalars['String']['input']>
-  /** The contact's international phone number. */
+  /** The contact's nickname. */
+  nickname?: InputMaybe<Scalars['String']['input']>
+  /** The contact's international phone number in E.164 format (https://wikipedia.org/wiki/E.164). */
   phoneNumber?: InputMaybe<Scalars['String']['input']>
+  /** The contact's ISO 8601 timezone, e.g. `+02:00`, `-05:30` or `Z`. */
+  timezone?: InputMaybe<Scalars['String']['input']>
   /** The contact's website url. */
   url?: InputMaybe<Scalars['String']['input']>
 }
 
 /** Represents an update to a `Contact`. Fields that are set will be updated. */
 export type ContactPatch = {
-  /** The contact account's id. */
+  /** Optional reference to an associated account. */
   accountId?: InputMaybe<Scalars['UUID']['input']>
-  /** The contact's physical address. */
-  address?: InputMaybe<Scalars['String']['input']>
-  /** The contact author's id. */
-  authorAccountId?: InputMaybe<Scalars['UUID']['input']>
-  /** The contact's email address. */
+  /** Optional reference to the physical address of the contact. */
+  addressId?: InputMaybe<Scalars['UUID']['input']>
+  /** Reference to the account that created this contact. Enforces cascading deletion. */
+  createdBy?: InputMaybe<Scalars['UUID']['input']>
+  /** Email address of the contact. Must be shorter than 256 characters. */
   emailAddress?: InputMaybe<Scalars['String']['input']>
-  /** The contact's first name. */
+  /** First name of the contact. Must be between 1 and 100 characters. */
   firstName?: InputMaybe<Scalars['String']['input']>
+  /** The contact's language. */
+  language?: InputMaybe<Language>
   /** The contact's last name. */
   lastName?: InputMaybe<Scalars['String']['input']>
-  /** The contact's international phone number. */
+  /** The contact's nickname. */
+  nickname?: InputMaybe<Scalars['String']['input']>
+  /** The contact's international phone number in E.164 format (https://wikipedia.org/wiki/E.164). */
   phoneNumber?: InputMaybe<Scalars['String']['input']>
+  /** The contact's ISO 8601 timezone, e.g. `+02:00`, `-05:30` or `Z`. */
+  timezone?: InputMaybe<Scalars['String']['input']>
   /** The contact's website url. */
   url?: InputMaybe<Scalars['String']['input']>
 }
@@ -803,6 +1057,8 @@ export enum ContactsOrderBy {
   AddressDesc = 'ADDRESS_DESC',
   AuthorAccountIdAsc = 'AUTHOR_ACCOUNT_ID_ASC',
   AuthorAccountIdDesc = 'AUTHOR_ACCOUNT_ID_DESC',
+  CreatedAtAsc = 'CREATED_AT_ASC',
+  CreatedAtDesc = 'CREATED_AT_DESC',
   EmailAddressAsc = 'EMAIL_ADDRESS_ASC',
   EmailAddressDesc = 'EMAIL_ADDRESS_DESC',
   EmailAddressHashAsc = 'EMAIL_ADDRESS_HASH_ASC',
@@ -814,12 +1070,50 @@ export enum ContactsOrderBy {
   LastNameAsc = 'LAST_NAME_ASC',
   LastNameDesc = 'LAST_NAME_DESC',
   Natural = 'NATURAL',
+  NicknameAsc = 'NICKNAME_ASC',
+  NicknameDesc = 'NICKNAME_DESC',
   PhoneNumberAsc = 'PHONE_NUMBER_ASC',
   PhoneNumberDesc = 'PHONE_NUMBER_DESC',
   PrimaryKeyAsc = 'PRIMARY_KEY_ASC',
   PrimaryKeyDesc = 'PRIMARY_KEY_DESC',
   UrlAsc = 'URL_ASC',
   UrlDesc = 'URL_DESC',
+}
+
+/** All input for the create `AccountBlock` mutation. */
+export type CreateAccountBlockInput = {
+  /** The `AccountBlock` to be created by this mutation. */
+  accountBlock: AccountBlockInput
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+}
+
+/** The output of our create `AccountBlock` mutation. */
+export type CreateAccountBlockPayload = {
+  __typename?: 'CreateAccountBlockPayload'
+  /** The `AccountBlock` that was created by this mutation. */
+  accountBlock?: Maybe<AccountBlock>
+  /** An edge for our `AccountBlock`. May be used by Relay 1. */
+  accountBlockEdge?: Maybe<AccountBlocksEdge>
+  /** Reads a single `Account` that is related to this `AccountBlock`. */
+  accountByBlockedAccountId?: Maybe<Account>
+  /** Reads a single `Account` that is related to this `AccountBlock`. */
+  accountByCreatedBy?: Maybe<Account>
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>
+}
+
+/** The output of our create `AccountBlock` mutation. */
+export type CreateAccountBlockPayloadAccountBlockEdgeArgs = {
+  orderBy?: InputMaybe<Array<AccountBlocksOrderBy>>
 }
 
 /** All input for the create `AccountBlock` mutation. */
@@ -924,6 +1218,42 @@ export type CreateAchievementPayloadAchievementEdgeArgs = {
   orderBy?: InputMaybe<Array<AchievementsOrderBy>>
 }
 
+/** All input for the create `Address` mutation. */
+export type CreateAddressInput = {
+  /** The `Address` to be created by this mutation. */
+  address: AddressInput
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+}
+
+/** The output of our create `Address` mutation. */
+export type CreateAddressPayload = {
+  __typename?: 'CreateAddressPayload'
+  /** Reads a single `Account` that is related to this `Address`. */
+  accountByCreatedBy?: Maybe<Account>
+  /** Reads a single `Account` that is related to this `Address`. */
+  accountByUpdatedBy?: Maybe<Account>
+  /** The `Address` that was created by this mutation. */
+  address?: Maybe<Address>
+  /** An edge for our `Address`. May be used by Relay 1. */
+  addressEdge?: Maybe<AddressesEdge>
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>
+}
+
+/** The output of our create `Address` mutation. */
+export type CreateAddressPayloadAddressEdgeArgs = {
+  orderBy?: InputMaybe<Array<AddressesOrderBy>>
+}
+
 /** All input for the create `Contact` mutation. */
 export type CreateContactInput = {
   /**
@@ -941,7 +1271,9 @@ export type CreateContactPayload = {
   /** Reads a single `Account` that is related to this `Contact`. */
   accountByAccountId?: Maybe<Account>
   /** Reads a single `Account` that is related to this `Contact`. */
-  accountByAuthorAccountId?: Maybe<Account>
+  accountByCreatedBy?: Maybe<Account>
+  /** Reads a single `Address` that is related to this `Contact`. */
+  addressByAddressId?: Maybe<Address>
   /**
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
@@ -960,6 +1292,74 @@ export type CreateContactPayloadContactEdgeArgs = {
   orderBy?: InputMaybe<Array<ContactsOrderBy>>
 }
 
+/** All input for the create `EventCategory` mutation. */
+export type CreateEventCategoryInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** The `EventCategory` to be created by this mutation. */
+  eventCategory: EventCategoryInput
+}
+
+/** All input for the create `EventCategoryMapping` mutation. */
+export type CreateEventCategoryMappingInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** The `EventCategoryMapping` to be created by this mutation. */
+  eventCategoryMapping: EventCategoryMappingInput
+}
+
+/** The output of our create `EventCategoryMapping` mutation. */
+export type CreateEventCategoryMappingPayload = {
+  __typename?: 'CreateEventCategoryMappingPayload'
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>
+  /** Reads a single `Event` that is related to this `EventCategoryMapping`. */
+  eventByEventId?: Maybe<Event>
+  /** Reads a single `EventCategory` that is related to this `EventCategoryMapping`. */
+  eventCategoryByCategory?: Maybe<EventCategory>
+  /** The `EventCategoryMapping` that was created by this mutation. */
+  eventCategoryMapping?: Maybe<EventCategoryMapping>
+  /** An edge for our `EventCategoryMapping`. May be used by Relay 1. */
+  eventCategoryMappingEdge?: Maybe<EventCategoryMappingsEdge>
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>
+}
+
+/** The output of our create `EventCategoryMapping` mutation. */
+export type CreateEventCategoryMappingPayloadEventCategoryMappingEdgeArgs = {
+  orderBy?: InputMaybe<Array<EventCategoryMappingsOrderBy>>
+}
+
+/** The output of our create `EventCategory` mutation. */
+export type CreateEventCategoryPayload = {
+  __typename?: 'CreateEventCategoryPayload'
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>
+  /** The `EventCategory` that was created by this mutation. */
+  eventCategory?: Maybe<EventCategory>
+  /** An edge for our `EventCategory`. May be used by Relay 1. */
+  eventCategoryEdge?: Maybe<EventCategoriesEdge>
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>
+}
+
+/** The output of our create `EventCategory` mutation. */
+export type CreateEventCategoryPayloadEventCategoryEdgeArgs = {
+  orderBy?: InputMaybe<Array<EventCategoriesOrderBy>>
+}
+
 /** All input for the create `EventGroup` mutation. */
 export type CreateEventGroupInput = {
   /**
@@ -975,7 +1375,7 @@ export type CreateEventGroupInput = {
 export type CreateEventGroupPayload = {
   __typename?: 'CreateEventGroupPayload'
   /** Reads a single `Account` that is related to this `EventGroup`. */
-  accountByAuthorAccountId?: Maybe<Account>
+  accountByCreatedBy?: Maybe<Account>
   /**
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
@@ -1045,7 +1445,9 @@ export type CreateEventInput = {
 export type CreateEventPayload = {
   __typename?: 'CreateEventPayload'
   /** Reads a single `Account` that is related to this `Event`. */
-  accountByAuthorAccountId?: Maybe<Account>
+  accountByCreatedBy?: Maybe<Account>
+  /** Reads a single `Address` that is related to this `Event`. */
+  addressByAddressId?: Maybe<Address>
   /**
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
@@ -1064,40 +1466,76 @@ export type CreateEventPayloadEventEdgeArgs = {
   orderBy?: InputMaybe<Array<EventsOrderBy>>
 }
 
-/** All input for the create `Invitation` mutation. */
-export type CreateInvitationInput = {
+/** All input for the create `Friendship` mutation. */
+export type CreateFriendshipInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
   clientMutationId?: InputMaybe<Scalars['String']['input']>
-  /** The `Invitation` to be created by this mutation. */
-  invitation: InvitationInput
+  /** The `Friendship` to be created by this mutation. */
+  friendship: FriendshipInput
 }
 
 /** The output of our create `Invitation` mutation. */
 export type CreateInvitationPayload = {
   __typename?: 'CreateInvitationPayload'
+  /** Reads a single `Account` that is related to this `Invitation`. */
+  accountByUpdatedBy?: Maybe<Account>
   /**
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
   clientMutationId?: Maybe<Scalars['String']['output']>
-  /** Reads a single `Contact` that is related to this `Invitation`. */
-  contactByContactId?: Maybe<Contact>
-  /** Reads a single `Event` that is related to this `Invitation`. */
-  eventByEventId?: Maybe<Event>
-  /** The `Invitation` that was created by this mutation. */
-  invitation?: Maybe<Invitation>
-  /** An edge for our `Invitation`. May be used by Relay 1. */
-  invitationEdge?: Maybe<InvitationsEdge>
+  /** The `Friendship` that was created by this mutation. */
+  friendship?: Maybe<Friendship>
+  /** An edge for our `Friendship`. May be used by Relay 1. */
+  friendshipEdge?: Maybe<FriendshipsEdge>
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>
 }
 
-/** The output of our create `Invitation` mutation. */
-export type CreateInvitationPayloadInvitationEdgeArgs = {
-  orderBy?: InputMaybe<Array<InvitationsOrderBy>>
+/** The output of our create `Friendship` mutation. */
+export type CreateFriendshipPayloadFriendshipEdgeArgs = {
+  orderBy?: InputMaybe<Array<FriendshipsOrderBy>>
+}
+
+/** All input for the create `Guest` mutation. */
+export type CreateGuestInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** The `Guest` to be created by this mutation. */
+  guest: GuestInput
+}
+
+/** The output of our create `Guest` mutation. */
+export type CreateGuestPayload = {
+  __typename?: 'CreateGuestPayload'
+  /** Reads a single `Account` that is related to this `Guest`. */
+  accountByUpdatedBy?: Maybe<Account>
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>
+  /** Reads a single `Contact` that is related to this `Guest`. */
+  contactByContactId?: Maybe<Contact>
+  /** Reads a single `Event` that is related to this `Guest`. */
+  eventByEventId?: Maybe<Event>
+  /** The `Guest` that was created by this mutation. */
+  guest?: Maybe<Guest>
+  /** An edge for our `Guest`. May be used by Relay 1. */
+  guestEdge?: Maybe<GuestsEdge>
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>
+}
+
+/** The output of our create `Guest` mutation. */
+export type CreateGuestPayloadGuestEdgeArgs = {
+  orderBy?: InputMaybe<Array<GuestsOrderBy>>
 }
 
 /** All input for the create `LegalTermAcceptance` mutation. */
@@ -1187,7 +1625,7 @@ export type CreateReportInput = {
 export type CreateReportPayload = {
   __typename?: 'CreateReportPayload'
   /** Reads a single `Account` that is related to this `Report`. */
-  accountByAuthorAccountId?: Maybe<Account>
+  accountByCreatedBy?: Maybe<Account>
   /** Reads a single `Account` that is related to this `Report`. */
   accountByTargetAccountId?: Maybe<Account>
   /**
@@ -1244,6 +1682,66 @@ export type CreateUploadPayload = {
 /** The output of our create `Upload` mutation. */
 export type CreateUploadPayloadUploadEdgeArgs = {
   orderBy?: InputMaybe<Array<UploadsOrderBy>>
+}
+
+/** All input for the `deleteAccountBlockByCreatedByAndBlockedAccountId` mutation. */
+export type DeleteAccountBlockByCreatedByAndBlockedAccountIdInput = {
+  /** The account id of the user who is blocked. */
+  blockedAccountId: Scalars['UUID']['input']
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** The account id of the user who created the account block. */
+  createdBy: Scalars['UUID']['input']
+}
+
+/** All input for the `deleteAccountBlockById` mutation. */
+export type DeleteAccountBlockByIdInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  id: Scalars['UUID']['input']
+}
+
+/** All input for the `deleteAccountBlock` mutation. */
+export type DeleteAccountBlockInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** The globally unique `ID` which will identify a single `AccountBlock` to be deleted. */
+  nodeId: Scalars['ID']['input']
+}
+
+/** The output of our delete `AccountBlock` mutation. */
+export type DeleteAccountBlockPayload = {
+  __typename?: 'DeleteAccountBlockPayload'
+  /** The `AccountBlock` that was deleted by this mutation. */
+  accountBlock?: Maybe<AccountBlock>
+  /** An edge for our `AccountBlock`. May be used by Relay 1. */
+  accountBlockEdge?: Maybe<AccountBlocksEdge>
+  /** Reads a single `Account` that is related to this `AccountBlock`. */
+  accountByBlockedAccountId?: Maybe<Account>
+  /** Reads a single `Account` that is related to this `AccountBlock`. */
+  accountByCreatedBy?: Maybe<Account>
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>
+  deletedAccountBlockId?: Maybe<Scalars['ID']['output']>
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>
+}
+
+/** The output of our delete `AccountBlock` mutation. */
+export type DeleteAccountBlockPayloadAccountBlockEdgeArgs = {
+  orderBy?: InputMaybe<Array<AccountBlocksOrderBy>>
 }
 
 /** All input for the `deleteAccountById` mutation. */
@@ -1360,17 +1858,65 @@ export type DeleteAchievementPayloadAchievementEdgeArgs = {
   orderBy?: InputMaybe<Array<AchievementsOrderBy>>
 }
 
-/** All input for the `deleteContactByAuthorAccountIdAndAccountId` mutation. */
-export type DeleteContactByAuthorAccountIdAndAccountIdInput = {
-  /** The contact account's id. */
-  accountId: Scalars['UUID']['input']
-  /** The contact author's id. */
-  authorAccountId: Scalars['UUID']['input']
+/** All input for the `deleteAddressById` mutation. */
+export type DeleteAddressByIdInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
   clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** Primary key, uniquely identifies each address. */
+  id: Scalars['UUID']['input']
+}
+
+/** All input for the `deleteAddress` mutation. */
+export type DeleteAddressInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** The globally unique `ID` which will identify a single `Address` to be deleted. */
+  nodeId: Scalars['ID']['input']
+}
+
+/** The output of our delete `Address` mutation. */
+export type DeleteAddressPayload = {
+  __typename?: 'DeleteAddressPayload'
+  /** Reads a single `Account` that is related to this `Address`. */
+  accountByCreatedBy?: Maybe<Account>
+  /** Reads a single `Account` that is related to this `Address`. */
+  accountByUpdatedBy?: Maybe<Account>
+  /** The `Address` that was deleted by this mutation. */
+  address?: Maybe<Address>
+  /** An edge for our `Address`. May be used by Relay 1. */
+  addressEdge?: Maybe<AddressesEdge>
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>
+  deletedAddressId?: Maybe<Scalars['ID']['output']>
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>
+}
+
+/** The output of our delete `Address` mutation. */
+export type DeleteAddressPayloadAddressEdgeArgs = {
+  orderBy?: InputMaybe<Array<AddressesOrderBy>>
+}
+
+/** All input for the `deleteContactByCreatedByAndAccountId` mutation. */
+export type DeleteContactByCreatedByAndAccountIdInput = {
+  /** Optional reference to an associated account. */
+  accountId: Scalars['UUID']['input']
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** Reference to the account that created this contact. Enforces cascading deletion. */
+  createdBy: Scalars['UUID']['input']
 }
 
 /** All input for the `deleteContactById` mutation. */
@@ -1380,7 +1926,7 @@ export type DeleteContactByIdInput = {
    * payload verbatim. May be used to track mutations by the client.
    */
   clientMutationId?: InputMaybe<Scalars['String']['input']>
-  /** The contact's internal id. */
+  /** Primary key, uniquely identifies each contact. */
   id: Scalars['UUID']['input']
 }
 
@@ -1401,7 +1947,9 @@ export type DeleteContactPayload = {
   /** Reads a single `Account` that is related to this `Contact`. */
   accountByAccountId?: Maybe<Account>
   /** Reads a single `Account` that is related to this `Contact`. */
-  accountByAuthorAccountId?: Maybe<Account>
+  accountByCreatedBy?: Maybe<Account>
+  /** Reads a single `Address` that is related to this `Contact`. */
+  addressByAddressId?: Maybe<Address>
   /**
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
@@ -1421,15 +1969,76 @@ export type DeleteContactPayloadContactEdgeArgs = {
   orderBy?: InputMaybe<Array<ContactsOrderBy>>
 }
 
-/** All input for the `deleteEventByAuthorAccountIdAndSlug` mutation. */
-export type DeleteEventByAuthorAccountIdAndSlugInput = {
-  /** The event author's id. */
-  authorAccountId: Scalars['UUID']['input']
+/** All input for the `deleteDeviceByCreatedByAndFcmToken` mutation. */
+export type DeleteDeviceByCreatedByAndFcmTokenInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
   clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** Reference to the account that created the device. */
+  createdBy: Scalars['UUID']['input']
+  /** The Firebase Cloud Messaging token of the device that's used to deliver notifications. */
+  fcmToken: Scalars['String']['input']
+}
+
+/** All input for the `deleteDeviceById` mutation. */
+export type DeleteDeviceByIdInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** The internal id of the device. */
+  id: Scalars['UUID']['input']
+}
+
+/** All input for the `deleteDevice` mutation. */
+export type DeleteDeviceInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** The globally unique `ID` which will identify a single `Device` to be deleted. */
+  nodeId: Scalars['ID']['input']
+}
+
+/** The output of our delete `Device` mutation. */
+export type DeleteDevicePayload = {
+  __typename?: 'DeleteDevicePayload'
+  /** Reads a single `Account` that is related to this `Device`. */
+  accountByCreatedBy?: Maybe<Account>
+  /** Reads a single `Account` that is related to this `Device`. */
+  accountByUpdatedBy?: Maybe<Account>
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>
+  deletedDeviceId?: Maybe<Scalars['ID']['output']>
+  /** The `Device` that was deleted by this mutation. */
+  device?: Maybe<Device>
+  /** An edge for our `Device`. May be used by Relay 1. */
+  deviceEdge?: Maybe<DevicesEdge>
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>
+}
+
+/** The output of our delete `Device` mutation. */
+export type DeleteDevicePayloadDeviceEdgeArgs = {
+  orderBy?: InputMaybe<Array<DevicesOrderBy>>
+}
+
+/** All input for the `deleteEventByCreatedByAndSlug` mutation. */
+export type DeleteEventByCreatedByAndSlugInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** The event creator's id. */
+  createdBy: Scalars['UUID']['input']
   /** The event's name, slugified. */
   slug: Scalars['String']['input']
 }
@@ -1445,15 +2054,76 @@ export type DeleteEventByIdInput = {
   id: Scalars['UUID']['input']
 }
 
-/** All input for the `deleteEventGroupByAuthorAccountIdAndSlug` mutation. */
-export type DeleteEventGroupByAuthorAccountIdAndSlugInput = {
-  /** The event group author's id. */
-  authorAccountId: Scalars['UUID']['input']
+/** All input for the `deleteEventFavoriteByCreatedByAndEventId` mutation. */
+export type DeleteEventFavoriteByCreatedByAndEventIdInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
   clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** Reference to the account that created the event favorite. */
+  createdBy: Scalars['UUID']['input']
+  /** Reference to the event that is marked as a favorite. */
+  eventId: Scalars['UUID']['input']
+}
+
+/** All input for the `deleteEventFavoriteById` mutation. */
+export type DeleteEventFavoriteByIdInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** Primary key, uniquely identifies each favorite entry. */
+  id: Scalars['UUID']['input']
+}
+
+/** All input for the `deleteEventFavorite` mutation. */
+export type DeleteEventFavoriteInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** The globally unique `ID` which will identify a single `EventFavorite` to be deleted. */
+  nodeId: Scalars['ID']['input']
+}
+
+/** The output of our delete `EventFavorite` mutation. */
+export type DeleteEventFavoritePayload = {
+  __typename?: 'DeleteEventFavoritePayload'
+  /** Reads a single `Account` that is related to this `EventFavorite`. */
+  accountByCreatedBy?: Maybe<Account>
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>
+  deletedEventFavoriteId?: Maybe<Scalars['ID']['output']>
+  /** Reads a single `Event` that is related to this `EventFavorite`. */
+  eventByEventId?: Maybe<Event>
+  /** The `EventFavorite` that was deleted by this mutation. */
+  eventFavorite?: Maybe<EventFavorite>
+  /** An edge for our `EventFavorite`. May be used by Relay 1. */
+  eventFavoriteEdge?: Maybe<EventFavoritesEdge>
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>
+}
+
+/** The output of our delete `EventFavorite` mutation. */
+export type DeleteEventFavoritePayloadEventFavoriteEdgeArgs = {
+  orderBy?: InputMaybe<Array<EventFavoritesOrderBy>>
+}
+
+/** All input for the `deleteEventGroupByCreatedByAndSlug` mutation. */
+export type DeleteEventGroupByCreatedByAndSlugInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** The event group creator's id. */
+  createdBy: Scalars['UUID']['input']
   /** The event group's name, slugified. */
   slug: Scalars['String']['input']
 }
@@ -1484,7 +2154,7 @@ export type DeleteEventGroupInput = {
 export type DeleteEventGroupPayload = {
   __typename?: 'DeleteEventGroupPayload'
   /** Reads a single `Account` that is related to this `EventGroup`. */
-  accountByAuthorAccountId?: Maybe<Account>
+  accountByCreatedBy?: Maybe<Account>
   /**
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
@@ -1580,7 +2250,9 @@ export type DeleteEventInput = {
 export type DeleteEventPayload = {
   __typename?: 'DeleteEventPayload'
   /** Reads a single `Account` that is related to this `Event`. */
-  accountByAuthorAccountId?: Maybe<Account>
+  accountByCreatedBy?: Maybe<Account>
+  /** Reads a single `Address` that is related to this `Event`. */
+  addressByAddressId?: Maybe<Address>
   /**
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
@@ -1600,65 +2272,243 @@ export type DeleteEventPayloadEventEdgeArgs = {
   orderBy?: InputMaybe<Array<EventsOrderBy>>
 }
 
-/** All input for the `deleteInvitationByEventIdAndContactId` mutation. */
-export type DeleteInvitationByEventIdAndContactIdInput = {
+/** All input for the `deleteEventRecommendationByAccountIdAndEventId` mutation. */
+export type DeleteEventRecommendationByAccountIdAndEventIdInput = {
+  /** A user account id. */
+  accountId: Scalars['UUID']['input']
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
   clientMutationId?: InputMaybe<Scalars['String']['input']>
-  /** The contact's internal id for which the invitation is valid. */
-  contactId: Scalars['UUID']['input']
-  /** The event's internal id for which the invitation is valid. */
+  /** The predicted score of the recommendation. */
   eventId: Scalars['UUID']['input']
 }
 
-/** All input for the `deleteInvitationById` mutation. */
-export type DeleteInvitationByIdInput = {
+/** All input for the `deleteEventRecommendation` mutation. */
+export type DeleteEventRecommendationInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
   clientMutationId?: InputMaybe<Scalars['String']['input']>
-  /** The invitations's internal id. */
+  /** The globally unique `ID` which will identify a single `EventRecommendation` to be deleted. */
+  nodeId: Scalars['ID']['input']
+}
+
+/** The output of our delete `EventRecommendation` mutation. */
+export type DeleteEventRecommendationPayload = {
+  __typename?: 'DeleteEventRecommendationPayload'
+  /** Reads a single `Account` that is related to this `EventRecommendation`. */
+  accountByAccountId?: Maybe<Account>
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>
+  deletedEventRecommendationId?: Maybe<Scalars['ID']['output']>
+  /** Reads a single `Event` that is related to this `EventRecommendation`. */
+  eventByEventId?: Maybe<Event>
+  /** The `EventRecommendation` that was deleted by this mutation. */
+  eventRecommendation?: Maybe<EventRecommendation>
+  /** An edge for our `EventRecommendation`. May be used by Relay 1. */
+  eventRecommendationEdge?: Maybe<EventRecommendationsEdge>
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>
+}
+
+/** The output of our delete `EventRecommendation` mutation. */
+export type DeleteEventRecommendationPayloadEventRecommendationEdgeArgs = {
+  orderBy?: InputMaybe<Array<EventRecommendationsOrderBy>>
+}
+
+/** All input for the `deleteEventUploadByEventIdAndUploadId` mutation. */
+export type DeleteEventUploadByEventIdAndUploadIdInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** The event's internal id for which the invitation is valid. */
+  eventId: Scalars['UUID']['input']
+  /** The internal id of the uploaded content. */
+  uploadId: Scalars['UUID']['input']
+}
+
+/** All input for the `deleteEventUploadById` mutation. */
+export type DeleteEventUploadByIdInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** The event's internal id for which the invitation is valid. */
   id: Scalars['UUID']['input']
 }
 
-/** All input for the `deleteInvitation` mutation. */
-export type DeleteInvitationInput = {
+/** All input for the `deleteEventUpload` mutation. */
+export type DeleteEventUploadInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
   clientMutationId?: InputMaybe<Scalars['String']['input']>
-  /** The globally unique `ID` which will identify a single `Invitation` to be deleted. */
+  /** The globally unique `ID` which will identify a single `EventUpload` to be deleted. */
+  nodeId: Scalars['ID']['input']
+}
+
+/** The output of our delete `EventUpload` mutation. */
+export type DeleteEventUploadPayload = {
+  __typename?: 'DeleteEventUploadPayload'
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>
+  deletedEventUploadId?: Maybe<Scalars['ID']['output']>
+  /** Reads a single `Event` that is related to this `EventUpload`. */
+  eventByEventId?: Maybe<Event>
+  /** The `EventUpload` that was deleted by this mutation. */
+  eventUpload?: Maybe<EventUpload>
+  /** An edge for our `EventUpload`. May be used by Relay 1. */
+  eventUploadEdge?: Maybe<EventUploadsEdge>
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>
+  /** Reads a single `Upload` that is related to this `EventUpload`. */
+  uploadByUploadId?: Maybe<Upload>
+}
+
+/** The output of our delete `EventUpload` mutation. */
+export type DeleteEventUploadPayloadEventUploadEdgeArgs = {
+  orderBy?: InputMaybe<Array<EventUploadsOrderBy>>
+}
+
+/** All input for the `deleteFriendshipByAAccountIdAndBAccountId` mutation. */
+export type DeleteFriendshipByAAccountIdAndBAccountIdInput = {
+  /** The 'left' side of the friend relation. It must be lexically less than the 'right' side. */
+  aAccountId: Scalars['UUID']['input']
+  /** The 'right' side of the friend relation. It must be lexically greater than the 'left' side. */
+  bAccountId: Scalars['UUID']['input']
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+}
+
+/** All input for the `deleteFriendshipById` mutation. */
+export type DeleteFriendshipByIdInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** The friend relation's internal id. */
+  id: Scalars['UUID']['input']
+}
+
+/** All input for the `deleteFriendship` mutation. */
+export type DeleteFriendshipInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** The globally unique `ID` which will identify a single `Friendship` to be deleted. */
+  nodeId: Scalars['ID']['input']
+}
+
+/** The output of our delete `Friendship` mutation. */
+export type DeleteFriendshipPayload = {
+  __typename?: 'DeleteFriendshipPayload'
+  /** Reads a single `Account` that is related to this `Friendship`. */
+  accountByAAccountId?: Maybe<Account>
+  /** Reads a single `Account` that is related to this `Friendship`. */
+  accountByBAccountId?: Maybe<Account>
+  /** Reads a single `Account` that is related to this `Friendship`. */
+  accountByCreatedBy?: Maybe<Account>
+  /** Reads a single `Account` that is related to this `Friendship`. */
+  accountByUpdatedBy?: Maybe<Account>
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>
+  deletedFriendshipId?: Maybe<Scalars['ID']['output']>
+  /** The `Friendship` that was deleted by this mutation. */
+  friendship?: Maybe<Friendship>
+  /** An edge for our `Friendship`. May be used by Relay 1. */
+  friendshipEdge?: Maybe<FriendshipsEdge>
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>
+}
+
+/** The output of our delete `Friendship` mutation. */
+export type DeleteFriendshipPayloadFriendshipEdgeArgs = {
+  orderBy?: InputMaybe<Array<FriendshipsOrderBy>>
+}
+
+/** All input for the `deleteGuestByEventIdAndContactId` mutation. */
+export type DeleteGuestByEventIdAndContactIdInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** The internal id of the guest's contact. */
+  contactId: Scalars['UUID']['input']
+  /** The internal id of the guest's event. */
+  eventId: Scalars['UUID']['input']
+}
+
+/** All input for the `deleteGuestById` mutation. */
+export type DeleteGuestByIdInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** The guests's internal id. */
+  id: Scalars['UUID']['input']
+}
+
+/** All input for the `deleteGuest` mutation. */
+export type DeleteGuestInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** The globally unique `ID` which will identify a single `Guest` to be deleted. */
   nodeId: Scalars['ID']['input']
 }
 
 /** The output of our delete `Invitation` mutation. */
 export type DeleteInvitationPayload = {
   __typename?: 'DeleteInvitationPayload'
+  /** Reads a single `Account` that is related to this `Invitation`. */
+  accountByUpdatedBy?: Maybe<Account>
   /**
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
   clientMutationId?: Maybe<Scalars['String']['output']>
-  /** Reads a single `Contact` that is related to this `Invitation`. */
+  /** Reads a single `Contact` that is related to this `Guest`. */
   contactByContactId?: Maybe<Contact>
-  deletedInvitationId?: Maybe<Scalars['ID']['output']>
-  /** Reads a single `Event` that is related to this `Invitation`. */
+  deletedGuestId?: Maybe<Scalars['ID']['output']>
+  /** Reads a single `Event` that is related to this `Guest`. */
   eventByEventId?: Maybe<Event>
-  /** The `Invitation` that was deleted by this mutation. */
-  invitation?: Maybe<Invitation>
-  /** An edge for our `Invitation`. May be used by Relay 1. */
-  invitationEdge?: Maybe<InvitationsEdge>
+  /** The `Guest` that was deleted by this mutation. */
+  guest?: Maybe<Guest>
+  /** An edge for our `Guest`. May be used by Relay 1. */
+  guestEdge?: Maybe<GuestsEdge>
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>
 }
 
-/** The output of our delete `Invitation` mutation. */
-export type DeleteInvitationPayloadInvitationEdgeArgs = {
-  orderBy?: InputMaybe<Array<InvitationsOrderBy>>
+/** The output of our delete `Guest` mutation. */
+export type DeleteGuestPayloadGuestEdgeArgs = {
+  orderBy?: InputMaybe<Array<GuestsOrderBy>>
 }
 
 /** All input for the `deleteLegalTermAcceptanceById` mutation. */
@@ -1825,6 +2675,100 @@ export type DeleteUploadPayloadUploadEdgeArgs = {
   orderBy?: InputMaybe<Array<UploadsOrderBy>>
 }
 
+/** A device that's assigned to an account. */
+export type Device = Node & {
+  __typename?: 'Device'
+  /** Reads a single `Account` that is related to this `Device`. */
+  accountByCreatedBy?: Maybe<Account>
+  /** Reads a single `Account` that is related to this `Device`. */
+  accountByUpdatedBy?: Maybe<Account>
+  /** Timestamp when the device was created. Defaults to the current timestamp. */
+  createdAt: Scalars['Datetime']['output']
+  /** Reference to the account that created the device. */
+  createdBy: Scalars['UUID']['output']
+  /** The Firebase Cloud Messaging token of the device that's used to deliver notifications. */
+  fcmToken?: Maybe<Scalars['String']['output']>
+  /** The internal id of the device. */
+  id: Scalars['UUID']['output']
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars['ID']['output']
+  /** Timestamp when the device was last updated. */
+  updatedAt?: Maybe<Scalars['Datetime']['output']>
+  /** Reference to the account that last updated the device. */
+  updatedBy?: Maybe<Scalars['UUID']['output']>
+}
+
+/** A condition to be used against `Device` object types. All fields are tested for equality and combined with a logical ‘and.’ */
+export type DeviceCondition = {
+  /** Checks for equality with the object’s `createdAt` field. */
+  createdAt?: InputMaybe<Scalars['Datetime']['input']>
+  /** Checks for equality with the object’s `createdBy` field. */
+  createdBy?: InputMaybe<Scalars['UUID']['input']>
+  /** Checks for equality with the object’s `fcmToken` field. */
+  fcmToken?: InputMaybe<Scalars['String']['input']>
+  /** Checks for equality with the object’s `id` field. */
+  id?: InputMaybe<Scalars['UUID']['input']>
+  /** Checks for equality with the object’s `updatedAt` field. */
+  updatedAt?: InputMaybe<Scalars['Datetime']['input']>
+  /** Checks for equality with the object’s `updatedBy` field. */
+  updatedBy?: InputMaybe<Scalars['UUID']['input']>
+}
+
+/** An input for mutations affecting `Device` */
+export type DeviceInput = {
+  /** Reference to the account that created the device. */
+  createdBy: Scalars['UUID']['input']
+  /** The Firebase Cloud Messaging token of the device that's used to deliver notifications. */
+  fcmToken?: InputMaybe<Scalars['String']['input']>
+}
+
+/** Represents an update to a `Device`. Fields that are set will be updated. */
+export type DevicePatch = {
+  /** The Firebase Cloud Messaging token of the device that's used to deliver notifications. */
+  fcmToken?: InputMaybe<Scalars['String']['input']>
+}
+
+/** A connection to a list of `Device` values. */
+export type DevicesConnection = {
+  __typename?: 'DevicesConnection'
+  /** A list of edges which contains the `Device` and cursor to aid in pagination. */
+  edges: Array<DevicesEdge>
+  /** A list of `Device` objects. */
+  nodes: Array<Device>
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo
+  /** The count of *all* `Device` you could get from the connection. */
+  totalCount: Scalars['Int']['output']
+}
+
+/** A `Device` edge in the connection. */
+export type DevicesEdge = {
+  __typename?: 'DevicesEdge'
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']['output']>
+  /** The `Device` at the end of the edge. */
+  node: Device
+}
+
+/** Methods to use when ordering `Device`. */
+export enum DevicesOrderBy {
+  CreatedAtAsc = 'CREATED_AT_ASC',
+  CreatedAtDesc = 'CREATED_AT_DESC',
+  CreatedByAsc = 'CREATED_BY_ASC',
+  CreatedByDesc = 'CREATED_BY_DESC',
+  FcmTokenAsc = 'FCM_TOKEN_ASC',
+  FcmTokenDesc = 'FCM_TOKEN_DESC',
+  IdAsc = 'ID_ASC',
+  IdDesc = 'ID_DESC',
+  Natural = 'NATURAL',
+  PrimaryKeyAsc = 'PRIMARY_KEY_ASC',
+  PrimaryKeyDesc = 'PRIMARY_KEY_DESC',
+  UpdatedAtAsc = 'UPDATED_AT_ASC',
+  UpdatedAtDesc = 'UPDATED_AT_DESC',
+  UpdatedByAsc = 'UPDATED_BY_ASC',
+  UpdatedByDesc = 'UPDATED_BY_DESC',
+}
+
 /** An event. */
 export type Event = Node & {
   __typename?: 'Event'
@@ -1832,26 +2776,29 @@ export type Event = Node & {
   accountByAuthorAccountId?: Maybe<Account>
   /** The event author's id. */
   authorAccountId: Scalars['UUID']['output']
+  /** Timestamp of when the event was created, defaults to the current timestamp. */
+  createdAt: Scalars['Datetime']['output']
   /** The event's description. */
   description?: Maybe<Scalars['String']['output']>
   /** The event's end date and time, with timezone. */
   end?: Maybe<Scalars['Datetime']['output']>
+  /** Reads and enables pagination through a set of `EventCategoryMapping`. */
+  eventCategoryMappingsByEventId: EventCategoryMappingsConnection
   /** Reads and enables pagination through a set of `EventGrouping`. */
   eventGroupingsByEventId: EventGroupingsConnection
+  /** Reads and enables pagination through a set of `EventRecommendation`. */
+  eventRecommendationsByEventId: EventRecommendationsConnection
+  /** Reads and enables pagination through a set of `EventUpload`. */
+  eventUploadsByEventId: EventUploadsConnection
   /** The event's internal id. */
   id: Scalars['UUID']['output']
-  /** Reads and enables pagination through a set of `Invitation`. */
-  invitationsByEventId: InvitationsConnection
-  /** The event's maximum invitee count. */
-  inviteeCountMaximum?: Maybe<Scalars['Int']['output']>
   /** Indicates whether the event is archived. */
   isArchived: Scalars['Boolean']['output']
   /** Indicates whether the event takes place in person. */
   isInPerson?: Maybe<Scalars['Boolean']['output']>
   /** Indicates whether the event takes place remotely. */
   isRemote?: Maybe<Scalars['Boolean']['output']>
-  /** The event's location as it can be shown on a map. */
-  location?: Maybe<Scalars['String']['output']>
+  language?: Maybe<Language>
   /** The event's name. */
   name: Scalars['String']['output']
   /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
@@ -1869,6 +2816,17 @@ export type Event = Node & {
 }
 
 /** An event. */
+export type EventEventCategoryMappingsByEventIdArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
+  condition?: InputMaybe<EventCategoryMappingCondition>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  orderBy?: InputMaybe<Array<EventCategoryMappingsOrderBy>>
+}
+
+/** An event. */
 export type EventEventGroupingsByEventIdArgs = {
   after?: InputMaybe<Scalars['Cursor']['input']>
   before?: InputMaybe<Scalars['Cursor']['input']>
@@ -1880,14 +2838,14 @@ export type EventEventGroupingsByEventIdArgs = {
 }
 
 /** An event. */
-export type EventInvitationsByEventIdArgs = {
+export type EventGuestsByEventIdArgs = {
   after?: InputMaybe<Scalars['Cursor']['input']>
   before?: InputMaybe<Scalars['Cursor']['input']>
-  condition?: InputMaybe<InvitationCondition>
+  condition?: InputMaybe<GuestCondition>
   first?: InputMaybe<Scalars['Int']['input']>
   last?: InputMaybe<Scalars['Int']['input']>
   offset?: InputMaybe<Scalars['Int']['input']>
-  orderBy?: InputMaybe<Array<InvitationsOrderBy>>
+  orderBy?: InputMaybe<Array<GuestsOrderBy>>
 }
 
 /** An event. */
@@ -1905,22 +2863,24 @@ export type EventReportsByTargetEventIdArgs = {
 export type EventCondition = {
   /** Checks for equality with the object’s `authorAccountId` field. */
   authorAccountId?: InputMaybe<Scalars['UUID']['input']>
+  /** Checks for equality with the object’s `createdAt` field. */
+  createdAt?: InputMaybe<Scalars['Datetime']['input']>
   /** Checks for equality with the object’s `description` field. */
   description?: InputMaybe<Scalars['String']['input']>
   /** Checks for equality with the object’s `end` field. */
   end?: InputMaybe<Scalars['Datetime']['input']>
+  /** Checks for equality with the object’s `guestCountMaximum` field. */
+  guestCountMaximum?: InputMaybe<Scalars['Int']['input']>
   /** Checks for equality with the object’s `id` field. */
   id?: InputMaybe<Scalars['UUID']['input']>
-  /** Checks for equality with the object’s `inviteeCountMaximum` field. */
-  inviteeCountMaximum?: InputMaybe<Scalars['Int']['input']>
   /** Checks for equality with the object’s `isArchived` field. */
   isArchived?: InputMaybe<Scalars['Boolean']['input']>
   /** Checks for equality with the object’s `isInPerson` field. */
   isInPerson?: InputMaybe<Scalars['Boolean']['input']>
   /** Checks for equality with the object’s `isRemote` field. */
   isRemote?: InputMaybe<Scalars['Boolean']['input']>
-  /** Checks for equality with the object’s `location` field. */
-  location?: InputMaybe<Scalars['String']['input']>
+  /** Checks for equality with the object’s `language` field. */
+  language?: InputMaybe<Language>
   /** Checks for equality with the object’s `name` field. */
   name?: InputMaybe<Scalars['String']['input']>
   /** Checks for equality with the object’s `slug` field. */
@@ -1948,7 +2908,9 @@ export type EventDeleteInput = {
 export type EventDeletePayload = {
   __typename?: 'EventDeletePayload'
   /** Reads a single `Account` that is related to this `Event`. */
-  accountByAuthorAccountId?: Maybe<Account>
+  accountByCreatedBy?: Maybe<Account>
+  /** Reads a single `Address` that is related to this `Event`. */
+  addressByAddressId?: Maybe<Address>
   /**
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
@@ -1966,6 +2928,89 @@ export type EventDeletePayloadEventEdgeArgs = {
   orderBy?: InputMaybe<Array<EventsOrderBy>>
 }
 
+/** Stores user-specific event favorites, linking an event to the account that marked it as a favorite. */
+export type EventFavorite = Node & {
+  __typename?: 'EventFavorite'
+  /** Reads a single `Account` that is related to this `EventFavorite`. */
+  accountByCreatedBy?: Maybe<Account>
+  /** Timestamp when the favorite was created. Defaults to the current timestamp. */
+  createdAt: Scalars['Datetime']['output']
+  /** Reference to the account that created the event favorite. */
+  createdBy: Scalars['UUID']['output']
+  /** Reads a single `Event` that is related to this `EventFavorite`. */
+  eventByEventId?: Maybe<Event>
+  /** Reference to the event that is marked as a favorite. */
+  eventId?: Maybe<Scalars['UUID']['output']>
+  /** Primary key, uniquely identifies each favorite entry. */
+  id: Scalars['UUID']['output']
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars['ID']['output']
+}
+
+/**
+ * A condition to be used against `EventFavorite` object types. All fields are
+ * tested for equality and combined with a logical ‘and.’
+ */
+export type EventFavoriteCondition = {
+  /** Checks for equality with the object’s `createdAt` field. */
+  createdAt?: InputMaybe<Scalars['Datetime']['input']>
+  /** Checks for equality with the object’s `createdBy` field. */
+  createdBy?: InputMaybe<Scalars['UUID']['input']>
+  /** Checks for equality with the object’s `eventId` field. */
+  eventId?: InputMaybe<Scalars['UUID']['input']>
+  /** Checks for equality with the object’s `id` field. */
+  id?: InputMaybe<Scalars['UUID']['input']>
+}
+
+/** An input for mutations affecting `EventFavorite` */
+export type EventFavoriteInput = {
+  /** Reference to the event that is marked as a favorite. */
+  eventId?: InputMaybe<Scalars['UUID']['input']>
+}
+
+/** Represents an update to a `EventFavorite`. Fields that are set will be updated. */
+export type EventFavoritePatch = {
+  /** Reference to the event that is marked as a favorite. */
+  eventId?: InputMaybe<Scalars['UUID']['input']>
+}
+
+/** A connection to a list of `EventFavorite` values. */
+export type EventFavoritesConnection = {
+  __typename?: 'EventFavoritesConnection'
+  /** A list of edges which contains the `EventFavorite` and cursor to aid in pagination. */
+  edges: Array<EventFavoritesEdge>
+  /** A list of `EventFavorite` objects. */
+  nodes: Array<EventFavorite>
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo
+  /** The count of *all* `EventFavorite` you could get from the connection. */
+  totalCount: Scalars['Int']['output']
+}
+
+/** A `EventFavorite` edge in the connection. */
+export type EventFavoritesEdge = {
+  __typename?: 'EventFavoritesEdge'
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']['output']>
+  /** The `EventFavorite` at the end of the edge. */
+  node: EventFavorite
+}
+
+/** Methods to use when ordering `EventFavorite`. */
+export enum EventFavoritesOrderBy {
+  CreatedAtAsc = 'CREATED_AT_ASC',
+  CreatedAtDesc = 'CREATED_AT_DESC',
+  CreatedByAsc = 'CREATED_BY_ASC',
+  CreatedByDesc = 'CREATED_BY_DESC',
+  EventIdAsc = 'EVENT_ID_ASC',
+  EventIdDesc = 'EVENT_ID_DESC',
+  IdAsc = 'ID_ASC',
+  IdDesc = 'ID_DESC',
+  Natural = 'NATURAL',
+  PrimaryKeyAsc = 'PRIMARY_KEY_ASC',
+  PrimaryKeyDesc = 'PRIMARY_KEY_DESC',
+}
+
 /** A group of events. */
 export type EventGroup = Node & {
   __typename?: 'EventGroup'
@@ -1973,6 +3018,8 @@ export type EventGroup = Node & {
   accountByAuthorAccountId?: Maybe<Account>
   /** The event group author's id. */
   authorAccountId: Scalars['UUID']['output']
+  /** Timestamp of when the event group was created, defaults to the current timestamp. */
+  createdAt: Scalars['Datetime']['output']
   /** The event group's description. */
   description?: Maybe<Scalars['String']['output']>
   /** Reads and enables pagination through a set of `EventGrouping`. */
@@ -2007,6 +3054,8 @@ export type EventGroupEventGroupingsByEventGroupIdArgs = {
 export type EventGroupCondition = {
   /** Checks for equality with the object’s `authorAccountId` field. */
   authorAccountId?: InputMaybe<Scalars['UUID']['input']>
+  /** Checks for equality with the object’s `createdAt` field. */
+  createdAt?: InputMaybe<Scalars['Datetime']['input']>
   /** Checks for equality with the object’s `description` field. */
   description?: InputMaybe<Scalars['String']['input']>
   /** Checks for equality with the object’s `id` field. */
@@ -2021,8 +3070,8 @@ export type EventGroupCondition = {
 
 /** An input for mutations affecting `EventGroup` */
 export type EventGroupInput = {
-  /** The event group author's id. */
-  authorAccountId: Scalars['UUID']['input']
+  /** The event group creator's id. */
+  createdBy: Scalars['UUID']['input']
   /** The event group's description. */
   description?: InputMaybe<Scalars['String']['input']>
   /** Indicates whether the event group is archived. */
@@ -2033,8 +3082,8 @@ export type EventGroupInput = {
 
 /** Represents an update to a `EventGroup`. Fields that are set will be updated. */
 export type EventGroupPatch = {
-  /** The event group author's id. */
-  authorAccountId?: InputMaybe<Scalars['UUID']['input']>
+  /** The event group creator's id. */
+  createdBy?: InputMaybe<Scalars['UUID']['input']>
   /** The event group's description. */
   description?: InputMaybe<Scalars['String']['input']>
   /** Indicates whether the event group is archived. */
@@ -2150,6 +3199,8 @@ export type EventGroupsEdge = {
 export enum EventGroupsOrderBy {
   AuthorAccountIdAsc = 'AUTHOR_ACCOUNT_ID_ASC',
   AuthorAccountIdDesc = 'AUTHOR_ACCOUNT_ID_DESC',
+  CreatedAtAsc = 'CREATED_AT_ASC',
+  CreatedAtDesc = 'CREATED_AT_DESC',
   DescriptionAsc = 'DESCRIPTION_ASC',
   DescriptionDesc = 'DESCRIPTION_DESC',
   IdAsc = 'ID_ASC',
@@ -2167,22 +3218,23 @@ export enum EventGroupsOrderBy {
 
 /** An input for mutations affecting `Event` */
 export type EventInput = {
-  /** The event author's id. */
-  authorAccountId: Scalars['UUID']['input']
+  /** Optional reference to the physical address of the event. */
+  addressId?: InputMaybe<Scalars['UUID']['input']>
+  /** The event creator's id. */
+  createdBy: Scalars['UUID']['input']
   /** The event's description. */
   description?: InputMaybe<Scalars['String']['input']>
   /** The event's end date and time, with timezone. */
   end?: InputMaybe<Scalars['Datetime']['input']>
-  /** The event's maximum invitee count. */
-  inviteeCountMaximum?: InputMaybe<Scalars['Int']['input']>
+  /** The event's maximum guest count. */
+  guestCountMaximum?: InputMaybe<Scalars['Int']['input']>
   /** Indicates whether the event is archived. */
   isArchived?: InputMaybe<Scalars['Boolean']['input']>
   /** Indicates whether the event takes place in person. */
   isInPerson?: InputMaybe<Scalars['Boolean']['input']>
   /** Indicates whether the event takes place remotely. */
   isRemote?: InputMaybe<Scalars['Boolean']['input']>
-  /** The event's location as it can be shown on a map. */
-  location?: InputMaybe<Scalars['String']['input']>
+  language?: InputMaybe<Language>
   /** The event's name. */
   name: Scalars['String']['input']
   /** The event's name, slugified. */
@@ -2197,22 +3249,23 @@ export type EventInput = {
 
 /** Represents an update to a `Event`. Fields that are set will be updated. */
 export type EventPatch = {
-  /** The event author's id. */
-  authorAccountId?: InputMaybe<Scalars['UUID']['input']>
+  /** Optional reference to the physical address of the event. */
+  addressId?: InputMaybe<Scalars['UUID']['input']>
+  /** The event creator's id. */
+  createdBy?: InputMaybe<Scalars['UUID']['input']>
   /** The event's description. */
   description?: InputMaybe<Scalars['String']['input']>
   /** The event's end date and time, with timezone. */
   end?: InputMaybe<Scalars['Datetime']['input']>
-  /** The event's maximum invitee count. */
-  inviteeCountMaximum?: InputMaybe<Scalars['Int']['input']>
+  /** The event's maximum guest count. */
+  guestCountMaximum?: InputMaybe<Scalars['Int']['input']>
   /** Indicates whether the event is archived. */
   isArchived?: InputMaybe<Scalars['Boolean']['input']>
   /** Indicates whether the event takes place in person. */
   isInPerson?: InputMaybe<Scalars['Boolean']['input']>
   /** Indicates whether the event takes place remotely. */
   isRemote?: InputMaybe<Scalars['Boolean']['input']>
-  /** The event's location as it can be shown on a map. */
-  location?: InputMaybe<Scalars['String']['input']>
+  language?: InputMaybe<Language>
   /** The event's name. */
   name?: InputMaybe<Scalars['String']['input']>
   /** The event's name, slugified. */
@@ -2232,7 +3285,7 @@ export type EventUnlockInput = {
    * payload verbatim. May be used to track mutations by the client.
    */
   clientMutationId?: InputMaybe<Scalars['String']['input']>
-  invitationId: Scalars['UUID']['input']
+  guestId: Scalars['UUID']['input']
 }
 
 /** The output of our `eventUnlock` mutation. */
@@ -2250,15 +3303,89 @@ export type EventUnlockPayload = {
 
 export type EventUnlockResponse = {
   __typename?: 'EventUnlockResponse'
-  authorAccountUsername?: Maybe<Scalars['String']['output']>
+  creatorUsername?: Maybe<Scalars['String']['output']>
   eventSlug?: Maybe<Scalars['String']['output']>
   jwt?: Maybe<Scalars['Jwt']['output']>
 }
 
-/** Possible visibilities of events and event groups: public, private. */
+/** An assignment of an uploaded content (e.g. an image) to an event. */
+export type EventUpload = Node & {
+  __typename?: 'EventUpload'
+  /** Reads a single `Event` that is related to this `EventUpload`. */
+  eventByEventId?: Maybe<Event>
+  /** The event's internal id for which the invitation is valid. */
+  eventId: Scalars['UUID']['output']
+  /** The event's internal id for which the invitation is valid. */
+  id: Scalars['UUID']['output']
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars['ID']['output']
+  /** Reads a single `Upload` that is related to this `EventUpload`. */
+  uploadByUploadId?: Maybe<Upload>
+  /** The internal id of the uploaded content. */
+  uploadId: Scalars['UUID']['output']
+}
+
+/**
+ * A condition to be used against `EventUpload` object types. All fields are tested
+ * for equality and combined with a logical ‘and.’
+ */
+export type EventUploadCondition = {
+  /** Checks for equality with the object’s `eventId` field. */
+  eventId?: InputMaybe<Scalars['UUID']['input']>
+  /** Checks for equality with the object’s `id` field. */
+  id?: InputMaybe<Scalars['UUID']['input']>
+  /** Checks for equality with the object’s `uploadId` field. */
+  uploadId?: InputMaybe<Scalars['UUID']['input']>
+}
+
+/** An input for mutations affecting `EventUpload` */
+export type EventUploadInput = {
+  /** The event's internal id for which the invitation is valid. */
+  eventId: Scalars['UUID']['input']
+  /** The internal id of the uploaded content. */
+  uploadId: Scalars['UUID']['input']
+}
+
+/** A connection to a list of `EventUpload` values. */
+export type EventUploadsConnection = {
+  __typename?: 'EventUploadsConnection'
+  /** A list of edges which contains the `EventUpload` and cursor to aid in pagination. */
+  edges: Array<EventUploadsEdge>
+  /** A list of `EventUpload` objects. */
+  nodes: Array<EventUpload>
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo
+  /** The count of *all* `EventUpload` you could get from the connection. */
+  totalCount: Scalars['Int']['output']
+}
+
+/** A `EventUpload` edge in the connection. */
+export type EventUploadsEdge = {
+  __typename?: 'EventUploadsEdge'
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']['output']>
+  /** The `EventUpload` at the end of the edge. */
+  node: EventUpload
+}
+
+/** Methods to use when ordering `EventUpload`. */
+export enum EventUploadsOrderBy {
+  EventIdAsc = 'EVENT_ID_ASC',
+  EventIdDesc = 'EVENT_ID_DESC',
+  IdAsc = 'ID_ASC',
+  IdDesc = 'ID_DESC',
+  Natural = 'NATURAL',
+  PrimaryKeyAsc = 'PRIMARY_KEY_ASC',
+  PrimaryKeyDesc = 'PRIMARY_KEY_DESC',
+  UploadIdAsc = 'UPLOAD_ID_ASC',
+  UploadIdDesc = 'UPLOAD_ID_DESC',
+}
+
+/** Possible visibilities of events and event groups: public, private and unlisted. */
 export enum EventVisibility {
   Private = 'PRIVATE',
   Public = 'PUBLIC',
+  Unlisted = 'UNLISTED',
 }
 
 /** A connection to a list of `Event` values. */
@@ -2287,22 +3414,24 @@ export type EventsEdge = {
 export enum EventsOrderBy {
   AuthorAccountIdAsc = 'AUTHOR_ACCOUNT_ID_ASC',
   AuthorAccountIdDesc = 'AUTHOR_ACCOUNT_ID_DESC',
+  CreatedAtAsc = 'CREATED_AT_ASC',
+  CreatedAtDesc = 'CREATED_AT_DESC',
   DescriptionAsc = 'DESCRIPTION_ASC',
   DescriptionDesc = 'DESCRIPTION_DESC',
   EndAsc = 'END_ASC',
   EndDesc = 'END_DESC',
+  GuestCountMaximumAsc = 'GUEST_COUNT_MAXIMUM_ASC',
+  GuestCountMaximumDesc = 'GUEST_COUNT_MAXIMUM_DESC',
   IdAsc = 'ID_ASC',
   IdDesc = 'ID_DESC',
-  InviteeCountMaximumAsc = 'INVITEE_COUNT_MAXIMUM_ASC',
-  InviteeCountMaximumDesc = 'INVITEE_COUNT_MAXIMUM_DESC',
   IsArchivedAsc = 'IS_ARCHIVED_ASC',
   IsArchivedDesc = 'IS_ARCHIVED_DESC',
   IsInPersonAsc = 'IS_IN_PERSON_ASC',
   IsInPersonDesc = 'IS_IN_PERSON_DESC',
   IsRemoteAsc = 'IS_REMOTE_ASC',
   IsRemoteDesc = 'IS_REMOTE_DESC',
-  LocationAsc = 'LOCATION_ASC',
-  LocationDesc = 'LOCATION_DESC',
+  LanguageAsc = 'LANGUAGE_ASC',
+  LanguageDesc = 'LANGUAGE_DESC',
   NameAsc = 'NAME_ASC',
   NameDesc = 'NAME_DESC',
   Natural = 'NATURAL',
@@ -2341,29 +3470,34 @@ export type EventsOrganizedEdge = {
 /** An invitation for a contact. A bidirectional mapping between an event and a contact. */
 export type Invitation = Node & {
   __typename?: 'Invitation'
+  /** Reads a single `Account` that is related to this `Invitation`. */
+  accountByUpdatedBy?: Maybe<Account>
   /** Reads a single `Contact` that is related to this `Invitation`. */
   contactByContactId?: Maybe<Contact>
-  /** The contact's internal id for which the invitation is valid. */
+  /** The internal id of the guest's contact. */
   contactId: Scalars['UUID']['output']
+  /** Timestamp of when the invitation was created, defaults to the current timestamp. */
+  createdAt: Scalars['Datetime']['output']
   /** Reads a single `Event` that is related to this `Invitation`. */
   eventByEventId?: Maybe<Event>
-  /** The event's internal id for which the invitation is valid. */
+  /** The internal id of the guest's event. */
   eventId: Scalars['UUID']['output']
-  /** The invitation's general feedback status. */
+  /** The guest's general feedback status. */
   feedback?: Maybe<InvitationFeedback>
-  /** The invitation's paper feedback status. */
+  /** The guest's paper feedback status. */
   feedbackPaper?: Maybe<InvitationFeedbackPaper>
-  /** The invitations's internal id. */
+  /** The guests's internal id. */
   id: Scalars['UUID']['output']
   /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
   nodeId: Scalars['ID']['output']
+  /** Timestamp of when the invitation was last updated. */
+  updatedAt?: Maybe<Scalars['Datetime']['output']>
+  /** The id of the account which last updated the invitation. `NULL` if the invitation was updated by an anonymous user. */
+  updatedBy?: Maybe<Scalars['UUID']['output']>
 }
 
-/**
- * A condition to be used against `Invitation` object types. All fields are tested
- * for equality and combined with a logical ‘and.’
- */
-export type InvitationCondition = {
+/** A condition to be used against `Guest` object types. All fields are tested for equality and combined with a logical ‘and.’ */
+export type GuestCondition = {
   /** Checks for equality with the object’s `contactId` field. */
   contactId?: InputMaybe<Scalars['UUID']['input']>
   /** Checks for equality with the object’s `eventId` field. */
@@ -2377,8 +3511,8 @@ export type InvitationCondition = {
 }
 
 /** A `UUID` edge in the connection. */
-export type InvitationContactIdEdge = {
-  __typename?: 'InvitationContactIdEdge'
+export type GuestContactIdEdge = {
+  __typename?: 'GuestContactIdEdge'
   /** A cursor for use in pagination. */
   cursor?: Maybe<Scalars['Cursor']['output']>
   /** The `UUID` at the end of the edge. */
@@ -2386,10 +3520,10 @@ export type InvitationContactIdEdge = {
 }
 
 /** A connection to a list of `UUID` values. */
-export type InvitationContactIdsConnection = {
-  __typename?: 'InvitationContactIdsConnection'
+export type GuestContactIdsConnection = {
+  __typename?: 'GuestContactIdsConnection'
   /** A list of edges which contains the `UUID` and cursor to aid in pagination. */
-  edges: Array<InvitationContactIdEdge>
+  edges: Array<GuestContactIdEdge>
   /** A list of `UUID` objects. */
   nodes: Array<Maybe<Scalars['UUID']['output']>>
   /** The count of *all* `UUID` you could get from the connection. */
@@ -2409,54 +3543,238 @@ export enum InvitationFeedbackPaper {
   Paper = 'PAPER',
 }
 
-/** An input for mutations affecting `Invitation` */
-export type InvitationInput = {
-  /** The contact's internal id for which the invitation is valid. */
-  contactId: Scalars['UUID']['input']
-  /** The event's internal id for which the invitation is valid. */
-  eventId: Scalars['UUID']['input']
-  /** The invitation's general feedback status. */
-  feedback?: InputMaybe<InvitationFeedback>
-  /** The invitation's paper feedback status. */
-  feedbackPaper?: InputMaybe<InvitationFeedbackPaper>
+/** View returning flattened invitations. */
+export type InvitationFlat = {
+  __typename?: 'InvitationFlat'
+  contactAccountId?: Maybe<Scalars['UUID']['output']>
+  contactAddress?: Maybe<Scalars['String']['output']>
+  contactAuthorAccountId?: Maybe<Scalars['UUID']['output']>
+  contactEmailAddress?: Maybe<Scalars['String']['output']>
+  contactEmailAddressHash?: Maybe<Scalars['String']['output']>
+  contactFirstName?: Maybe<Scalars['String']['output']>
+  contactId?: Maybe<Scalars['UUID']['output']>
+  contactLastName?: Maybe<Scalars['String']['output']>
+  contactPhoneNumber?: Maybe<Scalars['String']['output']>
+  contactUrl?: Maybe<Scalars['String']['output']>
+  eventAuthorAccountId?: Maybe<Scalars['UUID']['output']>
+  eventDescription?: Maybe<Scalars['String']['output']>
+  eventEnd?: Maybe<Scalars['Datetime']['output']>
+  eventId?: Maybe<Scalars['UUID']['output']>
+  eventInviteeCountMaximum?: Maybe<Scalars['Int']['output']>
+  eventIsArchived?: Maybe<Scalars['Boolean']['output']>
+  eventIsInPerson?: Maybe<Scalars['Boolean']['output']>
+  eventIsRemote?: Maybe<Scalars['Boolean']['output']>
+  eventLocation?: Maybe<Scalars['String']['output']>
+  eventName?: Maybe<Scalars['String']['output']>
+  eventSlug?: Maybe<Scalars['String']['output']>
+  eventStart?: Maybe<Scalars['Datetime']['output']>
+  eventUrl?: Maybe<Scalars['String']['output']>
+  eventVisibility?: Maybe<EventVisibility>
+  invitationContactId?: Maybe<Scalars['UUID']['output']>
+  invitationEventId?: Maybe<Scalars['UUID']['output']>
+  invitationFeedback?: Maybe<InvitationFeedback>
+  invitationFeedbackPaper?: Maybe<InvitationFeedbackPaper>
+  invitationId?: Maybe<Scalars['UUID']['output']>
 }
 
-/** Represents an update to a `Invitation`. Fields that are set will be updated. */
-export type InvitationPatch = {
-  /** The contact's internal id for which the invitation is valid. */
+/**
+ * A condition to be used against `InvitationFlat` object types. All fields are
+ * tested for equality and combined with a logical ‘and.’
+ */
+export type InvitationFlatCondition = {
+  /** Checks for equality with the object’s `contactAccountId` field. */
+  contactAccountId?: InputMaybe<Scalars['UUID']['input']>
+  /** Checks for equality with the object’s `contactAddress` field. */
+  contactAddress?: InputMaybe<Scalars['String']['input']>
+  /** Checks for equality with the object’s `contactAuthorAccountId` field. */
+  contactAuthorAccountId?: InputMaybe<Scalars['UUID']['input']>
+  /** Checks for equality with the object’s `contactEmailAddress` field. */
+  contactEmailAddress?: InputMaybe<Scalars['String']['input']>
+  /** Checks for equality with the object’s `contactEmailAddressHash` field. */
+  contactEmailAddressHash?: InputMaybe<Scalars['String']['input']>
+  /** Checks for equality with the object’s `contactFirstName` field. */
+  contactFirstName?: InputMaybe<Scalars['String']['input']>
+  /** Checks for equality with the object’s `contactId` field. */
   contactId?: InputMaybe<Scalars['UUID']['input']>
-  /** The event's internal id for which the invitation is valid. */
+  /** Checks for equality with the object’s `contactLastName` field. */
+  contactLastName?: InputMaybe<Scalars['String']['input']>
+  /** Checks for equality with the object’s `contactPhoneNumber` field. */
+  contactPhoneNumber?: InputMaybe<Scalars['String']['input']>
+  /** Checks for equality with the object’s `contactUrl` field. */
+  contactUrl?: InputMaybe<Scalars['String']['input']>
+  /** Checks for equality with the object’s `eventAuthorAccountId` field. */
+  eventAuthorAccountId?: InputMaybe<Scalars['UUID']['input']>
+  /** Checks for equality with the object’s `eventDescription` field. */
+  eventDescription?: InputMaybe<Scalars['String']['input']>
+  /** Checks for equality with the object’s `eventEnd` field. */
+  eventEnd?: InputMaybe<Scalars['Datetime']['input']>
+  /** Checks for equality with the object’s `eventId` field. */
   eventId?: InputMaybe<Scalars['UUID']['input']>
-  /** The invitation's general feedback status. */
-  feedback?: InputMaybe<InvitationFeedback>
-  /** The invitation's paper feedback status. */
-  feedbackPaper?: InputMaybe<InvitationFeedbackPaper>
+  /** Checks for equality with the object’s `eventInviteeCountMaximum` field. */
+  eventInviteeCountMaximum?: InputMaybe<Scalars['Int']['input']>
+  /** Checks for equality with the object’s `eventIsArchived` field. */
+  eventIsArchived?: InputMaybe<Scalars['Boolean']['input']>
+  /** Checks for equality with the object’s `eventIsInPerson` field. */
+  eventIsInPerson?: InputMaybe<Scalars['Boolean']['input']>
+  /** Checks for equality with the object’s `eventIsRemote` field. */
+  eventIsRemote?: InputMaybe<Scalars['Boolean']['input']>
+  /** Checks for equality with the object’s `eventLocation` field. */
+  eventLocation?: InputMaybe<Scalars['String']['input']>
+  /** Checks for equality with the object’s `eventName` field. */
+  eventName?: InputMaybe<Scalars['String']['input']>
+  /** Checks for equality with the object’s `eventSlug` field. */
+  eventSlug?: InputMaybe<Scalars['String']['input']>
+  /** Checks for equality with the object’s `eventStart` field. */
+  eventStart?: InputMaybe<Scalars['Datetime']['input']>
+  /** Checks for equality with the object’s `eventUrl` field. */
+  eventUrl?: InputMaybe<Scalars['String']['input']>
+  /** Checks for equality with the object’s `eventVisibility` field. */
+  eventVisibility?: InputMaybe<EventVisibility>
+  /** Checks for equality with the object’s `invitationContactId` field. */
+  invitationContactId?: InputMaybe<Scalars['UUID']['input']>
+  /** Checks for equality with the object’s `invitationEventId` field. */
+  invitationEventId?: InputMaybe<Scalars['UUID']['input']>
+  /** Checks for equality with the object’s `invitationFeedback` field. */
+  invitationFeedback?: InputMaybe<InvitationFeedback>
+  /** Checks for equality with the object’s `invitationFeedbackPaper` field. */
+  invitationFeedbackPaper?: InputMaybe<InvitationFeedbackPaper>
+  /** Checks for equality with the object’s `invitationId` field. */
+  invitationId?: InputMaybe<Scalars['UUID']['input']>
 }
 
-/** A connection to a list of `Invitation` values. */
-export type InvitationsConnection = {
-  __typename?: 'InvitationsConnection'
-  /** A list of edges which contains the `Invitation` and cursor to aid in pagination. */
-  edges: Array<InvitationsEdge>
-  /** A list of `Invitation` objects. */
-  nodes: Array<Invitation>
+/** A connection to a list of `InvitationFlat` values. */
+export type InvitationFlatsConnection = {
+  __typename?: 'InvitationFlatsConnection'
+  /** A list of edges which contains the `InvitationFlat` and cursor to aid in pagination. */
+  edges: Array<InvitationFlatsEdge>
+  /** A list of `InvitationFlat` objects. */
+  nodes: Array<InvitationFlat>
   /** Information to aid in pagination. */
   pageInfo: PageInfo
-  /** The count of *all* `Invitation` you could get from the connection. */
+  /** The count of *all* `InvitationFlat` you could get from the connection. */
   totalCount: Scalars['Int']['output']
 }
 
-/** A `Invitation` edge in the connection. */
-export type InvitationsEdge = {
-  __typename?: 'InvitationsEdge'
+/** A `InvitationFlat` edge in the connection. */
+export type InvitationFlatsEdge = {
+  __typename?: 'InvitationFlatsEdge'
   /** A cursor for use in pagination. */
   cursor?: Maybe<Scalars['Cursor']['output']>
-  /** The `Invitation` at the end of the edge. */
-  node: Invitation
+  /** The `InvitationFlat` at the end of the edge. */
+  node: InvitationFlat
 }
 
-/** Methods to use when ordering `Invitation`. */
-export enum InvitationsOrderBy {
+/** Methods to use when ordering `InvitationFlat`. */
+export enum InvitationFlatsOrderBy {
+  ContactAccountIdAsc = 'CONTACT_ACCOUNT_ID_ASC',
+  ContactAccountIdDesc = 'CONTACT_ACCOUNT_ID_DESC',
+  ContactAddressAsc = 'CONTACT_ADDRESS_ASC',
+  ContactAddressDesc = 'CONTACT_ADDRESS_DESC',
+  ContactAuthorAccountIdAsc = 'CONTACT_AUTHOR_ACCOUNT_ID_ASC',
+  ContactAuthorAccountIdDesc = 'CONTACT_AUTHOR_ACCOUNT_ID_DESC',
+  ContactEmailAddressAsc = 'CONTACT_EMAIL_ADDRESS_ASC',
+  ContactEmailAddressDesc = 'CONTACT_EMAIL_ADDRESS_DESC',
+  ContactEmailAddressHashAsc = 'CONTACT_EMAIL_ADDRESS_HASH_ASC',
+  ContactEmailAddressHashDesc = 'CONTACT_EMAIL_ADDRESS_HASH_DESC',
+  ContactFirstNameAsc = 'CONTACT_FIRST_NAME_ASC',
+  ContactFirstNameDesc = 'CONTACT_FIRST_NAME_DESC',
+  ContactIdAsc = 'CONTACT_ID_ASC',
+  ContactIdDesc = 'CONTACT_ID_DESC',
+  ContactLastNameAsc = 'CONTACT_LAST_NAME_ASC',
+  ContactLastNameDesc = 'CONTACT_LAST_NAME_DESC',
+  ContactPhoneNumberAsc = 'CONTACT_PHONE_NUMBER_ASC',
+  ContactPhoneNumberDesc = 'CONTACT_PHONE_NUMBER_DESC',
+  ContactUrlAsc = 'CONTACT_URL_ASC',
+  ContactUrlDesc = 'CONTACT_URL_DESC',
+  EventAuthorAccountIdAsc = 'EVENT_AUTHOR_ACCOUNT_ID_ASC',
+  EventAuthorAccountIdDesc = 'EVENT_AUTHOR_ACCOUNT_ID_DESC',
+  EventDescriptionAsc = 'EVENT_DESCRIPTION_ASC',
+  EventDescriptionDesc = 'EVENT_DESCRIPTION_DESC',
+  EventEndAsc = 'EVENT_END_ASC',
+  EventEndDesc = 'EVENT_END_DESC',
+  EventIdAsc = 'EVENT_ID_ASC',
+  EventIdDesc = 'EVENT_ID_DESC',
+  EventInviteeCountMaximumAsc = 'EVENT_INVITEE_COUNT_MAXIMUM_ASC',
+  EventInviteeCountMaximumDesc = 'EVENT_INVITEE_COUNT_MAXIMUM_DESC',
+  EventIsArchivedAsc = 'EVENT_IS_ARCHIVED_ASC',
+  EventIsArchivedDesc = 'EVENT_IS_ARCHIVED_DESC',
+  EventIsInPersonAsc = 'EVENT_IS_IN_PERSON_ASC',
+  EventIsInPersonDesc = 'EVENT_IS_IN_PERSON_DESC',
+  EventIsRemoteAsc = 'EVENT_IS_REMOTE_ASC',
+  EventIsRemoteDesc = 'EVENT_IS_REMOTE_DESC',
+  EventLocationAsc = 'EVENT_LOCATION_ASC',
+  EventLocationDesc = 'EVENT_LOCATION_DESC',
+  EventNameAsc = 'EVENT_NAME_ASC',
+  EventNameDesc = 'EVENT_NAME_DESC',
+  EventSlugAsc = 'EVENT_SLUG_ASC',
+  EventSlugDesc = 'EVENT_SLUG_DESC',
+  EventStartAsc = 'EVENT_START_ASC',
+  EventStartDesc = 'EVENT_START_DESC',
+  EventUrlAsc = 'EVENT_URL_ASC',
+  EventUrlDesc = 'EVENT_URL_DESC',
+  EventVisibilityAsc = 'EVENT_VISIBILITY_ASC',
+  EventVisibilityDesc = 'EVENT_VISIBILITY_DESC',
+  InvitationContactIdAsc = 'INVITATION_CONTACT_ID_ASC',
+  InvitationContactIdDesc = 'INVITATION_CONTACT_ID_DESC',
+  InvitationEventIdAsc = 'INVITATION_EVENT_ID_ASC',
+  InvitationEventIdDesc = 'INVITATION_EVENT_ID_DESC',
+  InvitationFeedbackAsc = 'INVITATION_FEEDBACK_ASC',
+  InvitationFeedbackDesc = 'INVITATION_FEEDBACK_DESC',
+  InvitationFeedbackPaperAsc = 'INVITATION_FEEDBACK_PAPER_ASC',
+  InvitationFeedbackPaperDesc = 'INVITATION_FEEDBACK_PAPER_DESC',
+  InvitationIdAsc = 'INVITATION_ID_ASC',
+  InvitationIdDesc = 'INVITATION_ID_DESC',
+  Natural = 'NATURAL',
+}
+
+/** An input for mutations affecting `Guest` */
+export type GuestInput = {
+  /** The internal id of the guest's contact. */
+  contactId: Scalars['UUID']['input']
+  /** The internal id of the guest's event. */
+  eventId: Scalars['UUID']['input']
+  /** The guest's general feedback status. */
+  feedback?: InputMaybe<InvitationFeedback>
+  /** The guest's paper feedback status. */
+  feedbackPaper?: InputMaybe<InvitationFeedbackPaper>
+}
+
+/** Represents an update to a `Guest`. Fields that are set will be updated. */
+export type GuestPatch = {
+  /** The internal id of the guest's contact. */
+  contactId?: InputMaybe<Scalars['UUID']['input']>
+  /** The internal id of the guest's event. */
+  eventId?: InputMaybe<Scalars['UUID']['input']>
+  /** The guest's general feedback status. */
+  feedback?: InputMaybe<InvitationFeedback>
+  /** The guest's paper feedback status. */
+  feedbackPaper?: InputMaybe<InvitationFeedbackPaper>
+}
+
+/** A connection to a list of `Guest` values. */
+export type GuestsConnection = {
+  __typename?: 'GuestsConnection'
+  /** A list of edges which contains the `Guest` and cursor to aid in pagination. */
+  edges: Array<GuestsEdge>
+  /** A list of `Guest` objects. */
+  nodes: Array<Guest>
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo
+  /** The count of *all* `Guest` you could get from the connection. */
+  totalCount: Scalars['Int']['output']
+}
+
+/** A `Guest` edge in the connection. */
+export type GuestsEdge = {
+  __typename?: 'GuestsEdge'
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']['output']>
+  /** The `Guest` at the end of the edge. */
+  node: Guest
+}
+
+/** Methods to use when ordering `Guest`. */
+export enum GuestsOrderBy {
   ContactIdAsc = 'CONTACT_ID_ASC',
   ContactIdDesc = 'CONTACT_ID_DESC',
   EventIdAsc = 'EVENT_ID_ASC',
@@ -2472,6 +3790,19 @@ export enum InvitationsOrderBy {
   PrimaryKeyDesc = 'PRIMARY_KEY_DESC',
 }
 
+/** Possible answers to an invitation: accepted, canceled. */
+export enum InvitationFeedback {
+  Accepted = 'ACCEPTED',
+  Canceled = 'CANCELED',
+}
+
+/** Possible choices on how to receive a paper invitation: none, paper, digital. */
+export enum InvitationFeedbackPaper {
+  Digital = 'DIGITAL',
+  None = 'NONE',
+  Paper = 'PAPER',
+}
+
 /** All input for the `invite` mutation. */
 export type InviteInput = {
   /**
@@ -2479,7 +3810,7 @@ export type InviteInput = {
    * payload verbatim. May be used to track mutations by the client.
    */
   clientMutationId?: InputMaybe<Scalars['String']['input']>
-  invitationId: Scalars['UUID']['input']
+  guestId: Scalars['UUID']['input']
   language: Scalars['String']['input']
 }
 
@@ -2718,18 +4049,34 @@ export type Mutation = {
   authenticate?: Maybe<AuthenticatePayload>
   /** Creates a single `Account`. */
   createAccount?: Maybe<CreateAccountPayload>
-  /** Creates a single `AccountBlock`. */
-  createAccountBlock?: Maybe<CreateAccountBlockPayload>
+  /** Creates a single `AccountInterest`. */
+  createAccountInterest?: Maybe<CreateAccountInterestPayload>
+  /** Creates a single `AccountPreferenceEventSize`. */
+  createAccountPreferenceEventSize?: Maybe<CreateAccountPreferenceEventSizePayload>
+  /** Creates a single `AccountSocialNetwork`. */
+  createAccountSocialNetwork?: Maybe<CreateAccountSocialNetworkPayload>
   /** Creates a single `Achievement`. */
   createAchievement?: Maybe<CreateAchievementPayload>
+  /** Creates a single `Address`. */
+  createAddress?: Maybe<CreateAddressPayload>
   /** Creates a single `Contact`. */
   createContact?: Maybe<CreateContactPayload>
+  /** Creates a single `Device`. */
+  createDevice?: Maybe<CreateDevicePayload>
   /** Creates a single `Event`. */
   createEvent?: Maybe<CreateEventPayload>
+  /** Creates a single `EventCategory`. */
+  createEventCategory?: Maybe<CreateEventCategoryPayload>
+  /** Creates a single `EventCategoryMapping`. */
+  createEventCategoryMapping?: Maybe<CreateEventCategoryMappingPayload>
   /** Creates a single `EventGroup`. */
   createEventGroup?: Maybe<CreateEventGroupPayload>
   /** Creates a single `EventGrouping`. */
   createEventGrouping?: Maybe<CreateEventGroupingPayload>
+  /** Creates a single `EventRecommendation`. */
+  createEventRecommendation?: Maybe<CreateEventRecommendationPayload>
+  /** Creates a single `EventUpload`. */
+  createEventUpload?: Maybe<CreateEventUploadPayload>
   /** Creates a single `Invitation`. */
   createInvitation?: Maybe<CreateInvitationPayload>
   /** Creates a single `LegalTermAcceptance`. */
@@ -2742,6 +4089,12 @@ export type Mutation = {
   createUpload?: Maybe<CreateUploadPayload>
   /** Deletes a single `Account` using its globally unique id. */
   deleteAccount?: Maybe<DeleteAccountPayload>
+  /** Deletes a single `AccountBlock` using its globally unique id. */
+  deleteAccountBlock?: Maybe<DeleteAccountBlockPayload>
+  /** Deletes a single `AccountBlock` using a unique key. */
+  deleteAccountBlockByCreatedByAndBlockedAccountId?: Maybe<DeleteAccountBlockPayload>
+  /** Deletes a single `AccountBlock` using a unique key. */
+  deleteAccountBlockById?: Maybe<DeleteAccountBlockPayload>
   /** Deletes a single `Account` using a unique key. */
   deleteAccountById?: Maybe<DeleteAccountPayload>
   /** Deletes a single `Account` using a unique key. */
@@ -2752,22 +4105,40 @@ export type Mutation = {
   deleteAchievementByAccountIdAndAchievement?: Maybe<DeleteAchievementPayload>
   /** Deletes a single `Achievement` using a unique key. */
   deleteAchievementById?: Maybe<DeleteAchievementPayload>
+  /** Deletes a single `Address` using its globally unique id. */
+  deleteAddress?: Maybe<DeleteAddressPayload>
+  /** Deletes a single `Address` using a unique key. */
+  deleteAddressById?: Maybe<DeleteAddressPayload>
   /** Deletes a single `Contact` using its globally unique id. */
   deleteContact?: Maybe<DeleteContactPayload>
   /** Deletes a single `Contact` using a unique key. */
-  deleteContactByAuthorAccountIdAndAccountId?: Maybe<DeleteContactPayload>
+  deleteContactByCreatedByAndAccountId?: Maybe<DeleteContactPayload>
   /** Deletes a single `Contact` using a unique key. */
   deleteContactById?: Maybe<DeleteContactPayload>
+  /** Deletes a single `Device` using its globally unique id. */
+  deleteDevice?: Maybe<DeleteDevicePayload>
+  /** Deletes a single `Device` using a unique key. */
+  deleteDeviceByCreatedByAndFcmToken?: Maybe<DeleteDevicePayload>
+  /** Deletes a single `Device` using a unique key. */
+  deleteDeviceById?: Maybe<DeleteDevicePayload>
   /** Deletes a single `Event` using its globally unique id. */
   deleteEvent?: Maybe<DeleteEventPayload>
   /** Deletes a single `Event` using a unique key. */
-  deleteEventByAuthorAccountIdAndSlug?: Maybe<DeleteEventPayload>
+  deleteEventByCreatedByAndSlug?: Maybe<DeleteEventPayload>
   /** Deletes a single `Event` using a unique key. */
   deleteEventById?: Maybe<DeleteEventPayload>
+  /** Deletes a single `EventCategory` using its globally unique id. */
+  deleteEventCategory?: Maybe<DeleteEventCategoryPayload>
+  /** Deletes a single `EventCategory` using a unique key. */
+  deleteEventCategoryByCategory?: Maybe<DeleteEventCategoryPayload>
+  /** Deletes a single `EventCategoryMapping` using its globally unique id. */
+  deleteEventCategoryMapping?: Maybe<DeleteEventCategoryMappingPayload>
+  /** Deletes a single `EventCategoryMapping` using a unique key. */
+  deleteEventCategoryMappingByEventIdAndCategory?: Maybe<DeleteEventCategoryMappingPayload>
   /** Deletes a single `EventGroup` using its globally unique id. */
   deleteEventGroup?: Maybe<DeleteEventGroupPayload>
   /** Deletes a single `EventGroup` using a unique key. */
-  deleteEventGroupByAuthorAccountIdAndSlug?: Maybe<DeleteEventGroupPayload>
+  deleteEventGroupByCreatedByAndSlug?: Maybe<DeleteEventGroupPayload>
   /** Deletes a single `EventGroup` using a unique key. */
   deleteEventGroupById?: Maybe<DeleteEventGroupPayload>
   /** Deletes a single `EventGrouping` using its globally unique id. */
@@ -2776,6 +4147,16 @@ export type Mutation = {
   deleteEventGroupingByEventIdAndEventGroupId?: Maybe<DeleteEventGroupingPayload>
   /** Deletes a single `EventGrouping` using a unique key. */
   deleteEventGroupingById?: Maybe<DeleteEventGroupingPayload>
+  /** Deletes a single `EventRecommendation` using its globally unique id. */
+  deleteEventRecommendation?: Maybe<DeleteEventRecommendationPayload>
+  /** Deletes a single `EventRecommendation` using a unique key. */
+  deleteEventRecommendationByAccountIdAndEventId?: Maybe<DeleteEventRecommendationPayload>
+  /** Deletes a single `EventUpload` using its globally unique id. */
+  deleteEventUpload?: Maybe<DeleteEventUploadPayload>
+  /** Deletes a single `EventUpload` using a unique key. */
+  deleteEventUploadByEventIdAndUploadId?: Maybe<DeleteEventUploadPayload>
+  /** Deletes a single `EventUpload` using a unique key. */
+  deleteEventUploadById?: Maybe<DeleteEventUploadPayload>
   /** Deletes a single `Invitation` using its globally unique id. */
   deleteInvitation?: Maybe<DeleteInvitationPayload>
   /** Deletes a single `Invitation` using a unique key. */
@@ -2800,7 +4181,7 @@ export type Mutation = {
   deleteUploadByStorageKey?: Maybe<DeleteUploadPayload>
   /** Allows to delete an event. */
   eventDelete?: Maybe<EventDeletePayload>
-  /** Assigns an invitation to the current session. */
+  /** Adds a guest claim to the current session. */
   eventUnlock?: Maybe<EventUnlockPayload>
   /** Adds a notification for the invitation channel. */
   invite?: Maybe<InvitePayload>
@@ -2822,22 +4203,40 @@ export type Mutation = {
   updateAchievementByAccountIdAndAchievement?: Maybe<UpdateAchievementPayload>
   /** Updates a single `Achievement` using a unique key and a patch. */
   updateAchievementById?: Maybe<UpdateAchievementPayload>
+  /** Updates a single `Address` using its globally unique id and a patch. */
+  updateAddress?: Maybe<UpdateAddressPayload>
+  /** Updates a single `Address` using a unique key and a patch. */
+  updateAddressById?: Maybe<UpdateAddressPayload>
   /** Updates a single `Contact` using its globally unique id and a patch. */
   updateContact?: Maybe<UpdateContactPayload>
   /** Updates a single `Contact` using a unique key and a patch. */
-  updateContactByAuthorAccountIdAndAccountId?: Maybe<UpdateContactPayload>
+  updateContactByCreatedByAndAccountId?: Maybe<UpdateContactPayload>
   /** Updates a single `Contact` using a unique key and a patch. */
   updateContactById?: Maybe<UpdateContactPayload>
+  /** Updates a single `Device` using its globally unique id and a patch. */
+  updateDevice?: Maybe<UpdateDevicePayload>
+  /** Updates a single `Device` using a unique key and a patch. */
+  updateDeviceByCreatedByAndFcmToken?: Maybe<UpdateDevicePayload>
+  /** Updates a single `Device` using a unique key and a patch. */
+  updateDeviceById?: Maybe<UpdateDevicePayload>
   /** Updates a single `Event` using its globally unique id and a patch. */
   updateEvent?: Maybe<UpdateEventPayload>
   /** Updates a single `Event` using a unique key and a patch. */
-  updateEventByAuthorAccountIdAndSlug?: Maybe<UpdateEventPayload>
+  updateEventByCreatedByAndSlug?: Maybe<UpdateEventPayload>
   /** Updates a single `Event` using a unique key and a patch. */
   updateEventById?: Maybe<UpdateEventPayload>
+  /** Updates a single `EventCategory` using its globally unique id and a patch. */
+  updateEventCategory?: Maybe<UpdateEventCategoryPayload>
+  /** Updates a single `EventCategory` using a unique key and a patch. */
+  updateEventCategoryByCategory?: Maybe<UpdateEventCategoryPayload>
+  /** Updates a single `EventCategoryMapping` using its globally unique id and a patch. */
+  updateEventCategoryMapping?: Maybe<UpdateEventCategoryMappingPayload>
+  /** Updates a single `EventCategoryMapping` using a unique key and a patch. */
+  updateEventCategoryMappingByEventIdAndCategory?: Maybe<UpdateEventCategoryMappingPayload>
   /** Updates a single `EventGroup` using its globally unique id and a patch. */
   updateEventGroup?: Maybe<UpdateEventGroupPayload>
   /** Updates a single `EventGroup` using a unique key and a patch. */
-  updateEventGroupByAuthorAccountIdAndSlug?: Maybe<UpdateEventGroupPayload>
+  updateEventGroupByCreatedByAndSlug?: Maybe<UpdateEventGroupPayload>
   /** Updates a single `EventGroup` using a unique key and a patch. */
   updateEventGroupById?: Maybe<UpdateEventGroupPayload>
   /** Updates a single `EventGrouping` using its globally unique id and a patch. */
@@ -2846,16 +4245,16 @@ export type Mutation = {
   updateEventGroupingByEventIdAndEventGroupId?: Maybe<UpdateEventGroupingPayload>
   /** Updates a single `EventGrouping` using a unique key and a patch. */
   updateEventGroupingById?: Maybe<UpdateEventGroupingPayload>
+  /** Updates a single `EventRecommendation` using its globally unique id and a patch. */
+  updateEventRecommendation?: Maybe<UpdateEventRecommendationPayload>
+  /** Updates a single `EventRecommendation` using a unique key and a patch. */
+  updateEventRecommendationByAccountIdAndEventId?: Maybe<UpdateEventRecommendationPayload>
   /** Updates a single `Invitation` using its globally unique id and a patch. */
   updateInvitation?: Maybe<UpdateInvitationPayload>
   /** Updates a single `Invitation` using a unique key and a patch. */
   updateInvitationByEventIdAndContactId?: Maybe<UpdateInvitationPayload>
   /** Updates a single `Invitation` using a unique key and a patch. */
   updateInvitationById?: Maybe<UpdateInvitationPayload>
-  /** Updates a single `LegalTermAcceptance` using its globally unique id and a patch. */
-  updateLegalTermAcceptance?: Maybe<UpdateLegalTermAcceptancePayload>
-  /** Updates a single `LegalTermAcceptance` using a unique key and a patch. */
-  updateLegalTermAcceptanceById?: Maybe<UpdateLegalTermAcceptancePayload>
   /** Updates a single `ProfilePicture` using its globally unique id and a patch. */
   updateProfilePicture?: Maybe<UpdateProfilePicturePayload>
   /** Updates a single `ProfilePicture` using a unique key and a patch. */
@@ -2928,8 +4327,18 @@ export type MutationCreateAccountBlockArgs = {
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
+export type MutationCreateAccountBlockArgs = {
+  input: CreateAccountBlockInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationCreateAchievementArgs = {
   input: CreateAchievementInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationCreateAddressArgs = {
+  input: CreateAddressInput
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -2938,8 +4347,23 @@ export type MutationCreateContactArgs = {
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
+export type MutationCreateDeviceArgs = {
+  input: CreateDeviceInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationCreateEventArgs = {
   input: CreateEventInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationCreateEventCategoryArgs = {
+  input: CreateEventCategoryInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationCreateEventCategoryMappingArgs = {
+  input: CreateEventCategoryMappingInput
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -2953,8 +4377,13 @@ export type MutationCreateEventGroupingArgs = {
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
-export type MutationCreateInvitationArgs = {
-  input: CreateInvitationInput
+export type MutationCreateFriendshipArgs = {
+  input: CreateFriendshipInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationCreateGuestArgs = {
+  input: CreateGuestInput
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -2983,6 +4412,21 @@ export type MutationDeleteAccountArgs = {
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteAccountBlockArgs = {
+  input: DeleteAccountBlockInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteAccountBlockByCreatedByAndBlockedAccountIdArgs = {
+  input: DeleteAccountBlockByCreatedByAndBlockedAccountIdInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteAccountBlockByIdArgs = {
+  input: DeleteAccountBlockByIdInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteAccountByIdArgs = {
   input: DeleteAccountByIdInput
 }
@@ -3008,13 +4452,23 @@ export type MutationDeleteAchievementByIdArgs = {
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteAddressArgs = {
+  input: DeleteAddressInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteAddressByIdArgs = {
+  input: DeleteAddressByIdInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteContactArgs = {
   input: DeleteContactInput
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
-export type MutationDeleteContactByAuthorAccountIdAndAccountIdArgs = {
-  input: DeleteContactByAuthorAccountIdAndAccountIdInput
+export type MutationDeleteContactByCreatedByAndAccountIdArgs = {
+  input: DeleteContactByCreatedByAndAccountIdInput
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -3023,13 +4477,28 @@ export type MutationDeleteContactByIdArgs = {
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteDeviceArgs = {
+  input: DeleteDeviceInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteDeviceByCreatedByAndFcmTokenArgs = {
+  input: DeleteDeviceByCreatedByAndFcmTokenInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteDeviceByIdArgs = {
+  input: DeleteDeviceByIdInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteEventArgs = {
   input: DeleteEventInput
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
-export type MutationDeleteEventByAuthorAccountIdAndSlugArgs = {
-  input: DeleteEventByAuthorAccountIdAndSlugInput
+export type MutationDeleteEventByCreatedByAndSlugArgs = {
+  input: DeleteEventByCreatedByAndSlugInput
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -3038,13 +4507,33 @@ export type MutationDeleteEventByIdArgs = {
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteEventCategoryArgs = {
+  input: DeleteEventCategoryInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteEventCategoryByCategoryArgs = {
+  input: DeleteEventCategoryByCategoryInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteEventCategoryMappingArgs = {
+  input: DeleteEventCategoryMappingInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteEventCategoryMappingByEventIdAndCategoryArgs = {
+  input: DeleteEventCategoryMappingByEventIdAndCategoryInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteEventGroupArgs = {
   input: DeleteEventGroupInput
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
-export type MutationDeleteEventGroupByAuthorAccountIdAndSlugArgs = {
-  input: DeleteEventGroupByAuthorAccountIdAndSlugInput
+export type MutationDeleteEventGroupByCreatedByAndSlugArgs = {
+  input: DeleteEventGroupByCreatedByAndSlugInput
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -3068,18 +4557,33 @@ export type MutationDeleteEventGroupingByIdArgs = {
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
-export type MutationDeleteInvitationArgs = {
-  input: DeleteInvitationInput
+export type MutationDeleteFriendshipArgs = {
+  input: DeleteFriendshipInput
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
-export type MutationDeleteInvitationByEventIdAndContactIdArgs = {
-  input: DeleteInvitationByEventIdAndContactIdInput
+export type MutationDeleteFriendshipByAAccountIdAndBAccountIdArgs = {
+  input: DeleteFriendshipByAAccountIdAndBAccountIdInput
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
-export type MutationDeleteInvitationByIdArgs = {
-  input: DeleteInvitationByIdInput
+export type MutationDeleteFriendshipByIdArgs = {
+  input: DeleteFriendshipByIdInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteGuestArgs = {
+  input: DeleteGuestInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteGuestByEventIdAndContactIdArgs = {
+  input: DeleteGuestByEventIdAndContactIdInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteGuestByIdArgs = {
+  input: DeleteGuestByIdInput
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -3183,13 +4687,23 @@ export type MutationUpdateAchievementByIdArgs = {
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateAddressArgs = {
+  input: UpdateAddressInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateAddressByIdArgs = {
+  input: UpdateAddressByIdInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateContactArgs = {
   input: UpdateContactInput
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
-export type MutationUpdateContactByAuthorAccountIdAndAccountIdArgs = {
-  input: UpdateContactByAuthorAccountIdAndAccountIdInput
+export type MutationUpdateContactByCreatedByAndAccountIdArgs = {
+  input: UpdateContactByCreatedByAndAccountIdInput
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -3198,13 +4712,28 @@ export type MutationUpdateContactByIdArgs = {
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateDeviceArgs = {
+  input: UpdateDeviceInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateDeviceByCreatedByAndFcmTokenArgs = {
+  input: UpdateDeviceByCreatedByAndFcmTokenInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateDeviceByIdArgs = {
+  input: UpdateDeviceByIdInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateEventArgs = {
   input: UpdateEventInput
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
-export type MutationUpdateEventByAuthorAccountIdAndSlugArgs = {
-  input: UpdateEventByAuthorAccountIdAndSlugInput
+export type MutationUpdateEventByCreatedByAndSlugArgs = {
+  input: UpdateEventByCreatedByAndSlugInput
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -3213,13 +4742,33 @@ export type MutationUpdateEventByIdArgs = {
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateEventCategoryArgs = {
+  input: UpdateEventCategoryInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateEventCategoryByCategoryArgs = {
+  input: UpdateEventCategoryByCategoryInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateEventCategoryMappingArgs = {
+  input: UpdateEventCategoryMappingInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateEventCategoryMappingByEventIdAndCategoryArgs = {
+  input: UpdateEventCategoryMappingByEventIdAndCategoryInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateEventGroupArgs = {
   input: UpdateEventGroupInput
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
-export type MutationUpdateEventGroupByAuthorAccountIdAndSlugArgs = {
-  input: UpdateEventGroupByAuthorAccountIdAndSlugInput
+export type MutationUpdateEventGroupByCreatedByAndSlugArgs = {
+  input: UpdateEventGroupByCreatedByAndSlugInput
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -3243,18 +4792,48 @@ export type MutationUpdateEventGroupingByIdArgs = {
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
-export type MutationUpdateInvitationArgs = {
-  input: UpdateInvitationInput
+export type MutationUpdateEventUploadArgs = {
+  input: UpdateEventUploadInput
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
-export type MutationUpdateInvitationByEventIdAndContactIdArgs = {
-  input: UpdateInvitationByEventIdAndContactIdInput
+export type MutationUpdateEventUploadByEventIdAndUploadIdArgs = {
+  input: UpdateEventUploadByEventIdAndUploadIdInput
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
-export type MutationUpdateInvitationByIdArgs = {
-  input: UpdateInvitationByIdInput
+export type MutationUpdateEventUploadByIdArgs = {
+  input: UpdateEventUploadByIdInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateFriendshipArgs = {
+  input: UpdateFriendshipInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateFriendshipByAAccountIdAndBAccountIdArgs = {
+  input: UpdateFriendshipByAAccountIdAndBAccountIdInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateFriendshipByIdArgs = {
+  input: UpdateFriendshipByIdInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateGuestArgs = {
+  input: UpdateGuestInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateGuestByEventIdAndContactIdArgs = {
+  input: UpdateGuestByEventIdAndContactIdInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateGuestByIdArgs = {
+  input: UpdateGuestByIdInput
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -3452,10 +5031,6 @@ export type Query = Node & {
   __typename?: 'Query'
   /** Reads a single `Account` using its globally unique `ID`. */
   account?: Maybe<Account>
-  /** Reads a single `AccountBlock` using its globally unique `ID`. */
-  accountBlock?: Maybe<AccountBlock>
-  accountBlockByAuthorAccountIdAndBlockedAccountId?: Maybe<AccountBlock>
-  accountBlockById?: Maybe<AccountBlock>
   accountById?: Maybe<Account>
   accountByUsername?: Maybe<Account>
   /** Gets the total upload quota in bytes for the invoking account. */
@@ -3464,20 +5039,32 @@ export type Query = Node & {
   achievement?: Maybe<Achievement>
   achievementByAccountIdAndAchievement?: Maybe<Achievement>
   achievementById?: Maybe<Achievement>
-  /** Reads and enables pagination through a set of `AccountBlock`. */
-  allAccountBlocks?: Maybe<AccountBlocksConnection>
+  /** Reads and enables pagination through a set of `AccountInterest`. */
+  allAccountInterests?: Maybe<AccountInterestsConnection>
+  /** Reads and enables pagination through a set of `AccountPreferenceEventSize`. */
+  allAccountPreferenceEventSizes?: Maybe<AccountPreferenceEventSizesConnection>
+  /** Reads and enables pagination through a set of `AccountSocialNetwork`. */
+  allAccountSocialNetworks?: Maybe<AccountSocialNetworksConnection>
   /** Reads and enables pagination through a set of `Account`. */
   allAccounts?: Maybe<AccountsConnection>
   /** Reads and enables pagination through a set of `Achievement`. */
   allAchievements?: Maybe<AchievementsConnection>
+  /** Reads and enables pagination through a set of `Address`. */
+  allAddresses?: Maybe<AddressesConnection>
   /** Reads and enables pagination through a set of `Contact`. */
   allContacts?: Maybe<ContactsConnection>
+  /** Reads and enables pagination through a set of `EventCategory`. */
+  allEventCategories?: Maybe<EventCategoriesConnection>
+  /** Reads and enables pagination through a set of `EventCategoryMapping`. */
+  allEventCategoryMappings?: Maybe<EventCategoryMappingsConnection>
   /** Reads and enables pagination through a set of `EventGrouping`. */
   allEventGroupings?: Maybe<EventGroupingsConnection>
   /** Reads and enables pagination through a set of `EventGroup`. */
   allEventGroups?: Maybe<EventGroupsConnection>
   /** Reads and enables pagination through a set of `Event`. */
   allEvents?: Maybe<EventsConnection>
+  /** Reads and enables pagination through a set of `InvitationFlat`. */
+  allInvitationFlats?: Maybe<InvitationFlatsConnection>
   /** Reads and enables pagination through a set of `Invitation`. */
   allInvitations?: Maybe<InvitationsConnection>
   /** Reads and enables pagination through a set of `LegalTermAcceptance`. */
@@ -3492,24 +5079,41 @@ export type Query = Node & {
   allUploads?: Maybe<UploadsConnection>
   /** Reads a single `Contact` using its globally unique `ID`. */
   contact?: Maybe<Contact>
-  contactByAuthorAccountIdAndAccountId?: Maybe<Contact>
+  contactByCreatedByAndAccountId?: Maybe<Contact>
   contactById?: Maybe<Contact>
+  /** Reads a single `Device` using its globally unique `ID`. */
+  device?: Maybe<Device>
+  deviceByCreatedByAndFcmToken?: Maybe<Device>
+  deviceById?: Maybe<Device>
   /** Reads a single `Event` using its globally unique `ID`. */
   event?: Maybe<Event>
-  eventByAuthorAccountIdAndSlug?: Maybe<Event>
+  eventByCreatedByAndSlug?: Maybe<Event>
   eventById?: Maybe<Event>
+  /** Reads a single `EventCategory` using its globally unique `ID`. */
+  eventCategory?: Maybe<EventCategory>
+  eventCategoryByCategory?: Maybe<EventCategory>
+  /** Reads a single `EventCategoryMapping` using its globally unique `ID`. */
+  eventCategoryMapping?: Maybe<EventCategoryMapping>
+  eventCategoryMappingByEventIdAndCategory?: Maybe<EventCategoryMapping>
   /** Reads a single `EventGroup` using its globally unique `ID`. */
   eventGroup?: Maybe<EventGroup>
-  eventGroupByAuthorAccountIdAndSlug?: Maybe<EventGroup>
+  eventGroupByCreatedByAndSlug?: Maybe<EventGroup>
   eventGroupById?: Maybe<EventGroup>
   /** Reads a single `EventGrouping` using its globally unique `ID`. */
   eventGrouping?: Maybe<EventGrouping>
   eventGroupingByEventIdAndEventGroupId?: Maybe<EventGrouping>
   eventGroupingById?: Maybe<EventGrouping>
-  /** Add a function that returns the maximum invitee count of an accessible event. */
-  eventInviteeCountMaximum?: Maybe<Scalars['Int']['output']>
+  /** Add a function that returns the maximum guest count of an accessible event. */
+  eventGuestCountMaximum?: Maybe<Scalars['Int']['output']>
   /** Shows if an event exists. */
   eventIsExisting?: Maybe<Scalars['Boolean']['output']>
+  /** Reads a single `EventRecommendation` using its globally unique `ID`. */
+  eventRecommendation?: Maybe<EventRecommendation>
+  eventRecommendationByAccountIdAndEventId?: Maybe<EventRecommendation>
+  /** Reads a single `EventUpload` using its globally unique `ID`. */
+  eventUpload?: Maybe<EventUpload>
+  eventUploadByEventIdAndUploadId?: Maybe<EventUpload>
+  eventUploadById?: Maybe<EventUpload>
   /** Add a function that returns all event ids for which the invoker is the author. */
   eventsOrganized?: Maybe<EventsOrganizedConnection>
   /** Reads a single `Invitation` using its globally unique `ID`. */
@@ -3522,6 +5126,8 @@ export type Query = Node & {
   invitationContactIds?: Maybe<InvitationContactIdsConnection>
   /** Returns the invitee count for an event. */
   inviteeCount?: Maybe<Scalars['Int']['output']>
+  /** Returns the session's account id. */
+  invokerAccountId?: Maybe<Scalars['UUID']['output']>
   /** Reads a single `LegalTerm` using its globally unique `ID`. */
   legalTerm?: Maybe<LegalTerm>
   /** Reads a single `LegalTermAcceptance` using its globally unique `ID`. */
@@ -3544,7 +5150,7 @@ export type Query = Node & {
   query: Query
   /** Reads a single `Report` using its globally unique `ID`. */
   report?: Maybe<Report>
-  reportByAuthorAccountIdAndTargetAccountIdAndTargetEventIdAndTargetUploadId?: Maybe<Report>
+  reportByCreatedByAndTargetAccountIdAndTargetEventIdAndTargetUploadId?: Maybe<Report>
   reportById?: Maybe<Report>
   /** Reads a single `Upload` using its globally unique `ID`. */
   upload?: Maybe<Upload>
@@ -3555,6 +5161,22 @@ export type Query = Node & {
 /** The root query type which gives access points into the data universe. */
 export type QueryAccountArgs = {
   nodeId: Scalars['ID']['input']
+}
+
+/** The root query type which gives access points into the data universe. */
+export type QueryAccountBlockArgs = {
+  nodeId: Scalars['ID']['input']
+}
+
+/** The root query type which gives access points into the data universe. */
+export type QueryAccountBlockByCreatedByAndBlockedAccountIdArgs = {
+  blockedAccountId: Scalars['UUID']['input']
+  createdBy: Scalars['UUID']['input']
+}
+
+/** The root query type which gives access points into the data universe. */
+export type QueryAccountBlockByIdArgs = {
+  id: Scalars['UUID']['input']
 }
 
 /** The root query type which gives access points into the data universe. */
@@ -3600,6 +5222,27 @@ export type QueryAchievementByIdArgs = {
 }
 
 /** The root query type which gives access points into the data universe. */
+export type QueryAddressArgs = {
+  nodeId: Scalars['ID']['input']
+}
+
+/** The root query type which gives access points into the data universe. */
+export type QueryAddressByIdArgs = {
+  id: Scalars['UUID']['input']
+}
+
+/** The root query type which gives access points into the data universe. */
+export type QueryAllAccountBlocksArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
+  condition?: InputMaybe<AccountBlockCondition>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  orderBy?: InputMaybe<Array<AccountBlocksOrderBy>>
+}
+
+/** The root query type which gives access points into the data universe. */
 export type QueryAllAccountBlocksArgs = {
   after?: InputMaybe<Scalars['Cursor']['input']>
   before?: InputMaybe<Scalars['Cursor']['input']>
@@ -3633,6 +5276,17 @@ export type QueryAllAchievementsArgs = {
 }
 
 /** The root query type which gives access points into the data universe. */
+export type QueryAllAddressesArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
+  condition?: InputMaybe<AddressCondition>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  orderBy?: InputMaybe<Array<AddressesOrderBy>>
+}
+
+/** The root query type which gives access points into the data universe. */
 export type QueryAllContactsArgs = {
   after?: InputMaybe<Scalars['Cursor']['input']>
   before?: InputMaybe<Scalars['Cursor']['input']>
@@ -3641,6 +5295,28 @@ export type QueryAllContactsArgs = {
   last?: InputMaybe<Scalars['Int']['input']>
   offset?: InputMaybe<Scalars['Int']['input']>
   orderBy?: InputMaybe<Array<ContactsOrderBy>>
+}
+
+/** The root query type which gives access points into the data universe. */
+export type QueryAllEventCategoriesArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
+  condition?: InputMaybe<EventCategoryCondition>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  orderBy?: InputMaybe<Array<EventCategoriesOrderBy>>
+}
+
+/** The root query type which gives access points into the data universe. */
+export type QueryAllEventCategoryMappingsArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
+  condition?: InputMaybe<EventCategoryMappingCondition>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  orderBy?: InputMaybe<Array<EventCategoryMappingsOrderBy>>
 }
 
 /** The root query type which gives access points into the data universe. */
@@ -3677,14 +5353,36 @@ export type QueryAllEventsArgs = {
 }
 
 /** The root query type which gives access points into the data universe. */
-export type QueryAllInvitationsArgs = {
+export type QueryAllInvitationFlatsArgs = {
   after?: InputMaybe<Scalars['Cursor']['input']>
   before?: InputMaybe<Scalars['Cursor']['input']>
-  condition?: InputMaybe<InvitationCondition>
+  condition?: InputMaybe<InvitationFlatCondition>
   first?: InputMaybe<Scalars['Int']['input']>
   last?: InputMaybe<Scalars['Int']['input']>
   offset?: InputMaybe<Scalars['Int']['input']>
-  orderBy?: InputMaybe<Array<InvitationsOrderBy>>
+  orderBy?: InputMaybe<Array<InvitationFlatsOrderBy>>
+}
+
+/** The root query type which gives access points into the data universe. */
+export type QueryAllGuestFlatsArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
+  condition?: InputMaybe<GuestFlatCondition>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  orderBy?: InputMaybe<Array<GuestFlatsOrderBy>>
+}
+
+/** The root query type which gives access points into the data universe. */
+export type QueryAllGuestsArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
+  condition?: InputMaybe<GuestCondition>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  orderBy?: InputMaybe<Array<GuestsOrderBy>>
 }
 
 /** The root query type which gives access points into the data universe. */
@@ -3748,13 +5446,29 @@ export type QueryContactArgs = {
 }
 
 /** The root query type which gives access points into the data universe. */
-export type QueryContactByAuthorAccountIdAndAccountIdArgs = {
+export type QueryContactByCreatedByAndAccountIdArgs = {
   accountId: Scalars['UUID']['input']
-  authorAccountId: Scalars['UUID']['input']
+  createdBy: Scalars['UUID']['input']
 }
 
 /** The root query type which gives access points into the data universe. */
 export type QueryContactByIdArgs = {
+  id: Scalars['UUID']['input']
+}
+
+/** The root query type which gives access points into the data universe. */
+export type QueryDeviceArgs = {
+  nodeId: Scalars['ID']['input']
+}
+
+/** The root query type which gives access points into the data universe. */
+export type QueryDeviceByCreatedByAndFcmTokenArgs = {
+  createdBy: Scalars['UUID']['input']
+  fcmToken: Scalars['String']['input']
+}
+
+/** The root query type which gives access points into the data universe. */
+export type QueryDeviceByIdArgs = {
   id: Scalars['UUID']['input']
 }
 
@@ -3764,8 +5478,8 @@ export type QueryEventArgs = {
 }
 
 /** The root query type which gives access points into the data universe. */
-export type QueryEventByAuthorAccountIdAndSlugArgs = {
-  authorAccountId: Scalars['UUID']['input']
+export type QueryEventByCreatedByAndSlugArgs = {
+  createdBy: Scalars['UUID']['input']
   slug: Scalars['String']['input']
 }
 
@@ -3775,13 +5489,34 @@ export type QueryEventByIdArgs = {
 }
 
 /** The root query type which gives access points into the data universe. */
+export type QueryEventCategoryArgs = {
+  nodeId: Scalars['ID']['input']
+}
+
+/** The root query type which gives access points into the data universe. */
+export type QueryEventCategoryByCategoryArgs = {
+  category: Scalars['String']['input']
+}
+
+/** The root query type which gives access points into the data universe. */
+export type QueryEventCategoryMappingArgs = {
+  nodeId: Scalars['ID']['input']
+}
+
+/** The root query type which gives access points into the data universe. */
+export type QueryEventCategoryMappingByEventIdAndCategoryArgs = {
+  category: Scalars['String']['input']
+  eventId: Scalars['UUID']['input']
+}
+
+/** The root query type which gives access points into the data universe. */
 export type QueryEventGroupArgs = {
   nodeId: Scalars['ID']['input']
 }
 
 /** The root query type which gives access points into the data universe. */
-export type QueryEventGroupByAuthorAccountIdAndSlugArgs = {
-  authorAccountId: Scalars['UUID']['input']
+export type QueryEventGroupByCreatedByAndSlugArgs = {
+  createdBy: Scalars['UUID']['input']
   slug: Scalars['String']['input']
 }
 
@@ -3807,14 +5542,41 @@ export type QueryEventGroupingByIdArgs = {
 }
 
 /** The root query type which gives access points into the data universe. */
-export type QueryEventInviteeCountMaximumArgs = {
+export type QueryEventGuestCountMaximumArgs = {
   eventId: Scalars['UUID']['input']
 }
 
 /** The root query type which gives access points into the data universe. */
 export type QueryEventIsExistingArgs = {
-  authorAccountId: Scalars['UUID']['input']
+  createdBy: Scalars['UUID']['input']
   slug: Scalars['String']['input']
+}
+
+/** The root query type which gives access points into the data universe. */
+export type QueryEventRecommendationArgs = {
+  nodeId: Scalars['ID']['input']
+}
+
+/** The root query type which gives access points into the data universe. */
+export type QueryEventRecommendationByAccountIdAndEventIdArgs = {
+  accountId: Scalars['UUID']['input']
+  eventId: Scalars['UUID']['input']
+}
+
+/** The root query type which gives access points into the data universe. */
+export type QueryEventUploadArgs = {
+  nodeId: Scalars['ID']['input']
+}
+
+/** The root query type which gives access points into the data universe. */
+export type QueryEventUploadByEventIdAndUploadIdArgs = {
+  eventId: Scalars['UUID']['input']
+  uploadId: Scalars['UUID']['input']
+}
+
+/** The root query type which gives access points into the data universe. */
+export type QueryEventUploadByIdArgs = {
+  id: Scalars['UUID']['input']
 }
 
 /** The root query type which gives access points into the data universe. */
@@ -3827,23 +5589,39 @@ export type QueryEventsOrganizedArgs = {
 }
 
 /** The root query type which gives access points into the data universe. */
-export type QueryInvitationArgs = {
+export type QueryFriendshipArgs = {
   nodeId: Scalars['ID']['input']
 }
 
 /** The root query type which gives access points into the data universe. */
-export type QueryInvitationByEventIdAndContactIdArgs = {
+export type QueryFriendshipByAAccountIdAndBAccountIdArgs = {
+  aAccountId: Scalars['UUID']['input']
+  bAccountId: Scalars['UUID']['input']
+}
+
+/** The root query type which gives access points into the data universe. */
+export type QueryFriendshipByIdArgs = {
+  id: Scalars['UUID']['input']
+}
+
+/** The root query type which gives access points into the data universe. */
+export type QueryGuestArgs = {
+  nodeId: Scalars['ID']['input']
+}
+
+/** The root query type which gives access points into the data universe. */
+export type QueryGuestByEventIdAndContactIdArgs = {
   contactId: Scalars['UUID']['input']
   eventId: Scalars['UUID']['input']
 }
 
 /** The root query type which gives access points into the data universe. */
-export type QueryInvitationByIdArgs = {
+export type QueryGuestByIdArgs = {
   id: Scalars['UUID']['input']
 }
 
 /** The root query type which gives access points into the data universe. */
-export type QueryInvitationContactIdsArgs = {
+export type QueryGuestContactIdsArgs = {
   after?: InputMaybe<Scalars['Cursor']['input']>
   before?: InputMaybe<Scalars['Cursor']['input']>
   first?: InputMaybe<Scalars['Int']['input']>
@@ -3852,8 +5630,13 @@ export type QueryInvitationContactIdsArgs = {
 }
 
 /** The root query type which gives access points into the data universe. */
-export type QueryInviteeCountArgs = {
+export type QueryGuestCountArgs = {
   eventId: Scalars['UUID']['input']
+}
+
+/** The root query type which gives access points into the data universe. */
+export type QueryLanguageIsoFullTextSearchArgs = {
+  language?: InputMaybe<Language>
 }
 
 /** The root query type which gives access points into the data universe. */
@@ -3908,9 +5691,9 @@ export type QueryReportArgs = {
 }
 
 /** The root query type which gives access points into the data universe. */
-export type QueryReportByAuthorAccountIdAndTargetAccountIdAndTargetEventIdAndTargetUploadIdArgs =
+export type QueryReportByCreatedByAndTargetAccountIdAndTargetEventIdAndTargetUploadIdArgs =
   {
-    authorAccountId: Scalars['UUID']['input']
+    createdBy: Scalars['UUID']['input']
     targetAccountId: Scalars['UUID']['input']
     targetEventId: Scalars['UUID']['input']
     targetUploadId: Scalars['UUID']['input']
@@ -3940,13 +5723,13 @@ export type QueryUploadByStorageKeyArgs = {
 export type Report = Node & {
   __typename?: 'Report'
   /** Reads a single `Account` that is related to this `Report`. */
-  accountByAuthorAccountId?: Maybe<Account>
+  accountByCreatedBy?: Maybe<Account>
   /** Reads a single `Account` that is related to this `Report`. */
   accountByTargetAccountId?: Maybe<Account>
-  /** The ID of the user who created the report. */
-  authorAccountId: Scalars['UUID']['output']
   /** Timestamp of when the report was created, defaults to the current timestamp. */
   createdAt: Scalars['Datetime']['output']
+  /** The ID of the user who created the report. */
+  createdBy: Scalars['UUID']['output']
   /** Reads a single `Event` that is related to this `Report`. */
   eventByTargetEventId?: Maybe<Event>
   /** Unique identifier for the report, generated randomly using UUIDs. */
@@ -3967,10 +5750,10 @@ export type Report = Node & {
 
 /** A condition to be used against `Report` object types. All fields are tested for equality and combined with a logical ‘and.’ */
 export type ReportCondition = {
-  /** Checks for equality with the object’s `authorAccountId` field. */
-  authorAccountId?: InputMaybe<Scalars['UUID']['input']>
   /** Checks for equality with the object’s `createdAt` field. */
   createdAt?: InputMaybe<Scalars['Datetime']['input']>
+  /** Checks for equality with the object’s `createdBy` field. */
+  createdBy?: InputMaybe<Scalars['UUID']['input']>
   /** Checks for equality with the object’s `id` field. */
   id?: InputMaybe<Scalars['UUID']['input']>
   /** Checks for equality with the object’s `reason` field. */
@@ -3986,7 +5769,7 @@ export type ReportCondition = {
 /** An input for mutations affecting `Report` */
 export type ReportInput = {
   /** The ID of the user who created the report. */
-  authorAccountId: Scalars['UUID']['input']
+  createdBy: Scalars['UUID']['input']
   /** The reason for the report, provided by the reporting user. Must be non-empty and less than 2000 characters. */
   reason: Scalars['String']['input']
   /** The ID of the account being reported, if applicable. */
@@ -4021,10 +5804,10 @@ export type ReportsEdge = {
 
 /** Methods to use when ordering `Report`. */
 export enum ReportsOrderBy {
-  AuthorAccountIdAsc = 'AUTHOR_ACCOUNT_ID_ASC',
-  AuthorAccountIdDesc = 'AUTHOR_ACCOUNT_ID_DESC',
   CreatedAtAsc = 'CREATED_AT_ASC',
   CreatedAtDesc = 'CREATED_AT_DESC',
+  CreatedByAsc = 'CREATED_BY_ASC',
+  CreatedByDesc = 'CREATED_BY_DESC',
   IdAsc = 'ID_ASC',
   IdDesc = 'ID_DESC',
   Natural = 'NATURAL',
@@ -4164,12 +5947,61 @@ export type UpdateAchievementPayloadAchievementEdgeArgs = {
   orderBy?: InputMaybe<Array<AchievementsOrderBy>>
 }
 
-/** All input for the `updateContactByAuthorAccountIdAndAccountId` mutation. */
-export type UpdateContactByAuthorAccountIdAndAccountIdInput = {
-  /** The contact account's id. */
+/** All input for the `updateAddressById` mutation. */
+export type UpdateAddressByIdInput = {
+  /** An object where the defined keys will be set on the `Address` being updated. */
+  addressPatch: AddressPatch
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** Primary key, uniquely identifies each address. */
+  id: Scalars['UUID']['input']
+}
+
+/** All input for the `updateAddress` mutation. */
+export type UpdateAddressInput = {
+  /** An object where the defined keys will be set on the `Address` being updated. */
+  addressPatch: AddressPatch
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** The globally unique `ID` which will identify a single `Address` to be updated. */
+  nodeId: Scalars['ID']['input']
+}
+
+/** The output of our update `Address` mutation. */
+export type UpdateAddressPayload = {
+  __typename?: 'UpdateAddressPayload'
+  /** Reads a single `Account` that is related to this `Address`. */
+  accountByCreatedBy?: Maybe<Account>
+  /** Reads a single `Account` that is related to this `Address`. */
+  accountByUpdatedBy?: Maybe<Account>
+  /** The `Address` that was updated by this mutation. */
+  address?: Maybe<Address>
+  /** An edge for our `Address`. May be used by Relay 1. */
+  addressEdge?: Maybe<AddressesEdge>
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>
+}
+
+/** The output of our update `Address` mutation. */
+export type UpdateAddressPayloadAddressEdgeArgs = {
+  orderBy?: InputMaybe<Array<AddressesOrderBy>>
+}
+
+/** All input for the `updateContactByCreatedByAndAccountId` mutation. */
+export type UpdateContactByCreatedByAndAccountIdInput = {
+  /** Optional reference to an associated account. */
   accountId: Scalars['UUID']['input']
-  /** The contact author's id. */
-  authorAccountId: Scalars['UUID']['input']
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
@@ -4177,6 +6009,8 @@ export type UpdateContactByAuthorAccountIdAndAccountIdInput = {
   clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** An object where the defined keys will be set on the `Contact` being updated. */
   contactPatch: ContactPatch
+  /** Reference to the account that created this contact. Enforces cascading deletion. */
+  createdBy: Scalars['UUID']['input']
 }
 
 /** All input for the `updateContactById` mutation. */
@@ -4188,7 +6022,7 @@ export type UpdateContactByIdInput = {
   clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** An object where the defined keys will be set on the `Contact` being updated. */
   contactPatch: ContactPatch
-  /** The contact's internal id. */
+  /** Primary key, uniquely identifies each contact. */
   id: Scalars['UUID']['input']
 }
 
@@ -4211,7 +6045,9 @@ export type UpdateContactPayload = {
   /** Reads a single `Account` that is related to this `Contact`. */
   accountByAccountId?: Maybe<Account>
   /** Reads a single `Account` that is related to this `Contact`. */
-  accountByAuthorAccountId?: Maybe<Account>
+  accountByCreatedBy?: Maybe<Account>
+  /** Reads a single `Address` that is related to this `Contact`. */
+  addressByAddressId?: Maybe<Address>
   /**
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
@@ -4230,15 +6066,81 @@ export type UpdateContactPayloadContactEdgeArgs = {
   orderBy?: InputMaybe<Array<ContactsOrderBy>>
 }
 
-/** All input for the `updateEventByAuthorAccountIdAndSlug` mutation. */
-export type UpdateEventByAuthorAccountIdAndSlugInput = {
-  /** The event author's id. */
-  authorAccountId: Scalars['UUID']['input']
+/** All input for the `updateDeviceByCreatedByAndFcmToken` mutation. */
+export type UpdateDeviceByCreatedByAndFcmTokenInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
   clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** Reference to the account that created the device. */
+  createdBy: Scalars['UUID']['input']
+  /** An object where the defined keys will be set on the `Device` being updated. */
+  devicePatch: DevicePatch
+  /** The Firebase Cloud Messaging token of the device that's used to deliver notifications. */
+  fcmToken: Scalars['String']['input']
+}
+
+/** All input for the `updateDeviceById` mutation. */
+export type UpdateDeviceByIdInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** An object where the defined keys will be set on the `Device` being updated. */
+  devicePatch: DevicePatch
+  /** The internal id of the device. */
+  id: Scalars['UUID']['input']
+}
+
+/** All input for the `updateDevice` mutation. */
+export type UpdateDeviceInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** An object where the defined keys will be set on the `Device` being updated. */
+  devicePatch: DevicePatch
+  /** The globally unique `ID` which will identify a single `Device` to be updated. */
+  nodeId: Scalars['ID']['input']
+}
+
+/** The output of our update `Device` mutation. */
+export type UpdateDevicePayload = {
+  __typename?: 'UpdateDevicePayload'
+  /** Reads a single `Account` that is related to this `Device`. */
+  accountByCreatedBy?: Maybe<Account>
+  /** Reads a single `Account` that is related to this `Device`. */
+  accountByUpdatedBy?: Maybe<Account>
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>
+  /** The `Device` that was updated by this mutation. */
+  device?: Maybe<Device>
+  /** An edge for our `Device`. May be used by Relay 1. */
+  deviceEdge?: Maybe<DevicesEdge>
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>
+}
+
+/** The output of our update `Device` mutation. */
+export type UpdateDevicePayloadDeviceEdgeArgs = {
+  orderBy?: InputMaybe<Array<DevicesOrderBy>>
+}
+
+/** All input for the `updateEventByCreatedByAndSlug` mutation. */
+export type UpdateEventByCreatedByAndSlugInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** The event creator's id. */
+  createdBy: Scalars['UUID']['input']
   /** An object where the defined keys will be set on the `Event` being updated. */
   eventPatch: EventPatch
   /** The event's name, slugified. */
@@ -4258,15 +6160,81 @@ export type UpdateEventByIdInput = {
   id: Scalars['UUID']['input']
 }
 
-/** All input for the `updateEventGroupByAuthorAccountIdAndSlug` mutation. */
-export type UpdateEventGroupByAuthorAccountIdAndSlugInput = {
-  /** The event group author's id. */
-  authorAccountId: Scalars['UUID']['input']
+/** All input for the `updateEventFavoriteByCreatedByAndEventId` mutation. */
+export type UpdateEventFavoriteByCreatedByAndEventIdInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
   clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** Reference to the account that created the event favorite. */
+  createdBy: Scalars['UUID']['input']
+  /** An object where the defined keys will be set on the `EventFavorite` being updated. */
+  eventFavoritePatch: EventFavoritePatch
+  /** Reference to the event that is marked as a favorite. */
+  eventId: Scalars['UUID']['input']
+}
+
+/** All input for the `updateEventFavoriteById` mutation. */
+export type UpdateEventFavoriteByIdInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** An object where the defined keys will be set on the `EventFavorite` being updated. */
+  eventFavoritePatch: EventFavoritePatch
+  /** Primary key, uniquely identifies each favorite entry. */
+  id: Scalars['UUID']['input']
+}
+
+/** All input for the `updateEventFavorite` mutation. */
+export type UpdateEventFavoriteInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** An object where the defined keys will be set on the `EventFavorite` being updated. */
+  eventFavoritePatch: EventFavoritePatch
+  /** The globally unique `ID` which will identify a single `EventFavorite` to be updated. */
+  nodeId: Scalars['ID']['input']
+}
+
+/** The output of our update `EventFavorite` mutation. */
+export type UpdateEventFavoritePayload = {
+  __typename?: 'UpdateEventFavoritePayload'
+  /** Reads a single `Account` that is related to this `EventFavorite`. */
+  accountByCreatedBy?: Maybe<Account>
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>
+  /** Reads a single `Event` that is related to this `EventFavorite`. */
+  eventByEventId?: Maybe<Event>
+  /** The `EventFavorite` that was updated by this mutation. */
+  eventFavorite?: Maybe<EventFavorite>
+  /** An edge for our `EventFavorite`. May be used by Relay 1. */
+  eventFavoriteEdge?: Maybe<EventFavoritesEdge>
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>
+}
+
+/** The output of our update `EventFavorite` mutation. */
+export type UpdateEventFavoritePayloadEventFavoriteEdgeArgs = {
+  orderBy?: InputMaybe<Array<EventFavoritesOrderBy>>
+}
+
+/** All input for the `updateEventGroupByCreatedByAndSlug` mutation. */
+export type UpdateEventGroupByCreatedByAndSlugInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** The event group creator's id. */
+  createdBy: Scalars['UUID']['input']
   /** An object where the defined keys will be set on the `EventGroup` being updated. */
   eventGroupPatch: EventGroupPatch
   /** The event group's name, slugified. */
@@ -4303,7 +6271,7 @@ export type UpdateEventGroupInput = {
 export type UpdateEventGroupPayload = {
   __typename?: 'UpdateEventGroupPayload'
   /** Reads a single `Account` that is related to this `EventGroup`. */
-  accountByAuthorAccountId?: Maybe<Account>
+  accountByCreatedBy?: Maybe<Account>
   /**
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
@@ -4405,7 +6373,9 @@ export type UpdateEventInput = {
 export type UpdateEventPayload = {
   __typename?: 'UpdateEventPayload'
   /** Reads a single `Account` that is related to this `Event`. */
-  accountByAuthorAccountId?: Maybe<Account>
+  accountByCreatedBy?: Maybe<Account>
+  /** Reads a single `Address` that is related to this `Event`. */
+  addressByAddressId?: Maybe<Address>
   /**
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
@@ -4424,70 +6394,208 @@ export type UpdateEventPayloadEventEdgeArgs = {
   orderBy?: InputMaybe<Array<EventsOrderBy>>
 }
 
-/** All input for the `updateInvitationByEventIdAndContactId` mutation. */
-export type UpdateInvitationByEventIdAndContactIdInput = {
+/** All input for the `updateEventUploadByEventIdAndUploadId` mutation. */
+export type UpdateEventUploadByEventIdAndUploadIdInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
   clientMutationId?: InputMaybe<Scalars['String']['input']>
-  /** The contact's internal id for which the invitation is valid. */
-  contactId: Scalars['UUID']['input']
-  /** The event's internal id for which the invitation is valid. */
+  /** Reference to the event associated with the upload. */
   eventId: Scalars['UUID']['input']
-  /** An object where the defined keys will be set on the `Invitation` being updated. */
-  invitationPatch: InvitationPatch
+  /** An object where the defined keys will be set on the `EventUpload` being updated. */
+  eventUploadPatch: EventUploadPatch
+  /** Reference to the uploaded file. */
+  uploadId: Scalars['UUID']['input']
 }
 
-/** All input for the `updateInvitationById` mutation. */
-export type UpdateInvitationByIdInput = {
+/** All input for the `updateEventUploadById` mutation. */
+export type UpdateEventUploadByIdInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
   clientMutationId?: InputMaybe<Scalars['String']['input']>
-  /** The invitations's internal id. */
+  /** An object where the defined keys will be set on the `EventUpload` being updated. */
+  eventUploadPatch: EventUploadPatch
+  /** Primary key, uniquely identifies each event-upload association. */
   id: Scalars['UUID']['input']
-  /** An object where the defined keys will be set on the `Invitation` being updated. */
-  invitationPatch: InvitationPatch
 }
 
-/** All input for the `updateInvitation` mutation. */
-export type UpdateInvitationInput = {
+/** All input for the `updateEventUpload` mutation. */
+export type UpdateEventUploadInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
   clientMutationId?: InputMaybe<Scalars['String']['input']>
-  /** An object where the defined keys will be set on the `Invitation` being updated. */
-  invitationPatch: InvitationPatch
-  /** The globally unique `ID` which will identify a single `Invitation` to be updated. */
+  /** An object where the defined keys will be set on the `EventUpload` being updated. */
+  eventUploadPatch: EventUploadPatch
+  /** The globally unique `ID` which will identify a single `EventUpload` to be updated. */
+  nodeId: Scalars['ID']['input']
+}
+
+/** The output of our update `EventUpload` mutation. */
+export type UpdateEventUploadPayload = {
+  __typename?: 'UpdateEventUploadPayload'
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>
+  /** Reads a single `Event` that is related to this `EventUpload`. */
+  eventByEventId?: Maybe<Event>
+  /** The `EventUpload` that was updated by this mutation. */
+  eventUpload?: Maybe<EventUpload>
+  /** An edge for our `EventUpload`. May be used by Relay 1. */
+  eventUploadEdge?: Maybe<EventUploadsEdge>
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>
+  /** Reads a single `Upload` that is related to this `EventUpload`. */
+  uploadByUploadId?: Maybe<Upload>
+}
+
+/** The output of our update `EventUpload` mutation. */
+export type UpdateEventUploadPayloadEventUploadEdgeArgs = {
+  orderBy?: InputMaybe<Array<EventUploadsOrderBy>>
+}
+
+/** All input for the `updateFriendshipByAAccountIdAndBAccountId` mutation. */
+export type UpdateFriendshipByAAccountIdAndBAccountIdInput = {
+  /** The 'left' side of the friend relation. It must be lexically less than the 'right' side. */
+  aAccountId: Scalars['UUID']['input']
+  /** The 'right' side of the friend relation. It must be lexically greater than the 'left' side. */
+  bAccountId: Scalars['UUID']['input']
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** An object where the defined keys will be set on the `Friendship` being updated. */
+  friendshipPatch: FriendshipPatch
+}
+
+/** All input for the `updateFriendshipById` mutation. */
+export type UpdateFriendshipByIdInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** An object where the defined keys will be set on the `Friendship` being updated. */
+  friendshipPatch: FriendshipPatch
+  /** The friend relation's internal id. */
+  id: Scalars['UUID']['input']
+}
+
+/** All input for the `updateFriendship` mutation. */
+export type UpdateFriendshipInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** An object where the defined keys will be set on the `Friendship` being updated. */
+  friendshipPatch: FriendshipPatch
+  /** The globally unique `ID` which will identify a single `Friendship` to be updated. */
+  nodeId: Scalars['ID']['input']
+}
+
+/** The output of our update `Friendship` mutation. */
+export type UpdateFriendshipPayload = {
+  __typename?: 'UpdateFriendshipPayload'
+  /** Reads a single `Account` that is related to this `Friendship`. */
+  accountByAAccountId?: Maybe<Account>
+  /** Reads a single `Account` that is related to this `Friendship`. */
+  accountByBAccountId?: Maybe<Account>
+  /** Reads a single `Account` that is related to this `Friendship`. */
+  accountByCreatedBy?: Maybe<Account>
+  /** Reads a single `Account` that is related to this `Friendship`. */
+  accountByUpdatedBy?: Maybe<Account>
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>
+  /** The `Friendship` that was updated by this mutation. */
+  friendship?: Maybe<Friendship>
+  /** An edge for our `Friendship`. May be used by Relay 1. */
+  friendshipEdge?: Maybe<FriendshipsEdge>
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>
+}
+
+/** The output of our update `Friendship` mutation. */
+export type UpdateFriendshipPayloadFriendshipEdgeArgs = {
+  orderBy?: InputMaybe<Array<FriendshipsOrderBy>>
+}
+
+/** All input for the `updateGuestByEventIdAndContactId` mutation. */
+export type UpdateGuestByEventIdAndContactIdInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** The internal id of the guest's contact. */
+  contactId: Scalars['UUID']['input']
+  /** The internal id of the guest's event. */
+  eventId: Scalars['UUID']['input']
+  /** An object where the defined keys will be set on the `Guest` being updated. */
+  guestPatch: GuestPatch
+}
+
+/** All input for the `updateGuestById` mutation. */
+export type UpdateGuestByIdInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** An object where the defined keys will be set on the `Guest` being updated. */
+  guestPatch: GuestPatch
+  /** The guests's internal id. */
+  id: Scalars['UUID']['input']
+}
+
+/** All input for the `updateGuest` mutation. */
+export type UpdateGuestInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** An object where the defined keys will be set on the `Guest` being updated. */
+  guestPatch: GuestPatch
+  /** The globally unique `ID` which will identify a single `Guest` to be updated. */
   nodeId: Scalars['ID']['input']
 }
 
 /** The output of our update `Invitation` mutation. */
 export type UpdateInvitationPayload = {
   __typename?: 'UpdateInvitationPayload'
+  /** Reads a single `Account` that is related to this `Invitation`. */
+  accountByUpdatedBy?: Maybe<Account>
   /**
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
   clientMutationId?: Maybe<Scalars['String']['output']>
-  /** Reads a single `Contact` that is related to this `Invitation`. */
+  /** Reads a single `Contact` that is related to this `Guest`. */
   contactByContactId?: Maybe<Contact>
-  /** Reads a single `Event` that is related to this `Invitation`. */
+  /** Reads a single `Event` that is related to this `Guest`. */
   eventByEventId?: Maybe<Event>
-  /** The `Invitation` that was updated by this mutation. */
-  invitation?: Maybe<Invitation>
-  /** An edge for our `Invitation`. May be used by Relay 1. */
-  invitationEdge?: Maybe<InvitationsEdge>
+  /** The `Guest` that was updated by this mutation. */
+  guest?: Maybe<Guest>
+  /** An edge for our `Guest`. May be used by Relay 1. */
+  guestEdge?: Maybe<GuestsEdge>
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>
 }
 
-/** The output of our update `Invitation` mutation. */
-export type UpdateInvitationPayloadInvitationEdgeArgs = {
-  orderBy?: InputMaybe<Array<InvitationsOrderBy>>
+/** The output of our update `Guest` mutation. */
+export type UpdateGuestPayloadGuestEdgeArgs = {
+  orderBy?: InputMaybe<Array<GuestsOrderBy>>
 }
 
 /** All input for the `updateLegalTermAcceptanceById` mutation. */
@@ -4827,13 +6935,24 @@ export type AchievementItemFragment = {
   level: number
 } & { ' $fragmentName'?: 'AchievementItemFragment' }
 
+export type AddressItemFragment = {
+  __typename?: 'Address'
+  id: any
+  city?: string | null
+  country?: string | null
+  line1?: string | null
+  line2?: string | null
+  name: string
+  postalCode?: string | null
+  region?: string | null
+} & { ' $fragmentName'?: 'AddressItemFragment' }
+
 export type ContactItemFragment = {
   __typename?: 'Contact'
   nodeId: string
   id: any
   accountId?: any | null
-  authorAccountId: any
-  address?: string | null
+  createdBy: any
   emailAddress?: string | null
   emailAddressHash?: string | null
   firstName?: string | null
@@ -4845,39 +6964,48 @@ export type ContactItemFragment = {
     id: any
     username: string
   } | null
-  accountByAuthorAccountId?: {
+  accountByCreatedBy?: {
     __typename?: 'Account'
     id: any
     username: string
   } | null
+  addressByAddressId?:
+    | ({ __typename?: 'Address' } & {
+        ' $fragmentRefs'?: { AddressItemFragment: AddressItemFragment }
+      })
+    | null
 } & { ' $fragmentName'?: 'ContactItemFragment' }
 
 export type EventItemFragment = {
   __typename?: 'Event'
   id: any
   nodeId: string
-  authorAccountId: any
+  createdBy: any
   description?: string | null
   end?: any | null
-  inviteeCountMaximum?: number | null
+  guestCountMaximum?: number | null
   isArchived: boolean
   isInPerson?: boolean | null
   isRemote?: boolean | null
-  location?: string | null
   name: string
   slug: string
   start: any
   url?: string | null
   visibility: EventVisibility
-  accountByAuthorAccountId?: {
+  accountByCreatedBy?: {
     __typename?: 'Account'
     id: any
     username: string
   } | null
+  addressByAddressId?:
+    | ({ __typename?: 'Address' } & {
+        ' $fragmentRefs'?: { AddressItemFragment: AddressItemFragment }
+      })
+    | null
 } & { ' $fragmentName'?: 'EventItemFragment' }
 
-export type InvitationItemFragment = {
-  __typename?: 'Invitation'
+export type GuestItemFragment = {
+  __typename?: 'Guest'
   id: any
   nodeId: string
   contactId: any
@@ -4889,7 +7017,7 @@ export type InvitationItemFragment = {
         ' $fragmentRefs'?: { ContactItemFragment: ContactItemFragment }
       })
     | null
-} & { ' $fragmentName'?: 'InvitationItemFragment' }
+} & { ' $fragmentName'?: 'GuestItemFragment' }
 
 export type ProfilePictureItemFragment = {
   __typename?: 'ProfilePicture'
@@ -5148,7 +7276,7 @@ export type EventDeleteMutation = {
 }
 
 export type EventUnlockMutationVariables = Exact<{
-  invitationId: Scalars['UUID']['input']
+  guestId: Scalars['UUID']['input']
 }>
 
 export type EventUnlockMutation = {
@@ -5157,7 +7285,7 @@ export type EventUnlockMutation = {
     __typename?: 'EventUnlockPayload'
     eventUnlockResponse?: {
       __typename?: 'EventUnlockResponse'
-      authorAccountUsername?: string | null
+      creatorUsername?: string | null
       eventSlug?: string | null
       jwt?: any | null
     } | null
@@ -5181,16 +7309,16 @@ export type UpdateEventByIdMutation = {
   } | null
 }
 
-export type CreateInvitationMutationVariables = Exact<{
-  invitationInput: InvitationInput
+export type CreateGuestMutationVariables = Exact<{
+  guestInput: GuestInput
 }>
 
-export type CreateInvitationMutation = {
+export type CreateGuestMutation = {
   __typename?: 'Mutation'
-  createInvitation?: {
-    __typename?: 'CreateInvitationPayload'
-    invitation?: {
-      __typename?: 'Invitation'
+  createGuest?: {
+    __typename?: 'CreateGuestPayload'
+    guest?: {
+      __typename?: 'Guest'
       id: any
       contactByContactId?:
         | ({ __typename?: 'Contact' } & {
@@ -5201,44 +7329,42 @@ export type CreateInvitationMutation = {
   } | null
 }
 
-export type DeleteInvitationByIdMutationVariables = Exact<{
+export type DeleteGuestByIdMutationVariables = Exact<{
   id: Scalars['UUID']['input']
 }>
 
-export type DeleteInvitationByIdMutation = {
+export type DeleteGuestByIdMutation = {
   __typename?: 'Mutation'
-  deleteInvitationById?: {
-    __typename?: 'DeleteInvitationPayload'
+  deleteGuestById?: {
+    __typename?: 'DeleteGuestPayload'
     clientMutationId?: string | null
   } | null
 }
 
-export type UpdateInvitationByIdMutationVariables = Exact<{
+export type UpdateGuestByIdMutationVariables = Exact<{
   id: Scalars['UUID']['input']
-  invitationPatch: InvitationPatch
+  guestPatch: GuestPatch
 }>
 
-export type UpdateInvitationByIdMutation = {
+export type UpdateGuestByIdMutation = {
   __typename?: 'Mutation'
-  updateInvitationById?: {
-    __typename?: 'UpdateInvitationPayload'
-    invitation?:
+  updateGuestById?: {
+    __typename?: 'UpdateGuestPayload'
+    guest?:
       | ({
-          __typename?: 'Invitation'
+          __typename?: 'Guest'
           contactByContactId?:
             | ({ __typename?: 'Contact' } & {
                 ' $fragmentRefs'?: { ContactItemFragment: ContactItemFragment }
               })
             | null
-        } & {
-          ' $fragmentRefs'?: { InvitationItemFragment: InvitationItemFragment }
-        })
+        } & { ' $fragmentRefs'?: { GuestItemFragment: GuestItemFragment } })
       | null
   } | null
 }
 
 export type InviteMutationVariables = Exact<{
-  invitationId: Scalars['UUID']['input']
+  guestId: Scalars['UUID']['input']
   language: Scalars['String']['input']
 }>
 
@@ -5328,7 +7454,7 @@ export type AllAchievementsQuery = {
 
 export type AllContactsQueryVariables = Exact<{
   after?: InputMaybe<Scalars['Cursor']['input']>
-  authorAccountId?: InputMaybe<Scalars['UUID']['input']>
+  createdBy?: InputMaybe<Scalars['UUID']['input']>
   first: Scalars['Int']['input']
 }>
 
@@ -5350,22 +7476,22 @@ export type AllContactsQuery = {
   } | null
 }
 
-export type EventByAuthorAccountIdAndSlugQueryVariables = Exact<{
-  authorAccountId: Scalars['UUID']['input']
+export type EventByCreatedByAndSlugQueryVariables = Exact<{
+  createdBy: Scalars['UUID']['input']
+  guestId?: InputMaybe<Scalars['UUID']['input']>
   slug: Scalars['String']['input']
-  invitationId?: InputMaybe<Scalars['UUID']['input']>
 }>
 
-export type EventByAuthorAccountIdAndSlugQuery = {
+export type EventByCreatedByAndSlugQuery = {
   __typename?: 'Query'
-  eventByAuthorAccountIdAndSlug?:
+  eventByCreatedByAndSlug?:
     | ({
         __typename?: 'Event'
-        invitationsByEventId: {
-          __typename?: 'InvitationsConnection'
+        guestsByEventId: {
+          __typename?: 'GuestsConnection'
           nodes: Array<
             {
-              __typename?: 'Invitation'
+              __typename?: 'Guest'
               contactByContactId?:
                 | ({ __typename?: 'Contact' } & {
                     ' $fragmentRefs'?: {
@@ -5373,11 +7499,7 @@ export type EventByAuthorAccountIdAndSlugQuery = {
                     }
                   })
                 | null
-            } & {
-              ' $fragmentRefs'?: {
-                InvitationItemFragment: InvitationItemFragment
-              }
-            }
+            } & { ' $fragmentRefs'?: { GuestItemFragment: GuestItemFragment } }
           >
         }
       } & { ' $fragmentRefs'?: { EventItemFragment: EventItemFragment } })
@@ -5385,7 +7507,7 @@ export type EventByAuthorAccountIdAndSlugQuery = {
 }
 
 export type EventIsExistingQueryVariables = Exact<{
-  authorAccountId: Scalars['UUID']['input']
+  createdBy: Scalars['UUID']['input']
   slug: Scalars['String']['input']
 }>
 
@@ -5396,7 +7518,7 @@ export type EventIsExistingQuery = {
 
 export type AllEventsQueryVariables = Exact<{
   after?: InputMaybe<Scalars['Cursor']['input']>
-  authorAccountId?: InputMaybe<Scalars['UUID']['input']>
+  createdBy?: InputMaybe<Scalars['UUID']['input']>
   first: Scalars['Int']['input']
 }>
 
@@ -5418,20 +7540,20 @@ export type AllEventsQuery = {
   } | null
 }
 
-export type AllInvitationsQueryVariables = Exact<{
+export type AllGuestsQueryVariables = Exact<{
   after?: InputMaybe<Scalars['Cursor']['input']>
   eventId: Scalars['UUID']['input']
   first: Scalars['Int']['input']
 }>
 
-export type AllInvitationsQuery = {
+export type AllGuestsQuery = {
   __typename?: 'Query'
-  allInvitations?: {
-    __typename?: 'InvitationsConnection'
+  allGuests?: {
+    __typename?: 'GuestsConnection'
     totalCount: number
     nodes: Array<
-      { __typename?: 'Invitation' } & {
-        ' $fragmentRefs'?: { InvitationItemFragment: InvitationItemFragment }
+      { __typename?: 'Guest' } & {
+        ' $fragmentRefs'?: { GuestItemFragment: GuestItemFragment }
       }
     >
     pageInfo: {
@@ -5538,6 +7660,32 @@ export const AchievementItemFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<AchievementItemFragment, unknown>
+export const AddressItemFragmentDoc = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'AddressItem' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'Address' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'city' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'country' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'line1' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'line2' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'postalCode' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'region' } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<AddressItemFragment, unknown>
 export const EventItemFragmentDoc = {
   kind: 'Document',
   definitions: [
@@ -5553,10 +7701,9 @@ export const EventItemFragmentDoc = {
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
           {
             kind: 'Field',
-            name: { kind: 'Name', value: 'accountByAuthorAccountId' },
+            name: { kind: 'Name', value: 'accountByCreatedBy' },
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
@@ -5565,21 +7712,52 @@ export const EventItemFragmentDoc = {
               ],
             },
           },
-          { kind: 'Field', name: { kind: 'Name', value: 'description' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'end' } },
           {
             kind: 'Field',
-            name: { kind: 'Name', value: 'inviteeCountMaximum' },
+            name: { kind: 'Name', value: 'addressByAddressId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'AddressItem' },
+                },
+              ],
+            },
           },
+          { kind: 'Field', name: { kind: 'Name', value: 'createdBy' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'description' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'end' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'guestCountMaximum' } },
           { kind: 'Field', name: { kind: 'Name', value: 'isArchived' } },
           { kind: 'Field', name: { kind: 'Name', value: 'isInPerson' } },
           { kind: 'Field', name: { kind: 'Name', value: 'isRemote' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'location' } },
           { kind: 'Field', name: { kind: 'Name', value: 'name' } },
           { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
           { kind: 'Field', name: { kind: 'Name', value: 'start' } },
           { kind: 'Field', name: { kind: 'Name', value: 'url' } },
           { kind: 'Field', name: { kind: 'Name', value: 'visibility' } },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'AddressItem' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'Address' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'city' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'country' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'line1' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'line2' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'postalCode' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'region' } },
         ],
       },
     },
@@ -5614,7 +7792,7 @@ export const ContactItemFragmentDoc = {
           },
           {
             kind: 'Field',
-            name: { kind: 'Name', value: 'accountByAuthorAccountId' },
+            name: { kind: 'Name', value: 'accountByCreatedBy' },
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
@@ -5623,8 +7801,20 @@ export const ContactItemFragmentDoc = {
               ],
             },
           },
-          { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'address' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'addressByAddressId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'AddressItem' },
+                },
+              ],
+            },
+          },
+          { kind: 'Field', name: { kind: 'Name', value: 'createdBy' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddress' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddressHash' } },
           { kind: 'Field', name: { kind: 'Name', value: 'firstName' } },
@@ -5634,17 +7824,38 @@ export const ContactItemFragmentDoc = {
         ],
       },
     },
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'AddressItem' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'Address' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'city' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'country' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'line1' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'line2' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'postalCode' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'region' } },
+        ],
+      },
+    },
   ],
 } as unknown as DocumentNode<ContactItemFragment, unknown>
-export const InvitationItemFragmentDoc = {
+export const GuestItemFragmentDoc = {
   kind: 'Document',
   definitions: [
     {
       kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'InvitationItem' },
+      name: { kind: 'Name', value: 'GuestItem' },
       typeCondition: {
         kind: 'NamedType',
-        name: { kind: 'Name', value: 'Invitation' },
+        name: { kind: 'Name', value: 'Guest' },
       },
       selectionSet: {
         kind: 'SelectionSet',
@@ -5668,6 +7879,27 @@ export const InvitationItemFragmentDoc = {
               ],
             },
           },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'AddressItem' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'Address' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'city' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'country' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'line1' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'line2' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'postalCode' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'region' } },
         ],
       },
     },
@@ -5697,7 +7929,7 @@ export const InvitationItemFragmentDoc = {
           },
           {
             kind: 'Field',
-            name: { kind: 'Name', value: 'accountByAuthorAccountId' },
+            name: { kind: 'Name', value: 'accountByCreatedBy' },
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
@@ -5706,8 +7938,20 @@ export const InvitationItemFragmentDoc = {
               ],
             },
           },
-          { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'address' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'addressByAddressId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'AddressItem' },
+                },
+              ],
+            },
+          },
+          { kind: 'Field', name: { kind: 'Name', value: 'createdBy' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddress' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddressHash' } },
           { kind: 'Field', name: { kind: 'Name', value: 'firstName' } },
@@ -5718,7 +7962,7 @@ export const InvitationItemFragmentDoc = {
       },
     },
   ],
-} as unknown as DocumentNode<InvitationItemFragment, unknown>
+} as unknown as DocumentNode<GuestItemFragment, unknown>
 export const UploadItemFragmentDoc = {
   kind: 'Document',
   definitions: [
@@ -6773,6 +9017,27 @@ export const CreateContactDocument = {
     },
     {
       kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'AddressItem' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'Address' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'city' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'country' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'line1' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'line2' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'postalCode' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'region' } },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'ContactItem' },
       typeCondition: {
         kind: 'NamedType',
@@ -6797,7 +9062,7 @@ export const CreateContactDocument = {
           },
           {
             kind: 'Field',
-            name: { kind: 'Name', value: 'accountByAuthorAccountId' },
+            name: { kind: 'Name', value: 'accountByCreatedBy' },
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
@@ -6806,8 +9071,20 @@ export const CreateContactDocument = {
               ],
             },
           },
-          { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'address' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'addressByAddressId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'AddressItem' },
+                },
+              ],
+            },
+          },
+          { kind: 'Field', name: { kind: 'Name', value: 'createdBy' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddress' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddressHash' } },
           { kind: 'Field', name: { kind: 'Name', value: 'firstName' } },
@@ -6892,6 +9169,27 @@ export const DeleteContactByIdDocument = {
     },
     {
       kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'AddressItem' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'Address' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'city' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'country' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'line1' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'line2' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'postalCode' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'region' } },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'ContactItem' },
       typeCondition: {
         kind: 'NamedType',
@@ -6916,7 +9214,7 @@ export const DeleteContactByIdDocument = {
           },
           {
             kind: 'Field',
-            name: { kind: 'Name', value: 'accountByAuthorAccountId' },
+            name: { kind: 'Name', value: 'accountByCreatedBy' },
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
@@ -6925,8 +9223,20 @@ export const DeleteContactByIdDocument = {
               ],
             },
           },
-          { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'address' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'addressByAddressId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'AddressItem' },
+                },
+              ],
+            },
+          },
+          { kind: 'Field', name: { kind: 'Name', value: 'createdBy' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddress' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddressHash' } },
           { kind: 'Field', name: { kind: 'Name', value: 'firstName' } },
@@ -7029,6 +9339,27 @@ export const UpdateContactByIdDocument = {
     },
     {
       kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'AddressItem' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'Address' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'city' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'country' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'line1' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'line2' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'postalCode' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'region' } },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'ContactItem' },
       typeCondition: {
         kind: 'NamedType',
@@ -7053,7 +9384,7 @@ export const UpdateContactByIdDocument = {
           },
           {
             kind: 'Field',
-            name: { kind: 'Name', value: 'accountByAuthorAccountId' },
+            name: { kind: 'Name', value: 'accountByCreatedBy' },
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
@@ -7062,8 +9393,20 @@ export const UpdateContactByIdDocument = {
               ],
             },
           },
-          { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'address' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'addressByAddressId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'AddressItem' },
+                },
+              ],
+            },
+          },
+          { kind: 'Field', name: { kind: 'Name', value: 'createdBy' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddress' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddressHash' } },
           { kind: 'Field', name: { kind: 'Name', value: 'firstName' } },
@@ -7141,6 +9484,27 @@ export const CreateEventDocument = {
     },
     {
       kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'AddressItem' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'Address' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'city' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'country' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'line1' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'line2' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'postalCode' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'region' } },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'EventItem' },
       typeCondition: {
         kind: 'NamedType',
@@ -7151,10 +9515,9 @@ export const CreateEventDocument = {
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
           {
             kind: 'Field',
-            name: { kind: 'Name', value: 'accountByAuthorAccountId' },
+            name: { kind: 'Name', value: 'accountByCreatedBy' },
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
@@ -7163,16 +9526,26 @@ export const CreateEventDocument = {
               ],
             },
           },
-          { kind: 'Field', name: { kind: 'Name', value: 'description' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'end' } },
           {
             kind: 'Field',
-            name: { kind: 'Name', value: 'inviteeCountMaximum' },
+            name: { kind: 'Name', value: 'addressByAddressId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'AddressItem' },
+                },
+              ],
+            },
           },
+          { kind: 'Field', name: { kind: 'Name', value: 'createdBy' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'description' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'end' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'guestCountMaximum' } },
           { kind: 'Field', name: { kind: 'Name', value: 'isArchived' } },
           { kind: 'Field', name: { kind: 'Name', value: 'isInPerson' } },
           { kind: 'Field', name: { kind: 'Name', value: 'isRemote' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'location' } },
           { kind: 'Field', name: { kind: 'Name', value: 'name' } },
           { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
           { kind: 'Field', name: { kind: 'Name', value: 'start' } },
@@ -7275,6 +9648,27 @@ export const EventDeleteDocument = {
     },
     {
       kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'AddressItem' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'Address' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'city' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'country' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'line1' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'line2' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'postalCode' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'region' } },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'EventItem' },
       typeCondition: {
         kind: 'NamedType',
@@ -7285,10 +9679,9 @@ export const EventDeleteDocument = {
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
           {
             kind: 'Field',
-            name: { kind: 'Name', value: 'accountByAuthorAccountId' },
+            name: { kind: 'Name', value: 'accountByCreatedBy' },
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
@@ -7297,16 +9690,26 @@ export const EventDeleteDocument = {
               ],
             },
           },
-          { kind: 'Field', name: { kind: 'Name', value: 'description' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'end' } },
           {
             kind: 'Field',
-            name: { kind: 'Name', value: 'inviteeCountMaximum' },
+            name: { kind: 'Name', value: 'addressByAddressId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'AddressItem' },
+                },
+              ],
+            },
           },
+          { kind: 'Field', name: { kind: 'Name', value: 'createdBy' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'description' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'end' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'guestCountMaximum' } },
           { kind: 'Field', name: { kind: 'Name', value: 'isArchived' } },
           { kind: 'Field', name: { kind: 'Name', value: 'isInPerson' } },
           { kind: 'Field', name: { kind: 'Name', value: 'isRemote' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'location' } },
           { kind: 'Field', name: { kind: 'Name', value: 'name' } },
           { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
           { kind: 'Field', name: { kind: 'Name', value: 'start' } },
@@ -7329,7 +9732,7 @@ export const EventUnlockDocument = {
           kind: 'VariableDefinition',
           variable: {
             kind: 'Variable',
-            name: { kind: 'Name', value: 'invitationId' },
+            name: { kind: 'Name', value: 'guestId' },
           },
           type: {
             kind: 'NonNullType',
@@ -7352,10 +9755,10 @@ export const EventUnlockDocument = {
                   fields: [
                     {
                       kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'invitationId' },
+                      name: { kind: 'Name', value: 'guestId' },
                       value: {
                         kind: 'Variable',
-                        name: { kind: 'Name', value: 'invitationId' },
+                        name: { kind: 'Name', value: 'guestId' },
                       },
                     },
                   ],
@@ -7373,7 +9776,7 @@ export const EventUnlockDocument = {
                     selections: [
                       {
                         kind: 'Field',
-                        name: { kind: 'Name', value: 'authorAccountUsername' },
+                        name: { kind: 'Name', value: 'creatorUsername' },
                       },
                       {
                         kind: 'Field',
@@ -7479,6 +9882,27 @@ export const UpdateEventByIdDocument = {
     },
     {
       kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'AddressItem' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'Address' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'city' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'country' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'line1' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'line2' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'postalCode' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'region' } },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'EventItem' },
       typeCondition: {
         kind: 'NamedType',
@@ -7489,10 +9913,9 @@ export const UpdateEventByIdDocument = {
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
           {
             kind: 'Field',
-            name: { kind: 'Name', value: 'accountByAuthorAccountId' },
+            name: { kind: 'Name', value: 'accountByCreatedBy' },
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
@@ -7501,16 +9924,26 @@ export const UpdateEventByIdDocument = {
               ],
             },
           },
-          { kind: 'Field', name: { kind: 'Name', value: 'description' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'end' } },
           {
             kind: 'Field',
-            name: { kind: 'Name', value: 'inviteeCountMaximum' },
+            name: { kind: 'Name', value: 'addressByAddressId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'AddressItem' },
+                },
+              ],
+            },
           },
+          { kind: 'Field', name: { kind: 'Name', value: 'createdBy' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'description' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'end' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'guestCountMaximum' } },
           { kind: 'Field', name: { kind: 'Name', value: 'isArchived' } },
           { kind: 'Field', name: { kind: 'Name', value: 'isInPerson' } },
           { kind: 'Field', name: { kind: 'Name', value: 'isRemote' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'location' } },
           { kind: 'Field', name: { kind: 'Name', value: 'name' } },
           { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
           { kind: 'Field', name: { kind: 'Name', value: 'start' } },
@@ -7524,25 +9957,25 @@ export const UpdateEventByIdDocument = {
   UpdateEventByIdMutation,
   UpdateEventByIdMutationVariables
 >
-export const CreateInvitationDocument = {
+export const CreateGuestDocument = {
   kind: 'Document',
   definitions: [
     {
       kind: 'OperationDefinition',
       operation: 'mutation',
-      name: { kind: 'Name', value: 'createInvitation' },
+      name: { kind: 'Name', value: 'createGuest' },
       variableDefinitions: [
         {
           kind: 'VariableDefinition',
           variable: {
             kind: 'Variable',
-            name: { kind: 'Name', value: 'invitationInput' },
+            name: { kind: 'Name', value: 'guestInput' },
           },
           type: {
             kind: 'NonNullType',
             type: {
               kind: 'NamedType',
-              name: { kind: 'Name', value: 'InvitationInput' },
+              name: { kind: 'Name', value: 'GuestInput' },
             },
           },
         },
@@ -7552,7 +9985,7 @@ export const CreateInvitationDocument = {
         selections: [
           {
             kind: 'Field',
-            name: { kind: 'Name', value: 'createInvitation' },
+            name: { kind: 'Name', value: 'createGuest' },
             arguments: [
               {
                 kind: 'Argument',
@@ -7562,10 +9995,10 @@ export const CreateInvitationDocument = {
                   fields: [
                     {
                       kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'invitation' },
+                      name: { kind: 'Name', value: 'guest' },
                       value: {
                         kind: 'Variable',
-                        name: { kind: 'Name', value: 'invitationInput' },
+                        name: { kind: 'Name', value: 'guestInput' },
                       },
                     },
                   ],
@@ -7577,7 +10010,7 @@ export const CreateInvitationDocument = {
               selections: [
                 {
                   kind: 'Field',
-                  name: { kind: 'Name', value: 'invitation' },
+                  name: { kind: 'Name', value: 'guest' },
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
@@ -7601,6 +10034,27 @@ export const CreateInvitationDocument = {
               ],
             },
           },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'AddressItem' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'Address' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'city' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'country' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'line1' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'line2' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'postalCode' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'region' } },
         ],
       },
     },
@@ -7630,7 +10084,7 @@ export const CreateInvitationDocument = {
           },
           {
             kind: 'Field',
-            name: { kind: 'Name', value: 'accountByAuthorAccountId' },
+            name: { kind: 'Name', value: 'accountByCreatedBy' },
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
@@ -7639,8 +10093,20 @@ export const CreateInvitationDocument = {
               ],
             },
           },
-          { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'address' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'addressByAddressId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'AddressItem' },
+                },
+              ],
+            },
+          },
+          { kind: 'Field', name: { kind: 'Name', value: 'createdBy' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddress' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddressHash' } },
           { kind: 'Field', name: { kind: 'Name', value: 'firstName' } },
@@ -7651,17 +10117,14 @@ export const CreateInvitationDocument = {
       },
     },
   ],
-} as unknown as DocumentNode<
-  CreateInvitationMutation,
-  CreateInvitationMutationVariables
->
-export const DeleteInvitationByIdDocument = {
+} as unknown as DocumentNode<CreateGuestMutation, CreateGuestMutationVariables>
+export const DeleteGuestByIdDocument = {
   kind: 'Document',
   definitions: [
     {
       kind: 'OperationDefinition',
       operation: 'mutation',
-      name: { kind: 'Name', value: 'deleteInvitationById' },
+      name: { kind: 'Name', value: 'deleteGuestById' },
       variableDefinitions: [
         {
           kind: 'VariableDefinition',
@@ -7677,7 +10140,7 @@ export const DeleteInvitationByIdDocument = {
         selections: [
           {
             kind: 'Field',
-            name: { kind: 'Name', value: 'deleteInvitationById' },
+            name: { kind: 'Name', value: 'deleteGuestById' },
             arguments: [
               {
                 kind: 'Argument',
@@ -7712,16 +10175,16 @@ export const DeleteInvitationByIdDocument = {
     },
   ],
 } as unknown as DocumentNode<
-  DeleteInvitationByIdMutation,
-  DeleteInvitationByIdMutationVariables
+  DeleteGuestByIdMutation,
+  DeleteGuestByIdMutationVariables
 >
-export const UpdateInvitationByIdDocument = {
+export const UpdateGuestByIdDocument = {
   kind: 'Document',
   definitions: [
     {
       kind: 'OperationDefinition',
       operation: 'mutation',
-      name: { kind: 'Name', value: 'updateInvitationById' },
+      name: { kind: 'Name', value: 'updateGuestById' },
       variableDefinitions: [
         {
           kind: 'VariableDefinition',
@@ -7735,13 +10198,13 @@ export const UpdateInvitationByIdDocument = {
           kind: 'VariableDefinition',
           variable: {
             kind: 'Variable',
-            name: { kind: 'Name', value: 'invitationPatch' },
+            name: { kind: 'Name', value: 'guestPatch' },
           },
           type: {
             kind: 'NonNullType',
             type: {
               kind: 'NamedType',
-              name: { kind: 'Name', value: 'InvitationPatch' },
+              name: { kind: 'Name', value: 'GuestPatch' },
             },
           },
         },
@@ -7751,7 +10214,7 @@ export const UpdateInvitationByIdDocument = {
         selections: [
           {
             kind: 'Field',
-            name: { kind: 'Name', value: 'updateInvitationById' },
+            name: { kind: 'Name', value: 'updateGuestById' },
             arguments: [
               {
                 kind: 'Argument',
@@ -7769,10 +10232,10 @@ export const UpdateInvitationByIdDocument = {
                     },
                     {
                       kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'invitationPatch' },
+                      name: { kind: 'Name', value: 'guestPatch' },
                       value: {
                         kind: 'Variable',
-                        name: { kind: 'Name', value: 'invitationPatch' },
+                        name: { kind: 'Name', value: 'guestPatch' },
                       },
                     },
                   ],
@@ -7784,13 +10247,13 @@ export const UpdateInvitationByIdDocument = {
               selections: [
                 {
                   kind: 'Field',
-                  name: { kind: 'Name', value: 'invitation' },
+                  name: { kind: 'Name', value: 'guest' },
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
                       {
                         kind: 'FragmentSpread',
-                        name: { kind: 'Name', value: 'InvitationItem' },
+                        name: { kind: 'Name', value: 'GuestItem' },
                       },
                       {
                         kind: 'Field',
@@ -7811,6 +10274,27 @@ export const UpdateInvitationByIdDocument = {
               ],
             },
           },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'AddressItem' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'Address' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'city' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'country' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'line1' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'line2' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'postalCode' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'region' } },
         ],
       },
     },
@@ -7840,7 +10324,7 @@ export const UpdateInvitationByIdDocument = {
           },
           {
             kind: 'Field',
-            name: { kind: 'Name', value: 'accountByAuthorAccountId' },
+            name: { kind: 'Name', value: 'accountByCreatedBy' },
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
@@ -7849,8 +10333,20 @@ export const UpdateInvitationByIdDocument = {
               ],
             },
           },
-          { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'address' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'addressByAddressId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'AddressItem' },
+                },
+              ],
+            },
+          },
+          { kind: 'Field', name: { kind: 'Name', value: 'createdBy' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddress' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddressHash' } },
           { kind: 'Field', name: { kind: 'Name', value: 'firstName' } },
@@ -7862,10 +10358,10 @@ export const UpdateInvitationByIdDocument = {
     },
     {
       kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'InvitationItem' },
+      name: { kind: 'Name', value: 'GuestItem' },
       typeCondition: {
         kind: 'NamedType',
-        name: { kind: 'Name', value: 'Invitation' },
+        name: { kind: 'Name', value: 'Guest' },
       },
       selectionSet: {
         kind: 'SelectionSet',
@@ -7894,8 +10390,8 @@ export const UpdateInvitationByIdDocument = {
     },
   ],
 } as unknown as DocumentNode<
-  UpdateInvitationByIdMutation,
-  UpdateInvitationByIdMutationVariables
+  UpdateGuestByIdMutation,
+  UpdateGuestByIdMutationVariables
 >
 export const InviteDocument = {
   kind: 'Document',
@@ -7909,7 +10405,7 @@ export const InviteDocument = {
           kind: 'VariableDefinition',
           variable: {
             kind: 'Variable',
-            name: { kind: 'Name', value: 'invitationId' },
+            name: { kind: 'Name', value: 'guestId' },
           },
           type: {
             kind: 'NonNullType',
@@ -7946,10 +10442,10 @@ export const InviteDocument = {
                   fields: [
                     {
                       kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'invitationId' },
+                      name: { kind: 'Name', value: 'guestId' },
                       value: {
                         kind: 'Variable',
-                        name: { kind: 'Name', value: 'invitationId' },
+                        name: { kind: 'Name', value: 'guestId' },
                       },
                     },
                     {
@@ -8375,7 +10871,7 @@ export const AllContactsDocument = {
           kind: 'VariableDefinition',
           variable: {
             kind: 'Variable',
-            name: { kind: 'Name', value: 'authorAccountId' },
+            name: { kind: 'Name', value: 'createdBy' },
           },
           type: { kind: 'NamedType', name: { kind: 'Name', value: 'UUID' } },
         },
@@ -8414,10 +10910,10 @@ export const AllContactsDocument = {
                   fields: [
                     {
                       kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'authorAccountId' },
+                      name: { kind: 'Name', value: 'createdBy' },
                       value: {
                         kind: 'Variable',
-                        name: { kind: 'Name', value: 'authorAccountId' },
+                        name: { kind: 'Name', value: 'createdBy' },
                       },
                     },
                   ],
@@ -8485,6 +10981,27 @@ export const AllContactsDocument = {
     },
     {
       kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'AddressItem' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'Address' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'city' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'country' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'line1' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'line2' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'postalCode' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'region' } },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'ContactItem' },
       typeCondition: {
         kind: 'NamedType',
@@ -8509,7 +11026,7 @@ export const AllContactsDocument = {
           },
           {
             kind: 'Field',
-            name: { kind: 'Name', value: 'accountByAuthorAccountId' },
+            name: { kind: 'Name', value: 'accountByCreatedBy' },
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
@@ -8518,8 +11035,20 @@ export const AllContactsDocument = {
               ],
             },
           },
-          { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'address' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'addressByAddressId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'AddressItem' },
+                },
+              ],
+            },
+          },
+          { kind: 'Field', name: { kind: 'Name', value: 'createdBy' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddress' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddressHash' } },
           { kind: 'Field', name: { kind: 'Name', value: 'firstName' } },
@@ -8531,24 +11060,32 @@ export const AllContactsDocument = {
     },
   ],
 } as unknown as DocumentNode<AllContactsQuery, AllContactsQueryVariables>
-export const EventByAuthorAccountIdAndSlugDocument = {
+export const EventByCreatedByAndSlugDocument = {
   kind: 'Document',
   definitions: [
     {
       kind: 'OperationDefinition',
       operation: 'query',
-      name: { kind: 'Name', value: 'eventByAuthorAccountIdAndSlug' },
+      name: { kind: 'Name', value: 'eventByCreatedByAndSlug' },
       variableDefinitions: [
         {
           kind: 'VariableDefinition',
           variable: {
             kind: 'Variable',
-            name: { kind: 'Name', value: 'authorAccountId' },
+            name: { kind: 'Name', value: 'createdBy' },
           },
           type: {
             kind: 'NonNullType',
             type: { kind: 'NamedType', name: { kind: 'Name', value: 'UUID' } },
           },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'guestId' },
+          },
+          type: { kind: 'NamedType', name: { kind: 'Name', value: 'UUID' } },
         },
         {
           kind: 'VariableDefinition',
@@ -8561,28 +11098,20 @@ export const EventByAuthorAccountIdAndSlugDocument = {
             },
           },
         },
-        {
-          kind: 'VariableDefinition',
-          variable: {
-            kind: 'Variable',
-            name: { kind: 'Name', value: 'invitationId' },
-          },
-          type: { kind: 'NamedType', name: { kind: 'Name', value: 'UUID' } },
-        },
       ],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
           {
             kind: 'Field',
-            name: { kind: 'Name', value: 'eventByAuthorAccountIdAndSlug' },
+            name: { kind: 'Name', value: 'eventByCreatedByAndSlug' },
             arguments: [
               {
                 kind: 'Argument',
-                name: { kind: 'Name', value: 'authorAccountId' },
+                name: { kind: 'Name', value: 'createdBy' },
                 value: {
                   kind: 'Variable',
-                  name: { kind: 'Name', value: 'authorAccountId' },
+                  name: { kind: 'Name', value: 'createdBy' },
                 },
               },
               {
@@ -8603,7 +11132,7 @@ export const EventByAuthorAccountIdAndSlugDocument = {
                 },
                 {
                   kind: 'Field',
-                  name: { kind: 'Name', value: 'invitationsByEventId' },
+                  name: { kind: 'Name', value: 'guestsByEventId' },
                   arguments: [
                     {
                       kind: 'Argument',
@@ -8616,7 +11145,7 @@ export const EventByAuthorAccountIdAndSlugDocument = {
                             name: { kind: 'Name', value: 'id' },
                             value: {
                               kind: 'Variable',
-                              name: { kind: 'Name', value: 'invitationId' },
+                              name: { kind: 'Name', value: 'guestId' },
                             },
                           },
                         ],
@@ -8634,7 +11163,7 @@ export const EventByAuthorAccountIdAndSlugDocument = {
                           selections: [
                             {
                               kind: 'FragmentSpread',
-                              name: { kind: 'Name', value: 'InvitationItem' },
+                              name: { kind: 'Name', value: 'GuestItem' },
                             },
                             {
                               kind: 'Field',
@@ -8669,6 +11198,27 @@ export const EventByAuthorAccountIdAndSlugDocument = {
     },
     {
       kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'AddressItem' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'Address' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'city' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'country' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'line1' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'line2' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'postalCode' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'region' } },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'ContactItem' },
       typeCondition: {
         kind: 'NamedType',
@@ -8693,7 +11243,7 @@ export const EventByAuthorAccountIdAndSlugDocument = {
           },
           {
             kind: 'Field',
-            name: { kind: 'Name', value: 'accountByAuthorAccountId' },
+            name: { kind: 'Name', value: 'accountByCreatedBy' },
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
@@ -8702,8 +11252,20 @@ export const EventByAuthorAccountIdAndSlugDocument = {
               ],
             },
           },
-          { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'address' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'addressByAddressId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'AddressItem' },
+                },
+              ],
+            },
+          },
+          { kind: 'Field', name: { kind: 'Name', value: 'createdBy' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddress' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddressHash' } },
           { kind: 'Field', name: { kind: 'Name', value: 'firstName' } },
@@ -8725,10 +11287,9 @@ export const EventByAuthorAccountIdAndSlugDocument = {
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
           {
             kind: 'Field',
-            name: { kind: 'Name', value: 'accountByAuthorAccountId' },
+            name: { kind: 'Name', value: 'accountByCreatedBy' },
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
@@ -8737,16 +11298,26 @@ export const EventByAuthorAccountIdAndSlugDocument = {
               ],
             },
           },
-          { kind: 'Field', name: { kind: 'Name', value: 'description' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'end' } },
           {
             kind: 'Field',
-            name: { kind: 'Name', value: 'inviteeCountMaximum' },
+            name: { kind: 'Name', value: 'addressByAddressId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'AddressItem' },
+                },
+              ],
+            },
           },
+          { kind: 'Field', name: { kind: 'Name', value: 'createdBy' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'description' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'end' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'guestCountMaximum' } },
           { kind: 'Field', name: { kind: 'Name', value: 'isArchived' } },
           { kind: 'Field', name: { kind: 'Name', value: 'isInPerson' } },
           { kind: 'Field', name: { kind: 'Name', value: 'isRemote' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'location' } },
           { kind: 'Field', name: { kind: 'Name', value: 'name' } },
           { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
           { kind: 'Field', name: { kind: 'Name', value: 'start' } },
@@ -8757,10 +11328,10 @@ export const EventByAuthorAccountIdAndSlugDocument = {
     },
     {
       kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'InvitationItem' },
+      name: { kind: 'Name', value: 'GuestItem' },
       typeCondition: {
         kind: 'NamedType',
-        name: { kind: 'Name', value: 'Invitation' },
+        name: { kind: 'Name', value: 'Guest' },
       },
       selectionSet: {
         kind: 'SelectionSet',
@@ -8789,8 +11360,8 @@ export const EventByAuthorAccountIdAndSlugDocument = {
     },
   ],
 } as unknown as DocumentNode<
-  EventByAuthorAccountIdAndSlugQuery,
-  EventByAuthorAccountIdAndSlugQueryVariables
+  EventByCreatedByAndSlugQuery,
+  EventByCreatedByAndSlugQueryVariables
 >
 export const EventIsExistingDocument = {
   kind: 'Document',
@@ -8804,7 +11375,7 @@ export const EventIsExistingDocument = {
           kind: 'VariableDefinition',
           variable: {
             kind: 'Variable',
-            name: { kind: 'Name', value: 'authorAccountId' },
+            name: { kind: 'Name', value: 'createdBy' },
           },
           type: {
             kind: 'NonNullType',
@@ -8832,10 +11403,10 @@ export const EventIsExistingDocument = {
             arguments: [
               {
                 kind: 'Argument',
-                name: { kind: 'Name', value: 'authorAccountId' },
+                name: { kind: 'Name', value: 'createdBy' },
                 value: {
                   kind: 'Variable',
-                  name: { kind: 'Name', value: 'authorAccountId' },
+                  name: { kind: 'Name', value: 'createdBy' },
                 },
               },
               {
@@ -8876,7 +11447,7 @@ export const AllEventsDocument = {
           kind: 'VariableDefinition',
           variable: {
             kind: 'Variable',
-            name: { kind: 'Name', value: 'authorAccountId' },
+            name: { kind: 'Name', value: 'createdBy' },
           },
           type: { kind: 'NamedType', name: { kind: 'Name', value: 'UUID' } },
         },
@@ -8915,10 +11486,10 @@ export const AllEventsDocument = {
                   fields: [
                     {
                       kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'authorAccountId' },
+                      name: { kind: 'Name', value: 'createdBy' },
                       value: {
                         kind: 'Variable',
-                        name: { kind: 'Name', value: 'authorAccountId' },
+                        name: { kind: 'Name', value: 'createdBy' },
                       },
                     },
                   ],
@@ -8980,6 +11551,27 @@ export const AllEventsDocument = {
     },
     {
       kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'AddressItem' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'Address' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'city' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'country' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'line1' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'line2' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'postalCode' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'region' } },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'EventItem' },
       typeCondition: {
         kind: 'NamedType',
@@ -8990,10 +11582,9 @@ export const AllEventsDocument = {
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
           {
             kind: 'Field',
-            name: { kind: 'Name', value: 'accountByAuthorAccountId' },
+            name: { kind: 'Name', value: 'accountByCreatedBy' },
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
@@ -9002,16 +11593,26 @@ export const AllEventsDocument = {
               ],
             },
           },
-          { kind: 'Field', name: { kind: 'Name', value: 'description' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'end' } },
           {
             kind: 'Field',
-            name: { kind: 'Name', value: 'inviteeCountMaximum' },
+            name: { kind: 'Name', value: 'addressByAddressId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'AddressItem' },
+                },
+              ],
+            },
           },
+          { kind: 'Field', name: { kind: 'Name', value: 'createdBy' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'description' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'end' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'guestCountMaximum' } },
           { kind: 'Field', name: { kind: 'Name', value: 'isArchived' } },
           { kind: 'Field', name: { kind: 'Name', value: 'isInPerson' } },
           { kind: 'Field', name: { kind: 'Name', value: 'isRemote' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'location' } },
           { kind: 'Field', name: { kind: 'Name', value: 'name' } },
           { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
           { kind: 'Field', name: { kind: 'Name', value: 'start' } },
@@ -9022,13 +11623,13 @@ export const AllEventsDocument = {
     },
   ],
 } as unknown as DocumentNode<AllEventsQuery, AllEventsQueryVariables>
-export const AllInvitationsDocument = {
+export const AllGuestsDocument = {
   kind: 'Document',
   definitions: [
     {
       kind: 'OperationDefinition',
       operation: 'query',
-      name: { kind: 'Name', value: 'allInvitations' },
+      name: { kind: 'Name', value: 'allGuests' },
       variableDefinitions: [
         {
           kind: 'VariableDefinition',
@@ -9066,7 +11667,7 @@ export const AllInvitationsDocument = {
         selections: [
           {
             kind: 'Field',
-            name: { kind: 'Name', value: 'allInvitations' },
+            name: { kind: 'Name', value: 'allGuests' },
             arguments: [
               {
                 kind: 'Argument',
@@ -9113,7 +11714,7 @@ export const AllInvitationsDocument = {
                     selections: [
                       {
                         kind: 'FragmentSpread',
-                        name: { kind: 'Name', value: 'InvitationItem' },
+                        name: { kind: 'Name', value: 'GuestItem' },
                       },
                     ],
                   },
@@ -9144,6 +11745,27 @@ export const AllInvitationsDocument = {
     },
     {
       kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'AddressItem' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'Address' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'city' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'country' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'line1' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'line2' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'postalCode' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'region' } },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'ContactItem' },
       typeCondition: {
         kind: 'NamedType',
@@ -9168,7 +11790,7 @@ export const AllInvitationsDocument = {
           },
           {
             kind: 'Field',
-            name: { kind: 'Name', value: 'accountByAuthorAccountId' },
+            name: { kind: 'Name', value: 'accountByCreatedBy' },
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
@@ -9177,8 +11799,20 @@ export const AllInvitationsDocument = {
               ],
             },
           },
-          { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'address' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'addressByAddressId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'AddressItem' },
+                },
+              ],
+            },
+          },
+          { kind: 'Field', name: { kind: 'Name', value: 'createdBy' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddress' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddressHash' } },
           { kind: 'Field', name: { kind: 'Name', value: 'firstName' } },
@@ -9190,10 +11824,10 @@ export const AllInvitationsDocument = {
     },
     {
       kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'InvitationItem' },
+      name: { kind: 'Name', value: 'GuestItem' },
       typeCondition: {
         kind: 'NamedType',
-        name: { kind: 'Name', value: 'Invitation' },
+        name: { kind: 'Name', value: 'Guest' },
       },
       selectionSet: {
         kind: 'SelectionSet',
@@ -9222,56 +11856,6 @@ export const AllInvitationsDocument = {
     },
   ],
 } as unknown as DocumentNode<AllInvitationsQuery, AllInvitationsQueryVariables>
-export const AllLegalTermsDocument = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'OperationDefinition',
-      operation: 'query',
-      name: { kind: 'Name', value: 'allLegalTerms' },
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'allLegalTerms' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'edges' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'node' },
-                        selectionSet: {
-                          kind: 'SelectionSet',
-                          selections: [
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'id' },
-                            },
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'term' },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<AllLegalTermsQuery, AllLegalTermsQueryVariables>
 export const ProfilePictureByAccountIdDocument = {
   kind: 'Document',
   definitions: [

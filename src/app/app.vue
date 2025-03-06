@@ -5,7 +5,21 @@
         v-if="!isBrowserSupported && !runtimeConfig.public.vio.isTesting"
         is-edgy
       >
-        {{ t('browserUnsupported') }}
+        <i18n-t keypath="browserUnsupported">
+          <template #link>
+            <AppLink
+              :is-colored="false"
+              is-underlined
+              :to="
+                localePath({
+                  name: 'docs-browser-support',
+                })
+              "
+            >
+              {{ t('browserUnsupportedLink') }}
+            </AppLink>
+          </template>
+        </i18n-t>
       </CardStateInfo>
     </LazyClientOnly>
     <NuxtLayout>
@@ -43,6 +57,7 @@ const siteConfig = useSiteConfig()
 const locale = i18n.locale as WritableComputedRef<Locale>
 const { t } = i18n
 const timezone = useTimezone()
+const localePath = useLocalePath()
 
 // data
 const isBrowserSupported = ref(true)
@@ -102,6 +117,7 @@ defineOgImageComponent(
   },
 )
 useAppLayout()
+await useAuth()
 useFavicons()
 usePolyfills()
 useSchemaOrg([
@@ -142,12 +158,14 @@ initialize()
 
 <i18n lang="yaml">
 de:
-  browserUnsupported: Du benutzt einen Browser, in dem nicht alle Funktionen von maevsi unterstützt werden.
+  browserUnsupported: Du benutzt einen Browser, in dem nicht alle Funktionen von maevsi unterstützt werden. {link}.
+  browserUnsupportedLink: Mehr erfahren
   pwaConfirmButtonText: App nutzen
   pwaText: Die Installation verbraucht fast keinen Speicherplatz und bietet eine schnelle Möglichkeit, zu dieser App zurückzukehren.
   pwaTitle: maevsi installieren
 en:
-  browserUnsupported: You're using a browser which does not support all features maevsi offers.
+  browserUnsupported: You're using a browser which does not support all features maevsi offers. {link}.
+  browserUnsupportedLink: Learn more
   pwaConfirmButtonText: Get the app
   pwaText: Installing uses almost no storage and provides a quick way to return to this app.
   pwaTitle: Install maevsi

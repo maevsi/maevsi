@@ -2,6 +2,19 @@ import type { DefineNuxtConfig } from 'nuxt/config'
 
 export const developmentConfig: ReturnType<DefineNuxtConfig> = {
   $development: {
+    build: {
+      transpile: ['import-in-the-middle', 'semver'],
+    },
+    ...(process.env.NUXT_PUBLIC_SITE_URL // TODO: make more readable, find better naming ("enable https only in standalone mode, not when running inside the stack")
+      ? {}
+      : {
+          devServer: {
+            https: {
+              key: './.config/certificates/ssl.key',
+              cert: './.config/certificates/ssl.crt',
+            },
+          },
+        }),
     devtools: {
       enabled: !process.env.NUXT_PUBLIC_VIO_IS_TESTING,
     },
@@ -10,6 +23,11 @@ export const developmentConfig: ReturnType<DefineNuxtConfig> = {
         vio: {
           isInProduction: false,
         },
+      },
+    },
+    vite: {
+      server: {
+        allowedHosts: ['maevsi'],
       },
     },
 

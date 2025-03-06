@@ -1,6 +1,6 @@
 import type { H3Event } from 'h3'
 
-export const getDomainTldPort = (host: string) => {
+export const getRootHost = (host: string) => {
   const hostParts = host.split('.')
   const hostPartsLast = hostParts[hostParts.length - 1]
 
@@ -39,11 +39,9 @@ export const getServiceHref = ({
 
   if (stagingHost) {
     return `https://${nameSubdomainString}${stagingHost}`
-    // TODO: remove disable below (https://github.com/nuxt/nuxt/issues/25323)
-    // eslint-disable-next-line nuxt/prefer-import-meta
-  } else if (isSsr && process.server) {
+  } else if (isSsr && import.meta.server) {
     return `http://${name}${portString}`
   } else {
-    return `https://${nameSubdomainString}${getDomainTldPort(host)}`
+    return `https://${nameSubdomainString}${getRootHost(host)}`
   }
 }

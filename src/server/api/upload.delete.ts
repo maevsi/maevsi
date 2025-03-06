@@ -1,46 +1,40 @@
-import type { H3Event } from 'h3'
-import { consola } from 'consola'
 import { z } from 'zod'
 
 const uploadDeleteQuerySchema = z.object({
   uploadId: z.string(),
 })
 
-export default defineEventHandler(async (event: H3Event) => {
-  await verifyAuth(event)
+export default defineEventHandler(async (event) => {
+  const { getJwtFromHeader, verifyJwt } = await useJsonWebToken()
+
+  const jwtDecoded = await verifyJwt(getJwtFromHeader())
+  if (!(jwtDecoded.role === 'maevsi_account'))
+    return throwError({
+      code: 403,
+      message: 'This endpoint only available to registered users.',
+    })
 
   const query = await getQuerySafe({ event, schema: uploadDeleteQuerySchema })
   const uploadId = query.uploadId
 
-  consola.log('tusdDelete: ' + uploadId)
+  console.log('tusdDelete: ' + uploadId)
 
-  const queryResult = await pool
-    .query('SELECT * FROM maevsi.upload WHERE id = $1;', [uploadId])
-    .catch((err) => {
-      return throwError({
-        code: 500,
-        message: err.message,
-      })
-    })
+  const queryResult = await executeQuery(uploadSelect({ id: uploadId }))
 
-  if (!queryResult) return
-
-  if (!queryResult.rows.length) {
+  if (!queryResult.length) {
     return throwError({
       code: 500,
-      message: 'No result found for id "' + uploadId + '"!',
+      message: `No result found for id "${uploadId}"!`,
     })
   }
 
-  const storageKey = (
-    queryResult.rows[0] ? queryResult.rows[0].storage_key : undefined
-  ) as string | undefined
+  const storageKey = queryResult[0]?.storage_key
 
   if (!storageKey) {
     return await deleteUpload(event, uploadId)
   }
 
-  const response = await $fetch.raw('http://tusd:8080/files/' + storageKey, {
+  const response = await $fetch.raw(`http://tusd:8080/files/${storageKey}`, {
     headers: {
       'Tus-Resumable': '1.0.0',
     },
@@ -51,12 +45,9 @@ export default defineEventHandler(async (event: H3Event) => {
   switch (response.status) {
     case 204:
       await deleteUpload(event, uploadId)
-      event.node.res.statusCode = 204
-      await send(event)
-      break
+      return sendNoContent(event)
     case 404:
-      await deleteUpload(event, uploadId)
-      break
+      return deleteUpload(event, uploadId)
     default:
       return throwError({
         code: 500,

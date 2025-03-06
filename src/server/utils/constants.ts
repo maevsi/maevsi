@@ -2,15 +2,10 @@ import { defu } from 'defu'
 import type { RuntimeConfig } from 'nuxt/schema'
 
 import {
+  IS_IN_PRODUCTION,
+  IS_IN_STACK,
   IS_NITRO_OPENAPI_ENABLED,
-  STAGING_HOST as PRODUCTION_HOST,
-} from '../../shared/utils/constants'
-import { getDomainTldPort as getSiteAndPort } from '../../shared/utils/networking'
-
-export const MAEVSI_EMAIL_LIMIT_24H = 150
-export const IS_IN_PRODUCTION = process.env.NODE_ENV === 'production'
-export const IS_IN_STACK = !!process.env.NUXT_PUBLIC_SITE_URL
-export const IS_IN_FRONTEND_DEVELOPMENT = !IS_IN_PRODUCTION && !IS_IN_STACK
+} from '../../node'
 
 export const GET_CSP = ({
   siteUrl,
@@ -21,7 +16,7 @@ export const GET_CSP = ({
 }) => {
   const domainTldPort = IS_IN_FRONTEND_DEVELOPMENT
     ? PRODUCTION_HOST
-    : getSiteAndPort(siteUrl.host)
+    : getRootHost(siteUrl.host)
 
   return defu(
     // if (isHttps(event.node.req)) {
@@ -32,7 +27,7 @@ export const GET_CSP = ({
       // maevsi
       'connect-src': [
         'blob:', // vue-advanced-cropper
-        // `https://${domainTldPort}`, // `/api` requests
+        `https://${domainTldPort}`, // `/api` requests
         `https://postgraphile.${domainTldPort}`, // backend requests
         `https://tusd.${domainTldPort}`, // image upload requests
       ],
@@ -45,9 +40,10 @@ export const GET_CSP = ({
       ],
       // 'manifest-src': ["'self'"],
       // 'prefetch-src': ["'self'"],
+      'script-src': [
+        "'wasm-unsafe-eval'", // vue-qrcode-reader
+      ],
       'script-src-elem': [
-        // 'blob:', // TODO: check source
-        // "'unsafe-eval'", // TODO: check source
         'https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js', // ESLint plugin compat
       ],
       'worker-src': [
@@ -147,7 +143,7 @@ export const GET_CSP = ({
       'connect-src': [
         ...(runtimeConfig
           ? [
-              `https://${runtimeConfig.public.sentry.host}/api/${runtimeConfig.public.sentry.project.client.id}/envelope/`,
+              `https://${runtimeConfig.public.sentry.host}/api/${runtimeConfig.public.sentry.project.id}/envelope/`,
             ]
           : []),
       ],
@@ -202,5 +198,13 @@ export const GET_CSP = ({
           }
         : {}),
     },
+    {
+      // Firebase (Cloud Messaging)
+      'connect-src': [
+        'https://firebaseinstallations.googleapis.com',
+        'https://fcmregistrations.googleapis.com',
+      ],
+    },
   )
 }
+export const IS_IN_FRONTEND_DEVELOPMENT = !IS_IN_PRODUCTION && !IS_IN_STACK

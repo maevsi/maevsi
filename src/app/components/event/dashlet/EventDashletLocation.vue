@@ -1,15 +1,16 @@
 <template>
-  <EventDashlet v-if="event.isInPerson && event.location">
+  <!-- TODO: reenable to address usage -->
+  <EventDashlet v-if="event.isInPerson /*&& event.location*/">
     <span>
       <IHeroiconsMapPinSolid :title="t('location')" />
     </span>
-    <AppLink
+    <!-- <AppLink
       class="vio-line-clamp-2"
       is-external
       :to="`https://maps.google.de/?q=${encodeURIComponent(event.location)}`"
     >
       {{ event.location }}
-    </AppLink>
+    </AppLink> -->
   </EventDashlet>
 </template>
 
@@ -17,7 +18,7 @@
 import type { EventItemFragment } from '~~/gql/generated/graphql'
 
 export interface Props {
-  event: Pick<EventItemFragment, 'isInPerson' | 'location'>
+  event: Pick<EventItemFragment, 'isInPerson'> //  | 'location'
 }
 withDefaults(defineProps<Props>(), {})
 

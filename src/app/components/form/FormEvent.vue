@@ -103,6 +103,7 @@
           :options="[
             { title: t('visibilityPublic'), value: EventVisibility.Public },
             { title: t('visibilityPrivate'), value: EventVisibility.Private },
+            { title: t('visibilityUnlisted'), value: EventVisibility.Unlisted },
           ]"
         />
         <template #stateError>
@@ -119,18 +120,18 @@
         id-label="input-invitee-count-maximum"
         :title="t('maximumInviteeCount')"
         type="number"
-        :value="v$.inviteeCountMaximum"
-        @input="form.inviteeCountMaximum = $event"
+        :value="v$.guestCountMaximum"
+        @input="form.guestCountMaximum = $event"
       >
         <template #stateError>
           <FormInputStateError
-            :form-input="v$.inviteeCountMaximum"
+            :form-input="v$.guestCountMaximum"
             validation-property="valueMax"
           >
             {{ t('globalValidationMaxValue') }}
           </FormInputStateError>
           <FormInputStateError
-            :form-input="v$.inviteeCountMaximum"
+            :form-input="v$.guestCountMaximum"
             validation-property="valueMin"
           >
             {{ t('globalValidationMinValue') }}
@@ -194,7 +195,7 @@
           {{ t('isRemote') }}
         </FormCheckbox>
       </FormInput>
-      <FormInput
+      <!-- <FormInput
         v-if="v$.isInPerson.$model"
         id-label="input-location"
         :placeholder="t('globalPlaceholderAddress').replace('\n', ' ')"
@@ -216,7 +217,7 @@
             {{ t('stateInfoLocation') }}
           </FormInputStateInfo>
         </template>
-      </FormInput>
+      </FormInput> -->
       <FormInputUrl
         v-if="v$.isRemote.$model"
         :form-input="v$.url"
@@ -305,13 +306,13 @@ const timezone = useTimezone()
 const now = dateTime()
 const form = reactive({
   id: ref<string>(),
-  authorAccountId: ref<string>(),
+  createdBy: ref<string>(),
   description: ref<string>(),
   end: ref<string>(),
-  inviteeCountMaximum: ref<string>(),
+  guestCountMaximum: ref<string>(),
   isInPerson: ref<boolean>(),
   isRemote: ref<boolean>(),
-  location: ref<string>(),
+  // location: ref<string>(),
   name: ref<string>(),
   slug: ref<string>(),
   start: ref<string>(),
@@ -348,15 +349,15 @@ const submit = async () => {
     const result = await updateEventMutation.executeMutation({
       id: form.id,
       eventPatch: {
-        authorAccountId: store.signedInAccountId,
+        createdBy: store.signedInAccountId,
         description: form.description || null,
         end: form.end || null,
-        inviteeCountMaximum: form.inviteeCountMaximum
-          ? +form.inviteeCountMaximum
+        guestCountMaximum: form.guestCountMaximum
+          ? +form.guestCountMaximum
           : null,
         isInPerson: form.isInPerson,
         isRemote: form.isRemote,
-        location: form.location || null,
+        // location: form.location || null,
         name: form.name || null,
         slug: form.slug || null,
         start: form.start || null,
@@ -367,21 +368,21 @@ const submit = async () => {
 
     if (result.error || !result.data) return
 
-    showToast({ title: t('updated') })
+    await showToast({ title: t('updated') })
   } else {
     // Add
     const result = await createEventMutation.executeMutation({
       createEventInput: {
         event: {
-          authorAccountId: store.signedInAccountId || '',
+          createdBy: store.signedInAccountId || '',
           description: form.description || null,
           end: form.end || null,
-          inviteeCountMaximum: form.inviteeCountMaximum
-            ? +form.inviteeCountMaximum
+          guestCountMaximum: form.guestCountMaximum
+            ? +form.guestCountMaximum
             : null,
           isInPerson: form.isInPerson,
           isRemote: form.isRemote,
-          location: form.location || null,
+          // location: form.location || null,
           name: form.name || '',
           slug: form.slug || '',
           start: form.start || null,
@@ -393,7 +394,7 @@ const submit = async () => {
 
     if (result.error || !result.data) return
 
-    showToast({ title: t('eventCreateSuccess') })
+    await showToast({ title: t('eventCreateSuccess') })
 
     if (!store.signedInUsername || !form.slug)
       throw new Error(
@@ -435,20 +436,20 @@ const isWarningStartPastShown = computed(
 // vuelidate
 const rules = {
   id: {},
-  authorAccountId: {},
+  createdBy: {},
   description: VALIDATION_PRIMITIVE({
     lengthMax: VALIDATION_EVENT_DESCRIPTION_LENGTH_MAXIMUM,
   }),
   end: {},
-  inviteeCountMaximum: VALIDATION_PRIMITIVE({
+  guestCountMaximum: VALIDATION_PRIMITIVE({
     valueMax: POSTGRES_INTEGER_MAXIMUM,
     valueMin: 1,
   }),
   isInPerson: {},
   isRemote: {},
-  location: VALIDATION_PRIMITIVE({
-    lengthMax: VALIDATION_EVENT_LOCATION_LENGTH_MAXIMUM,
-  }),
+  // location: VALIDATION_PRIMITIVE({
+  //   lengthMax: VALIDATION_EVENT_LOCATION_LENGTH_MAXIMUM,
+  // }),
   name: VALIDATION_PRIMITIVE({
     isRequired: true,
     lengthMax: VALIDATION_EVENT_NAME_LENGTH_MAXIMUM,
@@ -483,13 +484,13 @@ de:
   eventCreate: Veranstaltung erstellen
   eventCreateSuccess: Veranstaltung erfolgreich erstellt.
   eventUpdate: Änderungen speichern
-  stateInfoLocation: Ein Suchbegriff für Google Maps.
+  # stateInfoLocation: Ein Suchbegriff für Google Maps.
   isInPerson: vor Ort
   isRemote: digital
   maximumInviteeCount: Maximale Gästezahl
   name: Name
   namePlaceholder: Willkommensfeier
-  location: Ort
+  # location: Ort
   slug: Slug
   slugPlaceholder: willkommensfeier
   start: Beginn
@@ -499,6 +500,7 @@ de:
   visibility: Sichtbarkeit
   visibilityPrivate: privat
   visibilityPublic: öffentlich
+  visibilityUnlisted: ungelistet
 en:
   attendanceType: Attendance type
   description: Invitation text
@@ -506,13 +508,13 @@ en:
   eventCreate: Create event
   eventCreateSuccess: Event created successfully.
   eventUpdate: Save changes
-  stateInfoLocation: A search phrase for Google Maps.
+  # stateInfoLocation: A search phrase for Google Maps.
   isInPerson: in person
   isRemote: remote
   maximumInviteeCount: Maximum guest count
   name: Name
   namePlaceholder: Welcome Party
-  location: Location
+  # location: Location
   slug: Slug
   slugPlaceholder: welcome-party
   start: Start
@@ -522,4 +524,5 @@ en:
   visibility: Visibility
   visibilityPrivate: private
   visibilityPublic: public
+  visibilityUnlisted: unlisted
 </i18n>

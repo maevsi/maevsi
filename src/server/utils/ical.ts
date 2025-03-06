@@ -1,14 +1,24 @@
 import DOMPurify from 'isomorphic-dompurify'
-import ical, { ICalCalendarMethod, ICalEventStatus } from 'ical-generator'
+import ical, {
+  ICalCalendarMethod,
+  ICalEventClass,
+  ICalEventStatus,
+} from 'ical-generator'
 import mustache from 'mustache'
 
 import { getTextFromHtml } from '../../shared/utils/text'
-
-import type {
-  ContactItemFragment,
-  EventItemFragment,
-  InvitationItemFragment,
+import {
+  EventVisibility,
+  type ContactItemFragment,
+  type EventItemFragment,
+  type GuestItemFragment,
 } from '../../gql/generated/graphql'
+
+const visibilityToClass = {
+  [EventVisibility.Public]: ICalEventClass.PUBLIC,
+  [EventVisibility.Unlisted]: ICalEventClass.CONFIDENTIAL,
+  [EventVisibility.Private]: ICalEventClass.PRIVATE,
+}
 
 export const getIcalString = ({
   contact,
@@ -19,19 +29,20 @@ export const getIcalString = ({
   contact?: Pick<ContactItemFragment, 'firstName' | 'lastName'>
   event: Pick<
     EventItemFragment,
-    | 'accountByAuthorAccountId'
+    | 'accountByCreatedBy'
+    // | 'addressByAddressId' // TODO: update for address
     | 'description'
     | 'end'
     | 'id'
-    | 'location'
     | 'name'
     | 'slug'
     | 'start'
+    | 'visibility'
   >
-  invitation?: Pick<InvitationItemFragment, 'id'>
+  invitation?: Pick<GuestItemFragment, 'id'>
   siteUrl: string
 }) => {
-  const eventAuthorUsername = event.accountByAuthorAccountId?.username
+  const eventAuthorUsername = event.accountByCreatedBy?.username
   const userEventPath = `${eventAuthorUsername}/${event.slug}`
   const eventUrl = `${siteUrl}/event/view/${userEventPath}`
   const eventDescriptionHtml = mustache.render(
@@ -54,6 +65,7 @@ export const getIcalString = ({
     // `ttl` ... I don't think that's needed?
     events: [
       {
+        class: visibilityToClass[event.visibility] || ICalEventClass.PRIVATE,
         id: event.id,
         // sequence: ,
         start: event.start, // Appointment date of beginning, required.
@@ -83,7 +95,7 @@ export const getIcalString = ({
           },
           // description: getTextFromHtml(DOMPurify.sanitize(eventDescriptionHtml)),
         }),
-        location: event.location,
+        // location: event.location, // TODO: update for address
         organizer: {
           name: eventAuthorUsername,
           email: eventAuthorUsername + '@' + hostname,

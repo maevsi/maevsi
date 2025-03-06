@@ -4,6 +4,7 @@ import { maevsiTest } from '#tests/e2e/fixtures/maevsiTest'
 import { PAGE_READY } from '#tests/e2e/utils/constants'
 import {
   testA11y,
+  testMetadata,
   testOgImage,
   testPageLoad,
   testVisualRegression,
@@ -15,6 +16,12 @@ testA11y(PAGE_PATH)
 testOgImage(PAGE_PATH)
 testPageLoad(PAGE_PATH)
 testVisualRegression(PAGE_PATH)
+
+maevsiTest.describe('page', () => {
+  maevsiTest('metadata', async ({ page }) => {
+    await testMetadata({ page, path: '/', title: 'maevsi' })
+  })
+})
 
 maevsiTest.describe('internationalization', () => {
   const textEnglish = 'Personal invitations. Proper feedback.'

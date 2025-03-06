@@ -1,10 +1,9 @@
 <template>
   <Loader :api="api">
     <div
-      v-if="event && event.accountByAuthorAccountId?.username"
+      v-if="event && event.accountByCreatedBy?.username"
       class="flex flex-col gap-4"
     >
-      <LayoutBreadcrumbs :items="breadcrumbItems" />
       <CardStateInfo v-if="routeQueryIc && contact" class="flex flex-col gap-2">
         {{ t('invitationViewFor', { name: contactName }) }}
         <ButtonColored
@@ -47,9 +46,7 @@
         </div>
       </div>
       <ButtonList
-        v-if="
-          !routeQueryIc && event.authorAccountId === store.signedInAccountId
-        "
+        v-if="!routeQueryIc && event.createdBy === store.signedInAccountId"
         class="justify-center"
       >
         <ButtonColored
@@ -112,15 +109,12 @@
               class="absolute bottom-4 left-4 flex flex-col justify-between gap-4 md:flex-row"
             >
               <div
-                class="flex min-w-0 flex-col items-baseline text-text-bright md:flex-row md:gap-2"
+                class="text-text-bright flex min-w-0 flex-col items-baseline md:flex-row md:gap-2"
               >
                 <h1 class="m-0">
                   {{ event.name }}
                 </h1>
-                <Owner
-                  link
-                  :username="event.accountByAuthorAccountId.username"
-                />
+                <Owner link :username="event.accountByCreatedBy.username" />
               </div>
             </div>
           </div>
@@ -137,7 +131,8 @@
               <EventDashletDuration :event="event" />
               <EventDashletVisibility :event="event" with-text />
               <EventDashletAttendanceType :event="event" />
-              <EventDashletLocation :event="event" />
+              <!-- TODO: reenable to address usage -->
+              <!-- <EventDashletLocation :event="event" /> -->
               <EventDashletLink :event="event" />
             </div>
             <template v-if="invitation">
@@ -176,7 +171,7 @@
                       invitation.feedback === 'CANCELED'
                     "
                     :aria-label="
-                      event.accountByAuthorAccountId.username !==
+                      event.accountByCreatedBy.username !==
                       store.signedInUsername
                         ? t('invitationAccept')
                         : t('invitationAcceptAdmin', {
@@ -187,7 +182,7 @@
                   >
                     <span>
                       {{
-                        event.accountByAuthorAccountId.username !==
+                        event.accountByCreatedBy.username !==
                         store.signedInUsername
                           ? t('invitationAccept')
                           : t('invitationAcceptAdmin', {
@@ -209,7 +204,7 @@
                     />
                     <span>
                       {{
-                        event.accountByAuthorAccountId.username !==
+                        event.accountByCreatedBy.username !==
                         store.signedInUsername
                           ? t('invitationAccepted')
                           : t('invitationAcceptedAdmin', {
@@ -224,7 +219,7 @@
                       invitation.feedback === 'ACCEPTED'
                     "
                     :aria-label="
-                      event.accountByAuthorAccountId.username !==
+                      event.accountByCreatedBy.username !==
                       store.signedInUsername
                         ? t('invitationCancel')
                         : t('invitationCancelAdmin', {
@@ -235,7 +230,7 @@
                   >
                     <span>
                       {{
-                        event.accountByAuthorAccountId.username !==
+                        event.accountByCreatedBy.username !==
                         store.signedInUsername
                           ? t('invitationCancel')
                           : t('invitationCancelAdmin', {
@@ -257,7 +252,7 @@
                     />
                     <span>
                       {{
-                        event.accountByAuthorAccountId.username !==
+                        event.accountByCreatedBy.username !==
                         store.signedInUsername
                           ? t('invitationCanceled')
                           : t('invitationCanceledAdmin', {
@@ -315,14 +310,13 @@
         </div>
         <Card v-if="eventDescriptionTemplate">
           <!-- eslint-disable vue/no-v-html -->
-          <div
-            class="vio-prose-scheme w-full"
-            v-html="eventDescriptionTemplate"
-          />
+          <LayoutProse class="w-full">
+            <div v-html="eventDescriptionTemplate" />
+          </LayoutProse>
           <!-- eslint-enable vue/no-v-html -->
         </Card>
       </div>
-      <Modal id="ModalInvitationQrCode">
+      <Modal id="ModalGuestQrCode">
         <div v-if="invitation" class="flex flex-col items-center gap-2 pb-4">
           <QrcodeVue
             id="qrCode"
@@ -347,7 +341,7 @@
           </ButtonColored>
           <ButtonColored
             :aria-label="t('close')"
-            @click="store.modalRemove('ModalInvitationQrCode')"
+            @click="store.modalRemove('ModalGuestQrCode')"
           >
             {{ t('close') }}
             <template #prefix>
@@ -361,8 +355,7 @@
   </Loader>
 </template>
 
-<script lang="ts">
-import type { Client } from '@urql/core'
+<script setup lang="ts">
 import DOMPurify from 'isomorphic-dompurify'
 import mustache from 'mustache'
 import prntr from 'prntr'
@@ -370,56 +363,21 @@ import QrcodeVue from 'qrcode.vue'
 import type { RouteLocationNormalized } from 'vue-router'
 import type { RouteNamedMap } from 'vue-router/auto-routes'
 
-import { usePageBreadcrumb as usePageBreadcrumbEventsUser } from '../index.vue'
-import { usePageBreadcrumb as usePageBreadcrumbEvents } from '../../../index.vue'
-import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../../../index.vue'
-
-import { useUpdateInvitationByIdMutation } from '~~/gql/documents/mutations/invitation/invitationUpdateById'
+import { useUpdateGuestByIdMutation } from '~~/gql/documents/mutations/guest/guestUpdateById'
 import {
   InvitationFeedback,
-  type InvitationItemFragment,
-  type InvitationPatch,
+  type GuestItemFragment,
+  type GuestPatch,
 } from '~~/gql/generated/graphql'
 import { useAccountByUsernameQuery } from '~~/gql/documents/queries/account/accountByUsername'
-import { getInvitationItem } from '~~/gql/documents/fragments/invitationItem'
+import { getGuestItem } from '~~/gql/documents/fragments/guestItem'
 import { getEventItem } from '~~/gql/documents/fragments/eventItem'
 import { getAccountItem } from '~~/gql/documents/fragments/accountItem'
 import { getContactItem } from '~~/gql/documents/fragments/contactItem'
-import { useEventByAuthorAccountIdAndSlugQuery } from '~~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
-import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
+import { useEventByCreatedByAndSlugQuery } from '~~/gql/documents/queries/event/eventByCreatedByAndSlug'
 
 const ROUTE_NAME: keyof RouteNamedMap = 'event-view-username-event_name___en'
 
-export const pageBreadcrumb = async ({
-  $urql,
-  route,
-}: {
-  $urql: Ref<Client>
-  route: RouteLocationNormalized<
-    | 'event-edit-username-event_name___en'
-    | 'event-view-username-event_name___en'
-    | 'event-view-username-event_name-attendance___en'
-    | 'event-view-username-event_name-guest___en'
-  >
-}) => {
-  const account = await getAccountByUsername({
-    $urql,
-    username: route.params.username,
-  })
-  const event = await getEventByAuthorAccountIdAndSlug({
-    $urql,
-    authorAccountId: account?.id,
-    slug: route.params.event_name,
-  })
-
-  return {
-    label: event?.name,
-    to: `/event/view/${route.params.username}/${route.params.event_name}`,
-  } as BreadcrumbLinkLocalized
-}
-</script>
-
-<script setup lang="ts">
 definePageMeta({
   async validate(route) {
     return await validateEventExistence(
@@ -428,14 +386,12 @@ definePageMeta({
   },
 })
 
-const { $urql } = useNuxtApp()
 const { t } = useI18n()
 const fireAlert = useFireAlert()
 const store = useMaevsiStore()
 const route = useRoute(ROUTE_NAME)
 const localePath = useLocalePath()
-const updateInvitationByIdMutation = useUpdateInvitationByIdMutation()
-const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
+const updateGuestByIdMutation = useUpdateGuestByIdMutation()
 
 // api data
 const accountByUsernameQuery = await zalgo(
@@ -448,27 +404,16 @@ const accountId = computed(
     getAccountItem(accountByUsernameQuery.data.value?.accountByUsername)?.id,
 )
 const eventQuery = await zalgo(
-  useEventByAuthorAccountIdAndSlugQuery({
-    authorAccountId: accountId,
+  useEventByCreatedByAndSlugQuery({
+    createdBy: accountId,
     slug: route.params.event_name,
-    invitationId: route.query.ic,
+    guestId: route.query.ic,
   }),
 )
 const event = computed(() =>
-  getEventItem(eventQuery.data.value?.eventByAuthorAccountIdAndSlug),
+  getEventItem(eventQuery.data.value?.eventByCreatedByAndSlug),
 )
 const api = getApiData([accountByUsernameQuery, eventQuery])
-
-// data
-const breadcrumbItems = getBreadcrumbItemProps([
-  usePageBreadcrumbHome(),
-  usePageBreadcrumbEvents(),
-  usePageBreadcrumbEventsUser(),
-  {
-    current: true,
-    ...(await pageBreadcrumb({ $urql, route })),
-  },
-])
 
 // methods
 const accept = () => {
@@ -501,17 +446,17 @@ const print = () => {
   })
 }
 const qrCodeShow = () => {
-  store.modals.push({ id: 'ModalInvitationQrCode' })
+  store.modals.push({ id: 'ModalGuestQrCode' })
 }
-const update = async (id: string, invitationPatch: InvitationPatch) => {
-  const result = await updateInvitationByIdMutation.executeMutation({
+const update = async (id: string, guestPatch: GuestPatch) => {
+  const result = await updateGuestByIdMutation.executeMutation({
     id,
-    invitationPatch,
+    guestPatch,
   })
 
   if (result.error || !result.data) return
 
-  showToast({ title: t('success') })
+  await showToast({ title: t('success') })
 }
 
 // computations
@@ -537,14 +482,14 @@ const eventDescriptionTemplate = computed(() => {
 })
 const invitation = computed(() => {
   const invitations =
-    eventQuery.data.value?.eventByAuthorAccountIdAndSlug?.invitationsByEventId.nodes
-      .map((x) => getInvitationItem(x))
+    eventQuery.data.value?.eventByCreatedByAndSlug?.guestsByEventId.nodes
+      .map((x) => getGuestItem(x))
       .filter(isNeitherNullNorUndefined)
 
   const invitationsMatchingUuid =
     store.signedInUsername === route.params.username && invitations
       ? invitations.filter(
-          (invitation: Pick<InvitationItemFragment, 'id'>) =>
+          (invitation: Pick<GuestItemFragment, 'id'>) =>
             invitation.id === route.query.ic,
         )
       : invitations
@@ -554,7 +499,7 @@ const invitation = computed(() => {
       // TODO: use await (https://github.com/maevsi/maevsi/issues/61)
       fireAlert({
         level: 'warning',
-        text: t('invitationIdMultipleWarning'),
+        text: t('guestIdMultipleWarning'),
       })
     }
 
@@ -603,6 +548,7 @@ de:
   # feedbackRequest: 'Bitte gib eine Rückmeldung, ob du teilnehmen wirst:'
   greeting: Hey{usernameString}!
   greetingDescription: Du wurdest zu folgender Veranstaltung eingeladen.
+  guestIdMultipleWarning: Es wurden mehrere Einladungscodes für dieselbe Veranstaltung eingelöst! Diese Seite zeigt die Daten des zuerst gefundenen an.
   guests: Gäste
   hintQrCode: Dieses Bild ist deine Zugangsberechtigung für die Veranstaltung
   invitationAccept: Einladung annehmen
@@ -617,7 +563,6 @@ de:
   # invitationCardKindNone: Keine
   # invitationCardKindPaper: Papier
   # invitationCardKindDigital: Digital
-  invitationIdMultipleWarning: Es wurden mehrere Einladungscodes für dieselbe Veranstaltung eingelöst! Diese Seite zeigt die Daten des zuerst gefundenen an.
   invitationSelectionClear: Zurück zur Einladungsübersicht
   invitationViewFor: Du schaust dir die Einladung für {name} an. Nur du und {name} können diese Seite sehen.
   ogImageAlt: Das Vorschaubild für die Veranstaltung.
@@ -634,11 +579,12 @@ en:
   # feedbackRequest: 'Please confirm if you will attend:'
   greeting: Hey{usernameString}!
   greetingDescription: "You've been invited to the following event."
+  guestIdMultipleWarning: Multiple invitation codes have already been redeemed for the same event! This page shows data for the first code found.
   guests: Guests
   hintQrCode: This picture is your access authorization for the event
   invitationAccept: Accept invitation
   invitationAcceptAdmin: Accept invitation on behalf of {name}
-  invitationAccepted: Invitation accepted
+  invitationAccepted: Guest accepted
   invitationAcceptedAdmin: Invitation accepted on behalf of {name}
   invitationCancel: Decline invitation
   invitationCancelAdmin: Decline invitation on behalf of {name}
@@ -648,7 +594,6 @@ en:
   # invitationCardKindNone: None
   # invitationCardKindPaper: Paper
   # invitationCardKindDigital: Digital
-  invitationIdMultipleWarning: Multiple invitation codes have already been redeemed for the same event! This page shows data for the first code found.
   invitationSelectionClear: Back to the invitation overview
   invitationViewFor: You're viewing the invitation for {name}. Only you and {name} can see this page.
   ogImageAlt: The event's preview image.

@@ -1,3 +1,5 @@
+import { IS_IN_STACK } from '~~/node'
+
 const TOPIC_NOTIFICATION = 'maevsi.maevsi_private.notification'
 
 export default defineNitroPlugin(async (nitroApp) => {

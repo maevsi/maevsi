@@ -4,8 +4,8 @@
     class="justify-center rounded-md px-4 py-2 font-medium"
     :class="
       variant === 'primary'
-        ? 'bg-accent-fancy from-blue-500 to-blue-600 text-text-bright hover:bg-accent-strong dark:from-blue-300 dark:to-blue-400 dark:text-text-dark'
-        : 'bg-accent-weak text-accent-strong hover:bg-accent-mid dark:border dark:border-gray-600 dark:bg-inherit dark:text-text-bright dark:hover:bg-black/30'
+        ? 'bg-accent-fancy text-text-bright hover:bg-accent-strong dark:text-text-dark from-blue-500 to-blue-600 dark:from-blue-300 dark:to-blue-400'
+        : 'bg-accent-weak text-accent-strong hover:bg-accent-mid dark:text-text-bright dark:border dark:border-gray-600 dark:bg-inherit dark:hover:bg-black/30'
     "
     :disabled="disabled"
     :to="props.to"

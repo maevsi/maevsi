@@ -1,4 +1,3 @@
-import { consola } from 'consola'
 import type { H3Event } from 'h3'
 import { z } from 'zod'
 
@@ -13,26 +12,24 @@ const authProxyBodySchema = z.object({
     .nullable(),
 })
 
-export default defineEventHandler(async function (event: H3Event) {
-  const { req, res } = event.node
-
-  if (req.method !== 'POST') {
-    consola.debug("Skipping auth proxy as request wasn't POSTed.")
-    return res.end()
+export default defineEventHandler(async (event) => {
+  if (event.method !== 'POST') {
+    console.debug("Skipping auth proxy as request wasn't POSTed.")
+    return
   }
 
   const body = await getBodySafe({ event, schema: authProxyBodySchema })
 
   if (!body.operationName) {
-    consola.debug("Request's body is missing the operation name.")
-    return res.end()
+    console.debug("Request's body is missing the operation name.")
+    return
   }
 
   switch (body.operationName) {
     case 'authenticate':
       // don't check captcha for anonymous authentication
       if (body.variables?.password === '' && body.variables.username === '')
-        return res.end()
+        return
 
       await turnstileVerify(event)
       break
@@ -40,16 +37,15 @@ export default defineEventHandler(async function (event: H3Event) {
       await turnstileVerify(event)
       break
     default:
-      return res.end()
+      return
   }
-
-  res.end()
 })
 
 const turnstileVerify = async (event: H3Event) => {
-  const { req } = event.node
-
-  const turnstileToken = req.headers[TURNSTILE_HEADER_KEY.toLowerCase()]
+  const turnstileToken = getRequestHeader(
+    event,
+    TURNSTILE_HEADER_KEY.toLowerCase(),
+  )
 
   if (Array.isArray(turnstileToken)) {
     return throwError({
@@ -74,5 +70,5 @@ const turnstileVerify = async (event: H3Event) => {
     })
   }
 
-  consola.debug('Turnstile verification succeeded')
+  console.debug('Turnstile verification succeeded')
 }

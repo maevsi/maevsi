@@ -8,7 +8,7 @@
         @load-more="after = api.data.allContacts?.pageInfo.endCursor"
       >
         <table>
-          <thead>
+          <LayoutThead>
             <tr>
               <th scope="col">
                 {{ t('contact') }}
@@ -16,9 +16,9 @@
               <th class="hidden xl:table-cell" scope="col">
                 {{ t('emailAddress') }}
               </th>
-              <th class="hidden xl:table-cell" scope="col">
+              <!-- <th class="hidden xl:table-cell" scope="col">
                 {{ t('address') }}
-              </th>
+              </th> -->
               <th class="hidden xl:table-cell" scope="col">
                 {{ t('phoneNumber') }}
               </th>
@@ -27,8 +27,8 @@
               </th>
               <th scope="col" />
             </tr>
-          </thead>
-          <tbody>
+          </LayoutThead>
+          <LayoutTbody>
             <ContactListItem
               v-for="contact in contacts"
               :id="contact.nodeId"
@@ -39,7 +39,7 @@
               @delete="delete_(contact.nodeId, contact.id)"
               @edit="edit(contact)"
             />
-          </tbody>
+          </LayoutTbody>
         </table>
       </ScrollContainer>
       <div class="flex justify-center">
@@ -78,7 +78,7 @@ const after = ref<string>()
 // api data
 const contactsQuery = await useAllContactsQuery({
   after,
-  authorAccountId: store.signedInAccountId,
+  createdBy: store.signedInAccountId,
   first: ITEMS_PER_PAGE_LARGE,
 })
 const deleteContactByIdMutation = useDeleteContactByIdMutation()
@@ -96,21 +96,20 @@ const pending = reactive({
   deletions: ref<string[]>([]),
   edits: ref<string[]>([]),
 })
-const selectedContact =
-  ref<
-    Pick<
-      ContactItemFragment,
-      | 'accountByAccountId'
-      | 'address'
-      | 'emailAddress'
-      | 'firstName'
-      | 'id'
-      | 'lastName'
-      | 'nodeId'
-      | 'phoneNumber'
-      | 'url'
-    >
-  >()
+const selectedContact = ref<
+  Pick<
+    ContactItemFragment,
+    | 'accountByAccountId'
+    // | 'addressByAddressId'
+    | 'emailAddress'
+    | 'firstName'
+    | 'id'
+    | 'lastName'
+    | 'nodeId'
+    | 'phoneNumber'
+    | 'url'
+  >
+>()
 
 // methods
 const add = () => {
@@ -129,7 +128,7 @@ const edit = (
   contact: Pick<
     ContactItemFragment,
     | 'accountByAccountId'
-    | 'address'
+    // | 'addressByAddressId'
     | 'emailAddress'
     | 'firstName'
     | 'id'
@@ -158,7 +157,7 @@ const onModalContactClose = () => {
 
 <i18n lang="yaml">
 de:
-  address: Adresse
+  # address: Adresse
   contact: Kontakt
   contactAdd: Kontakt hinzufügen
   contactEdit: Kontakt bearbeiten
@@ -166,7 +165,7 @@ de:
   phoneNumber: Telefonnummer
   url: Webseite
 en:
-  address: Address
+  # address: Address
   contact: Contact
   contactAdd: Add contact
   contactEdit: Kontakt bearbeiten

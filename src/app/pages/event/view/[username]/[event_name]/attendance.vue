@@ -4,7 +4,6 @@
       v-if="event && route.params.username === store.signedInUsername"
       class="flex flex-col gap-4"
     >
-      <LayoutBreadcrumbs :items="breadcrumbItems" />
       <LayoutPageTitle :title="t('title')" />
       <Steps
         :active="t('qrCodeScan')"
@@ -18,13 +17,13 @@
             <IHeroiconsQrCode />
           </template>
         </ButtonColored>
-        <FormInputStateInfo v-if="!invitationId">
+        <FormInputStateInfo v-if="!guestId">
           {{ t('qrHint') }}
         </FormInputStateInfo>
-        <CardStateInfo v-if="invitationId">
-          {{ t('scanned', { scanResult: invitationId }) }}
+        <CardStateInfo v-if="guestId">
+          {{ t('scanned', { scanResult: guestId }) }}
         </CardStateInfo>
-        <div v-if="invitationId" class="flex flex-col items-center gap-2">
+        <div v-if="guestId" class="flex flex-col items-center gap-2">
           <ButtonColored
             :aria-label="t('nfcWrite')"
             :disabled="isNfcError"
@@ -61,35 +60,22 @@
 </template>
 
 <script lang="ts">
-// @ts-expect-error wasm url is correct
 import wasmFile from 'zxing-wasm/reader/zxing_reader.wasm?url'
 import { consola } from 'consola'
-import type { DetectedBarcode } from 'barcode-detector'
-import { setZXingModuleOverrides } from 'vue-qrcode-reader'
+import {
+  setZXingModuleOverrides,
+  type DetectedBarcode,
+} from 'vue-qrcode-reader'
 import type { RouteLocationNormalized } from 'vue-router'
 import type { RouteNamedMap } from 'vue-router/auto-routes'
 
-import { usePageBreadcrumb as usePageBreadcrumbEvents } from '../../../index.vue'
-import { usePageBreadcrumb as usePageBreadcrumbEventsUser } from '../index.vue'
-import { pageBreadcrumb as usePageBreadcrumbEventsUserId } from './index.vue'
-
-import { useEventByAuthorAccountIdAndSlugQuery } from '~~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
+import { useEventByCreatedByAndSlugQuery } from '~~/gql/documents/queries/event/eventByCreatedByAndSlug'
 import { getEventItem } from '~~/gql/documents/fragments/eventItem'
 import { useAccountByUsernameQuery } from '~~/gql/documents/queries/account/accountByUsername'
 import { getAccountItem } from '~~/gql/documents/fragments/accountItem'
-import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
 
 const ROUTE_NAME: keyof RouteNamedMap =
   'event-view-username-event_name-attendance___en'
-
-export const usePageBreadcrumb = () => {
-  const route = useRoute(ROUTE_NAME)
-
-  return {
-    label: 'Check-in',
-    to: `/event/view/${route.params.username}/${route.params.event_name}/attendance`,
-  } as BreadcrumbLinkLocalized
-}
 
 setZXingModuleOverrides({
   locateFile: (path, prefix) => {
@@ -118,12 +104,10 @@ definePageMeta({
   },
 })
 
-const { $urql } = useNuxtApp()
 const { t } = useI18n()
 const store = useMaevsiStore()
 const route = useRoute(ROUTE_NAME)
 const fireAlert = useFireAlert()
-const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
 // api data
 const accountByUsernameQuery = await zalgo(
@@ -136,27 +120,18 @@ const accountId = computed(
     getAccountItem(accountByUsernameQuery.data.value?.accountByUsername)?.id,
 )
 const eventQuery = await zalgo(
-  useEventByAuthorAccountIdAndSlugQuery({
-    authorAccountId: accountId,
+  useEventByCreatedByAndSlugQuery({
+    createdBy: accountId,
     slug: route.params.event_name,
   }),
 )
 const event = computed(() =>
-  getEventItem(eventQuery.data.value?.eventByAuthorAccountIdAndSlug),
+  getEventItem(eventQuery.data.value?.eventByCreatedByAndSlug),
 )
 const api = getApiData([accountByUsernameQuery, eventQuery])
 
 // data
-const breadcrumbItems = getBreadcrumbItemProps([
-  usePageBreadcrumbEvents(),
-  usePageBreadcrumbEventsUser(),
-  await usePageBreadcrumbEventsUserId({ $urql, route }),
-  {
-    current: true,
-    ...usePageBreadcrumb(),
-  },
-])
-const invitationId = ref<string>()
+const guestId = ref<string>()
 const isNfcWritableErrorMessage = ref<string>()
 const loading = ref(true)
 
@@ -207,12 +182,12 @@ const onError = async (error: Error) => {
   consola.error(errorMessage)
 }
 const onClick = async () => {
-  if (!invitationId.value) return
-  await writeTag(invitationId.value)
+  if (!guestId.value) return
+  await writeTag(guestId.value)
 }
 const onDetect = async (detectedBarcodes: DetectedBarcode[]) => {
   if (!detectedBarcodes.length || !detectedBarcodes[0]) return
-  invitationId.value = detectedBarcodes[0].rawValue
+  guestId.value = detectedBarcodes[0].rawValue
   await fireAlert({ level: 'success' })
   store.modalRemove('ModalAttendanceScanQrCode')
 }

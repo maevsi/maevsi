@@ -1,3 +1,5 @@
 export default defineEventHandler(async (event) => {
-  event.context.$timezone = await getTimezoneServer(event)
+  const timezone = await useTimezone()
+
+  event.context.$timezone = timezone
 })

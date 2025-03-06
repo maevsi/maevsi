@@ -18,6 +18,8 @@ export interface Props {
 const props = withDefaults(defineProps<Props>(), {})
 const errorProp = toRef(() => props.error)
 
+const { t } = useI18n()
+
 // initialization
 useAppLayout()
 
@@ -25,4 +27,14 @@ useAppLayout()
 useHeadSafe({
   title: `${errorProp.value.statusCode} - ${errorProp.value.message}`,
 })
+
+defineOgImageComponent(
+  'Default',
+  {
+    description: t('globalSeoSiteDescription'),
+  },
+  {
+    alt: t('globalSeoOgImageAlt'),
+  },
+)
 </script>

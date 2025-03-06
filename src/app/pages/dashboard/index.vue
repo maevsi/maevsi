@@ -1,6 +1,5 @@
 <template>
   <div>
-    <LayoutBreadcrumbs :items="breadcrumbItems" />
     <LayoutPageTitle :title="title" />
     <div
       v-if="store.jwtDecoded?.role === 'maevsi_account'"
@@ -21,9 +20,9 @@
         </CardButton>
         <UnderConstruction>
           <CardButton
-            :description="t('invitationsDescription')"
-            :title="t('invitations')"
-            :to="localePath(`invitation`)"
+            :description="t('guestsDescription')"
+            :title="t('guests')"
+            :to="localePath(`guest`)"
           >
             <ISolarLetterLinear />
           </CardButton>
@@ -73,31 +72,12 @@
   </div>
 </template>
 
-<script lang="ts">
-import { usePageBreadcrumb as usePageBreadcrumbHome } from '../index.vue'
-import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
-
-export const usePageBreadcrumb = () =>
-  ({
-    label: 'Dashboard',
-    to: '/dashboard',
-  }) as BreadcrumbLinkLocalized
-</script>
-
 <script setup lang="ts">
 const { t } = useI18n()
 const store = useMaevsiStore()
 const localePath = useLocalePath()
-const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
 // data
-const breadcrumbItems = getBreadcrumbItemProps([
-  usePageBreadcrumbHome(),
-  {
-    current: true,
-    ...usePageBreadcrumb(),
-  },
-])
 const title = t('title')
 
 // initialization
@@ -114,8 +94,8 @@ de:
   contactsDescription: Informationen zu all deinen Gästen
   events: Veranstaltungen
   eventsDescription: Organisiere deine eigenen Veranstaltungen
-  invitations: Einladungen
-  invitationsDescription: Sieh nach, wo du eingeladen bist
+  guests: Einladungen
+  guestsDescription: Sieh nach, wo du eingeladen bist
   news: Ereignisverlauf
   title: Dashboard
   uploads: Uploads
@@ -129,8 +109,8 @@ en:
   contactsDescription: Information on all your guests
   events: Events
   eventsDescription: Organize your own events
-  invitations: Invitations
-  invitationsDescription: See where you're invited
+  guests: Invitations
+  guestsDescription: See where you're invited
   news: Recent changes
   title: Dashboard
   uploads: Uploads

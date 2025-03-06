@@ -1,6 +1,6 @@
 import { defineConfig, devices } from '@playwright/test'
 
-import { SITE_URL } from '#src/shared/utils/constants'
+import { SITE_URL } from '#src/node'
 
 /**
  * Read environment variables from file.
@@ -77,6 +77,9 @@ export default defineConfig({
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: SITE_URL,
 
+    // TODO: remove once tests run without it
+    ignoreHTTPSErrors: true,
+
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
   },
@@ -87,6 +90,7 @@ export default defineConfig({
     env: {
       NUXT_PUBLIC_VIO_IS_TESTING: 'true',
     },
+    ignoreHTTPSErrors: true, // TODO: remove once tests run without it
     timeout: process.env.NODE_ENV === 'production' ? 10000 : 100000,
     url: process.env.SITE_URL || SITE_URL,
     reuseExistingServer: !process.env.CI,

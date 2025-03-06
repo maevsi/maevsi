@@ -1,5 +1,7 @@
-import type { H3Event } from 'h3'
 import { z } from 'zod'
+
+import { EventVisibility } from '~~/gql/generated/graphql'
+import { SITE_URL } from '~~/node'
 
 const icalPostBodySchema = z.object({
   contact: z
@@ -15,11 +17,12 @@ const icalPostBodySchema = z.object({
     location: z.string().optional().nullable(),
     name: z.string(),
     start: z.string(),
-    accountByAuthorAccountId: z.object({
+    accountByCreatedBy: z.object({
       id: z.string(),
       username: z.string(),
     }),
     slug: z.string(),
+    visibility: z.nativeEnum(EventVisibility),
   }),
   invitation: z
     .object({
@@ -28,12 +31,12 @@ const icalPostBodySchema = z.object({
     .optional(),
 })
 
-export default defineEventHandler(async (h3Event: H3Event) => {
+export default defineEventHandler(async (h3Event) => {
   const body = await getBodySafe({ event: h3Event, schema: icalPostBodySchema })
 
   const contact = body.contact
   const event = body.event
-  const eventAuthorUsername = body.event.accountByAuthorAccountId.username
+  const eventAuthorUsername = body.event.accountByCreatedBy.username
   const invitation = body.invitation
 
   setResponseHeaders(h3Event, {

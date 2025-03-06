@@ -15,7 +15,7 @@ import type { LocationQueryValue, RouteLocationNormalized } from 'vue-router'
 
 import { eventIsExistingQuery } from '~~/gql/documents/queries/event/eventIsExisting'
 import { accountByUsernameQuery } from '~~/gql/documents/queries/account/accountByUsername'
-import { eventByAuthorAccountIdAndSlugQuery } from '~~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
+import { eventByCreatedByAndSlugQuery } from '~~/gql/documents/queries/event/eventByCreatedByAndSlug'
 import { getAccountItem } from '~~/gql/documents/fragments/accountItem'
 import { EventVisibility } from '~~/gql/generated/graphql'
 import { getEventItem } from '~~/gql/documents/fragments/eventItem'
@@ -172,7 +172,6 @@ export const validateAccountExistence = async ({
     throw createError({
       statusCode: 404,
     })
-    // return abortNavigation({ statusCode: 404 })
   }
 
   if (
@@ -182,7 +181,6 @@ export const validateAccountExistence = async ({
     throw createError({
       statusCode: 403,
     })
-    // return abortNavigation({ statusCode: 403 })
   }
 
   return true
@@ -208,31 +206,29 @@ export const getAccountByUsername = async ({
   return getAccountItem(accountByUsername.data?.accountByUsername)
 }
 
-export const getEventByAuthorAccountIdAndSlug = async ({
+export const getEventByCreatedByAndSlug = async ({
   $urql,
-  authorAccountId,
+  createdBy,
   slug,
 }: {
   $urql: Ref<Client>
-  authorAccountId: string
+  createdBy: string
   slug: string
 }) => {
-  const eventByAuthorAccountIdAndSlug = await $urql.value
-    .query(eventByAuthorAccountIdAndSlugQuery, {
-      authorAccountId,
+  const eventByCreatedByAndSlug = await $urql.value
+    .query(eventByCreatedByAndSlugQuery, {
+      createdBy,
       slug,
     })
     .toPromise()
 
-  if (eventByAuthorAccountIdAndSlug.error) {
+  if (eventByCreatedByAndSlug.error) {
     throw new Error(
-      getCombinedErrorMessages([eventByAuthorAccountIdAndSlug.error]).join(),
+      getCombinedErrorMessages([eventByCreatedByAndSlug.error]).join(),
     )
   }
 
-  return getEventItem(
-    eventByAuthorAccountIdAndSlug.data?.eventByAuthorAccountIdAndSlug,
-  )
+  return getEventItem(eventByCreatedByAndSlug.data?.eventByCreatedByAndSlug)
 }
 
 export const validateEventExistence = async (
@@ -254,7 +250,6 @@ export const validateEventExistence = async (
     throw createError({
       statusCode: 404,
     })
-    // return abortNavigation({ statusCode: 404 })
   }
 
   if (
@@ -264,13 +259,12 @@ export const validateEventExistence = async (
     throw createError({
       statusCode: 500,
     })
-    // return abortNavigation({ statusCode: 500 })
   }
 
   const eventIsExisting = await $urql.value
     .query(eventIsExistingQuery, {
+      createdBy: account.id,
       slug: route.params.event_name,
-      authorAccountId: account.id,
     })
     .toPromise()
 
@@ -282,7 +276,6 @@ export const validateEventExistence = async (
     throw createError({
       statusCode: 404,
     })
-    // return abortNavigation({ statusCode: 404 })
   }
 
   return true
@@ -311,8 +304,8 @@ export const validateEventSlug =
 
     const result = await $urql.value
       .query(eventIsExistingQuery, {
+        createdBy: signedInAccountId,
         slug: value,
-        authorAccountId: signedInAccountId,
       })
       .toPromise()
 

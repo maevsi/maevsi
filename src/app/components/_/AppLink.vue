@@ -3,6 +3,7 @@
     :aria-label="ariaLabel"
     :class="classes"
     :disabled="isDisabled"
+    :external="isExternal"
     :target="targetComputed"
     :to="props.to"
     @click="emit('click')"

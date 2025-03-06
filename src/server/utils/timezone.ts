@@ -1,7 +1,12 @@
 import type { H3Event } from 'h3'
 
-// TODO: rename to `getTimezone` (https://github.com/nuxt/cli/issues/266)
-export const getTimezoneServer = async (event: H3Event) => {
+const getTimezone = async ({
+  event,
+  isTesting,
+}: {
+  event: H3Event
+  isTesting?: boolean
+}) => {
   const timezoneBySsr = event.context.$timezone
 
   if (timezoneBySsr) return timezoneBySsr
@@ -10,18 +15,25 @@ export const getTimezoneServer = async (event: H3Event) => {
 
   if (timezoneByCookie) return timezoneByCookie
 
-  const ip = getRequestIP(event, { xForwardedFor: true })
+  if (!isTesting) {
+    const ip = getRequestIP(event, { xForwardedFor: true })
 
-  if (ip) {
-    const timezoneByIpApi = await getTimezoneByIpApi(ip)
+    if (ip) {
+      const timezoneByIpApi = await getTimezoneByIpApi({ ip })
 
-    if (timezoneByIpApi) return timezoneByIpApi
+      if (timezoneByIpApi) return timezoneByIpApi
+    }
   }
 }
 
-export const getTimezoneByIpApi = async (ip: string) => {
-  if (isTestingServer()) return
+export const useTimezone = async () => {
+  const event = useEvent()
+  const isTesting = useIsTesting()
 
+  return await getTimezone({ event, isTesting })
+}
+
+export const getTimezoneByIpApi = async ({ ip }: { ip: string }) => {
   const ipApiResult = await $fetch<{ timezone: string }>(
     `http://geoip:8080/${ip}`,
   ).catch(() => {})

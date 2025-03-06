@@ -1,8 +1,7 @@
 <template>
   <div>
-    <LayoutBreadcrumbs :items="breadcrumbItems" />
     <LayoutPageTitle :title="title" />
-    <div class="vio-prose-scheme">
+    <LayoutProse>
       <h2>{{ t('summary') }}</h2>
       <h3>{{ t('generalNotesTitle') }}</h3>
       <p>{{ t('generalNotesDescription') }}</p>
@@ -254,36 +253,14 @@
           {{ t('source') }}
         </AppLink>
       </p>
-    </div>
+    </LayoutProse>
   </div>
 </template>
 
-<script lang="ts">
-import { usePageBreadcrumb as usePageBreadcrumbHome } from '../index.vue'
-import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
-
-export const usePageBreadcrumb = () =>
-  ({
-    label: {
-      de: 'Datenschutzerklärung',
-      en: 'Privacy policy',
-    },
-    to: '/privacy-policy',
-  }) as BreadcrumbLinkLocalized
-</script>
-
 <script setup lang="ts">
 const { t } = useI18n()
-const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
 // data
-const breadcrumbItems = getBreadcrumbItemProps([
-  usePageBreadcrumbHome(),
-  {
-    current: true,
-    ...usePageBreadcrumb(),
-  },
-])
 const title = t('title')
 
 // initialization

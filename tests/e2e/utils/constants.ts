@@ -14,11 +14,11 @@ export const PAGE_READY = async ({
     isLoading?: boolean
   }
 }) => {
-  // if (!options || options.cookieControl !== false) {
-  //   await expect(
-  //     page.getByRole('button', { name: 'Cookie control' }),
-  //   ).toBeVisible()
-  // }
+  if (!options || options.cookieControl !== false) {
+    await expect(
+      page.getByRole('button', { name: 'Cookie control' }),
+    ).toBeVisible()
+  }
 
   if (!options || options.isLoading !== false) {
     await expect(page.getByTestId('is-loading')).toHaveAttribute(
@@ -27,3 +27,7 @@ export const PAGE_READY = async ({
     )
   }
 }
+export const SITE_URL =
+  process.env.SITE_URL ||
+  process.env.NUXT_PUBLIC_SITE_URL ||
+  `https://${process.env.HOST || 'localhost'}:${process.env.PORT || '3000'}`

@@ -37,7 +37,7 @@ const after = ref<string>()
 const eventsQuery = await zalgo(
   useAllEventsQuery({
     after,
-    authorAccountId: props.accountId,
+    createdBy: props.accountId,
     first: ITEMS_PER_PAGE,
   }),
 )
