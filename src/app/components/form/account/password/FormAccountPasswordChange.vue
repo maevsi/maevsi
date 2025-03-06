@@ -62,7 +62,7 @@ const submit = async () => {
 
   if (result.error || !result.data) return
 
-  showToast({ title: t('passwordChangeSuccess') })
+  await showToast({ title: t('passwordChangeSuccess') })
   resetForm()
 }
 

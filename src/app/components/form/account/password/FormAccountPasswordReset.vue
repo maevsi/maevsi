@@ -56,7 +56,7 @@ const submit = async () => {
 
   if (result.error || !result.data) return
 
-  showToast({ title: t('accountPasswordResetSuccess') })
+  await showToast({ title: t('accountPasswordResetSuccess') })
   await navigateTo(localePath(`session-create`))
 }
 

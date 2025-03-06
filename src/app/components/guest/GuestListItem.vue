@@ -145,7 +145,7 @@ const copyLink = async (guest: Pick<GuestItemFragment, 'id'>) => {
     `${window.location.origin}${localePath(`guest-unlock`)}?ic=${guest.id}`,
   )
 
-  showToast({ title: t('copySuccess') })
+  await showToast({ title: t('copySuccess') })
 }
 const delete_ = async (id: string) => {
   pending.deletions.push(id)
@@ -164,7 +164,7 @@ const send = async (guest: Pick<GuestItemFragment, 'id'>) => {
 
   if (result.error || !result.data) return
 
-  showToast({ title: t('sendSuccess') })
+  await showToast({ title: t('sendSuccess') })
 }
 
 // computations

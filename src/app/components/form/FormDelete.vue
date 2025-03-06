@@ -60,7 +60,7 @@ const submit = async () => {
 
   if (result.error) return
 
-  showToast({
+  await showToast({
     title: t('success', {
       item: props.itemNameSuccess,
     }),

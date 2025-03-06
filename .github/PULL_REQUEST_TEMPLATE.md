@@ -20,4 +20,5 @@
   https://conventionalcommits.org
 -->
 
+- [ ] All commits follow the Conventional Commit format or I'm fine with a squash merge of this PR
 - [ ] The PR's title follows the Conventional Commit format
