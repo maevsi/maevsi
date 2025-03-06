@@ -11,11 +11,9 @@ export const useAllLegalTermsQuery = (variables: AllLegalTermsQueryVariables) =>
 export const allLegalTermsQuery = graphql(`
   query allLegalTerms {
     allLegalTerms {
-      edges {
-        node {
-          id
-          term
-        }
+      nodes {
+        id
+        term
       }
     }
   }
