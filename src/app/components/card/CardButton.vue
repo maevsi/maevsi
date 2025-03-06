@@ -25,7 +25,7 @@
     <div class="p-2">
       <slot v-if="$slots.iconSecondary" name="iconSecondary" />
       <div v-else-if="props.to">
-        <IMaevsiArrowForward alt="arrow forward" class="h-6 w-6" />
+        <IMaevsiArrowForward :alt="t('iconArrowForward')" class="h-6 w-6" />
       </div>
     </div>
   </Card>
@@ -54,4 +54,13 @@ const props = withDefaults(
     to: undefined,
   },
 )
+
+const { t } = useI18n()
 </script>
+
+<i18n lang="yaml">
+de:
+  iconArrowForward: Pfeil nach vorn
+en:
+  iconArrowForward: Arrow forward
+</i18n>
