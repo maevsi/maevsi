@@ -1,3 +1,9 @@
+## [8.2.0](https://github.com/maevsi/maevsi/compare/8.1.2...8.2.0) (2025-03-06)
+
+### Features
+
+* **settings:** restyle  ([#1785](https://github.com/maevsi/maevsi/issues/1785)) ([9d9754f](https://github.com/maevsi/maevsi/commit/9d9754f126e4d08667215767e01df9fc9a2bd046))
+
 ## [8.1.2](https://github.com/maevsi/maevsi/compare/8.1.1...8.1.2) (2025-03-05)
 
 ### Bug Fixes
