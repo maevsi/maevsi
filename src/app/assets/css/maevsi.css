@@ -120,14 +120,16 @@
     /* figma */
     --accent-line: #dcf9ea;
     --accent-strong: #36db83;
+    --accent-weak: #dcf9ea;
     --critic-string: #e00000;
     --faint-line: #f2f2f2;
     --faint-weak: #f2f2f2;
     --semantic-accent-accent-icon: #12683a;
+    --semantic-accent-accent-text: #12683a;
     --semantic-base-background: #fff;
     --semantic-base-input-field-fill: #fff;
     --semantic-base-light-text-on-dark: #fafafc;
-    --semantic-base-line: #F2F2F2;
+    --semantic-base-line: #f2f2f2;
     --semantic-base-primary-button-text: #191911;
     --semantic-base-surface-1: #fafafc;
     --semantic-base-text-primary: #191911;
@@ -160,14 +162,17 @@
     --ring: 212.7 26.8% 83.9%;
 
     /* figma */
+    --accent-weak: #c1dcc6;
     --faint-line: #2d2d2c;
     --faint-weak: #2d2d2c;
     --semantic-accent-accent-icon: #0a841e;
+    --semantic-accent-accent-text: #129f2a;
     --semantic-base-background: #191911;
     --semantic-base-line: #3e3e38;
     --semantic-base-input-field-fill: #505047;
     --semantic-base-surface-1: #3e3e38;
     --semantic-base-text-primary: #e4e4eb;
+    --semantic-base-text-secondary: #868679;
     --surface: #3e3e38;
   }
 
@@ -297,15 +302,6 @@
     #0000 10px,
     #0000 30px
   );
-}
-
-@utility vio-line-clamp-2 {
-  @apply max-w-full overflow-hidden text-ellipsis;
-
-  display: -webkit-box;
-  overflow-wrap: break-word;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
 }
 
 .dark {
