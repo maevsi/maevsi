@@ -3,7 +3,7 @@
     <h1>
       {{ title }}
     </h1>
-    <EventList />
+    <EventSearch />
   </div>
 </template>
 
@@ -19,7 +19,7 @@ useHeadDefault({ title })
 
 <i18n lang="yaml">
 de:
-  title: Veranstaltungen entdecken
+  title: Entdecken
 en:
-  title: Explore events
+  title: Discover
 </i18n>

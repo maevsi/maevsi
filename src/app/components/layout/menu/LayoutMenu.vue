@@ -28,11 +28,6 @@
       </div>
     </LayoutMenuItem>
   </UnderConstruction>
-  <UnderConstruction>
-    <LayoutMenuItem :title="t('search')" :to="localePath('search')">
-      <IHeroiconsMagnifyingGlass />
-    </LayoutMenuItem>
-  </UnderConstruction>
 </template>
 
 <script setup lang="ts">
@@ -46,10 +41,8 @@ de:
   account: Dashboard
   explore: Empfehlungen
   notifications: Benachrichtigungen
-  search: Suche
 en:
   account: Dashboard
   explore: Suggestions
   notifications: Notifications
-  search: Search
 </i18n>

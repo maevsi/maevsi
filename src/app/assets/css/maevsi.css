@@ -117,15 +117,20 @@
     --ring: 222.2 84% 4.9%;
     --radius: 0.5rem;
 
-    /* tailwind */
+    /* figma */
+    --accent-line: #dcf9ea;
     --accent-strong: #36db83;
     --critic-string: #e00000;
-    --surface: #fafafc;
     --faint-line: #f2f2f2;
+    --faint-weak: #f2f2f2;
+    --semantic-accent-accent-icon: #12683a;
     --semantic-base-background: #fff;
+    --semantic-base-input-field-fill: #fff;
     --semantic-base-light-text-on-dark: #fafafc;
     --semantic-base-primary-button-text: #191911;
     --semantic-base-text-primary: #191911;
+    --semantic-base-text-secondary: #868679;
+    --surface: #fafafc;
     --warning-strong: #f9ae25;
     --warning-text: #9c5407;
     --warning-weak: #fdebd8;
@@ -152,11 +157,15 @@
     --destructive-foreground: 210 40% 98%;
     --ring: 212.7 26.8% 83.9%;
 
-    /* tailwind */
-    --surface: #3e3e38;
+    /* figma */
     --faint-line: #2d2d2c;
+    --faint-weak: #2d2d2c;
+    --semantic-accent-accent-icon: #0a841e;
     --semantic-base-background: #191911;
+    --semantic-base-line: #3e3e38;
+    --semantic-base-input-field-fill: #505047;
     --semantic-base-text-primary: #e4e4eb;
+    --surface: #3e3e38;
   }
 
   ::placeholder {
