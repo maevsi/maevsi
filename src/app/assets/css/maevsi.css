@@ -169,7 +169,7 @@
   }
 
   ::placeholder {
-    @apply text-(--color-red-300) italic;
+    @apply italic;
   }
 
   :disabled {
