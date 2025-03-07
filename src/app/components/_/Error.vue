@@ -4,7 +4,9 @@
       <span class="flex items-center gap-1 text-xl font-black">
         {{ t('maevNo') }}
       </span>
-      {{ statusCode ? `${statusCode} - ` : '' }}{{ statusReason }}
+      <span>
+        {{ statusCode ? `${statusCode} - ` : '' }}{{ statusReason }}
+      </span>
     </CardStateAlert>
     <p v-if="statusCode === 403" class="text-center">
       {{ t('error403Description') }}

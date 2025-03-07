@@ -12,7 +12,7 @@
       </div>
       <div class="flex flex-col justify-center gap-4 lg:flex-row lg:gap-8">
         <CardButton
-          :is-external="true"
+          is-external
           :title="t('appStore')"
           to="https://testflight.apple.com/join/kkStPDoc"
         >
@@ -20,7 +20,7 @@
         </CardButton>
         <CardButton
           class="lg:h-32"
-          :is-external="true"
+          is-external
           :title="t('googlePlay')"
           to="https://play.google.com/store/apps/details?id=si.maev.twa"
         >

@@ -61,12 +61,6 @@
         <xhtml:link rel="alternate" hreflang="x-default" href="http://localhost:3001/privacy-policy" />
     </url>
     <url>
-        <loc>http://localhost:3001/de/search</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="http://localhost:3001/de/search" />
-        <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3001/search" />
-        <xhtml:link rel="alternate" hreflang="x-default" href="http://localhost:3001/search" />
-    </url>
-    <url>
         <loc>http://localhost:3001/de/upload</loc>
         <xhtml:link rel="alternate" hreflang="de" href="http://localhost:3001/de/upload" />
         <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3001/upload" />

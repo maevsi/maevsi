@@ -20,9 +20,7 @@
         <IconLogoWithText class="h-10 w-32" />
       </Button>
       <div class="hidden grow lg:block" />
-      <div class="hidden 2xl:flex">
-        <SearchBar />
-      </div>
+
       <div class="grow" />
       <div class="flex items-center gap-2 whitespace-nowrap lg:gap-4">
         <ButtonEventNew />

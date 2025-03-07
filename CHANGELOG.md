@@ -1,3 +1,31 @@
+## [8.5.0](https://github.com/maevsi/vibetype/compare/8.4.0...8.5.0) (2025-03-07)
+
+### Features
+
+* **card:** restyle for event ([#1807](https://github.com/maevsi/vibetype/issues/1807)) ([8942daa](https://github.com/maevsi/vibetype/commit/8942daadd1c696ac77eb47ed9690d415a83a5543))
+
+### Bug Fixes
+
+* **event:** load events per user ([#1811](https://github.com/maevsi/vibetype/issues/1811)) ([59b73f3](https://github.com/maevsi/vibetype/commit/59b73f3d7c16f9973c6fd78d74801c166f00868d))
+
+## [8.4.0](https://github.com/maevsi/maevsi/compare/8.3.0...8.4.0) (2025-03-07)
+
+### Features
+
+* **browserslist:** support partial notifications ([#1809](https://github.com/maevsi/maevsi/issues/1809)) ([08ae159](https://github.com/maevsi/maevsi/commit/08ae15929a2ca83b55538bd84db226473c30fa0f))
+
+## [8.3.0](https://github.com/maevsi/maevsi/compare/8.2.0...8.3.0) (2025-03-07)
+
+### Features
+
+* **event:** implement search ([#1800](https://github.com/maevsi/maevsi/issues/1800)) ([0753dec](https://github.com/maevsi/maevsi/commit/0753decb346e1037ae05f8c3bf1a4d2b7141046f))
+
+## [8.2.0](https://github.com/maevsi/maevsi/compare/8.1.2...8.2.0) (2025-03-06)
+
+### Features
+
+* **settings:** restyle  ([#1785](https://github.com/maevsi/maevsi/issues/1785)) ([9d9754f](https://github.com/maevsi/maevsi/commit/9d9754f126e4d08667215767e01df9fc9a2bd046))
+
 ## [8.1.2](https://github.com/maevsi/maevsi/compare/8.1.1...8.1.2) (2025-03-05)
 
 ### Bug Fixes

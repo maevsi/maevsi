@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <Loader :api="api">
     <LayoutPageTitle title="-">
       <i18n-t keypath="title" tag="h1">
         <template #name>
@@ -16,27 +16,23 @@
         </template>
       </i18n-t>
     </LayoutPageTitle>
-    <EventList v-if="account" :account-id="account.id" />
-    <Error v-else :status-code="500" />
-  </div>
+    <EventList
+      :events="events"
+      :has-next-page="api.data.allEvents?.pageInfo.hasNextPage"
+      @load-more="allEventsQueryAfter = api.data.allEvents?.pageInfo.endCursor"
+    />
+  </Loader>
 </template>
 
 <script setup lang="ts">
-import type { RouteLocationNormalized } from 'vue-router'
 import type { RouteNamedMap } from 'vue-router/auto-routes'
 
 import { useAccountByUsernameQuery } from '~~/gql/documents/queries/account/accountByUsername'
 import { getAccountItem } from '~~/gql/documents/fragments/accountItem'
+import { getEventItem } from '~~/gql/documents/fragments/eventItem'
+import { useAllEventsQuery } from '~~/gql/documents/queries/event/eventsAll'
 
 const ROUTE_NAME: keyof RouteNamedMap = 'event-view-username-event_name___en'
-
-definePageMeta({
-  async validate(route) {
-    return await validateAccountExistence({
-      route: route as RouteLocationNormalized<typeof ROUTE_NAME>,
-    })
-  },
-})
 
 const { t } = useI18n()
 const route = useRoute(ROUTE_NAME)
@@ -51,6 +47,28 @@ const accountByUsernameQuery = await zalgo(
 const account = getAccountItem(
   accountByUsernameQuery.data.value?.accountByUsername,
 )
+
+if (!account) {
+  throw createError({
+    statusCode: 404,
+  })
+}
+
+const allEventsQueryAfter = ref<string>()
+const allEventsQuery = await zalgo(
+  useAllEventsQuery({
+    after: allEventsQueryAfter,
+    createdBy: account.id,
+    first: ITEMS_PER_PAGE,
+  }),
+)
+const events = computed(
+  () =>
+    allEventsQuery.data.value?.allEvents?.nodes
+      ?.map(getEventItem)
+      .filter(isNeitherNullNorUndefined) || [],
+)
+const api = getApiData([allEventsQuery])
 
 // data
 const routeParamUsername = route.params.username
