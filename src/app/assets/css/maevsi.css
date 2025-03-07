@@ -131,6 +131,7 @@
     --semantic-base-light-text-on-dark: #fafafc;
     --semantic-base-line: #f2f2f2;
     --semantic-base-primary-button-text: #191911;
+    --semantic-base-surface-1: #fafafc;
     --semantic-base-text-primary: #191911;
     --semantic-base-text-secondary: #868679;
     --surface: #fafafc;
@@ -169,6 +170,7 @@
     --semantic-base-background: #191911;
     --semantic-base-line: #3e3e38;
     --semantic-base-input-field-fill: #505047;
+    --semantic-base-surface-1: #3e3e38;
     --semantic-base-text-primary: #e4e4eb;
     --semantic-base-text-secondary: #868679;
     --surface: #3e3e38;

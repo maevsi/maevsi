@@ -1,5 +1,5 @@
 <template>
-  <div :class="cn('text-sm font-semibold', props.class)">
+  <div :class="cn('text-3xl font-semibold', props.class)">
     <slot />
   </div>
 </template>

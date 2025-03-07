@@ -16,11 +16,16 @@ export const testA11y = (url: string) =>
           page: defaultPage.page,
         }).analyze()
 
-        // console.log(
-        //   accessibilityScanResults.violations,
-        //   accessibilityScanResults.violations[0].nodes,
-        // )
-        expect(accessibilityScanResults.violations.length).toEqual(0)
+        expect(
+          accessibilityScanResults.violations
+            .map(
+              (x) =>
+                `${x.id}\n${x.nodes.map(
+                  (y) => `${y.failureSummary}\n(${y.html}\n(${y.target})`,
+                )}`,
+            )
+            .join('\n'),
+        ).toEqual('')
       },
     )
   })

@@ -4,7 +4,7 @@
       <SearchBar v-model="searchQuery" />
       <EventList
         :events="events"
-        :has-next-page="!pageInfo?.hasNextPage"
+        :has-next-page="pageInfo?.hasNextPage"
         @load-more="loadMore"
       />
     </div>
@@ -18,18 +18,10 @@ import { useAllEventsQuery } from '~~/gql/documents/queries/event/eventsAll'
 import { useEventSearchQuery } from '~~/gql/documents/queries/event/eventSearchQuery'
 import { getEventItem } from '~~/gql/documents/fragments/eventItem'
 
-export interface Props {
-  accountId?: string
-}
-const props = withDefaults(defineProps<Props>(), {
-  accountId: undefined,
-})
-
 const allEventsQueryAfter = ref<string>()
 const allEventsQuery = await zalgo(
   useAllEventsQuery({
     after: allEventsQueryAfter,
-    createdBy: props.accountId,
     first: ITEMS_PER_PAGE,
   }),
 )
@@ -56,8 +48,8 @@ const query = computed(() =>
 )
 const pageInfo = computed(() =>
   searchQueryVariable.value
-    ? allEventsQuery.data.value?.allEvents?.pageInfo
-    : searchResultsQuery.data.value?.eventSearch?.pageInfo,
+    ? searchResultsQuery.data.value?.eventSearch?.pageInfo
+    : allEventsQuery.data.value?.allEvents?.pageInfo,
 )
 const events = computed(() => {
   if (!query.value.data.value) return

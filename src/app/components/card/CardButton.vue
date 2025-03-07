@@ -1,6 +1,11 @@
 <template>
   <Card
-    :class="cn('relative isolate flex items-center gap-3 p-2', props.class)"
+    :class="
+      cn(
+        'relative isolate flex items-center gap-3 p-2 ring-blue-500/50 has-focus:ring-3',
+        props.class,
+      )
+    "
   >
     <div class="flex items-center p-2">
       <slot />
@@ -8,6 +13,7 @@
     <div class="flex flex-1 flex-col">
       <Button
         :aria-label="title"
+        class="focus:ring-0"
         :disabled="isDisabled"
         :is-external="props.isExternal"
         is-external-icon-disabled

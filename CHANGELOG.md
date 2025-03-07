@@ -1,3 +1,9 @@
+## [8.4.0](https://github.com/maevsi/maevsi/compare/8.3.0...8.4.0) (2025-03-07)
+
+### Features
+
+* **browserslist:** support partial notifications ([#1809](https://github.com/maevsi/maevsi/issues/1809)) ([08ae159](https://github.com/maevsi/maevsi/commit/08ae15929a2ca83b55538bd84db226473c30fa0f))
+
 ## [8.3.0](https://github.com/maevsi/maevsi/compare/8.2.0...8.3.0) (2025-03-07)
 
 ### Features
