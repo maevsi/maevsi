@@ -1,3 +1,13 @@
+## [8.5.0](https://github.com/maevsi/vibetype/compare/8.4.0...8.5.0) (2025-03-07)
+
+### Features
+
+* **card:** restyle for event ([#1807](https://github.com/maevsi/vibetype/issues/1807)) ([8942daa](https://github.com/maevsi/vibetype/commit/8942daadd1c696ac77eb47ed9690d415a83a5543))
+
+### Bug Fixes
+
+* **event:** load events per user ([#1811](https://github.com/maevsi/vibetype/issues/1811)) ([59b73f3](https://github.com/maevsi/vibetype/commit/59b73f3d7c16f9973c6fd78d74801c166f00868d))
+
 ## [8.4.0](https://github.com/maevsi/maevsi/compare/8.3.0...8.4.0) (2025-03-07)
 
 ### Features
