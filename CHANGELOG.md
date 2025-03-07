@@ -1,3 +1,9 @@
+## [8.3.0](https://github.com/maevsi/maevsi/compare/8.2.0...8.3.0) (2025-03-07)
+
+### Features
+
+* **event:** implement search ([#1800](https://github.com/maevsi/maevsi/issues/1800)) ([0753dec](https://github.com/maevsi/maevsi/commit/0753decb346e1037ae05f8c3bf1a4d2b7141046f))
+
 ## [8.2.0](https://github.com/maevsi/maevsi/compare/8.1.2...8.2.0) (2025-03-06)
 
 ### Features
