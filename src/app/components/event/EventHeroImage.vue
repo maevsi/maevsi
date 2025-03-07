@@ -2,7 +2,7 @@
   <LoaderImage
     :alt="t('heroImage')"
     aspect="aspect-[3/2]"
-    classes="rounded-t-lg brightness-50 h-48 object-cover w-full"
+    classes="rounded-t-xl h-48 object-cover w-full"
     height="2"
     :src="`/assets/static/images/event/${getHeroImageName(event.name)}.jpg`"
     width="3"
