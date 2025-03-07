@@ -1,7 +1,7 @@
 <template>
   <NuxtLink
     :aria-label="ariaLabel"
-    :class="classes"
+    :class="cn(classes, props.class)"
     :disabled="isDisabled"
     :external="isExternal"
     :target="targetComputed"
@@ -13,8 +13,11 @@
 </template>
 
 <script setup lang="ts">
-import type { NuxtLinkProps } from '#app'
+import type { HtmlHTMLAttributes } from 'vue'
 import type { RouteLocationRaw } from 'vue-router'
+
+import type { NuxtLinkProps } from '#app'
+import { cn } from '@/utils/shadcn'
 
 export interface Props {
   ariaLabel?: string
@@ -25,14 +28,18 @@ export interface Props {
   target?: NuxtLinkProps['target']
   to: RouteLocationRaw
 }
-const props = withDefaults(defineProps<Props>(), {
-  ariaLabel: undefined,
-  isDisabled: undefined,
-  isColored: true,
-  isExternal: undefined,
-  isUnderlined: false,
-  target: undefined,
-})
+const props = withDefaults(
+  defineProps<Props & { class?: HtmlHTMLAttributes['class'] }>(),
+  {
+    ariaLabel: undefined,
+    class: undefined,
+    isDisabled: undefined,
+    isColored: true,
+    isExternal: undefined,
+    isUnderlined: false,
+    target: undefined,
+  },
+)
 
 const emit = defineEmits<{
   click: []

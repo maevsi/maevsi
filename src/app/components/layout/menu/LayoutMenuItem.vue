@@ -1,17 +1,16 @@
 <template>
   <AppLink
-    active-class="bg-blue-600 dark:bg-blue-400 text-text-bright dark:text-text-dark"
-    class="min-w-0 basis-full rounded-xl"
+    class="group rounded-xl text-(--semantic-base-text-secondary) aria-[current=page]:bg-(--accent-weak) aria-[current=page]:text-(--semantic-accent-accent-text) lg:text-(--semantic-base-text-primary)"
     :is-colored="false"
     :to="props.to"
   >
-    <div class="mx-4 my-2 flex flex-col items-center lg:flex-row lg:gap-2">
-      <div>
-        <slot />
-      </div>
-      <span class="hidden text-xs whitespace-nowrap sm:block lg:text-lg">
+    <div class="mx-4.5 my-3 flex items-center gap-1.5">
+      <slot />
+      <TypographySubtitleSmall
+        class="line-clamp-1 hidden group-aria-[current=page]:block lg:block"
+      >
         {{ title }}
-      </span>
+      </TypographySubtitleSmall>
     </div>
   </AppLink>
 </template>

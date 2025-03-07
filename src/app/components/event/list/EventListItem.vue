@@ -62,7 +62,7 @@
           </div>
           <Owner :username="event.accountByCreatedBy.username" />
         </div> -->
-        <p v-if="eventDescriptionTemplate" class="vio-line-clamp-2">
+        <p v-if="eventDescriptionTemplate" class="line-clamp-2">
           {{ eventDescriptionTemplate }}
         </p>
       </Card>
