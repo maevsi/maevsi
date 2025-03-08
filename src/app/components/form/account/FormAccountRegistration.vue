@@ -19,24 +19,20 @@
         is-validation-inverted
         @input="form.username = $event"
       />
-
       <FormInputEmailAddress
         :form-input="v$.emailAddress"
         :label="t('emailAddress')"
         @input="form.emailAddress = $event"
       />
-
       <FormInputPassword
         :form-input="v$.password"
         :label="t('password')"
         @input="form.password = $event"
       />
-
       <FormInputConfirmPassword
         :form-input="v$.confirmPassword"
         @input="form.confirmPassword = $event"
       />
-
       <FormInputCaptcha
         :form-input="v$.captcha"
         is-centered
@@ -48,7 +44,6 @@
         </FormInputStateInfo>
       </template>
     </Form>
-
     <AppLink
       :to="localePath('session-create')"
       :is-underlined="true"
@@ -56,13 +51,11 @@
     >
       {{ t('alreadyHaveAnAccount') }}
     </AppLink>
-
     <!-- Modals -->
     <ModalPrivacyPolicy
       v-model="privacyModalOpen"
       @open-general-terms="openGeneralTerms"
     />
-
     <ModalGeneralTerms v-model="generalTermsModalOpen" @accepted="submit" />
   </div>
 </template>
@@ -78,13 +71,10 @@ const { locale, t } = useI18n()
 const localePath = useLocalePath()
 const fireAlert = useFireAlert()
 const store = useMaevsiStore()
-
 const privacyModalOpen = ref(false)
 const generalTermsModalOpen = ref(false)
-
 const accountRegistrationMutation = useAccountRegistrationMutation()
 const api = getApiData([accountRegistrationMutation])
-
 const form = reactive({
   captcha: ref<string>(),
   confirmPassword: ref<string>(),
@@ -92,7 +82,6 @@ const form = reactive({
   password: ref<string>(),
   username: ref<string>(),
 })
-
 const isFormSent = ref(false)
 
 // Methods
@@ -105,19 +94,15 @@ const submit = async (termId: string) => {
     password: form.password || '',
     username: form.username || '',
   })
-
   if (accountResult.error) {
     return
   }
-
   const accountUuid = accountResult.data?.accountRegistration?.uuid
   if (!accountUuid) {
     console.error('No account UUID received')
     return
   }
-
   const legalTermAcceptanceMutation = useCreateLegalTermAcceptanceMutation()
-
   const acceptanceResult = await legalTermAcceptanceMutation.executeMutation({
     input: {
       legalTermAcceptance: {
@@ -126,12 +111,10 @@ const submit = async (termId: string) => {
       },
     },
   })
-
   if (acceptanceResult.error) {
     console.error('Legal term acceptance error:', acceptanceResult.error)
     return
   }
-
   await fireAlert({
     level: 'success',
     title: t('registrationSuccessTitle'),
@@ -162,7 +145,6 @@ const rules = {
   },
   emailAddress: VALIDATION_EMAIL_ADDRESS({ isRequired: true }),
 }
-
 const v$ = useVuelidate(rules, form)
 </script>
 
