@@ -1,45 +1,62 @@
 <template>
-  <UModal
-    :model-value="modelValue"
-    @update:model-value="emit('update:modelValue', $event)"
-  >
-    <div class="flex h-full flex-col">
-      <header class="flex items-center border-b border-gray-200 p-4">
-        <h3 class="ml-2 text-lg font-semibold">{{ t('title') }}</h3>
-      </header>
-      <div class="grow overflow-auto px-8">
-        <div class="vio-prose-scheme">
+  <Dialog :open="modelValue" @update:open="emit('update:modelValue', $event)">
+    <DialogContent
+      class="max-h-[90vh] max-w-4xl border bg-white p-0 shadow-lg dark:bg-gray-800"
+    >
+      <DialogHeader
+        class="border-b border-gray-200 bg-white px-6 py-4 dark:border-gray-700 dark:bg-gray-800"
+      >
+        <DialogTitle
+          class="text-lg font-semibold text-gray-900 dark:text-white"
+        >
+          {{ t('title') }}
+        </DialogTitle>
+      </DialogHeader>
+      <div class="max-h-[60vh] overflow-auto bg-white p-6 dark:bg-gray-800">
+        <div class="vio-prose-scheme dark:text-gray-200">
           <p>{{ legalTerms }}</p>
         </div>
       </div>
-      <footer
-        class="sticky bottom-0 space-y-4 border-t border-gray-200 bg-white p-4"
+      <div
+        class="border-t border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800"
       >
-        <div class="flex space-x-2 rounded-xl border p-4">
+        <div
+          class="mb-4 flex items-center space-x-2 rounded-md border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-700"
+        >
           <input
             id="accept-gtc"
             v-model="accepted"
             type="checkbox"
-            class="cursor-pointer"
+            class="h-4 w-4 cursor-pointer accent-blue-600"
           />
-          <label for="accept-gtc" class="cursor-pointer">
+          <label
+            for="accept-gtc"
+            class="cursor-pointer text-gray-900 dark:text-gray-200"
+          >
             {{ t('acceptTerms') }}
           </label>
         </div>
-
-        <ButtonConfirm
-          :aria-label="t('confirmButtonText')"
+        <ShadButton
           :disabled="!accepted"
-          :handle-submit="handleAccept"
+          class="w-full rounded bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800"
+          @click="handleAccept"
         >
           {{ t('confirmButtonText') }}
-        </ButtonConfirm>
-      </footer>
-    </div>
-  </UModal>
+        </ShadButton>
+      </div>
+    </DialogContent>
+  </Dialog>
 </template>
 
 <script setup lang="ts">
+import { ref, computed } from 'vue'
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/scn/dialog'
+import { ShadButton } from '@/components/scn/button'
 import { useAllLegalTermsQuery } from '~~/gql/documents/queries/legalTerms/allLegalTerms'
 
 const { t } = useI18n()
@@ -47,8 +64,8 @@ const { data: legalTermsQuery } = useAllLegalTermsQuery({})
 
 const legalTerms = computed(() => {
   return (
-    legalTermsQuery.value?.allLegalTerms?.edges
-      .map((edge) => edge.node.term)
+    legalTermsQuery.value?.allLegalTerms?.nodes
+      ?.map((node) => node.term)
       .filter(isNeitherNullNorUndefined)
       .join(' ') || ''
   )
@@ -59,12 +76,9 @@ defineProps<{
 }>()
 
 const emit = defineEmits(['update:modelValue', 'accepted'])
-
 const accepted = ref(false)
-
 const handleAccept = () => {
-  const termId = legalTermsQuery.value?.allLegalTerms?.edges[0]?.node.id
-
+  const termId = legalTermsQuery.value?.allLegalTerms?.nodes[0]?.id
   if (accepted.value && termId) {
     emit('accepted', termId)
     emit('update:modelValue', false)

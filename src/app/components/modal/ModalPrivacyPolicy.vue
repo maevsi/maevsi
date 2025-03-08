@@ -1,14 +1,19 @@
 <template>
-  <UModal
-    :model-value="modelValue"
-    @update:model-value="$emit('update:model-value', $event)"
-  >
-    <div class="flex h-full flex-col">
-      <header class="flex items-center border-b border-gray-200 px-6 py-4">
-        <h3 class="text-lg font-semibold">{{ t('title') }}</h3>
-      </header>
-      <div class="grow overflow-auto px-8">
-        <div class="vio-prose-scheme">
+  <Dialog :open="modelValue" @update:open="$emit('update:modelValue', $event)">
+    <DialogContent
+      class="max-h-[90vh] max-w-4xl border bg-white p-0 shadow-lg dark:bg-gray-800"
+    >
+      <DialogHeader
+        class="border-b border-gray-200 bg-white px-6 py-4 dark:border-gray-700 dark:bg-gray-800"
+      >
+        <DialogTitle
+          class="text-lg font-semibold text-gray-900 dark:text-white"
+        >
+          {{ t('title') }}
+        </DialogTitle>
+      </DialogHeader>
+      <div class="max-h-[60vh] overflow-auto bg-white p-6 dark:bg-gray-800">
+        <div class="vio-prose-scheme dark:text-gray-200">
           <h2>{{ t('summary') }}</h2>
           <h3>{{ t('generalNotesTitle') }}</h3>
           <p>{{ t('generalNotesDescription') }}</p>
@@ -227,49 +232,57 @@
           </p>
         </div>
       </div>
-      <footer
-        class="sticky bottom-0 space-y-4 border-t border-gray-200 bg-white p-4"
+      <div
+        class="border-t border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800"
       >
-        <div class="flex space-x-2 rounded-xl border p-4">
+        <div
+          class="mb-4 flex items-center space-x-2 rounded-md border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-700"
+        >
           <input
             id="accept-privacy-policy"
             v-model="accepted"
             type="checkbox"
-            class="cursor-pointer"
+            class="h-4 w-4 cursor-pointer accent-blue-600"
           />
-          <label for="accept-privacy-policy" class="cursor-pointer">
+          <label
+            for="accept-privacy-policy"
+            class="cursor-pointer text-gray-900 dark:text-gray-200"
+          >
             {{ t('acceptPrivacy') }}
           </label>
         </div>
-
-        <ButtonConfirm
-          :aria-label="t('confirmButtonText')"
+        <ShadButton
           :disabled="!accepted"
-          :handle-submit="handleAccept"
+          class="w-full rounded bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800"
+          @click="handleAccept"
         >
           {{ t('confirmButtonText') }}
-        </ButtonConfirm>
-      </footer>
-    </div>
-  </UModal>
+        </ShadButton>
+      </div>
+    </DialogContent>
+  </Dialog>
 </template>
 
 <script setup lang="ts">
-import ButtonConfirm from '../button/ButtonConfirm.vue'
+import { ref } from 'vue'
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/scn/dialog'
+import { ShadButton } from '@/components/scn/button'
 
 const { t } = useI18n()
-
 defineProps<{
   modelValue: boolean
 }>()
 
-const emit = defineEmits(['update:model-value', 'open-general-terms'])
-
+const emit = defineEmits(['update:modelValue', 'open-general-terms'])
 const accepted = ref(false)
-
 const handleAccept = () => {
   if (accepted.value) {
-    emit('update:model-value', false)
+    emit('update:modelValue', false)
     emit('open-general-terms')
   }
 }
