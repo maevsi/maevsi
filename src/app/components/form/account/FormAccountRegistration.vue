@@ -14,18 +14,29 @@
     >
       <FormInputUsername
         :form-input="v$.username"
+        :label="t('username')"
         is-validatable
         is-validation-inverted
         @input="form.username = $event"
       />
-      <FormInputPassword
-        :form-input="v$.password"
-        @input="form.password = $event"
-      />
+
       <FormInputEmailAddress
         :form-input="v$.emailAddress"
+        :label="t('emailAddress')"
         @input="form.emailAddress = $event"
       />
+
+      <FormInputPassword
+        :form-input="v$.password"
+        :label="t('password')"
+        @input="form.password = $event"
+      />
+
+      <FormInputConfirmPassword
+        :form-input="v$.confirmPassword"
+        @input="form.confirmPassword = $event"
+      />
+
       <FormInputCaptcha
         :form-input="v$.captcha"
         is-centered
@@ -58,8 +69,10 @@
 
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
+import { required } from '@vuelidate/validators'
 import { useCreateLegalTermAcceptanceMutation } from '~~/gql/documents/mutations/account/accountLegalTermAcceptance'
 import { useAccountRegistrationMutation } from '~~/gql/documents/mutations/account/accountRegistration'
+import FormInputConfirmPassword from '../input/FormInputConfirmPassword.vue'
 
 const { locale, t } = useI18n()
 const localePath = useLocalePath()
@@ -74,6 +87,7 @@ const api = getApiData([accountRegistrationMutation])
 
 const form = reactive({
   captcha: ref<string>(),
+  confirmPassword: ref<string>(),
   emailAddress: ref<string>(),
   password: ref<string>(),
   username: ref<string>(),
@@ -127,7 +141,6 @@ const submit = async (termId: string) => {
 
 const handleSubmit = async () => {
   if (!(await isFormValid({ v$, isFormSent }))) return
-
   privacyModalOpen.value = true
 }
 
@@ -143,6 +156,10 @@ const rules = {
     validateExistenceNone: true,
   }),
   password: VALIDATION_PASSWORD(),
+  confirmPassword: {
+    required,
+    match: (value: string | undefined) => value === form.password,
+  },
   emailAddress: VALIDATION_EMAIL_ADDRESS({ isRequired: true }),
 }
 
@@ -152,18 +169,25 @@ const v$ = useVuelidate(rules, form)
 <i18n lang="yaml">
 de:
   accountDeletionNotice: Du wirst deinen Account jederzeit löschen können.
+  alreadyHaveAnAccount: 'Du hast bereits ein Konto? Anmelden'
+  emailAddress: E-Mail-Adresse
+  password: Passwort
   postgres22023: Das Passwort ist zu kurz! Überlege dir ein längeres.
   postgres23505: Es gibt bereits einen Account mit diesem Nutzernamen oder dieser E-Mail-Adresse! Überlege dir einen neuen Namen oder versuche dich anzumelden.
   register: Registrieren
   registrationSuccessBody: Verifiziere deinen Account über den Link in der E-Mail, die du in Kürze erhalten wirst.
   registrationSuccessTitle: Verifizierungs-E-Mail gesendet.
-  alreadyHaveAnAccount: 'Du hast bereits ein Konto? Anmelden'
+  username: Benutzername
+
 en:
   accountDeletionNotice: "You'll be able to delete your account at any time."
+  alreadyHaveAnAccount: Already have an account? Log in
+  emailAddress: Email Address
+  password: Password
   postgres22023: Your password is too short! Think of a longer one.
   postgres23505: This username or email address is already in use! Think of a new name or try signing in instead.
   register: Sign Up
   registrationSuccessBody: Verify your account using the verification link sent to you by email.
   registrationSuccessTitle: Verification email sent.
-  alreadyHaveAnAccount: Already have an account? Log in
+  username: Username
 </i18n>

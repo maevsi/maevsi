@@ -15,7 +15,8 @@
         <div class="flex flex-col justify-between">
           <ButtonColored
             :aria-label="submitName || t('submit')"
-            :is-primary="false"
+            variant="primary"
+            class="rounded-lg"
             :class="{
               'animate-shake': $error,
             }"

@@ -2,11 +2,7 @@
   <Button
     :aria-label="ariaLabel"
     class="justify-center rounded-md px-4 py-2 font-medium"
-    :class="
-      variant === 'primary'
-        ? 'bg-accent-fancy text-text-bright hover:bg-accent-strong dark:text-text-dark from-blue-500 to-blue-600 dark:from-blue-300 dark:to-blue-400'
-        : 'bg-accent-weak text-accent-strong hover:bg-accent-mid dark:text-text-bright dark:border dark:border-gray-600 dark:bg-inherit dark:hover:bg-black/30'
-    "
+    :class="variantClasses"
     :disabled="disabled"
     :to="props.to"
     :type="type"
@@ -29,7 +25,7 @@ export interface Props {
   ariaLabel: string
   disabled?: boolean
   isExternal?: boolean
-  variant?: 'primary' | 'accent'
+  variant?: 'primary' | 'secondary'
   to?: RouteLocationRaw
   type?: 'button' | 'reset' | 'submit'
 }
@@ -37,7 +33,7 @@ export interface Props {
 const props = withDefaults(defineProps<Props>(), {
   disabled: false,
   isExternal: undefined,
-  variant: 'primary', // default variant
+  variant: 'primary',
   to: undefined,
   type: 'button',
 })
@@ -45,4 +41,15 @@ const props = withDefaults(defineProps<Props>(), {
 const emit = defineEmits<{
   click: []
 }>()
+
+const variantClasses = computed(() => {
+  switch (props.variant) {
+    case 'primary':
+      return 'bg-(--accent-strong) font-bold text-(--semantic-base-primary-button-text) hover:bg-(--accent-strong-hover)'
+    case 'secondary':
+      return 'bg-(--accent-weak) font-bold text-(--semantic-base-secondary-button-text) hover:bg-(--accent-weak-hover)'
+    default:
+      return 'bg-(--accent-strong) text-(--semantic-base-primary-button-text) hover:bg-(--accent-strong-hover)'
+  }
+})
 </script>
