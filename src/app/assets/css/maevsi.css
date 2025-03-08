@@ -120,6 +120,9 @@
     /* figma */
     --accent-line: #dcf9ea;
     --accent-strong: #36db83;
+    --accent-strong-hover: #2bb86d;
+    --accent-weak: #dcf9ea;
+    --accent-weak-hover: #c0e6d2;
     --critic-string: #e00000;
     --faint-line: #f2f2f2;
     --faint-weak: #f2f2f2;
@@ -127,11 +130,14 @@
     --semantic-base-background: #fff;
     --semantic-base-input-field-fill: #fff;
     --semantic-base-light-text-on-dark: #fafafc;
-    --semantic-base-line: #F2F2F2;
+    --semantic-base-line: #f2f2f2;
     --semantic-base-primary-button-text: #191911;
     --semantic-base-surface-1: #fafafc;
     --semantic-base-text-primary: #191911;
     --semantic-base-text-secondary: #868679;
+    --semantic-base-text-tertiary: #505047;
+    --semantic-critic-strong: #e00000;
+    --semantic-critic-strong-hover: #8c1818;
     --surface: #fafafc;
     --warning-strong: #f9ae25;
     --warning-text: #9c5407;

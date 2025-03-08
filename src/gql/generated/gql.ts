@@ -26,10 +26,11 @@ type Documents = {
   '\n      mutation accountDelete($password: String!) {\n        accountDelete(input: { password: $password }) {\n          clientMutationId\n        }\n      }\n    ': typeof types.AccountDeleteDocument
   '\n      mutation accountEmailAddressVerification($code: UUID!) {\n        accountEmailAddressVerification(input: { code: $code }) {\n          clientMutationId\n        }\n      }\n    ': typeof types.AccountEmailAddressVerificationDocument
   '\n  mutation jwtRefresh($id: UUID!) {\n    jwtRefresh(input: { jwtId: $id }) {\n      clientMutationId\n      jwt\n    }\n  }\n': typeof types.JwtRefreshDocument
+  '\n      mutation CreateLegalTermAcceptance(\n        $input: CreateLegalTermAcceptanceInput!\n      ) {\n        createLegalTermAcceptance(input: $input) {\n          legalTermAcceptance {\n            id\n            accountId\n            createdAt\n            legalTermId\n          }\n        }\n      }\n    ': typeof types.CreateLegalTermAcceptanceDocument
   '\n      mutation accountPasswordChange(\n        $passwordCurrent: String!\n        $passwordNew: String!\n      ) {\n        accountPasswordChange(\n          input: {\n            passwordCurrent: $passwordCurrent\n            passwordNew: $passwordNew\n          }\n        ) {\n          clientMutationId\n        }\n      }\n    ': typeof types.AccountPasswordChangeDocument
   '\n      mutation accountPasswordReset($code: UUID!, $password: String!) {\n        accountPasswordReset(input: { code: $code, password: $password }) {\n          clientMutationId\n        }\n      }\n    ': typeof types.AccountPasswordResetDocument
   '\n      mutation accountPasswordResetRequest(\n        $emailAddress: String!\n        $language: String!\n      ) {\n        accountPasswordResetRequest(\n          input: { emailAddress: $emailAddress, language: $language }\n        ) {\n          clientMutationId\n        }\n      }\n    ': typeof types.AccountPasswordResetRequestDocument
-  '\n      mutation accountRegistration(\n        $emailAddress: String!\n        $password: String!\n        $username: String!\n        $language: String!\n      ) {\n        accountRegistration(\n          input: {\n            emailAddress: $emailAddress\n            password: $password\n            username: $username\n            language: $language\n          }\n        ) {\n          clientMutationId\n        }\n      }\n    ': typeof types.AccountRegistrationDocument
+  '\n      mutation accountRegistration(\n        $emailAddress: String!\n        $password: String!\n        $username: String!\n        $language: String!\n      ) {\n        accountRegistration(\n          input: {\n            emailAddress: $emailAddress\n            password: $password\n            username: $username\n            language: $language\n          }\n        ) {\n          clientMutationId\n          uuid\n        }\n      }\n    ': typeof types.AccountRegistrationDocument
   '\n      mutation accountRegistrationRefresh(\n        $accountId: UUID!\n        $language: String!\n      ) {\n        accountRegistrationRefresh(\n          input: { language: $language, accountId: $accountId }\n        ) {\n          clientMutationId\n        }\n      }\n    ': typeof types.AccountRegistrationRefreshDocument
   '\n      mutation achievementUnlock($code: UUID!, $alias: String!) {\n        achievementUnlock(input: { code: $code, alias: $alias }) {\n          clientMutationId\n          uuid\n        }\n      }\n    ': typeof types.AchievementUnlockDocument
   '\n      mutation createContact($contactInput: ContactInput!) {\n        createContact(input: { contact: $contactInput }) {\n          contact {\n            ...ContactItem\n          }\n        }\n      }\n    ': typeof types.CreateContactDocument
@@ -55,6 +56,7 @@ type Documents = {
   '\n  query eventSearch(\n    $after: Cursor\n    $first: Int!\n    $language: Language\n    $query: String\n  ) {\n    eventSearch(\n      after: $after\n      first: $first\n      language: $language\n      query: $query\n    ) {\n      nodes {\n        ...EventItem\n      }\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      totalCount\n    }\n  }\n': typeof types.EventSearchDocument
   '\n      query allEvents($after: Cursor, $createdBy: UUID, $first: Int!) {\n        allEvents(\n          after: $after\n          condition: { createdBy: $createdBy }\n          first: $first\n          orderBy: START_DESC\n        ) {\n          nodes {\n            ...EventItem\n          }\n          pageInfo {\n            hasNextPage\n            endCursor\n          }\n          totalCount\n        }\n      }\n    ': typeof types.AllEventsDocument
   '\n  query allGuests($after: Cursor, $eventId: UUID!, $first: Int!) {\n    allGuests(after: $after, condition: { eventId: $eventId }, first: $first) {\n      nodes {\n        ...GuestItem\n      }\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      totalCount\n    }\n  }\n': typeof types.AllGuestsDocument
+  '\n  query allLegalTerms {\n    allLegalTerms {\n      nodes {\n        id\n        term\n      }\n    }\n  }\n': typeof types.AllLegalTermsDocument
   '\n      query profilePictureByAccountId($accountId: UUID!) {\n        profilePictureByAccountId(accountId: $accountId) {\n          ...ProfilePictureItem\n        }\n      }\n    ': typeof types.ProfilePictureByAccountIdDocument
   '\n      query allUploads($after: Cursor, $first: Int!, $accountId: UUID) {\n        allUploads(\n          after: $after\n          condition: { accountId: $accountId }\n          first: $first\n        ) {\n          nodes {\n            ...UploadItem\n          }\n          pageInfo {\n            hasNextPage\n            endCursor\n          }\n          totalCount\n        }\n      }\n    ': typeof types.AllUploadsDocument
 }
@@ -83,13 +85,15 @@ const documents: Documents = {
     types.AccountEmailAddressVerificationDocument,
   '\n  mutation jwtRefresh($id: UUID!) {\n    jwtRefresh(input: { jwtId: $id }) {\n      clientMutationId\n      jwt\n    }\n  }\n':
     types.JwtRefreshDocument,
+  '\n      mutation CreateLegalTermAcceptance(\n        $input: CreateLegalTermAcceptanceInput!\n      ) {\n        createLegalTermAcceptance(input: $input) {\n          legalTermAcceptance {\n            id\n            accountId\n            createdAt\n            legalTermId\n          }\n        }\n      }\n    ':
+    types.CreateLegalTermAcceptanceDocument,
   '\n      mutation accountPasswordChange(\n        $passwordCurrent: String!\n        $passwordNew: String!\n      ) {\n        accountPasswordChange(\n          input: {\n            passwordCurrent: $passwordCurrent\n            passwordNew: $passwordNew\n          }\n        ) {\n          clientMutationId\n        }\n      }\n    ':
     types.AccountPasswordChangeDocument,
   '\n      mutation accountPasswordReset($code: UUID!, $password: String!) {\n        accountPasswordReset(input: { code: $code, password: $password }) {\n          clientMutationId\n        }\n      }\n    ':
     types.AccountPasswordResetDocument,
   '\n      mutation accountPasswordResetRequest(\n        $emailAddress: String!\n        $language: String!\n      ) {\n        accountPasswordResetRequest(\n          input: { emailAddress: $emailAddress, language: $language }\n        ) {\n          clientMutationId\n        }\n      }\n    ':
     types.AccountPasswordResetRequestDocument,
-  '\n      mutation accountRegistration(\n        $emailAddress: String!\n        $password: String!\n        $username: String!\n        $language: String!\n      ) {\n        accountRegistration(\n          input: {\n            emailAddress: $emailAddress\n            password: $password\n            username: $username\n            language: $language\n          }\n        ) {\n          clientMutationId\n        }\n      }\n    ':
+  '\n      mutation accountRegistration(\n        $emailAddress: String!\n        $password: String!\n        $username: String!\n        $language: String!\n      ) {\n        accountRegistration(\n          input: {\n            emailAddress: $emailAddress\n            password: $password\n            username: $username\n            language: $language\n          }\n        ) {\n          clientMutationId\n          uuid\n        }\n      }\n    ':
     types.AccountRegistrationDocument,
   '\n      mutation accountRegistrationRefresh(\n        $accountId: UUID!\n        $language: String!\n      ) {\n        accountRegistrationRefresh(\n          input: { language: $language, accountId: $accountId }\n        ) {\n          clientMutationId\n        }\n      }\n    ':
     types.AccountRegistrationRefreshDocument,
@@ -141,6 +145,8 @@ const documents: Documents = {
     types.AllEventsDocument,
   '\n  query allGuests($after: Cursor, $eventId: UUID!, $first: Int!) {\n    allGuests(after: $after, condition: { eventId: $eventId }, first: $first) {\n      nodes {\n        ...GuestItem\n      }\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      totalCount\n    }\n  }\n':
     types.AllGuestsDocument,
+  '\n  query allLegalTerms {\n    allLegalTerms {\n      nodes {\n        id\n        term\n      }\n    }\n  }\n':
+    types.AllLegalTermsDocument,
   '\n      query profilePictureByAccountId($accountId: UUID!) {\n        profilePictureByAccountId(accountId: $accountId) {\n          ...ProfilePictureItem\n        }\n      }\n    ':
     types.ProfilePictureByAccountIdDocument,
   '\n      query allUploads($after: Cursor, $first: Int!, $accountId: UUID) {\n        allUploads(\n          after: $after\n          condition: { accountId: $accountId }\n          first: $first\n        ) {\n          nodes {\n            ...UploadItem\n          }\n          pageInfo {\n            hasNextPage\n            endCursor\n          }\n          totalCount\n        }\n      }\n    ':
@@ -237,6 +243,12 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
+  source: '\n      mutation CreateLegalTermAcceptance(\n        $input: CreateLegalTermAcceptanceInput!\n      ) {\n        createLegalTermAcceptance(input: $input) {\n          legalTermAcceptance {\n            id\n            accountId\n            createdAt\n            legalTermId\n          }\n        }\n      }\n    ',
+): (typeof documents)['\n      mutation CreateLegalTermAcceptance(\n        $input: CreateLegalTermAcceptanceInput!\n      ) {\n        createLegalTermAcceptance(input: $input) {\n          legalTermAcceptance {\n            id\n            accountId\n            createdAt\n            legalTermId\n          }\n        }\n      }\n    ']
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
   source: '\n      mutation accountPasswordChange(\n        $passwordCurrent: String!\n        $passwordNew: String!\n      ) {\n        accountPasswordChange(\n          input: {\n            passwordCurrent: $passwordCurrent\n            passwordNew: $passwordNew\n          }\n        ) {\n          clientMutationId\n        }\n      }\n    ',
 ): (typeof documents)['\n      mutation accountPasswordChange(\n        $passwordCurrent: String!\n        $passwordNew: String!\n      ) {\n        accountPasswordChange(\n          input: {\n            passwordCurrent: $passwordCurrent\n            passwordNew: $passwordNew\n          }\n        ) {\n          clientMutationId\n        }\n      }\n    ']
 /**
@@ -255,8 +267,8 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: '\n      mutation accountRegistration(\n        $emailAddress: String!\n        $password: String!\n        $username: String!\n        $language: String!\n      ) {\n        accountRegistration(\n          input: {\n            emailAddress: $emailAddress\n            password: $password\n            username: $username\n            language: $language\n          }\n        ) {\n          clientMutationId\n        }\n      }\n    ',
-): (typeof documents)['\n      mutation accountRegistration(\n        $emailAddress: String!\n        $password: String!\n        $username: String!\n        $language: String!\n      ) {\n        accountRegistration(\n          input: {\n            emailAddress: $emailAddress\n            password: $password\n            username: $username\n            language: $language\n          }\n        ) {\n          clientMutationId\n        }\n      }\n    ']
+  source: '\n      mutation accountRegistration(\n        $emailAddress: String!\n        $password: String!\n        $username: String!\n        $language: String!\n      ) {\n        accountRegistration(\n          input: {\n            emailAddress: $emailAddress\n            password: $password\n            username: $username\n            language: $language\n          }\n        ) {\n          clientMutationId\n          uuid\n        }\n      }\n    ',
+): (typeof documents)['\n      mutation accountRegistration(\n        $emailAddress: String!\n        $password: String!\n        $username: String!\n        $language: String!\n      ) {\n        accountRegistration(\n          input: {\n            emailAddress: $emailAddress\n            password: $password\n            username: $username\n            language: $language\n          }\n        ) {\n          clientMutationId\n          uuid\n        }\n      }\n    ']
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -407,6 +419,12 @@ export function graphql(
 export function graphql(
   source: '\n  query allGuests($after: Cursor, $eventId: UUID!, $first: Int!) {\n    allGuests(after: $after, condition: { eventId: $eventId }, first: $first) {\n      nodes {\n        ...GuestItem\n      }\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      totalCount\n    }\n  }\n',
 ): (typeof documents)['\n  query allGuests($after: Cursor, $eventId: UUID!, $first: Int!) {\n    allGuests(after: $after, condition: { eventId: $eventId }, first: $first) {\n      nodes {\n        ...GuestItem\n      }\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      totalCount\n    }\n  }\n']
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n  query allLegalTerms {\n    allLegalTerms {\n      nodes {\n        id\n        term\n      }\n    }\n  }\n',
+): (typeof documents)['\n  query allLegalTerms {\n    allLegalTerms {\n      nodes {\n        id\n        term\n      }\n    }\n  }\n']
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

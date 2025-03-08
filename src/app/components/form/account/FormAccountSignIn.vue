@@ -1,15 +1,5 @@
 <template>
   <div class="flex flex-col items-center gap-4">
-    <ButtonColored
-      :is-primary="false"
-      :aria-label="t('register')"
-      :to="localePath('account-create')"
-    >
-      {{ t('register') }}
-      <template #prefix>
-        <IHeroiconsArrowRight />
-      </template>
-    </ButtonColored>
     <Form
       :errors="api.errors"
       :errors-pg-ids="{
@@ -19,7 +9,7 @@
       :form="v$"
       form-class="w-full"
       :is-form-sent="isFormSent"
-      :submit-name="t('signIn')"
+      :submit-name="t('logIn')"
       @submit.prevent="submit"
     >
       <FormInputUsername
@@ -56,7 +46,22 @@
         </ButtonColored>
       </template>
     </Form>
-    <AppLink :to="localePath('account-password-reset-request')">
+    <div class="flex w-full flex-col justify-between">
+      <ButtonColored
+        variant="secondary"
+        :aria-label="t('register')"
+        :to="localePath('account-create')"
+        class="w-full rounded-lg"
+      >
+        {{ t('register') }}
+      </ButtonColored>
+    </div>
+    <AppLink
+      :to="localePath('account-password-reset-request')"
+      :is-underlined="true"
+      :is-colored="true"
+      class="font-bold text-(--semantic-base-text-tertiary)"
+    >
       {{ t('passwordReset') }}
     </AppLink>
   </div>
@@ -140,14 +145,14 @@ de:
   passwordReset: Passwort zurücksetzen
   postgres55000: Deine E-Mail-Adresse ist noch nicht verifiziert! Schau in dein E-Mail-Postfach, ggf. auch in den Spam-Ordner, oder kontaktiere den Support.
   postgresP0002: Anmeldung fehlgeschlagen! Hast du dich schon registriert? Überprüfe deine Eingaben auf Schreibfehler oder kontaktiere den Support.
-  register: Stattdessen registrieren
-  signIn: Anmelden
+  register: Konto erstellen
+  logIn: Einloggen
 en:
   contactSupport: Contact support
   jwtStoreFail: Failed to store the authentication data!
-  passwordReset: Reset password
+  passwordReset: I forgot my password
   postgres55000: Your email address has not been verified yet! Check your email inbox, including the spam folder if necessary, or contact support.
   postgresP0002: Login failed! Have you registered yet? Check your input for spelling mistakes or contact support.
-  register: Register instead
-  signIn: Sign in
+  register: Create an account
+  logIn: Log in
 </i18n>
