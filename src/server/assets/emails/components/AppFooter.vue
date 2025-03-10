@@ -2,7 +2,7 @@
 import { Column, Link, Row, Section } from '@vue-email/components'
 
 import type { Locale } from '../../../utils/i18n'
-import MaevsiText from './base/MaevsiText.vue'
+import AppText from './base/AppText.vue'
 
 export interface Props {
   emailAddress: string
@@ -26,14 +26,14 @@ const t = locales[props.locale]
   <Section>
     <Row>
       <Column>
-        <MaevsiText style="font-size: 13px; text-align: center">
+        <AppText style="font-size: 13px; text-align: center">
           <Link
             :href="`mailto:contact+unsubscribe@maev.si?subject=Unsubscribe%20${emailAddress}`"
             style="color: #60a5fa; text-decoration: underline"
           >
             {{ t.unsubscribe }}
           </Link>
-        </MaevsiText>
+        </AppText>
       </Column>
     </Row>
   </Section>

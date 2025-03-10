@@ -31,7 +31,7 @@ definePageMeta({
 })
 
 const { t } = useI18n()
-const store = useMaevsiStore()
+const store = useStore()
 
 const enteredURL = ref<string>()
 

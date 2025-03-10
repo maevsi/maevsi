@@ -26,6 +26,6 @@ withDefaults(defineProps<Props>(), {})
 
 <script lang="ts">
 export default {
-  name: 'MaevsiBenefit',
+  name: 'AppBenefit',
 }
 </script>

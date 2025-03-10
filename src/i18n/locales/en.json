@@ -8,9 +8,10 @@
   "globalPlaceholderPhoneNumber": "+1234567890",
   "globalPlaceholderUrl": "https://websi.te",
   "globalPlaceholderUsername": "user-name",
-  "globalSeoOgImageAlt": "maevsi's logo.",
+  "globalSeoOgImageAlt": "{siteName}'s logo.",
   "globalSeoSiteDescription": "Find events, guests and friends 💙❤️💚",
   "globalShowMore": "Show more",
+  "globalSiteName": "Vibetype",
   "globalStatusError": "Error",
   "globalStatusWarning": "Warning",
   "globalValidationAvailability": "Available",
@@ -29,5 +30,8 @@
   "globalValidationNowOrFuture": "Point in time lies in the past",
   "globalValidationRequired": "Required",
   "globalValidationSameAs": "Is not identical",
-  "globalValidationShortness": "Too short"
+  "globalValidationShortness": "Too short",
+  "nuxtSiteConfig": {
+    "name": "Vibetype"
+  }
 }

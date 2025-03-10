@@ -38,7 +38,7 @@ const invalidateCache = (
 export default defineNuxtPlugin(async (nuxtApp) => {
   const runtimeConfig = useRuntimeConfig()
   const getServiceHref = useGetServiceHref()
-  const store = useMaevsiStore()
+  const store = useStore()
 
   const ssrExchange = getSsrExchange({
     isClient: import.meta.client,
@@ -73,7 +73,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
           invalidateCache(cache, 'allContacts'),
         createGuest: (_result, _args, cache, _info) =>
           invalidateCache(cache, 'allGuests'),
-        // TODO: create manual updates that do not require invalidation (https://github.com/maevsi/maevsi/issues/720)
+        // TODO: create manual updates that do not require invalidation (https://github.com/maevsi/vibetype/issues/720)
         // createGuest: (result, args, cache, info) => {
         //   cache.updateQuery(
         //     {

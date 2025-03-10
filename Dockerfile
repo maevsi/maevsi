@@ -228,5 +228,5 @@ ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["pnpm", "run", "start:node"]
 HEALTHCHECK --interval=10s CMD wget -O /dev/null http://localhost:3000/api/healthcheck || exit 1
 EXPOSE 3000
-LABEL org.opencontainers.image.source="https://github.com/maevsi/maevsi"
+LABEL org.opencontainers.image.source="https://github.com/maevsi/vibetype"
 LABEL org.opencontainers.image.description="Find events, guests and friends 💙❤️💚"

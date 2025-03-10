@@ -2,7 +2,7 @@
 import { Column, Img, Row, Section } from '@vue-email/components'
 
 import type { Locale } from '../../../utils/i18n'
-import MaevsiText from './base/MaevsiText.vue'
+import AppText from './base/AppText.vue'
 import { LOGO_CID } from '../../../utils/assets'
 
 export interface Props {
@@ -18,11 +18,13 @@ const { siteUrl } = useSiteUrl()
 // data
 const locales = {
   de: {
-    logo: 'maevsis Logo',
+    logo: (siteName: string) => `${siteName}s Logo`,
+    siteName: 'Vibetype',
     subtitle: 'Finde Veranstaltungen, Gäste und Freunde 💙❤️💚',
   },
   en: {
-    logo: "maevsi's logo",
+    logo: (siteName: string) => `${siteName}'s logo`,
+    siteName: 'Vibetype',
     subtitle: 'Find events, guests and friends 💙❤️💚',
   },
 }
@@ -34,7 +36,7 @@ const t = locales[props.locale]
     <Row>
       <Column>
         <Img
-          :alt="t.logo"
+          :alt="t.logo(t.siteName)"
           height="100"
           :href="siteUrl"
           :src="logoSource || `cid:${LOGO_CID}`"
@@ -47,9 +49,9 @@ const t = locales[props.locale]
   <Section>
     <Row width="100%">
       <Column>
-        <MaevsiText style="font-size: 14px; margin: 0; text-align: center">
+        <AppText style="font-size: 14px; margin: 0; text-align: center">
           {{ t.subtitle }}
-        </MaevsiText>
+        </AppText>
       </Column>
     </Row>
   </Section>

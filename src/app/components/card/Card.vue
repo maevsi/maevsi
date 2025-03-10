@@ -27,6 +27,6 @@ const props = withDefaults(
 
 <script lang="ts">
 export default {
-  name: 'MaevsiCard',
+  name: 'AppCard',
 }
 </script>

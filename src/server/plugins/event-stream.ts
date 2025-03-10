@@ -1,6 +1,6 @@
 import { IS_IN_STACK } from '~~/node'
 
-const TOPIC_NOTIFICATION = 'maevsi.maevsi_private.notification'
+const TOPIC_NOTIFICATION = `${SITE_NAME}.${SITE_NAME}_private.notification`
 
 export default defineNitroPlugin(async (nitroApp) => {
   if (!IS_IN_STACK) return
@@ -11,7 +11,7 @@ export default defineNitroPlugin(async (nitroApp) => {
 
   const { Kafka } = await import('kafkajs')
   const kafka = new Kafka({
-    clientId: 'maevsi',
+    clientId: SITE_NAME,
     brokers: ['redpanda:9092'],
     retry: {
       retries: Number.POSITIVE_INFINITY,
@@ -22,7 +22,7 @@ export default defineNitroPlugin(async (nitroApp) => {
     },
   })
 
-  const consumer = kafka.consumer({ groupId: 'maevsi' })
+  const consumer = kafka.consumer({ groupId: SITE_NAME })
 
   await consumer.connect()
   await consumer.subscribe({

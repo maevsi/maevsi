@@ -86,13 +86,13 @@ export const sendEmail = async <T extends EmailName>({
   }
 
   const mailOptionsWithDefaults = {
-    from: `"${mailOptions.fromName || 'maevsi'}" <noreply@maev.si>`,
+    from: `"${mailOptions.fromName || SITE_NAME}" <noreply@maev.si>`,
     to: developerMail ? `Developer <${developerMail}>` : mailOptions.to,
     subject: mailOptions.subject,
     text,
     html,
     headers: {
-      // // TODO: add https link (https://github.com/maevsi/maevsi/issues/326)
+      // // TODO: add https link (https://github.com/maevsi/vibetype/issues/326)
       // 'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
       'List-Unsubscribe': {
         prepared: true,
@@ -101,7 +101,7 @@ export const sendEmail = async <T extends EmailName>({
     },
     // // TODO: wait for long line fix (https://github.com/nodemailer/nodemailer/issues/1694)
     // list: {
-    //   // TODO: add https link (https://github.com/maevsi/maevsi/issues/326)
+    //   // TODO: add https link (https://github.com/maevsi/vibetype/issues/326)
     //   unsubscribe: `mailto:contact+unsubscribe@maev.si?subject=Unsubscribe%20${mailOptions.to}`,
     // },
     attachments: [

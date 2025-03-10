@@ -13,7 +13,7 @@
         <slot />
       </div>
       <p class="text-center text-gray-500 dark:text-gray-400">
-        {{ t('copyright', { year }) }}
+        {{ t('copyright', { siteName: t('globalSiteName'), year }) }}
       </p>
     </div>
   </footer>
@@ -32,7 +32,7 @@ const year = computed(() =>
 
 <i18n lang="yaml">
 de:
-  copyright: © {year} maevsi-Team. Alle Rechte vorbehalten.
+  copyright: © {year} {siteName}-Team. Alle Rechte vorbehalten.
 en:
-  copyright: © {year} maevsi team. All rights reserved.
+  copyright: © {year} {siteName} team. All rights reserved.
 </i18n>

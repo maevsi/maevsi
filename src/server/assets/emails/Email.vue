@@ -2,7 +2,7 @@
 import { Container, Font, Head, Html, Body } from '@vue-email/components'
 
 import type { Locale } from '../../utils/i18n'
-import MaevsiLogo from './components/MaevsiLogo.vue'
+import AppLogo from './components/AppLogo.vue'
 
 export interface Props {
   locale: Locale
@@ -16,7 +16,7 @@ withDefaults(defineProps<Props>(), {
 
 <script lang="ts">
 export default {
-  name: 'MaevsiEmail',
+  name: 'AppEmail',
 }
 </script>
 
@@ -57,7 +57,7 @@ export default {
       <Container
         style="background-color: #f0f0f0; max-width: 42.5em; padding: 0 2.5em"
       >
-        <MaevsiLogo :locale="locale" :logo-source="logoSource" />
+        <AppLogo :locale="locale" :logo-source="logoSource" />
         <slot />
       </Container>
     </Body>

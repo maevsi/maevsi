@@ -1,16 +1,12 @@
 import type { useServerSeoMeta } from '@unhead/vue'
 
 export default defineAppConfig({
-  ui: {
-    // primary: 'blue',
-    gray: STYLE_DEFAULT_GRAY,
-  },
   vio: {
     pages: undefined,
     seoMeta: {
       twitterSite: '@maev_si',
     },
-    themeColor: '#27272a',
+    themeColor: THEME_COLOR,
   },
 })
 

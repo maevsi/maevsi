@@ -50,7 +50,7 @@ const clear = () => {
 // lifecycle
 onMounted(() => {
   image.value = new Image()
-  image.value.src = '/assets/static/logos/maevsi_icon.svg'
+  image.value.src = '/assets/static/logos/app_icon.svg'
 
   const canvasLocal = canvasRef.value
   if (!canvasLocal) return

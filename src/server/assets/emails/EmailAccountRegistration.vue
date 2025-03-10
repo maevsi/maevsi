@@ -2,10 +2,10 @@
 import { Column, Row, Section } from '@vue-email/components'
 
 import type { Locale } from '../../utils/i18n'
-import MaevsiButton from './components/base/MaevsiButton.vue'
-import MaevsiText from './components/base/MaevsiText.vue'
-import MaevsiAuthor from './components/MaevsiAuthor.vue'
-import MaevsiFooter from './components/MaevsiFooter.vue'
+import AppButton from './components/base/AppButton.vue'
+import AppText from './components/base/AppText.vue'
+import AppAuthor from './components/AppAuthor.vue'
+import AppFooter from './components/AppFooter.vue'
 import Email from './Email.vue'
 
 export interface Props {
@@ -24,10 +24,11 @@ const locales = {
   de: {
     button: 'Registrierung abschließen',
     header: (username: string) => `Willkommen, ${username}!`,
-    paragraph1:
-      'Vielen Dank für deine Anmeldung bei maevsi - wir freuen uns, dass du dabei bist!',
+    paragraph1: (siteName: string) =>
+      `Vielen Dank für deine Anmeldung bei ${siteName} - wir freuen uns, dass du dabei bist!`,
     paragraph2:
       'Bitte klicke auf den unten stehenden Button, um die Registrierung abzuschließen und dein Profil einzurichten.',
+    siteName: 'Vibetype',
     title: 'Willkommen',
     validUntil: (validUntil: string) =>
       `Diese Anfrage ist bis zum ${validUntil} UTC gültig.`,
@@ -35,10 +36,11 @@ const locales = {
   en: {
     button: 'Complete registration',
     header: (username: string) => `Welcome, ${username}!`,
-    paragraph1:
-      "Thanks so much for joining maevsi — we're thrilled to have you!",
+    paragraph1: (siteName: string) =>
+      `Thanks so much for joining ${siteName} — we're thrilled to have you!`,
     paragraph2:
       'Please click on the button below to complete your registration and set up your profile.',
+    siteName: 'Vibetype',
     title: 'Welcome',
     validUntil: (validUntil: string) =>
       `This request is valid until ${validUntil} UTC.`,
@@ -52,7 +54,7 @@ const t = locales[props.locale]
     <Section style="padding-top: 30px">
       <Row style="width: 45%">
         <Column>
-          <MaevsiText
+          <AppText
             style="
               font-weight: 700;
               line-height: 54px;
@@ -61,25 +63,25 @@ const t = locales[props.locale]
             "
           >
             {{ t.header(username) }}
-          </MaevsiText>
+          </AppText>
         </Column>
       </Row>
     </Section>
     <Section>
       <Row>
         <Column>
-          <MaevsiText>
-            {{ t.paragraph1 }}
-          </MaevsiText>
-          <MaevsiText>
+          <AppText>
+            {{ t.paragraph1(t.siteName) }}
+          </AppText>
+          <AppText>
             {{ t.paragraph2 }}
-          </MaevsiText>
-          <MaevsiText style="margin: 0; margin-top: 32px; text-align: center">
-            <MaevsiButton :href="emailAddressVerificationLink">
+          </AppText>
+          <AppText style="margin: 0; margin-top: 32px; text-align: center">
+            <AppButton :href="emailAddressVerificationLink">
               {{ t.button }}
-            </MaevsiButton>
-          </MaevsiText>
-          <MaevsiText
+            </AppButton>
+          </AppText>
+          <AppText
             style="
               color: #555;
               font-size: 13px;
@@ -88,11 +90,11 @@ const t = locales[props.locale]
             "
           >
             {{ t.validUntil(validUntil) }}
-          </MaevsiText>
+          </AppText>
         </Column>
       </Row>
     </Section>
-    <MaevsiAuthor :locale="locale" />
-    <MaevsiFooter :email-address="emailAddress" :locale="locale" />
+    <AppAuthor :locale="locale" />
+    <AppFooter :email-address="emailAddress" :locale="locale" />
   </Email>
 </template>

@@ -41,7 +41,7 @@
 
 <script setup lang="ts">
 const { t } = useI18n()
-const store = useMaevsiStore()
+const store = useStore()
 
 // data
 const title = t('notifications')

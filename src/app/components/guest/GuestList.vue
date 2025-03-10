@@ -113,7 +113,7 @@ const props = withDefaults(defineProps<Props>(), {})
 
 const colorMode = useColorMode()
 const { t } = useI18n()
-const store = useMaevsiStore()
+const store = useStore()
 const runtimeConfig = useRuntimeConfig()
 
 // refs

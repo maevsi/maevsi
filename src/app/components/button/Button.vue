@@ -87,6 +87,6 @@ const classes = computed(() => {
 
 <script lang="ts">
 export default {
-  name: 'MaevsiButton',
+  name: 'AppButton',
 }
 </script>

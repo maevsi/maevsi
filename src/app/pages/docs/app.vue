@@ -7,13 +7,13 @@
           {{ t('descriptionTitle') }}
         </div>
         <div class="">
-          {{ t('descriptionContent') }}
+          {{ t('descriptionContent', { siteName: t('globalSiteName') }) }}
         </div>
       </div>
       <div class="flex flex-col justify-center gap-4 lg:flex-row lg:gap-8">
         <CardButton
           is-external
-          :title="t('appStore')"
+          :title="t('appStore', { siteName: t('globalSiteName') })"
           to="https://testflight.apple.com/join/kkStPDoc"
         >
           <IFa6BrandsAppStore />
@@ -21,7 +21,7 @@
         <CardButton
           class="lg:h-32"
           is-external
-          :title="t('googlePlay')"
+          :title="t('googlePlay', { siteName: t('globalSiteName') })"
           to="https://play.google.com/store/apps/details?id=si.maev.twa"
         >
           <IFa6BrandsGooglePlay />
@@ -40,15 +40,15 @@ const title = t('title')
 
 <i18n lang="yaml">
 de:
-  appStore: maevsi im App Store
-  descriptionContent: Installiere maevsi jetzt als App.
+  appStore: '{siteName} im App Store'
+  descriptionContent: Installiere {siteName} jetzt als App.
   descriptionTitle: Verpasse keine Veranstaltung.
-  googlePlay: maevsi in Google Play
+  googlePlay: '{siteName} in Google Play'
   title: App
 en:
-  appStore: maevsi on the App Store
-  descriptionContent: Install the maevsi app now.
+  appStore: '{siteName} on the App Store'
+  descriptionContent: Install the {siteName} app now.
   descriptionTitle: Don't miss any events.
-  googlePlay: maevsi on Google Play
+  googlePlay: '{siteName} on Google Play'
   title: App
 </i18n>

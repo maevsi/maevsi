@@ -60,7 +60,7 @@ const downloadIcal = async () => {
     return await fireAlert({
       level: 'error',
       text: t('iCalFetchError'),
-    }) // TODO: add suggestion (https://github.com/maevsi/maevsi/issues/903) })
+    }) // TODO: add suggestion (https://github.com/maevsi/vibetype/issues/903) })
   }
 
   downloadJs(

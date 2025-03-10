@@ -1,8 +1,8 @@
 export default defineEventHandler(async (event) => {
-  const maevsiPlatformHeader = getHeader(event, 'maevsi-platform')
+  const appPlatformHeader = getHeader(event, `${SITE_NAME}-platform`)
 
-  if (maevsiPlatformHeader) {
-    event.context.$platform = maevsiPlatformHeader
+  if (appPlatformHeader) {
+    event.context.$platform = appPlatformHeader
     return
   }
 })

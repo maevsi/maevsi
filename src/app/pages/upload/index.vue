@@ -2,10 +2,10 @@
   <div>
     <LayoutPageTitle :title="title" />
     <!-- "UploadGallery" must come after "ModalUploadSelection" for them to overlay properly! -->
-    <UploadGallery v-if="store.jwtDecoded?.role === 'maevsi_account'" />
+    <UploadGallery v-if="store.jwtDecoded?.role === `${SITE_NAME}_account`" />
     <LayoutCallToAction
       v-else
-      :call-to-action="t('anonymousCta')"
+      :call-to-action="t('anonymousCta', { siteName: t('globalSiteName') })"
       :call-to-action-description="t('anonymousCtaDescription')"
     />
   </div>
@@ -13,7 +13,7 @@
 
 <script setup lang="ts">
 const { t } = useI18n()
-const store = useMaevsiStore()
+const store = useStore()
 
 // data
 const title = t('title')
@@ -24,11 +24,11 @@ useHeadDefault({ title })
 
 <i18n lang="yaml">
 de:
-  anonymousCta: Finde sie auf maevsi
+  anonymousCta: Finde sie auf {siteName}
   anonymousCtaDescription: Gibt es Fotos von dir und deinen Freunden?
   title: Bildgalerie
 en:
-  anonymousCta: Find them on maevsi
+  anonymousCta: Find them on {siteName}
   anonymousCtaDescription: Are there photos of you and your friends?
   title: Image gallery
 </i18n>

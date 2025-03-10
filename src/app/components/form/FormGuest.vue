@@ -105,7 +105,7 @@ const emit = defineEmits<{
 }>()
 
 // const { $urql } = useNuxtApp()
-const store = useMaevsiStore()
+const store = useStore()
 const localePath = useLocalePath()
 const { t } = useI18n()
 

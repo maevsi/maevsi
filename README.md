@@ -1,18 +1,18 @@
 [![ci status][ci-image]][ci-url]
 [![license status][license-image]][license-url]
 
-[ci-image]: https://img.shields.io/github/actions/workflow/status/maevsi/maevsi/ci.yml
-[ci-url]: https://github.com/maevsi/maevsi/actions/workflows/ci.yml
-[license-image]: https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmaevsi%2Fmaevsi.svg?type=shield
-[license-url]: https://app.fossa.com/projects/git%2Bgithub.com%2Fmaevsi%2Fmaevsi?ref=badge_shield
+[ci-image]: https://img.shields.io/github/actions/workflow/status/maevsi/vibetype/ci.yml
+[ci-url]: https://github.com/maevsi/vibetype/actions/workflows/ci.yml
+[license-image]: https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmaevsi%2Fvibetype.svg?type=shield
+[license-url]: https://app.fossa.com/projects/git%2Bgithub.com%2Fmaevsi%2Fvibetype?ref=badge_shield
 
-# maevsi
+# vibetype
 
 Find events, guests and friends: [maev.si](https://maev.si/).
 
-This project is deployed within the [maevsi_stack](https://github.com/maevsi/maevsi_stack/) in accordance with the [DargStack template](https://github.com/dargstack/dargstack_template/) to make deployment a breeze.
+This project is deployed within the [maevsi/stack](https://github.com/maevsi/stack/) in accordance with the [DargStack template](https://github.com/dargstack/dargstack_template/) to make deployment a breeze.
 
-![Welcome](https://maev.si/__og-image__/image/og.png "maevsi")
+![Welcome](https://maev.si/__og-image__/image/og.png "vibetype")
 
 ## Table of Contents
 1. **[Contributing](#contributing)**
@@ -32,7 +32,7 @@ The setup for frontend development is easy! 💅
 
 The setup for backend development is more complex as it consists of numerous services which are best set up containerized 🧑‍💻
 
-You're encouraged to ask questions on [maevsi's Discord](https://discord.gg/E3hD3wEUQ4) if the setup could go smoother!
+You're encouraged to ask questions on [vibetype's Discord](https://discord.gg/E3hD3wEUQ4) if the setup could go smoother!
 
 ### Frontend only
 
@@ -48,15 +48,15 @@ You're encouraged to ask questions on [maevsi's Discord](https://discord.gg/E3hD
 
 #### Setup
 
-1. create a directory named `maevsi` in a directory of your liking
+1. create a directory named `vibetype` in a directory of your liking
 1. download this repository into that newly created directory:
     ```sh
-    cd maevsi
-    git clone https://github.com/maevsi/maevsi.git
+    cd vibetype
+    git clone https://github.com/maevsi/vibetype.git
     ```
-1. switch into the `maevsi` subdirectory and setup Node:
+1. switch into the `vibetype` subdirectory and setup Node:
     ```sh
-    cd maevsi
+    cd vibetype
     nvm install
     ```
 1. then install all dependencies using [pnpm](https://pnpm.io/), which should include the **src** directory automatically:
@@ -70,7 +70,7 @@ You're encouraged to ask questions on [maevsi's Discord](https://discord.gg/E3hD
     cd src
     pnpm dev
     ```
-1. you should now be able to access maevsi under https://localhost:3000/! 🎉
+1. you should now be able to access vibetype under https://localhost:3000/! 🎉
 
 </details>
 
@@ -90,20 +90,20 @@ You're encouraged to ask questions on [maevsi's Discord](https://discord.gg/E3hD
 
 #### Setup
 
-1. create a directory named `maevsi` in a directory of your liking
-1. download the project modules [maevsi](https://github.com/maevsi/maevsi), [maevsi_stack](https://github.com/maevsi/maevsi_stack) and [sqitch](https://github.com/maevsi/sqitch) into that newly created directory:
+1. create a directory named `vibetype` in a directory of your liking
+1. download the project modules [vibetype](https://github.com/maevsi/vibetype), [maevsi/stack](https://github.com/maevsi/stack) and [sqitch](https://github.com/maevsi/sqitch) into that newly created directory:
     ```sh
-    cd maevsi
-    git clone https://github.com/maevsi/maevsi.git
-    git clone https://github.com/maevsi/maevsi_stack.git
+    cd vibetype
+    git clone https://github.com/maevsi/vibetype.git
+    git clone https://github.com/maevsi/stack.git
     git clone https://github.com/maevsi/sqitch.git
     ```
-    - **maevsi** contains the frontend and database migrations
-    - **maevsi_stack** is the service configuration
+    - **vibetype** contains the frontend and database migrations
+    - **maevsi/stack** is the service configuration
     - **sqitch** is the database migration service
-1. switch into the `maevsi` subdirectory and setup Node:
+1. switch into the `vibetype` subdirectory and setup Node:
     ```sh
-    cd maevsi
+    cd vibetype
     nvm install
     ```
 1. then install all dependencies using [pnpm](https://pnpm.io/), including the **src** directory:
@@ -111,9 +111,9 @@ You're encouraged to ask questions on [maevsi's Discord](https://discord.gg/E3hD
     corepack enable
     pnpm install
     ```
-1. configure maevsi's [DargStack](https://github.com/dargstack/dargstack) then take note of the following output:
+1. configure vibetype's [dargstack](https://github.com/dargstack/dargstack) then take note of the following output:
     ```sh
-    cd ../maevsi_stack/src/development
+    cd ../stack/src/development
     cp stack.env.template stack.env
     pnpm store path
     ```
@@ -134,12 +134,12 @@ You're encouraged to ask questions on [maevsi's Discord](https://discord.gg/E3hD
     cd ../../
     dargstack deploy
     ```
-1. finally, create the Docker development images for `maevsi` and `sqitch` so that their services start successfully:
+1. finally, create the Docker development images for `vibetype` and `sqitch` so that their services start successfully:
     ```sh
-    dargstack build maevsi
+    dargstack build vibetype
     dargstack build sqitch
     ```
-1. you should now be able to access maevsi under https://localhost! 🎉
+1. you should now be able to access vibetype under https://localhost! 🎉
 
     If there are issues, you can debug the services as described in the following "Container Management" section.
 

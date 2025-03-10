@@ -31,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-const store = useMaevsiStore()
+const store = useStore()
 const { t } = useI18n()
 const localePath = useLocalePath()
 </script>

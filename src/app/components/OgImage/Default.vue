@@ -20,7 +20,7 @@
         </div>
       </div>
       <div class="absolute bottom-10 flex flex-row items-start text-left">
-        <img src="/assets/static/logos/maevsi_logo.svg" height="60" />
+        <img src="/assets/static/logos/app_logo.svg" height="60" />
       </div>
     </div>
   </div>

@@ -55,7 +55,7 @@ definePageMeta({
 const localePath = useLocalePath()
 const { t } = useI18n()
 const route = useRoute(ROUTE_NAME)
-const store = useMaevsiStore()
+const store = useStore()
 
 // api data
 const accountByUsernameQuery = await zalgo(

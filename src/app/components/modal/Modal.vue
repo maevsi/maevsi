@@ -85,7 +85,7 @@ const emit = defineEmits<{
   submitSuccess: [submitSuccess: unknown]
 }>()
 
-const store = useMaevsiStore()
+const store = useStore()
 const { t } = useI18n()
 
 // data
@@ -109,7 +109,7 @@ const modalKeydowns = (e: KeyboardEvent) => {
   }
 
   switch (e.key) {
-    // // Temporarily disabled until https://github.com/maevsi/maevsi/issues/765
+    // // Temporarily disabled until https://github.com/maevsi/vibetype/issues/765
     // case 'Enter': // Enter
     //   if (!data.isSubmitting && !props.isSubmitDisabled) {
     //     methods.submit()
@@ -150,7 +150,7 @@ watch(isVisible, (newValue: boolean, _oldvalue) => {
 
 <script lang="ts">
 export default {
-  name: 'MaevsiModal',
+  name: 'AppModal',
 }
 </script>
 

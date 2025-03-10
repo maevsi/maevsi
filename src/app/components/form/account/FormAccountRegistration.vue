@@ -57,7 +57,7 @@ import { useAccountRegistrationMutation } from '~~/gql/documents/mutations/accou
 const { locale, t } = useI18n()
 const localePath = useLocalePath()
 const fireAlert = useFireAlert()
-const store = useMaevsiStore()
+const store = useStore()
 
 // api data
 const accountRegistrationMutation = useAccountRegistrationMutation()

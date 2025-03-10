@@ -82,7 +82,7 @@ const emit = defineEmits<{
   delete: []
 }>()
 
-const store = useMaevsiStore()
+const store = useStore()
 const { t } = useI18n()
 </script>
 

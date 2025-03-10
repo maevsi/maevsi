@@ -70,7 +70,7 @@ import type { ContactItemFragment } from '~~/gql/generated/graphql'
 import { getContactItem } from '~~/gql/documents/fragments/contactItem'
 
 const { t } = useI18n()
-const store = useMaevsiStore()
+const store = useStore()
 
 // refs
 const after = ref<string>()
@@ -122,7 +122,7 @@ const delete_ = async (nodeId: string, id: string) => {
   pending.deletions.push(nodeId)
   await deleteContactByIdMutation.executeMutation({ id })
   pending.deletions.splice(pending.deletions.indexOf(nodeId), 1)
-  // TODO: update cache, especially pagination, or reset query (https://github.com/maevsi/maevsi/issues/720)
+  // TODO: update cache, especially pagination, or reset query (https://github.com/maevsi/vibetype/issues/720)
 }
 const edit = (
   contact: Pick<

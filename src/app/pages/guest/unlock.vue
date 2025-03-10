@@ -11,10 +11,10 @@
       :submit-name="t('submit')"
       @submit.prevent="submit"
     >
-      <!-- TODO: move id-label suffix to FormInput (https://github.com/maevsi/maevsi/issues/955) -->
-      <!-- The id's suffix `-maevsi` makes browser suggest inputs just for this service. -->
+      <!-- TODO: move id-label suffix to FormInput (https://github.com/maevsi/vibetype/issues/955) -->
+      <!-- The id's suffix `-${SITE_NAME}` makes browser suggest inputs just for this service. -->
       <FormInput
-        id-label="input-invitation-id-maevsi"
+        :id-label="`input-invitation-id-${SITE_NAME}`"
         :is-disabled="!!routeQueryIc"
         placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
         :title="t('guestId')"
@@ -70,7 +70,7 @@ definePageMeta({
     return 'redirect' in route.query ? 'canvas' : 'default'
   }),
   middleware: [
-    // TODO: implement invitation pages, removing this middleware (https://github.com/maevsi/maevsi/issues/1266)
+    // TODO: implement invitation pages, removing this middleware (https://github.com/maevsi/vibetype/issues/1266)
 
     // middlewares with multiple awaits that rely on the nuxt context
     // must be wrapped with `defineNuxtRouteMiddleware` (https://github.com/nuxt/nuxt/issues/14473)

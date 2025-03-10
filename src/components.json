@@ -5,7 +5,7 @@
   "tsConfigPath": "./tsconfig.json",
   "tailwind": {
     "config": "tailwind.config.js",
-    "css": "./app/assets/css/maevsi.css",
+    "css": "./app/assets/css/app.css",
     "baseColor": "slate",
     "cssVariables": true,
     "prefix": ""

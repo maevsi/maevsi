@@ -33,7 +33,7 @@ test('gets ical string', () => {
         start: new Date(),
         visibility: EventVisibility.Private,
       },
-      siteUrl: 'https://maevsi.test',
+      siteUrl: 'https://app.test',
     }),
   ).toBe(
     `BEGIN:VCALENDAR\r
@@ -47,12 +47,11 @@ DTSTAMP:19700101T000000Z\r
 DTSTART:19700101T000000Z\r
 DTEND:19700101T000000Z\r
 SUMMARY:name\r
-DESCRIPTION:https://maevsi.test/event/view/authorUsername/slug\\n\\ndescript\r
- ion\r
-X-ALT-DESC;FMTTYPE=text/html:https://maevsi.test/event/view/authorUsername\r
- /slug\\n<p>description</p>\r
-ORGANIZER;CN="authorUsername":mailto:authorUsername@maevsi.test\r
-URL;VALUE=URI:https://maevsi.test/event/view/authorUsername/slug\r
+DESCRIPTION:https://app.test/event/view/authorUsername/slug\\n\\ndescription\r
+X-ALT-DESC;FMTTYPE=text/html:https://app.test/event/view/authorUsername/sl\r
+ ug\\n<p>description</p>\r
+ORGANIZER;CN="authorUsername":mailto:authorUsername@app.test\r
+URL;VALUE=URI:https://app.test/event/view/authorUsername/slug\r
 STATUS:CONFIRMED\r
 CLASS:PRIVATE\r
 END:VEVENT\r

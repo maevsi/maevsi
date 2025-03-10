@@ -34,6 +34,6 @@ withDefaults(defineProps<Props>(), {
 
 <script lang="ts">
 export default {
-  name: 'MaevsiStep',
+  name: 'AppStep',
 }
 </script>

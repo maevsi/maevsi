@@ -29,17 +29,8 @@ import { GET_CSP } from '../server/utils/constants'
 // setImmediate(() => {})
 
 export default defineNuxtConfig({
-  app: {
-    head: {
-      htmlAttrs: {
-        lang: 'en', // fallback data to prevent invalid html at generation
-      },
-      title: SITE_NAME,
-      titleTemplate: '%s', // fully set in `composables/useAppLayout.ts`
-    },
-  },
   compatibilityDate: '2024-04-03',
-  css: ['~/assets/css/maevsi.css'],
+  css: [`~/assets/css/app.css`],
   experimental: {
     typedPages: true,
   },
@@ -122,12 +113,12 @@ export default defineNuxtConfig({
     },
     '/api/auth-proxy': {
       security: {
-        xssValidator: false, // TipTap's HTML is stored unescaped (is escaped when displayed) so api requests would trigger the xss protection on forward authentication (https://github.com/maevsi/maevsi/issues/1603)
+        xssValidator: false, // TipTap's HTML is stored unescaped (is escaped when displayed) so api requests would trigger the xss protection on forward authentication (https://github.com/maevsi/vibetype/issues/1603)
       },
     },
     '/api/ical': {
       security: {
-        xssValidator: false, // TipTap's HTML is stored unescaped (is escaped when displayed) so api requests would trigger the xss protection here (https://github.com/maevsi/maevsi/issues/1603)
+        xssValidator: false, // TipTap's HTML is stored unescaped (is escaped when displayed) so api requests would trigger the xss protection here (https://github.com/maevsi/vibetype/issues/1603)
       },
     },
     '/event/view/**': {
@@ -155,7 +146,7 @@ export default defineNuxtConfig({
       i18n: {
         baseUrl: SITE_URL,
       },
-      maevsi: {
+      [SITE_NAME]: {
         email: {
           limit24h: '150',
         },
@@ -179,7 +170,7 @@ export default defineNuxtConfig({
         },
       },
       security: {
-        isRateLimiterDisabled: true, // TODO: disable once api requests are optimized (https://github.com/maevsi/maevsi/issues/1654)
+        isRateLimiterDisabled: true, // TODO: disable once api requests are optimized (https://github.com/maevsi/vibetype/issues/1654)
       },
       site: {
         url: SITE_URL,
@@ -223,6 +214,7 @@ export default defineNuxtConfig({
         '@uppy/core',
         '@uppy/tus',
         '@vuelidate/core',
+        '@vueuse/core',
         'chart.js',
         'clipboardy',
         'clsx',
@@ -253,13 +245,15 @@ export default defineNuxtConfig({
       Components({
         dts: '../.nuxt/components-icons.d.ts',
         resolvers: [
-          IconsResolver({ customCollections: ['maevsi', 'maevsi-colored'] }),
+          IconsResolver({
+            customCollections: [SITE_NAME, `${SITE_NAME}-colored`],
+          }),
         ],
       }),
       Icons({
         customCollections: {
-          maevsi: iconCollectionOptimization({}),
-          'maevsi-colored': iconCollectionOptimization({
+          [SITE_NAME]: iconCollectionOptimization({}),
+          [`${SITE_NAME}-colored`]: iconCollectionOptimization({
             isColored: true,
           }),
         },

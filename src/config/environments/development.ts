@@ -1,5 +1,7 @@
 import type { DefineNuxtConfig } from 'nuxt/config'
 
+import { SITE_NAME } from '../../shared/utils/constants'
+
 export const developmentConfig: ReturnType<DefineNuxtConfig> = {
   $development: {
     build: {
@@ -27,7 +29,7 @@ export const developmentConfig: ReturnType<DefineNuxtConfig> = {
     },
     vite: {
       server: {
-        allowedHosts: ['maevsi'],
+        allowedHosts: [SITE_NAME],
       },
     },
 
