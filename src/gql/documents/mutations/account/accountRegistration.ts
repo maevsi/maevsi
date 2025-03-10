@@ -19,6 +19,7 @@ export const useAccountRegistrationMutation = () =>
           }
         ) {
           clientMutationId
+          uuid
         }
       }
     `),

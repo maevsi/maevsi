@@ -11,7 +11,9 @@
         <main class="flex-1 overflow-hidden p-1">
           <slot />
         </main>
+        <Footer />
       </div>
+
       <!-- <LayoutFooter class="hidden 2xl:block">
         <LayoutFooterCategory :heading="t('product')">
           <AppLink :to="localePath({ name: 'index', hash: '#overview' })">

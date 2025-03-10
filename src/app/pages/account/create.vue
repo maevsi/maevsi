@@ -21,5 +21,5 @@ useHeadDefault({ title })
 de:
   title: Registrieren
 en:
-  title: Register
+  title: Create an account
 </i18n>

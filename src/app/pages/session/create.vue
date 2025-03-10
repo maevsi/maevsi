@@ -51,8 +51,8 @@ useHeadDefault({ title })
 <i18n lang="yaml">
 de:
   accountRequired: Melde dich an, um fortzufahren.
-  title: Anmelden
+  title: Einloggen
 en:
   accountRequired: Sign in to continue.
-  title: Sign in
+  title: Log in
 </i18n>
