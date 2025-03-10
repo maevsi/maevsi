@@ -1,3 +1,9 @@
+## [8.6.0](https://github.com/maevsi/vibetype/compare/8.5.0...8.6.0) (2025-03-10)
+
+### Features
+
+* **components:** restyle menu ([#1808](https://github.com/maevsi/vibetype/issues/1808)) ([edabfd5](https://github.com/maevsi/vibetype/commit/edabfd5a2cc1b35e03a28517d36d66cb4918f057))
+
 ## [8.5.0](https://github.com/maevsi/vibetype/compare/8.4.0...8.5.0) (2025-03-07)
 
 ### Features
