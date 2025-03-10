@@ -7,6 +7,7 @@ import type { CookieRef } from '#app'
 
 import { authenticateMutation } from '~~/gql/documents/mutations/account/accountAuthenticate'
 import { jwtRefreshMutation } from '~~/gql/documents/mutations/account/accountJwtRefresh'
+import { updateRemoteFcmToken } from './dependencies'
 import { setJwtCookie } from '~~/server/utils/jwt'
 
 export const authenticationAnonymous = async ({
@@ -164,6 +165,7 @@ export const signOut = async ({
   runtimeConfig: ReturnType<typeof useRuntimeConfig>
   store: ReturnType<typeof useMaevsiStore>
 }) => {
+  updateRemoteFcmToken(store, { remove: true })
   await jwtStore({ $urqlReset, event, runtimeConfig, store })
   await authenticationAnonymous({
     $urqlReset,

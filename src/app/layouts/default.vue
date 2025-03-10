@@ -88,7 +88,7 @@ const { $dayjs } = useNuxtApp()
 // const localePath = useLocalePath()
 // const switchLocalePath = useSwitchLocalePath()
 const { /* availableLocales, t, */ locale } = useI18n()
-// const store = useMaevsiStore()
+const store = useMaevsiStore()
 
 const loadingId = Math.random()
 const loadingIds = useState(STATE_LOADING_IDS_NAME, () => [loadingId])
@@ -107,8 +107,20 @@ const loadingIds = useState(STATE_LOADING_IDS_NAME, () => [loadingId])
 // computations
 const isLoading = computed(() => !!loadingIds.value.length)
 
+const handleVisibilityChange = async () => {
+  if (document.visibilityState == 'visible') updateRemoteFcmToken(store)
+}
+
 // lifecycle
-onMounted(() => loadingIds.value.splice(loadingIds.value.indexOf(loadingId), 1))
+onMounted(() => {
+  loadingIds.value.splice(loadingIds.value.indexOf(loadingId), 1)
+  document.addEventListener('visibilitychange', handleVisibilityChange)
+  updateRemoteFcmToken(store)
+})
+
+onBeforeUnmount(() => {
+  document.removeEventListener('visibilitychange', handleVisibilityChange)
+})
 
 // initialization
 $dayjs.locale(locale.value)
