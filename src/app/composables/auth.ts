@@ -15,7 +15,7 @@ export const useAuth = async () => {
 export const useAuthenticateAnonymous = () => {
   const { $urql, $urqlReset, ssrContext } = useNuxtApp()
   const runtimeConfig = useRuntimeConfig()
-  const store = useMaevsiStore()
+  const store = useStore()
 
   return async () =>
     await authenticationAnonymous({
@@ -44,7 +44,7 @@ export const useJwtRefresh = () => {
   const { $urql, $urqlReset, ssrContext } = useNuxtApp()
   const jwtFromCookie = useJwtFromCookie()
   const runtimeConfig = useRuntimeConfig()
-  const store = useMaevsiStore()
+  const store = useStore()
 
   return async () =>
     await jwtRefresh({
@@ -59,7 +59,7 @@ export const useJwtRefresh = () => {
 
 export const useJwtStore = async () => {
   const { $urqlReset, ssrContext } = useNuxtApp()
-  const store = useMaevsiStore()
+  const store = useStore()
   const runtimeConfig = useRuntimeConfig()
 
   return {
@@ -77,7 +77,7 @@ export const useJwtStore = async () => {
 
 export const useSignOut = async () => {
   const { $urql, $urqlReset, ssrContext } = useNuxtApp()
-  const store = useMaevsiStore()
+  const store = useStore()
   const runtimeConfig = useRuntimeConfig()
 
   return {

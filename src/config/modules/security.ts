@@ -18,7 +18,7 @@ export const securityConfig: ReturnType<DefineNuxtConfig> = {
         'prefetch-src': false as const,
         'report-to': undefined,
         'report-uri': false as const,
-        // 'require-trusted-types-for': "'script'", // csp-evaluator // TODO: https://github.com/maevsi/maevsi/issues/830
+        // 'require-trusted-types-for': "'script'", // csp-evaluator // TODO: https://github.com/maevsi/vibetype/issues/830
         sandbox: false as const,
         'script-src': false as const,
         'script-src-attr': false as const,
@@ -29,7 +29,7 @@ export const securityConfig: ReturnType<DefineNuxtConfig> = {
         'upgrade-insecure-requests': false, // TODO: when tests run on https, set to `process.env.NODE_ENV === 'production'` or `true`
         'worker-src': false as const,
       },
-      xXSSProtection: '1; mode=block', // TODO: set back to `0` once CSP does not use `unsafe-*` anymore (https://github.com/maevsi/maevsi/issues/1047)
+      xXSSProtection: '1; mode=block', // TODO: set back to `0` once CSP does not use `unsafe-*` anymore (https://github.com/maevsi/vibetype/issues/1047)
     },
     ssg: {
       hashStyles: true,

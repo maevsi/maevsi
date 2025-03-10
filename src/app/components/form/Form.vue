@@ -95,7 +95,7 @@ defineExpose({
 
 <script lang="ts">
 export default {
-  name: 'MaevsiForm',
+  name: 'AppForm',
 }
 </script>
 

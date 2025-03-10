@@ -142,7 +142,7 @@ const emit = defineEmits<{
 
 const { t } = useI18n()
 const route = useRoute()
-const store = useMaevsiStore()
+const store = useStore()
 const runtimeConfig = useRuntimeConfig()
 const TUSD_FILES_URL = useTusdFilesUrl()
 const localePath = useLocalePath()

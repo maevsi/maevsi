@@ -1,4 +1,4 @@
-export const useMaevsiGtag = () => {
+export const useAppGtag = () => {
   const {
     gtag,
     initialize: initializeGtag,

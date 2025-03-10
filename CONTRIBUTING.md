@@ -55,7 +55,7 @@ If your CI pipeline is failing because of incorrect test snapshots, `pnpm build`
 
 ### dargstack
 
-Always do either frontend-only development using `pnpm dev` or fullstack development running [`maevsi/maevsi_stack`](https://github.com/maevsi/maevsi_stack).
+Always do either frontend-only development using `pnpm dev` or fullstack development running [`maevsi/stack`](https://github.com/maevsi/stack).
 You cannot run both at the same time as each development server writes different content to the `node_modules` directory.
 
 When switching back from fullstack development to frontend-only development, `pnpm` will ask for permission to take back control of the dependency linking.

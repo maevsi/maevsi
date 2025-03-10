@@ -20,7 +20,7 @@ export const authenticationAnonymous = async ({
   client: Client
   event?: H3Event
   runtimeConfig: ReturnType<typeof useRuntimeConfig>
-  store: ReturnType<typeof useMaevsiStore>
+  store: ReturnType<typeof useStore>
 }) => {
   consola.trace('Authenticating anonymously...')
 
@@ -84,7 +84,7 @@ export const jwtRefresh = async ({
   event?: H3Event
   id: string
   runtimeConfig: ReturnType<typeof useRuntimeConfig>
-  store: ReturnType<typeof useMaevsiStore>
+  store: ReturnType<typeof useStore>
 }) => {
   consola.trace('Refreshing a JWT...')
 
@@ -129,7 +129,7 @@ export const jwtStore = async ({
   event?: H3Event
   jwt?: string
   runtimeConfig: ReturnType<typeof useRuntimeConfig>
-  store: ReturnType<typeof useMaevsiStore>
+  store: ReturnType<typeof useStore>
 }) => {
   $urqlReset()
 
@@ -162,7 +162,7 @@ export const signOut = async ({
   client: Client
   event?: H3Event
   runtimeConfig: ReturnType<typeof useRuntimeConfig>
-  store: ReturnType<typeof useMaevsiStore>
+  store: ReturnType<typeof useStore>
 }) => {
   await jwtStore({ $urqlReset, event, runtimeConfig, store })
   await authenticationAnonymous({

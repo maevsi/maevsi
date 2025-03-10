@@ -10,7 +10,7 @@
     @input="emit('input', $event)"
   >
     <template #stateInfo>
-      <!-- TODO: use `libphonenumber-js` (https://github.com/maevsi/maevsi/issues/1384) -->
+      <!-- TODO: use `libphonenumber-js` (https://github.com/maevsi/vibetype/issues/1384) -->
       <FormInputStateInfo
         v-if="
           formInput.$dirty &&

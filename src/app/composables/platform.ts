@@ -2,7 +2,7 @@ export const usePlatform = () => {
   const { ssrContext } = useNuxtApp()
 
   const platform = useState(
-    'maevsi-platform',
+    `${SITE_NAME}-platform`,
     () => ssrContext?.event.context.$platform,
   )
 

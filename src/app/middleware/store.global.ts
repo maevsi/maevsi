@@ -1,5 +1,5 @@
 export default defineNuxtRouteMiddleware((to, from) => {
-  const store = useMaevsiStore()
+  const store = useStore()
   const localePath = useLocalePath()
 
   if (store.routeHistoryDisabled) return

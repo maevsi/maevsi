@@ -24,7 +24,7 @@ export const GET_CSP = ({
     //   appendHeader(event, 'Origin-Agent-Cluster', '?1')
     // }
     {
-      // maevsi
+      // app
       'connect-src': [
         'blob:', // vue-advanced-cropper
         `https://${domainTldPort}`, // `/api` requests
@@ -50,11 +50,6 @@ export const GET_CSP = ({
         `${siteUrl}${process.env.NODE_ENV === 'development' ? 'dev-' : ''}sw.js`, // @vite-pwa/nuxt
       ],
     },
-    // {
-    //   // vio
-    //   'connect-src': ["'self'"], // `${SITE_URL}/api/healthcheck`
-    //   'manifest-src': [`${siteUrl}site.webmanifest`],
-    // },
     {
       // Cloudflare
       ...(process.env.NODE_ENV === 'production'

@@ -51,7 +51,7 @@ init()
 
 <script lang="ts">
 export default {
-  name: 'MaevsiError',
+  name: 'AppError',
 }
 </script>
 

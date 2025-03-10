@@ -2,7 +2,7 @@
   <div>
     <LayoutPageTitle :title="title" />
     <div
-      v-if="store.jwtDecoded?.role === 'maevsi_account'"
+      v-if="store.jwtDecoded?.role === `${SITE_NAME}_account`"
       class="flex flex-col gap-8"
     >
       <section class="flex flex-col gap-4">
@@ -66,7 +66,7 @@
     </div>
     <LayoutCallToAction
       v-else
-      :call-to-action="t('anonymousCta')"
+      :call-to-action="t('anonymousCta', { siteName: t('globalSiteName') })"
       :call-to-action-description="t('anonymousCtaDescription')"
     />
   </div>
@@ -74,7 +74,7 @@
 
 <script setup lang="ts">
 const { t } = useI18n()
-const store = useMaevsiStore()
+const store = useStore()
 const localePath = useLocalePath()
 
 // data
@@ -88,7 +88,7 @@ useHeadDefault({ title })
 de:
   account: Konto
   accountDescription: Präsentiere deine Errungenschaften
-  anonymousCta: Finde ihn auf maevsi
+  anonymousCta: Finde ihn auf {siteName}
   anonymousCtaDescription: Dir fehlt der Überblick über Veranstaltungen?
   contacts: Kontake
   contactsDescription: Informationen zu all deinen Gästen
@@ -103,7 +103,7 @@ de:
 en:
   account: Account
   accountDescription: Showcase your achievements
-  anonymousCta: Find it on maevsi
+  anonymousCta: Find it on {siteName}
   anonymousCtaDescription: Are you missing an overview of events?
   contacts: Contacts
   contactsDescription: Information on all your guests

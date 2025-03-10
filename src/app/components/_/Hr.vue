@@ -4,6 +4,6 @@
 
 <script lang="ts">
 export default defineComponent({
-  name: 'MaevsiHr',
+  name: 'AppHr',
 })
 </script>

@@ -164,7 +164,7 @@ const runtimeConfig = useRuntimeConfig()
 
 // data
 const idLabelFull = props.idLabel
-  ? `maevsi-${runtimeConfig.public.vio.isInProduction ? 'prod' : 'dev'}-${
+  ? `${SITE_NAME}-${runtimeConfig.public.vio.isInProduction ? 'prod' : 'dev'}-${
       props.idLabel
     }`
   : undefined

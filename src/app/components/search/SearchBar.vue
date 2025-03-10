@@ -18,7 +18,7 @@
       class="hidden flex-shrink-0 text-(--semantic-accent-accent-icon) peer-not-placeholder-shown:block"
       @click="model = ''"
     >
-      <IMaevsiClose :alt="t('iconClose')" class="h-6 w-6" />
+      <IVibetypeClose :alt="t('iconClose')" class="h-6 w-6" />
     </ButtonIcon>
   </div>
 </template>

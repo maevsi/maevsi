@@ -3,7 +3,7 @@ import { Column, Img, Row, Section } from '@vue-email/components'
 
 import type { Locale } from '../../../utils/i18n'
 import { PROFILE_PICTURE_JONAS_CID } from '../../../utils/assets'
-import MaevsiText from './base/MaevsiText.vue'
+import AppText from './base/AppText.vue'
 
 export interface Props {
   locale: Locale
@@ -15,12 +15,14 @@ const authorName = 'Jonas Thelemann'
 const authorWebsite = 'https://jonas-thelemann.de/'
 const locales = {
   de: {
-    author: 'maevsis Autor',
+    author: (siteName: string) => `${siteName}s Autor`,
     profilePicture: 'Profilbild',
+    siteName: 'Vibetype',
   },
   en: {
-    author: "maevsi's author",
+    author: (siteName: string) => `${siteName}'s author`,
     profilePicture: 'Profile picture',
+    siteName: 'Vibetype',
   },
 }
 const t = locales[props.locale]
@@ -39,12 +41,12 @@ const t = locales[props.locale]
         />
       </Column>
       <Column width="88%">
-        <MaevsiText style="line-height: 9px">
+        <AppText style="line-height: 9px">
           {{ authorName }}
-        </MaevsiText>
-        <MaevsiText style="font-style: italic; line-height: 9px">
-          {{ t.author }}
-        </MaevsiText>
+        </AppText>
+        <AppText style="font-style: italic; line-height: 9px">
+          {{ t.author(t.siteName) }}
+        </AppText>
       </Column>
     </Row>
   </Section>

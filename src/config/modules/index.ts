@@ -53,7 +53,7 @@ export const modulesConfig: ReturnType<DefineNuxtConfig> = {
   ...pwaConfig,
   turnstile: {
     secretKeyPath: process.env.NUXT_PUBLIC_SITE_URL
-      ? '/run/secrets/maevsi_turnstile-key'
+      ? `/run/secrets/${SITE_NAME}_turnstile-key`
       : undefined,
   },
   linkChecker: {
@@ -77,7 +77,6 @@ export const modulesConfig: ReturnType<DefineNuxtConfig> = {
     },
   },
   site: {
-    name: SITE_NAME,
     url: SITE_URL,
   },
   sitemap: {

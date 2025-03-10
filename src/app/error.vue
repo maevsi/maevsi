@@ -34,7 +34,7 @@ defineOgImageComponent(
     description: t('globalSeoSiteDescription'),
   },
   {
-    alt: t('globalSeoOgImageAlt'),
+    alt: t('globalSeoOgImageAlt', { siteName: t('globalSiteName') }),
   },
 )
 </script>

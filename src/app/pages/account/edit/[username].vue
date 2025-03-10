@@ -61,7 +61,7 @@ definePageMeta({
   },
 })
 
-const store = useMaevsiStore()
+const store = useStore()
 const { signOut } = await useSignOut()
 const { t } = useI18n()
 const route = useRoute(ROUTE_NAME)

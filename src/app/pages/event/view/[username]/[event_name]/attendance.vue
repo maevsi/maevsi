@@ -105,7 +105,7 @@ definePageMeta({
 })
 
 const { t } = useI18n()
-const store = useMaevsiStore()
+const store = useStore()
 const route = useRoute(ROUTE_NAME)
 const fireAlert = useFireAlert()
 

@@ -77,7 +77,7 @@ const themeColor = ref<'auto' | 'light' | 'dark'>()
 // computations
 const isVisible = computed(
   () => !runtimeConfig.public.vio.isTesting,
-  // TODO: implement invisible widget type with fallback in case of required user interaction (https://github.com/maevsi/maevsi/issues/1239)
+  // TODO: implement invisible widget type with fallback in case of required user interaction (https://github.com/maevsi/vibetype/issues/1239)
   // !['1x00000000000000000000BB', '2x00000000000000000000BB'].includes(
   //   config.public.turnstile.siteKey
   // )

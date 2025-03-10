@@ -210,7 +210,7 @@ import { consola } from 'consola'
 
 const { t } = useI18n()
 const requestEvent = useRequestEvent()
-const store = useMaevsiStore()
+const store = useStore()
 const notificationStore = useNotificationStore()
 const dateTime = useDateTime()
 const { signOut } = await useSignOut()
@@ -230,7 +230,7 @@ const sendNotification = async () => {
 
   serviceWorkerRegistration.showNotification('Hey cutie 👋', {
     body: "It's great to see you!",
-    icon: '/assets/static/logos/maevsi_icon.svg',
+    icon: '/assets/static/logos/app_icon.svg',
     tag: 'test',
   })
 }
@@ -313,7 +313,7 @@ de:
   codesEnteredNone: Dieser Sitzung sind keine Einladungscodes zugeordnet.
   end: Ende
   endNow: Diese Sitzung beenden
-  hasIosPushCapability: iOS hat Push-Capability
+  hasIosPushCapability: Fenster hat Push-Fähigkeit (iOS)
   hasNavigatorPermissions: Navigator hat Berechtigungen
   hasNavigatorServiceWorkers: Navigator hat Service Worker
   hasWindowNotification: Fenster hat Benachrichtigung
@@ -332,7 +332,7 @@ en:
   codesEnteredNone: There are no invitation codes assigned to this session.
   end: End
   endNow: End this session
-  hasIosPushCapability: iOS has Push-Capability
+  hasIosPushCapability: Window has Push-Capability (iOS)
   hasNavigatorPermissions: Navigator has permissions
   hasNavigatorServiceWorkers: Navigator has service workers
   hasWindowNotification: Window has notification

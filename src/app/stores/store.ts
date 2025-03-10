@@ -6,10 +6,10 @@ import type { RouteNamedMapI18n } from 'vue-router/auto-routes'
 
 import type { Modal } from '~/types/modal'
 
-export const useMaevsiStore = defineStore('maevsi', () => {
+export const useStore = defineStore(SITE_NAME, () => {
   const localePath = useLocalePath()
 
-  const jwt = ref<string>() // TODO: remove (https://github.com/maevsi/maevsi/issues/1720)
+  const jwt = ref<string>() // TODO: remove (https://github.com/maevsi/vibetype/issues/1720)
   const jwtDecoded = ref<JWTPayload>()
   const modals = ref<Modal[]>([])
   const routeHistory = ref<string[]>([])
@@ -30,7 +30,7 @@ export const useMaevsiStore = defineStore('maevsi', () => {
     jwtDecoded.value = jwtDecodedNew
 
     if (
-      jwtDecodedNew?.role === 'maevsi_account' &&
+      jwtDecodedNew?.role === `${SITE_NAME}_account` &&
       jwtDecodedNew.exp !== undefined &&
       jwtDecodedNew.exp > Math.floor(Date.now() / 1000)
     ) {

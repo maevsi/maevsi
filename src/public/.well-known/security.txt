@@ -1,5 +1,5 @@
 Contact: mailto:contact+security@maev.si
 Expires: 2024-09-12T11:00:00.000Z
-Acknowledgments: https://github.com/maevsi/maevsi/blob/main/SECURITY_CONTRIBUTION.md
+Acknowledgments: https://github.com/maevsi/vibetype/blob/main/SECURITY_CONTRIBUTION.md
 Preferred-Languages: en, de
-Policy: https://github.com/maevsi/maevsi/blob/main/SECURITY.md
+Policy: https://github.com/maevsi/vibetype/blob/main/SECURITY.md

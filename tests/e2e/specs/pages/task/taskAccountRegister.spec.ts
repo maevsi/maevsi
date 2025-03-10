@@ -4,7 +4,7 @@ const PAGE_PATH = '/account/create'
 
 testPageLoad(PAGE_PATH)
 
-// TODO: find out why vuelidate thinks its pending while page load (maybe: https://github.com/maevsi/maevsi/issues/900)
+// TODO: find out why vuelidate thinks its pending while page load (maybe: https://github.com/maevsi/vibetype/issues/900)
 // context('visual regression', () => {
 //   it('looks as before', () => {
 //     cy.visit('/tasks/accounts/register')

@@ -34,7 +34,7 @@ const localePath = useLocalePath()
 
 <script lang="ts">
 export default {
-  name: 'MaevsiOwner',
+  name: 'AppOwner',
 }
 </script>
 

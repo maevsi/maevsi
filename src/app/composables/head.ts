@@ -12,6 +12,25 @@ export const useAppLayout = () => {
     },
   })
 
+  useServerHeadSafe({
+    link: [
+      {
+        href: `/favicon.ico?v=${CACHE_VERSION}`,
+        rel: 'icon',
+        sizes: '32x32',
+      },
+      {
+        href: `/assets/static/favicon/favicon.svg?v=${CACHE_VERSION}`,
+        rel: 'icon',
+        type: 'image/svg+xml',
+      },
+      {
+        href: `/assets/static/favicon/apple-touch-icon.png?v=${CACHE_VERSION}`,
+        rel: 'apple-touch-icon',
+      },
+    ],
+  })
+
   // adding `Server` leads incorrect title template on hydration
   useSeoMeta({
     titleTemplate: (title) =>
@@ -33,24 +52,6 @@ export const useAppLayout = () => {
   }
 }
 
-export const useFavicons = () => {
-  const appConfig = useAppConfig()
-
-  useServerHeadSafe({
-    link: [
-      {
-        color: appConfig.vio.themeColor,
-        href: `/assets/static/favicon/safari-pinned-tab.svg?v=${CACHE_VERSION}`,
-        rel: 'mask-icon',
-      },
-      {
-        href: `/favicon.ico?v=${CACHE_VERSION}`,
-        rel: 'shortcut icon',
-      },
-    ],
-  })
-}
-
 export const useHeadDefault = ({
   extension,
   title,
@@ -63,7 +64,6 @@ export const useHeadDefault = ({
 
   const defaults: Parameters<typeof useServerSeoMeta>[0] = {
     description: t('globalSeoSiteDescription'), // TODO: remove (https://github.com/harlan-zw/nuxt-site-config/issues/11)
-    msapplicationConfig: `/assets/static/favicon/browserconfig.xml?v=${CACHE_VERSION}`,
     title,
     twitterDescription: t('globalSeoSiteDescription'),
     twitterTitle: ref(

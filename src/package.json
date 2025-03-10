@@ -148,7 +148,7 @@
   "engines": {
     "node": "22"
   },
-  "name": "maevsi",
+  "name": "vibetype",
   "prettier": "./.config/prettier.js",
   "private": true,
   "scripts": {

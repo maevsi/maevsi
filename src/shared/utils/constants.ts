@@ -1,8 +1,8 @@
 import { DEFAULTS } from '@dargmuesli/nuxt-cookie-control/runtime/types'
 
-export const SITE_NAME = 'maevsi'
+export const SITE_NAME = 'vibetype'
 
-export const CACHE_VERSION = '2EvuFKRRxT'
+export const CACHE_VERSION = 'qfu1GSvnRF'
 export const COOKIE_CONTROL_CONSENT_COOKIE_NAME =
   DEFAULTS.cookieNameIsConsentGiven
 export const GTAG_COOKIE_ID = 'ga'
@@ -43,8 +43,8 @@ export const REGEX_URL_HTTPS = /^https:\/\//
 export const REGEX_UUID =
   /^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$/
 export const STATE_LOADING_IDS_NAME = 'loadingIds'
-export const STYLE_DEFAULT_GRAY = 'zinc'
-export const TESTING_COOKIE_NAME = 'maevsi_is-testing'
+export const TESTING_COOKIE_NAME = `${SITE_NAME}_is-testing`
+export const THEME_COLOR = '#191911'
 export const TIMEZONE_COOKIE_NAME = 'm_tz'
 export const TITLE_TEMPLATE = ({
   siteName,

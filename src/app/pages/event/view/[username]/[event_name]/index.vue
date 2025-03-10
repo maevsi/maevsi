@@ -388,7 +388,7 @@ definePageMeta({
 
 const { t } = useI18n()
 const fireAlert = useFireAlert()
-const store = useMaevsiStore()
+const store = useStore()
 const route = useRoute(ROUTE_NAME)
 const localePath = useLocalePath()
 const updateGuestByIdMutation = useUpdateGuestByIdMutation()
@@ -496,7 +496,7 @@ const invitation = computed(() => {
 
   if (invitationsMatchingUuid?.length) {
     if (invitationsMatchingUuid.length > 1) {
-      // TODO: use await (https://github.com/maevsi/maevsi/issues/61)
+      // TODO: use await (https://github.com/maevsi/vibetype/issues/61)
       fireAlert({
         level: 'warning',
         text: t('guestIdMultipleWarning'),

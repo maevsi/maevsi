@@ -19,6 +19,9 @@
               {{ t('browserUnsupportedLink') }}
             </AppLink>
           </template>
+          <template #siteName>
+            {{ t('globalSiteName') }}
+          </template>
         </i18n-t>
       </CardStateInfo>
     </LazyClientOnly>
@@ -89,7 +92,7 @@ watch(
         showConfirmButton: true,
         text: t('pwaText'),
         timer: 10000,
-        title: t('pwaTitle'),
+        title: t('pwaTitle', { siteName: t('globalSiteName') }),
       })
 
       if (result.isConfirmed) {
@@ -113,12 +116,11 @@ defineOgImageComponent(
     description: t('globalSeoSiteDescription'),
   },
   {
-    alt: t('globalSeoOgImageAlt'),
+    alt: t('globalSeoOgImageAlt', { siteName: t('globalSiteName') }),
   },
 )
 useAppLayout()
 await useAuth()
-useFavicons()
 usePolyfills()
 useSchemaOrg([
   defineWebSite({
@@ -128,7 +130,7 @@ useSchemaOrg([
   }),
   defineWebPage(),
 ])
-useMaevsiGtag()
+useAppGtag()
 initialize()
 </script>
 
@@ -158,15 +160,15 @@ initialize()
 
 <i18n lang="yaml">
 de:
-  browserUnsupported: Du benutzt einen Browser, in dem nicht alle Funktionen von maevsi unterstützt werden. {link}.
+  browserUnsupported: Du benutzt einen Browser, in dem nicht alle Funktionen von {siteName} unterstützt werden. {link}.
   browserUnsupportedLink: Mehr erfahren
   pwaConfirmButtonText: App nutzen
   pwaText: Die Installation verbraucht fast keinen Speicherplatz und bietet eine schnelle Möglichkeit, zu dieser App zurückzukehren.
-  pwaTitle: maevsi installieren
+  pwaTitle: '{siteName} installieren'
 en:
-  browserUnsupported: You're using a browser which does not support all features maevsi offers. {link}.
+  browserUnsupported: You're using a browser which does not support all features {siteName} offers. {link}.
   browserUnsupportedLink: Learn more
   pwaConfirmButtonText: Get the app
   pwaText: Installing uses almost no storage and provides a quick way to return to this app.
-  pwaTitle: Install maevsi
+  pwaTitle: Install {siteName}
 </i18n>

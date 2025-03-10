@@ -53,7 +53,7 @@
     </FormInputUsername>
     <!-- TODO: replace with override checkbox -->
     <FormInputStateInfo v-if="v$.accountUsername.$model">
-      {{ t('accountOverride') }}
+      {{ t('accountOverride', { siteName: t('globalSiteName') }) }}
     </FormInputStateInfo>
     <FormInput
       id-label="input-first-name"
@@ -154,7 +154,7 @@ const emit = defineEmits<{
 }>()
 
 const { $urql } = useNuxtApp()
-const store = useMaevsiStore()
+const store = useStore()
 const localePath = useLocalePath()
 const { t } = useI18n()
 
@@ -278,7 +278,7 @@ updateForm(props.contact)
 
 <i18n lang="yaml">
 de:
-  accountOverride: Falls angegeben, nutzt maevsi die folgenden Daten anstelle der Daten des oben genannten Kontos.
+  accountOverride: Falls angegeben, nutzt {siteName} die folgenden Daten anstelle der Daten des oben genannten Kontos.
   # address: Adresse
   firstName: Vorname
   lastName: Nachname
@@ -287,7 +287,7 @@ de:
   stateInfoUsernameDisabled: Du kannst deinen Nutzernamen in den {accountSettings} ändern.
   stateInfoUsernameDisabledLink: Einstellungen deines Kontos
 en:
-  accountOverride: If given, maevsi will prefer to use the following data instead of the data given by the account above.
+  accountOverride: If given, {siteName} will prefer to use the following data instead of the data given by the account above.
   # address: Address
   firstName: First name
   lastName: Last name

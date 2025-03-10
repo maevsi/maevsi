@@ -8,9 +8,10 @@
   "globalPlaceholderPhoneNumber": "+1234567890",
   "globalPlaceholderUrl": "https://websei.te",
   "globalPlaceholderUsername": "nutzer-name",
-  "globalSeoOgImageAlt": "maevsis Logo.",
+  "globalSeoOgImageAlt": "{siteName}s Logo.",
   "globalSeoSiteDescription": "Finde Veranstaltungen, Gäste und Freunde 💙❤️💚",
   "globalShowMore": "Mehr anzeigen",
+  "globalSiteName": "Vibetype",
   "globalStatusError": "Fehler",
   "globalStatusWarning": "Warnung",
   "globalValidationAvailability": "Verfügbar",
@@ -29,5 +30,8 @@
   "globalValidationNowOrFuture": "Zeitpunkt liegt in der Vergangenheit",
   "globalValidationRequired": "Pflichtfeld",
   "globalValidationSameAs": "Ist nicht identisch",
-  "globalValidationShortness": "Zu kurz"
+  "globalValidationShortness": "Zu kurz",
+  "nuxtSiteConfig": {
+    "name": "Vibetype"
+  }
 }

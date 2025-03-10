@@ -36,6 +36,6 @@ const errorMessages = computed(() =>
 
 <script lang="ts">
 export default {
-  name: 'MaevsiLoader',
+  name: 'AppLoader',
 }
 </script>

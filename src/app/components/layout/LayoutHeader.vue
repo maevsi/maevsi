@@ -17,7 +17,7 @@
         class="hidden 2xl:block"
         :to="localePath('index')"
       >
-        <IconLogoWithText class="h-10 w-32" />
+        <IconLogoWithText class="h-10" />
       </Button>
       <div class="hidden grow lg:block" />
 
@@ -69,7 +69,7 @@
 <script setup lang="ts">
 import { isEqual } from 'ufo'
 
-const store = useMaevsiStore()
+const store = useStore()
 const localePath = useLocalePath()
 const { t } = useI18n()
 const route = useRoute()

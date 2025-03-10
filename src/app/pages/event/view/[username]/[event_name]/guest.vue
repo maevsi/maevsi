@@ -34,7 +34,7 @@ definePageMeta({
 
 const route = useRoute(ROUTE_NAME)
 const { t } = useI18n()
-const store = useMaevsiStore()
+const store = useStore()
 
 // api data
 const accountByUsernameQuery = await zalgo(

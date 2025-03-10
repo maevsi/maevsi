@@ -38,7 +38,7 @@ const createDefaultPage = (page: Page) => {
   }
 }
 
-export const maevsiTest = test.extend<{
+export const appTest = test.extend<{
   defaultPage: ReturnType<typeof createDefaultPage>
   _autoSnapshotSuffix: void
 }>({

@@ -106,10 +106,10 @@ export const VALIDATION_USERNAME = ({
   validateExistenceNone?: boolean
 }) => ({
   ...(validateExistence
-    ? { existence: helpers.withAsync(validateUsername()) } // TODO: debounce (https://github.com/maevsi/maevsi/issues/1672)
+    ? { existence: helpers.withAsync(validateUsername()) } // TODO: debounce (https://github.com/maevsi/vibetype/issues/1672)
     : {}),
   ...(validateExistenceNone
-    ? { existenceNone: helpers.withAsync(validateUsername(true)) } // TODO: debounce (https://github.com/maevsi/maevsi/issues/1672)
+    ? { existenceNone: helpers.withAsync(validateUsername(true)) } // TODO: debounce (https://github.com/maevsi/vibetype/issues/1672)
     : {}),
   formatSlug: VALIDATION_FORMAT_SLUG,
   lengthMax: maxLength(VALIDATION_USERNAME_LENGTH_MAXIMUM),
@@ -156,7 +156,7 @@ export const validateAccountExistence = async ({
   >
 }) => {
   const { $urql } = useNuxtApp()
-  const store = useMaevsiStore()
+  const store = useStore()
 
   const accountIsExisting = await $urql.value
     .query(accountByUsernameQuery, {
