@@ -1,5 +1,3 @@
-import type { useServerSeoMeta } from '@unhead/vue'
-
 export default defineAppConfig({
   ui: {
     // primary: 'blue',

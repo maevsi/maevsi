@@ -118,7 +118,6 @@ defineOgImageComponent(
 )
 useAppLayout()
 await useAuth()
-useFavicons()
 usePolyfills()
 useSchemaOrg([
   defineWebSite({

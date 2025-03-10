@@ -35,7 +35,6 @@ export default defineNuxtConfig({
         lang: 'en', // fallback data to prevent invalid html at generation
       },
       title: SITE_NAME,
-      titleTemplate: '%s', // fully set in `composables/useAppLayout.ts`
     },
   },
   compatibilityDate: '2024-04-03',
@@ -223,6 +222,7 @@ export default defineNuxtConfig({
         '@uppy/core',
         '@uppy/tus',
         '@vuelidate/core',
+        '@vueuse/core',
         'chart.js',
         'clipboardy',
         'clsx',
