@@ -5,7 +5,7 @@
       <IHeroiconsMapPinSolid :title="t('location')" />
     </span>
     <!-- <AppLink
-      class="vio-line-clamp-2"
+      class="line-clamp-2"
       is-external
       :to="`https://maps.google.de/?q=${encodeURIComponent(event.location)}`"
     >

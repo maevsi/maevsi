@@ -3,7 +3,7 @@
     <span>
       <IHeroiconsLink :title="t('url')" />
     </span>
-    <AppLink class="vio-line-clamp-2" is-external :to="event.url">
+    <AppLink class="line-clamp-2" is-external :to="event.url">
       {{ event.url }}
     </AppLink>
   </EventDashlet>
