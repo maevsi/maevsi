@@ -76,11 +76,9 @@ const title = t('title', { name: route.params.username })
 
 // initialization
 useHeadDefault({
+  ogType: 'profile',
+  profileUsername: route.params.username,
   title,
-  extension: {
-    ogType: 'profile',
-    profileUsername: route.params.username,
-  },
 })
 </script>
 

@@ -525,10 +525,8 @@ const title = computed(() =>
 
 // initialization
 useHeadDefault({
+  description: descriptionSeo,
   title,
-  extension: {
-    description: descriptionSeo,
-  },
 })
 defineOgImageComponent(
   'Event',
